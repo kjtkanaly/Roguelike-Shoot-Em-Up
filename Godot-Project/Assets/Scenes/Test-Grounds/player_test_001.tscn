@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://oci5wna7f12b"]
+[gd_scene load_steps=3 format=3 uid="uid://oci5wna7f12b"]
+
+[ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_ixuhq"]
+[ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_odr4j"]
 
 [node name="Player-Test-001" type="Node3D"]
+
+[node name="Demo-Plane" parent="." instance=ExtResource("1_ixuhq")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+
+[node name="Player-Director" parent="." instance=ExtResource("2_odr4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15665, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 10, 10)

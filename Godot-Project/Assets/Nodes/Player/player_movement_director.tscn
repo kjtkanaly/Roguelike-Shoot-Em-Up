@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxpvcvebjnxof"]
+[gd_scene load_steps=3 format=3 uid="uid://dxpvcvebjnxof"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerMovement.cs" id="1_0f13d"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3ibmu"]
 height = 1.0
 
 [node name="Player-Movement-Director" type="CharacterBody3D"]
+script = ExtResource("1_0f13d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_3ibmu")

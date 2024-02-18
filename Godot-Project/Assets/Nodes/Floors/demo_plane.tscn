@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://sx3tnleumsb7"]
+
+[ext_resource type="PlaneMesh" uid="uid://dra31jptpy2ic" path="res://Assets/Graphics/Mesh-Objects/demo-plane-mesh-001.tres" id="1_gt7my"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2h5g"]
+size = Vector3(2, 0, 2)
+
+[node name="Demo-Plane" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h2h5g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = ExtResource("1_gt7my")
