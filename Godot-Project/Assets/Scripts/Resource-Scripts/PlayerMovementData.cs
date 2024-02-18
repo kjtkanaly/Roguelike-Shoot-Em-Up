@@ -12,6 +12,7 @@ public partial class PlayerMovementData : Resource
 	[Export] public float rotationAcceleration = 0.0f;
 	[Export] public float mouseSensitivity = 0.0f;
 	[Export] public float rollSpeed = 0.0f;
+	[Export] public float mass = 0.0f;
     public float gravity = ProjectSettings.GetSetting(
                                "physics/3d/default_gravity").AsSingle();
 }

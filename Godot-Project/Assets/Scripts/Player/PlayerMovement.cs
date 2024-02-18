@@ -51,7 +51,7 @@ public partial class PlayerMovement : Node3D
 	// Methods
 	public void ApplyGravity(float timeDelta) {
 		if (!charBody.IsOnFloor())
-			verticalVelocitySnapshot -= gravity * timeDelta;
+			verticalVelocitySnapshot -= playerData.mass * gravity * timeDelta;
 	}
 
 	public void HandleJump(float jumpVelocity) {
