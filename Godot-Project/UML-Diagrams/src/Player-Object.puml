@@ -1,0 +1,55 @@
+@startuml Player Object
+
+title Player Object Diagram
+
+object "Player Director" as Player
+
+object "Movement Director" as Movement
+object "Camera Director" as CameraDir
+object "Data Director" as Data
+object "Visual Director" as Visual
+object "Collider" as Collider
+object "Camera 3D" as Camera
+object "UI Director" as UIDir
+object "Animation Director" as Animation
+object "Mesh Director" as Mesh
+object "Inventory Director" as InventoryDir
+object "Item Pickup Area" as PickupArea
+object "Item Pickup Area Shape" as PickupShape
+object "Equipped Item" as EquippedItem
+object "Player Scene Director" as SceneDir
+object "Quit Game Timer" as QuitTimer
+
+Player : Type = Node3D
+Movement : Type = CharacterBody3D
+CameraDir : Type = Node3D
+Data : Type = Node3D
+Visual : Type = Node3D
+Collider : Type = CollisionShape3D
+Camera : Type = Camera3D
+Animation : Type = AnimationPlayer
+Mesh : Type = MeshInstance3D
+InventoryDir : Type = Node3D
+PickupArea : Type = Area3D
+PickupShape : Type = CollisionShape3D
+EquippedItem : Type = Node3D
+SceneDir : Type = Node3D
+QuitTimer : Type = Timer
+
+Player *-- Movement
+Player *-- CameraDir
+Player *-- Data
+Player *-- Visual
+Movement *-- Collider
+CameraDir *-- Camera
+Camera *-- UIDir
+Visual *-- Animation
+Visual *-- Mesh
+Data *-- InventoryDir
+InventoryDir *-- PickupArea
+PickupArea *-- PickupShape
+InventoryDir *-- EquippedItem
+Player *-- SceneDir
+SceneDir *-- QuitTimer
+
+@enduml
