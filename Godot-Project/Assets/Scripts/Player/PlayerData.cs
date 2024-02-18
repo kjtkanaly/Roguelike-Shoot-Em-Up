@@ -5,18 +5,19 @@ public partial class PlayerData : Node3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
-	[Export] public PlayerMovementData movementData = (PlayerMovementData) GD.Load("res://Assets/Resources/Movement Data Files/default_player_001.tres");
+	[Export] public PlayerMovementData movementData; // = (PlayerMovementData) GD.Load("res://Assets/Resources/Movement Data Files/default_player_001.tres");
 
-    // Godot Types
+	// Godot Types
 
-    // Basic Types
+	// Basic Types
 
-    //-------------------------------------------------------------------------
-    // Game Events
+	//-------------------------------------------------------------------------
+	// Game Events
 
-    //-------------------------------------------------------------------------
-    // Player Data Methods
+	//-------------------------------------------------------------------------
+	// Player Data Methods
 
-    //-------------------------------------------------------------------------
-    // Demo Methods
+	//-------------------------------------------------------------------------
+	// Demo Methods
+
 }

@@ -21,7 +21,8 @@ public partial class PlayerMovement : Node3D
 	// Game Events
 	public override void _Ready()
 	{
-		playerData = GetNode<PlayerData>("").movementData;
+		charBody = GetNode<CharacterBody3D>("../");
+		playerData = GetNode<PlayerData>("../Player-Data-Director").movementData;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -104,7 +105,7 @@ public partial class PlayerMovement : Node3D
 	}
 
 	private Vector3 GetGlobalInputDirectionNorm() {
-		inputDirection = Input.GetVector("Right", "Left", "Down", "Up");
+		inputDirection = Input.GetVector("Left", "Right", "Up", "Down");
 		Vector3 direction = (Transform.Basis 
 							 * new Vector3(inputDirection.X, 0, inputDirection.Y));
 		direction = direction.Normalized();
