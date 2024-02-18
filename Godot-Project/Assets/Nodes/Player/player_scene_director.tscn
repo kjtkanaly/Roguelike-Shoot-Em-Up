@@ -1,5 +1,10 @@
-[gd_scene format=3 uid="uid://dofme3ylpyfbe"]
+[gd_scene load_steps=2 format=3 uid="uid://dofme3ylpyfbe"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerSceneDirector.cs" id="1_ysl4x"]
 
 [node name="Player-Scene-Director" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_ysl4x")
 
-[node name="Quit-Game-Timer" type="Timer" parent="."]
+[node name="Quit-Game" type="Timer" parent="."]
+one_shot = true

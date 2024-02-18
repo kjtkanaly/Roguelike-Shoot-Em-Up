@@ -2,6 +2,66 @@
 
 title Player Classes Diagram
 
-class PlayerMovement
+class PlayerMovement <<Node3D>>{
+    == Data ==
+    .. Private ..
+    - PlayerMovementData playerData
+    - CharacterBody3D charBody
+    - Vector2 lateralVelocitySnapshot
+    - Vector2 inputDirection
+    - float verticalVelocitySnapshot
+    - float gravity
+    .. Public ..
+
+    == Methods ==
+    .. Private Methods ..
+    - ApplyGravity() : void
+    - HandleJump() : void
+    - HandleBasicLateralMovement() : void
+    - HandleDodgeRoll() : void
+    - GetGlobalInputDirectionNorm() : Vector3
+    .. Public Methods ..
+    + _Ready() : void
+    + __PhysicsProcess() : void
+}
+
+class PlayerMovementData <<Resource>> {
+    == Public Data ==
+    + float speed
+    + float acceleration
+    + float friction
+    + float jumpVelocity
+    + float rotationSpeed
+    + float rotationAcceleration
+    + float mouseSensitivity
+    + float rollSpeed
+    + float mass
+    + float gravity
+}
+
+class PlayerData <<Node3D>>{
+    == Public Data ==
+    + PlayerMovementData movementData
+}
+
+class PlayerSceneDirector <<Node3D>>{
+    == Data ==
+    .. Private ..
+    - Timer quitGameTimer
+    - float quitGameDelay
+    .. Public ..
+
+    == Methods ==
+    .. Private ..
+    - TogglePause() : void
+    - PauseGame() : void
+    - ResumeGame() : void
+    - ToggleQuitGameTimer() : void
+    - QuitGame() : void
+    .. Public ..
+    + _Ready() : void
+    + _Process() : void
+    + _Input() : void
+}
 
 @enduml

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ln1ckei0exnl" path="res://Assets/Graphics/Sprites/Demo-Plane-001.png" id="1_3hutm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ictj3"]
+albedo_color = Color(0.254902, 0.462745, 0.4, 1)
 albedo_texture = ExtResource("1_3hutm")
 uv1_scale = Vector3(10, 10, 10)
 
