@@ -13,3 +13,19 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Visual Studio cache directory
+.vs/
+
+# Blender Files
+*.blend
+/blender.bin
+/BUILD_NOTES.txt
+*.pyc
+*.blend[1-9]
+__pycache__
+/dist/
+
+# csharp files
+*/Godot-Project.csproj
+*/Godot-Project.sln
