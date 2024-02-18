@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhxmej5jdupx8"]
+[gd_scene load_steps=6 format=3 uid="uid://bhxmej5jdupx8"]
 
 [ext_resource type="PackedScene" uid="uid://dxpvcvebjnxof" path="res://Assets/Nodes/Player/player_movement_director.tscn" id="1_flrew"]
 [ext_resource type="PackedScene" uid="uid://dndaomo1pjwyr" path="res://Assets/Nodes/Player/camera_director.tscn" id="2_m0ese"]
 [ext_resource type="PackedScene" uid="uid://dcj4ce0kkhruf" path="res://Assets/Nodes/Player/visual_director.tscn" id="3_qawdn"]
 [ext_resource type="PackedScene" uid="uid://dofme3ylpyfbe" path="res://Assets/Nodes/Player/player_scene_director.tscn" id="4_5u3ck"]
 
-[node name="Player-Director" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iuyme"]
+height = 1.0
+
+[node name="Player-Director" type="CharacterBody3D"]
 
 [node name="Player-Movement-Director" parent="." instance=ExtResource("1_flrew")]
 
@@ -14,3 +17,6 @@
 [node name="Visual-Director" parent="." instance=ExtResource("3_qawdn")]
 
 [node name="Player-Scene-Director" parent="." instance=ExtResource("4_5u3ck")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_iuyme")

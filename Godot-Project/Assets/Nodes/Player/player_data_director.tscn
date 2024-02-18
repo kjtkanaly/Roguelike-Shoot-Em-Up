@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0v46o6wx6akx"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerData.cs" id="1_tmtsi"]
+
+[node name="Player-Data-Director" type="Node3D"]
+script = ExtResource("1_tmtsi")
