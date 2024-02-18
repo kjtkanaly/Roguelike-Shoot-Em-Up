@@ -14,7 +14,7 @@ object "UI Director" as UIDir
 object "Animation Director" as Animation
 object "Mesh Director" as Mesh
 object "Player Scene Director" as SceneDir
-object "Quit Game Timer" as QuitTimer
+object "Quit Game" as QuitTimer
 
 Player : Type = CharacterBody3D
 Movement : Type = Node3D

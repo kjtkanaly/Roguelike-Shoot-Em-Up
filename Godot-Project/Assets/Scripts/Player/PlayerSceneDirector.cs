@@ -11,7 +11,7 @@ public partial class PlayerSceneDirector : Node3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
-	private Timer QuitGameTimer = null;
+	private Timer quitGameTimer = null;
 
 	// Godot Types
 
@@ -22,16 +22,16 @@ public partial class PlayerSceneDirector : Node3D
 	// Game Events
 	public override void _Ready()
 	{
-		QuitGameTimer = GetNode<Timer>("Quit-Game");
+		quitGameTimer = GetNode<Timer>("Quit-Game");
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 
-		QuitGameTimer.Timeout += QuitGame;
+		quitGameTimer.Timeout += QuitGame;
 	}
 
 	public override void _Process(double delta)
 	{
-		ToggleQuitGame();
+		ToggleQuitGameTimer();
 	}
 
 	public override void _Input(InputEvent @event)
@@ -65,11 +65,11 @@ public partial class PlayerSceneDirector : Node3D
 		GetTree().Paused = false;
 	}
 
-	public void ToggleQuitGame() {
+	public void ToggleQuitGameTimer() {
 		if (Input.IsActionJustPressed("Quit Game"))
-			QuitGameTimer.Start(quitGameDelay);
+			quitGameTimer.Start(quitGameDelay);
 		if (Input.IsActionJustReleased("Quit Game"))
-			QuitGameTimer.Stop();
+			quitGameTimer.Stop();
 	}
 
 	private void QuitGame() {

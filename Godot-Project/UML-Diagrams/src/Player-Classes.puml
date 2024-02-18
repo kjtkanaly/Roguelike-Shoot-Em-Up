@@ -2,16 +2,16 @@
 
 title Player Classes Diagram
 
-class PlayerMovement {
+class PlayerMovement <<Node3D>>{
     == Data ==
-    .. Private Data ..
+    .. Private ..
     - PlayerMovementData playerData
     - CharacterBody3D charBody
     - Vector2 lateralVelocitySnapshot
     - Vector2 inputDirection
     - float verticalVelocitySnapshot
     - float gravity
-    .. Public Data ..
+    .. Public ..
 
     == Methods ==
     .. Private Methods ..
@@ -39,9 +39,29 @@ class PlayerMovementData <<Resource>> {
     + float gravity
 }
 
-class PlayerData {
-    == Public ==
+class PlayerData <<Node3D>>{
+    == Public Data ==
     + PlayerMovementData movementData
+}
+
+class PlayerSceneDirector <<Node3D>>{
+    == Data ==
+    .. Private ..
+    - Timer quitGameTimer
+    - float quitGameDelay
+    .. Public ..
+
+    == Methods ==
+    .. Private ..
+    - TogglePause() : void
+    - PauseGame() : void
+    - ResumeGame() : void
+    - ToggleQuitGameTimer() : void
+    - QuitGame() : void
+    .. Public ..
+    + _Ready() : void
+    + _Process() : void
+    + _Input() : void
 }
 
 @enduml
