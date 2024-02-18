@@ -2,6 +2,27 @@
 
 title Player Classes Diagram
 
-class PlayerMovement
+class PlayerMovement {
+    == Data ==
+    .. Private Data ..
+    - PlayerMovementData playerData
+    - CharacterBody3D charBody
+    - Vector2 lateralVelocitySnapshot
+    - Vector2 inputDirection
+    - float verticalVelocitySnapshot
+    - float gravity
+    .. Public Data ..
+
+    == Methods ==
+    .. Private Methods ..
+    - ApplyGravity() : void
+    - HandleJump() : void
+    - HandleBasicLateralMovement() : void
+    - HandleDodgeRoll() : void
+    - GetGlobalInputDirectionNorm() : Vector3
+    .. Public Methods ..
+    + _Ready() : void
+    + __PhysicsProcess() : void
+}
 
 @enduml

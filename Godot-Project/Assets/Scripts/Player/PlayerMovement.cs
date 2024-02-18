@@ -13,7 +13,7 @@ public partial class PlayerMovement : Node3D
 	private Vector2 lateralVelocitySnapshot;
 	private Vector2 inputDirection;
 	private float verticalVelocitySnapshot;
-	public float gravity = ProjectSettings.GetSetting(
+	private float gravity = ProjectSettings.GetSetting(
 						   "physics/3d/default_gravity").AsSingle();
 	// Public
 
@@ -49,17 +49,17 @@ public partial class PlayerMovement : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public void ApplyGravity(float timeDelta) {
+	private void ApplyGravity(float timeDelta) {
 		if (!charBody.IsOnFloor())
 			verticalVelocitySnapshot -= playerData.mass * gravity * timeDelta;
 	}
 
-	public void HandleJump(float jumpVelocity) {
+	private void HandleJump(float jumpVelocity) {
 		if (Input.IsActionJustPressed("Jump") && charBody.IsOnFloor())
 			verticalVelocitySnapshot = jumpVelocity;
 	}
 
-	public void HandleBasicLateralMovement(float delta) {
+	private void HandleBasicLateralMovement(float delta) {
 		Vector3 direction = GetGlobalInputDirectionNorm();
 
 		if (direction != Vector3.Zero) {
@@ -84,7 +84,7 @@ public partial class PlayerMovement : Node3D
 		}
 	}
 
-	public void HandleDodgeRoll(float delta) {
+	private void HandleDodgeRoll(float delta) {
 		/*
 		// Check if currently rolling
 		if (PAD.CheckPlayingStatus() && (PAD.GetCurrentAnimationName() == "Roll"))
