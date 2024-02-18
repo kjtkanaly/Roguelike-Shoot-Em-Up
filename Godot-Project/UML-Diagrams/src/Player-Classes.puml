@@ -25,7 +25,7 @@ class PlayerMovement {
     + __PhysicsProcess() : void
 }
 
-class PlayerMovementData {
+class PlayerMovementData <<Resource>> {
     == Public Data ==
     + float speed
     + float acceleration
