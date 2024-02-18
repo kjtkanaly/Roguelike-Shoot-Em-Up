@@ -5,6 +5,8 @@ public partial class <ExampleClassName> : <ExampleClassInheritance>
 {
     //-------------------------------------------------------------------------
     // Game Componenets
+    // Private
+    // Public
 
     //-------------------------------------------------------------------------
 	// Game Events

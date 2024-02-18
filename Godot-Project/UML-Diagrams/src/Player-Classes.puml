@@ -1,0 +1,7 @@
+@startuml Player Classes
+
+title Player Classes Diagram
+
+class PlayerMovement
+
+@enduml

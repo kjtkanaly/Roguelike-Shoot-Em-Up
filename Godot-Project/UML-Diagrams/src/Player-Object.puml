@@ -5,14 +5,12 @@ title Player Object Diagram
 object "Player Director" as Player
 
 object "Movement Director" as Movement
-object "Camera Director" as Camera
+object "Camera Director" as CameraDir
 object "Data Director" as Data
 object "Visual Director" as Visual
 object "Collider" as Collider
-object "First Person Camera" as FPS
-object "UI Director" as UI_Director
-object "Player UI" as PlayerUI
-object "Inventory UI" as InventoryUI
+object "Camera 3D" as Camera
+object "UI Director" as UIDir
 object "Animation Director" as Animation
 object "Mesh Director" as Mesh
 object "Inventory Director" as InventoryDir
@@ -24,14 +22,11 @@ object "Quit Game Timer" as QuitTimer
 
 Player : Type = Node3D
 Movement : Type = CharacterBody3D
-Camera : Type = Node3D
+CameraDir : Type = Node3D
 Data : Type = Node3D
 Visual : Type = Node3D
 Collider : Type = CollisionShape3D
-FPS : Type = Camera3D
-UI_Director : Type = Node3D
-PlayerUI : Type = CanvasLayer
-InventoryUI : Type = Control
+Camera : Type = Camera3D
 Animation : Type = AnimationPlayer
 Mesh : Type = MeshInstance3D
 InventoryDir : Type = Node3D
@@ -42,14 +37,12 @@ SceneDir : Type = Node3D
 QuitTimer : Type = Timer
 
 Player *-- Movement
-Player *-- Camera
+Player *-- CameraDir
 Player *-- Data
 Player *-- Visual
 Movement *-- Collider
-Camera *-- FPS
-FPS *-- UI_Director
-UI_Director *-- PlayerUI
-UI_Director *-- InventoryUI
+CameraDir *-- Camera
+Camera *-- UIDir
 Visual *-- Animation
 Visual *-- Mesh
 Data *-- InventoryDir
