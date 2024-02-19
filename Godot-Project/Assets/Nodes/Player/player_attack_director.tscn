@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://df1ikcf5pnn6f"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAttackDirector.cs" id="1_hlsyp"]
+
+[node name="Player-Attack-Director" type="Node3D"]
+script = ExtResource("1_hlsyp")
+
+[node name="Weapon-Timer-Container" type="Node" parent="."]
+
+[node name="Weapon-Slot-Timer-00" type="Timer" parent="Weapon-Timer-Container"]
+
+[node name="Weapon-Slot-Timer-01" type="Timer" parent="Weapon-Timer-Container"]
+
+[node name="Weapon-Slot-Timer-02" type="Timer" parent="Weapon-Timer-Container"]
+
+[node name="Weapon-Slot-Timer-03" type="Timer" parent="Weapon-Timer-Container"]
+
+[node name="Weapon-Slot-Timer-04" type="Timer" parent="Weapon-Timer-Container"]
+
+[node name="Weapon-Slot-Timer-05" type="Timer" parent="Weapon-Timer-Container"]
