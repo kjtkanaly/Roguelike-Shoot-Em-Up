@@ -10,17 +10,23 @@ public class AttackObject
 	public AttackObject(PlayerAttackInfo attackInfoObj, Timer timerObj) {
 		attackInfo = attackInfoObj;
 		timer = timerObj;
-        
-		UpdateTimerTime(attackInfo.delay);
+
+		timer.Timeout += CallAttack;
+
+		UpdateTimerTime();
 		StartTimer();
 	}
 
-	private void UpdateTimerTime(float delay) {
+	private void UpdateTimerTime() {
 		timer.WaitTime = attackInfo.delay;
 	}
 
 	private void StartTimer() {
 		timer.Start();
+	}
+
+	private void CallAttack() {
+		GD.Print($"Attack Delay: {attackInfo.delay}s");
 	}
 }
 
@@ -47,7 +53,7 @@ public partial class PlayerAttackDirector : Node3D
 			attackTimerList.Add((Timer) node);
 		}
 
-		// Init the Attack and Timer Arrays
+		// Init the Attacks Array
 		attackList = new AttackObject[maxAttackCount];
 
 		if (DemoMode) {
@@ -64,11 +70,11 @@ public partial class PlayerAttackDirector : Node3D
 	// Methods
 	public bool AddAttack(PlayerAttackInfo playerAttack, bool maxCountOverride=false) {
 		// Null Catch
-		if ((attackList.Length >= maxAttackCount) && !maxCountOverride) {
+		if ((attackList.Length > maxAttackCount) && (!maxCountOverride)) {
 			return false;
 		}
 
-		int newAttackIndex = attackList.Length - 1;
+		int newAttackIndex = GetNextAttackIndex();
 
 		// Update the Attack List
 		attackList[newAttackIndex] = new AttackObject(
@@ -78,14 +84,28 @@ public partial class PlayerAttackDirector : Node3D
 		return true;
 	}
 
-    private void CallAttack() {
+	private int GetNextAttackIndex() {
+		int index = 0;
 
-    }
+		for (index = 0; index < attackList.Length; index++) {
+			if (attackList[index] == null) {
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
 	//-------------------------------------------------------------------------
 	// Debug/Demo Methods
 	private void InitSomeAttacks() {
 		AddAttack(new PlayerAttackInfo(10, 1));
-		AddAttack(new PlayerAttackInfo(1,  5));
-		
+		AddAttack(new PlayerAttackInfo(1,  5));	
+	}
+
+	private void PrintTimerNames() {
+		foreach(Timer timer in attackTimerList) {
+			GD.Print(timer.Name);
+		}
 	}
 }
