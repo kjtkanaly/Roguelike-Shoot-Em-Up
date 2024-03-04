@@ -64,4 +64,17 @@ class PlayerSceneDirector <<Node3D>>{
     + _Input() : void
 }
 
+class InteractionDirector <<Node3D>>{
+    == Data ==
+    .. Private ..
+    - PlayerAttackDirector playerAttack
+    - PlayerDataDirector playerData
+    .. Public ..
+
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    + _Ready() : void
+}
+
 @enduml

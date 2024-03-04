@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhxmej5jdupx8"]
+[gd_scene load_steps=9 format=3 uid="uid://bhxmej5jdupx8"]
 
 [ext_resource type="PackedScene" uid="uid://dxpvcvebjnxof" path="res://Assets/Nodes/Player/player_movement_director.tscn" id="1_flrew"]
 [ext_resource type="PackedScene" uid="uid://dndaomo1pjwyr" path="res://Assets/Nodes/Player/camera_director.tscn" id="2_m0ese"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dofme3ylpyfbe" path="res://Assets/Nodes/Player/player_scene_director.tscn" id="4_5u3ck"]
 [ext_resource type="PackedScene" uid="uid://d0v46o6wx6akx" path="res://Assets/Nodes/Player/player_data_director.tscn" id="5_6vphl"]
 [ext_resource type="PackedScene" uid="uid://4ntyyivyx4mj" path="res://Assets/Nodes/Player/player_interaction_director.tscn" id="6_hl3b3"]
+[ext_resource type="Resource" uid="uid://cq7l7gocxs86m" path="res://Assets/Resources/Movement Data Files/default_player_001.tres" id="6_tea6y"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iuyme"]
 height = 1.0
@@ -24,5 +25,6 @@ height = 1.0
 shape = SubResource("CylinderShape3D_iuyme")
 
 [node name="Player-Data-Director" parent="." instance=ExtResource("5_6vphl")]
+movementData = ExtResource("6_tea6y")
 
 [node name="Player-Interaction-Director" parent="." instance=ExtResource("6_hl3b3")]
