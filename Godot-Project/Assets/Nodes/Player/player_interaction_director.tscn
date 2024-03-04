@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://4ntyyivyx4mj"]
+[gd_scene load_steps=3 format=3 uid="uid://4ntyyivyx4mj"]
 
+[ext_resource type="Script" path="res://Assets/Scripts/Player/InteractionDirector.cs" id="1_rcn75"]
 [ext_resource type="PackedScene" uid="uid://df1ikcf5pnn6f" path="res://Assets/Nodes/Player/player_attack_director.tscn" id="1_tp631"]
 
 [node name="Player-Interaction-Director" type="Node3D"]
+script = ExtResource("1_rcn75")
 
 [node name="Player-Attack-Director" parent="." instance=ExtResource("1_tp631")]

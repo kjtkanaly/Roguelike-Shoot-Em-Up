@@ -7,6 +7,7 @@ object "Player Director" as Player
 object "Movement Director" as Movement
 object "Camera Director" as CameraDir
 object "Data Director" as Data
+object "Inventory Director" as InventoryDir
 object "Visual Director" as Visual
 object "Collider" as Collider
 object "Camera 3D" as Camera
@@ -23,6 +24,7 @@ Player : Type = CharacterBody3D
 Movement : Type = Node3D
 CameraDir : Type = Node3D
 Data : Type = Node3D
+InventoryDir : Typer = Node3D
 Visual : Type = Node3D
 Collider : Type = CollisionShape3D
 Camera : Type = Camera3D
@@ -37,6 +39,7 @@ WeaponTimerCont : Type = Node
 Player *-- Movement
 Player *-- CameraDir
 Player *-- Data
+Data *-- InventoryDir
 Player *-- Visual
 Player *-- Collider
 CameraDir *-- Camera

@@ -26,7 +26,7 @@ public class AttackObject
 	}
 
 	private void CallAttack() {
-		GD.Print($"Attack Delay: {attackInfo.delay}s");
+		GD.Print($"Attack Index {attackInfo.attackIndex}: Time Delay = {attackInfo.delay}s");
 	}
 }
 
@@ -35,6 +35,8 @@ public partial class PlayerAttackDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
+	private InteractionDirector interactionDir = null;
+	private PlayerDataDirector dataDir = null;
 	private Node attackTimersContainer = null;
 	private List<Timer> attackTimerList = new List<Timer>();
 	private int maxAttackCount = 6;
@@ -47,6 +49,8 @@ public partial class PlayerAttackDirector : Node3D
 	// Game Events
 	public override void _Ready()
 	{
+		GetUsefulNodes();
+
 		// Grab the Attack Timer(s) Container and the available timers
 		attackTimersContainer = GetNode<Node>("Weapon-Timer-Container");
 		foreach (Node node in attackTimersContainer.GetChildren()) {
@@ -68,6 +72,11 @@ public partial class PlayerAttackDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
+	private void GetUsefulNodes() {
+		interactionDir = GetNode<InteractionDirector>("..");
+		dataDir =  GetNode<PlayerDataDirector>("../../Player-Data-Director");
+	}
+
 	public bool AddAttack(PlayerAttackInfo playerAttack, bool maxCountOverride=false) {
 		// Null Catch
 		if ((attackList.Length > maxAttackCount) && (!maxCountOverride)) {
@@ -75,6 +84,8 @@ public partial class PlayerAttackDirector : Node3D
 		}
 
 		int newAttackIndex = GetNextAttackIndex();
+
+		playerAttack.SetAttackIndex(newAttackIndex);
 
 		// Update the Attack List
 		attackList[newAttackIndex] = new AttackObject(

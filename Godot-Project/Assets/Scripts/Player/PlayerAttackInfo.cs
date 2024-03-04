@@ -7,6 +7,7 @@ public partial class PlayerAttackInfo
 	// Game Componenets
 	// Private
 	// Public
+	public int attackIndex = -1;
 	[Export] public float damage = 1.0f;
 	[Export] public float delay = 1.0f;
 	//-------------------------------------------------------------------------
@@ -17,6 +18,10 @@ public partial class PlayerAttackInfo
 	public PlayerAttackInfo(float damageVal, float delayVal) {
 		damage = damageVal;
 		delay = delayVal;
+	}
+
+	public void SetAttackIndex(int index) {
+		attackIndex = index;
 	}
 
 	//-------------------------------------------------------------------------

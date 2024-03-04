@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0v46o6wx6akx"]
+[gd_scene load_steps=4 format=3 uid="uid://d0v46o6wx6akx"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerDataDirector.cs" id="1_qiofr"]
 [ext_resource type="Resource" uid="uid://cq7l7gocxs86m" path="res://Assets/Resources/Movement Data Files/default_player_001.tres" id="2_v06if"]
+[ext_resource type="PackedScene" uid="uid://h3m3nkq4bbig" path="res://Assets/Nodes/Player/player_inventory_director.tscn" id="3_0n4q7"]
 
 [node name="Player-Data-Director" type="Node3D"]
 script = ExtResource("1_qiofr")
 movementData = ExtResource("2_v06if")
+
+[node name="Player-Inventory-Director" parent="." instance=ExtResource("3_0n4q7")]
