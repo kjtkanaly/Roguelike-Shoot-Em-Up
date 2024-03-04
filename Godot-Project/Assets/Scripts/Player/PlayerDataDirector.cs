@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerData : Node3D
+public partial class PlayerDataDirector : Node3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets

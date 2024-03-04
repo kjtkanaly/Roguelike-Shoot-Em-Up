@@ -22,7 +22,7 @@ public partial class PlayerMovement : Node3D
 	public override void _Ready()
 	{
 		charBody = GetNode<CharacterBody3D>("../");
-		playerData = GetNode<PlayerData>("../Player-Data-Director").movementData;
+		playerData = GetNode<PlayerDataDirector>("../Player-Data-Director").movementData;
 	}
 
 	public override void _PhysicsProcess(double delta)
