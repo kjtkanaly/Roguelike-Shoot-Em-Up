@@ -15,6 +15,9 @@ object "Animation Director" as Animation
 object "Mesh Director" as Mesh
 object "Player Scene Director" as SceneDir
 object "Quit Game" as QuitTimer
+object "Interaction Director" as InteractionDir
+object "Attack Director" as AttackDir
+object "Weapon Timer Container" as WeaponTimerCont
 
 Player : Type = CharacterBody3D
 Movement : Type = Node3D
@@ -27,6 +30,9 @@ Animation : Type = AnimationPlayer
 Mesh : Type = MeshInstance3D
 SceneDir : Type = Node3D
 QuitTimer : Type = Timer
+InteractionDir : Typer = Node3D
+AttackDir : Type = Node3D
+WeaponTimerCont : Type = Node
 
 Player *-- Movement
 Player *-- CameraDir
@@ -39,5 +45,8 @@ Visual *-- Animation
 Visual *-- Mesh
 Player *-- SceneDir
 SceneDir *-- QuitTimer
+Player *-- InteractionDir
+InteractionDir *-- AttackDir
+AttackDir *-- WeaponTimerCont
 
 @enduml
