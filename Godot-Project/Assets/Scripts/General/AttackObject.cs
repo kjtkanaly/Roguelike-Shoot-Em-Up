@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class AttackObject 
 {
+    public enum Type {
+        None = 0,
+        Projectile = 1,
+        AreaOfEffect = 2
+    }
+
 	public PlayerAttackInfo attackInfo = null;
 	public Timer timer = null;
 
