@@ -12,7 +12,7 @@ public partial class PlayerAttackDirector : Node3D
 	private Node attackTimersContainer = null;
 	private List<Timer> attackTimerList = new List<Timer>();
 	private int maxAttackCount = 6;
-	private bool DemoMode = true;
+	private bool DemoMode = false;
 
 	// Public
 	public PlayerAttackObject[] attackList = null;
@@ -49,6 +49,36 @@ public partial class PlayerAttackDirector : Node3D
 		dataDir =  GetNode<PlayerDataDirector>("../../Player-Data-Director");
 	}
 
+	public int GetOpenActionSlotIndex() {
+		int index = 0;
+
+		for (index = 0; index < attackList.Length; index++) {
+			if (attackList[index] == null) {
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
+	public void InitAttackSlotObject(int index) {
+		attackList[index] = new PlayerAttackObject();
+	}
+
+	public void SetAttackSlotIndex(int index) {
+		attackList[index].SetAttackIndex(index);
+	}
+
+	public void SetAttackSlotData(int index, PlayerAttackData data) {
+		attackList[index].SetData(data);
+	}
+
+	public void InitAttackSlotTimer(int index) {
+		attackList[index].InitTimer(attackTimerList[index]);
+	}	
+
+	//-------------------------------------------------------------------------
+	// Debug/Demo Methods
 	public bool AddAttack(float damageVal, float delayVal, bool maxCountOverride=false) {
 		// Null Catch
 		if ((attackList.Length > maxAttackCount) && (!maxCountOverride)) {
@@ -68,20 +98,6 @@ public partial class PlayerAttackDirector : Node3D
 		return true;
 	}
 
-	public int GetOpenActionSlotIndex() {
-		int index = 0;
-
-		for (index = 0; index < attackList.Length; index++) {
-			if (attackList[index] == null) {
-				return index;
-			}
-		}
-
-		return -1;
-	}
-
-	//-------------------------------------------------------------------------
-	// Debug/Demo Methods
 	private void InitSomeAttacks() {
 		AddAttack(10, 1);
 		AddAttack(1,  5);	

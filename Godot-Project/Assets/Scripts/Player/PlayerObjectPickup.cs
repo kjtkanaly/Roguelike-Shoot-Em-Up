@@ -4,56 +4,77 @@ using System.Collections.Generic;
 
 public partial class PlayerObjectPickup : Area3D
 {
-    //-------------------------------------------------------------------------
-    // Game Componenets
-    // Private
-    private PlayerInteractionDirector interactionDir = null; 
+	//-------------------------------------------------------------------------
+	// Game Componenets
+	// Private
+	private PlayerInteractionDirector interactionDir = null; 
 
-    // Public
-    public List<Node3D> nearbyFreeActionNodes = null;
+	// Public
+	public List<Node3D> nearbyFreeActionNodes = null;
 
-    //-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 	// Game Events
-    public override void _Ready() {
-        interactionDir = GetNode<PlayerInteractionDirector>("..");
+	public override void _Ready() {
+		interactionDir = GetNode<PlayerInteractionDirector>("..");
 
-        nearbyFreeActionNodes = new List<Node3D>();
+		nearbyFreeActionNodes = new List<Node3D>();
 
-        AreaEntered += AddFreeActionToNearbyList;
-        AreaExited += RemoveFreeActionFromNearbyList;
-    }
+		AreaEntered += AddFreeActionToNearbyList;
+		AreaExited += RemoveFreeActionFromNearbyList;
+	}
 
-    //-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 	// Methods
-    public void AddFreeActionToNearbyList(Area3D freeActionArea) {
-        GD.Print($"{freeActionArea.Name} is within range");
-        nearbyFreeActionNodes.Add((Node3D) freeActionArea);
+	public void AddFreeActionToNearbyList(Area3D freeActionArea) {
+		GD.Print($"{freeActionArea.Name} is within range");
+		nearbyFreeActionNodes.Add((Node3D) freeActionArea);
 
-        // To DO: Move the following behind input logic later on
-        // See sequence diagram note for more context
-        PickupFirstFreeAction();
-    }
+		// To DO: Move the following behind input logic later on
+		// See sequence diagram note for more context
+		PickupFirstFreeAction();
+	}
 
-    public void RemoveFreeActionFromNearbyList(Area3D freeActionArea) {
-        GD.Print($"{freeActionArea.Name} is out of range");
-        nearbyFreeActionNodes.Remove((Node3D) freeActionArea);
-    }
+	public void RemoveFreeActionFromNearbyList(Area3D freeActionArea) {
+		GD.Print($"{freeActionArea.Name} is out of range");
+		nearbyFreeActionNodes.Remove((Node3D) freeActionArea);
+	}
 
-    public void RemoveFreeActionFromNearbyList(Node3D freeActionNode) {
-        GD.Print($"{freeActionNode.Name} was picked up");
-        nearbyFreeActionNodes.Remove(freeActionNode);
-    }
+	public void RemoveFreeActionFromNearbyList(Node3D freeActionNode) {
+		GD.Print($"{freeActionNode.Name} was picked up");
+		nearbyFreeActionNodes.Remove(freeActionNode);
+	}
 
-    private bool PickupFirstFreeAction() {
-        // Get the player's next open action slot index
-        int index = interactionDir.GetOpenActionSlotIndex();
-        if (index == -1) {
-            return false;
-        }
+	private bool PickupFirstFreeAction() {
+		// Get the player's next open action slot index
+		int index = interactionDir.GetOpenActionSlotIndex();
+		if (index == -1) {
+			GD.Print("No free attack slots");
+			return false;
+		}
+		GD.Print($"Attack Slot {index} is open");
 
-        return true;
-    }
+		// Get the First Free Action's Attack data
+		FreeAction freeAction = (FreeAction) nearbyFreeActionNodes[0];
 
-    //-------------------------------------------------------------------------
+		// Init the open action slot's Attack Object
+		interactionDir.InitAttackSlotObject(index);
+
+		// Update the open action slot's index value
+		interactionDir.SetAttackSlotIndex(index);
+
+		// Update the open action slot with the Free Action's Attack data
+		interactionDir.SetAttackSlotData(index, freeAction.attackData);
+
+		// Activate the open action slot's timer
+		interactionDir.InitAttackSlotTimer(index);
+
+		// Destroy the now equipped action node
+		nearbyFreeActionNodes[0].QueueFree();
+		RemoveFreeActionFromNearbyList(nearbyFreeActionNodes[0]);
+
+		return true;
+	}
+
+	//-------------------------------------------------------------------------
 	// Debug Methods
 }

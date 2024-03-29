@@ -24,8 +24,28 @@ public partial class PlayerAttackObject : AttackObject
 		StartTimer();
 	}
 
+	public PlayerAttackObject() :
+		base(){
+		attackIndex = -1;
+		timer = null;
+	}
+
 	public void SetAttackIndex(int index) {
 		attackIndex = index;
+	}
+
+	public void SetData(PlayerAttackData data) {
+		type = data.type;
+		damage = data.damage;
+		delay = data.delay;
+	}
+
+	public void InitTimer(Timer timerInstance) {
+		timer = timerInstance;
+		timer.Timeout += CallAttack;
+
+		UpdateTimerTime();
+		StartTimer();
 	}
 
 	private void UpdateTimerTime() {

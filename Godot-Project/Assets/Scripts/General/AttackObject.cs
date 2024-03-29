@@ -19,4 +19,10 @@ public class AttackObject
 		delay = delayVal;
         type = typeVal;
 	}
+
+    public AttackObject() {
+        type = Type.None;
+        damage = 1.0f;
+		delay = 1.0f;
+    }
 }

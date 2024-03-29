@@ -22,8 +22,24 @@ public partial class PlayerInteractionDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public int GetOpenActionSlotIndex(){
+	public int GetOpenActionSlotIndex() {
 		return playerAttack.GetOpenActionSlotIndex();
+	}
+
+	public void InitAttackSlotObject(int index) {
+		playerAttack.InitAttackSlotObject(index);
+	}
+
+	public void SetAttackSlotIndex(int index) {
+		playerAttack.SetAttackSlotIndex(index);
+	}
+
+	public void SetAttackSlotData(int index, PlayerAttackData data) {
+		playerAttack.SetAttackSlotData(index, data);
+	}
+
+	public void InitAttackSlotTimer(int index) {
+		playerAttack.InitAttackSlotTimer(index);
 	}
 
 	//-------------------------------------------------------------------------
