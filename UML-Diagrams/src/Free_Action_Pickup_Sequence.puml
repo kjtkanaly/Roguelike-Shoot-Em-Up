@@ -11,6 +11,13 @@ repeat
 
     if (Player presses the **Pickup Item** button) then (yes)
 
+    note left
+        Come back later and implement 
+        this **Press Button** feature.
+        For now just Add the action if
+        the player has space
+    end note
+
         if (Player has an open **attack slot**) then (yes)
 
             :Copy the **player attack** data
