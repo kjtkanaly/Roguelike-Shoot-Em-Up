@@ -1,0 +1,15 @@
+@startuml Free Action Object
+title Free Action Node
+
+object FreeAction 
+object CollisionShape
+object MeshInstance
+
+FreeAction : Type = Area3D
+CollisionShape : Type = CollisionShape3D
+MeshInstance : Type = MeshInstance3D
+
+FreeAction *-- CollisionShape
+FreeAction *-- MeshInstance
+
+@enduml
