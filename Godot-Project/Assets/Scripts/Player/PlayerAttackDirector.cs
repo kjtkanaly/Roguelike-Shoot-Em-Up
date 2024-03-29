@@ -7,7 +7,7 @@ public partial class PlayerAttackDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
-	private InteractionDirector interactionDir = null;
+	private PlayerInteractionDirector interactionDir = null;
 	private PlayerDataDirector dataDir = null;
 	private Node attackTimersContainer = null;
 	private List<Timer> attackTimerList = new List<Timer>();
@@ -45,7 +45,7 @@ public partial class PlayerAttackDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Methods
 	private void GetUsefulNodes() {
-		interactionDir = GetNode<InteractionDirector>("..");
+		interactionDir = GetNode<PlayerInteractionDirector>("..");
 		dataDir =  GetNode<PlayerDataDirector>("../../Player-Data-Director");
 	}
 

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class ObjectPickupCtrl : Area3D
+public partial class PlayerObjectPickup : Area3D
 {
     //-------------------------------------------------------------------------
     // Game Componenets

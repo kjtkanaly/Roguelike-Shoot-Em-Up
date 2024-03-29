@@ -1,14 +1,14 @@
 using Godot;
 using System;
 
-public partial class InteractionDirector : Node3D
+public partial class PlayerInteractionDirector : Node3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
 	private PlayerAttackDirector playerAttack = null;
 	private PlayerDataDirector playerData = null;
-	private ObjectPickupCtrl pickupArea = null;
+	private PlayerObjectPickup pickupArea = null;
 
 	// Public
 
