@@ -5,6 +5,8 @@ start
 
 :Player gets within **pickup range** \nof a **Free Action**;
 
+:**Free Action** is added to the **Interaction Director's** \nlist of nearby actions;
+
 repeat
 
     if (Player presses the **Pickup Item** button) then (yes)
