@@ -22,7 +22,9 @@ public partial class PlayerInteractionDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
-
+	public int GetOpenActionSlotIndex(){
+		return playerAttack.GetOpenActionSlotIndex();
+	}
 
 	//-------------------------------------------------------------------------
 	// Debug Methods

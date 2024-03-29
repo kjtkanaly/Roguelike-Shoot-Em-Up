@@ -14,8 +14,8 @@ public partial class PlayerAttackObject : AttackObject
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public PlayerAttackObject(float damageVal, float delayVal, int indexVal,Timer timerObj) : 
-		base(damageVal, delayVal){
+	public PlayerAttackObject(float damageVal, float delayVal, int indexVal, Timer timerObj, AttackObject.Type typeVal) : 
+		base(damageVal, delayVal, typeVal){
 		attackIndex = indexVal;
 		timer = timerObj;
 		timer.Timeout += CallAttack;

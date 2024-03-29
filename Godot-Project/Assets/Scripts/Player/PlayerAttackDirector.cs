@@ -55,19 +55,20 @@ public partial class PlayerAttackDirector : Node3D
 			return false;
 		}
 
-		int newAttackIndex = GetNextAttackIndex();
+		int newAttackIndex = GetOpenActionSlotIndex();
 
 		// Update the Attack List
 		attackList[newAttackIndex] = new PlayerAttackObject(
 			damageVal, 
 			delayVal,
 			newAttackIndex,
-			attackTimerList[newAttackIndex]);
+			attackTimerList[newAttackIndex],
+			AttackObject.Type.None);
 
 		return true;
 	}
 
-	private int GetNextAttackIndex() {
+	public int GetOpenActionSlotIndex() {
 		int index = 0;
 
 		for (index = 0; index < attackList.Length; index++) {

@@ -12,9 +12,11 @@ public class AttackObject
     }
     [Export] public float damage = 1.0f;
 	[Export] public float delay = 1.0f;
+    [Export] public Type type = Type.None;
 
-	public AttackObject(float damageVal, float delayVal) {
+	public AttackObject(float damageVal, float delayVal, Type typeVal) {
         damage = damageVal;
 		delay = delayVal;
+        type = typeVal;
 	}
 }
