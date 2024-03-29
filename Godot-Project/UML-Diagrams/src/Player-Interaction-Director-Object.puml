@@ -1,0 +1,19 @@
+@startuml Player-Interaction-Director-Object
+
+title Player Interaction Director Object
+
+object "Interaction Director" as InteractionDir
+object "Pickup Area" as PickupArea
+object "Attack Director" as AttackDir
+object "Weapon Timer Container" as WeaponTimerCont
+
+InteractionDir : Type = Node3D
+PickupArea : Type = Area3D
+AttackDir : Type = Node3D
+WeaponTimerCont : Type = Node
+
+InteractionDir *-- AttackDir
+InteractionDir *-- PickupArea
+AttackDir *-- WeaponTimerCont
+
+@enduml
