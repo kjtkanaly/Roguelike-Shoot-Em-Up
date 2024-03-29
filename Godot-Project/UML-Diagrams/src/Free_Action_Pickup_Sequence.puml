@@ -1,0 +1,42 @@
+@startuml Free_Action_Pickup_Sequence
+title Free Action Pickup Sequence
+
+start
+
+:Player gets within **pickup range** \nof a **Free Action**;
+
+repeat
+
+    if (Player presses the **Pickup Item** button) then (yes)
+
+        if (Player has an open **attack slot**) then (yes)
+
+            :Copy the **player attack** data
+            from the **Free Action** object
+            to the open **attack list** slot;
+
+            :Destroy the **Free Action** object;
+
+            :Call the **player attack's**
+            **pickup()** method;
+
+            :Update the **player UI**;
+
+            end
+
+        else (no)
+
+            :Inform the player they 
+            can't pickup the **Free Action**;
+
+        endif
+
+    else (no)
+
+    endif
+
+repeat while(Player is within **pickup range**) is (yes) not (no)
+
+end
+
+@enduml

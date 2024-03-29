@@ -15,7 +15,7 @@ public partial class PlayerAttackDirector : Node3D
 	private bool DemoMode = true;
 
 	// Public
-	public AttackObject[] attackList = null;
+	public PlayerAttackObject[] attackList = null;
 	
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -30,7 +30,7 @@ public partial class PlayerAttackDirector : Node3D
 		}
 
 		// Init the Attacks Array
-		attackList = new AttackObject[maxAttackCount];
+		attackList = new PlayerAttackObject[maxAttackCount];
 
 		if (DemoMode) {
 			InitSomeAttacks();
@@ -49,7 +49,7 @@ public partial class PlayerAttackDirector : Node3D
 		dataDir =  GetNode<PlayerDataDirector>("../../Player-Data-Director");
 	}
 
-	public bool AddAttack(PlayerAttackInfo playerAttack, bool maxCountOverride=false) {
+	public bool AddAttack(float damageVal, float delayVal, bool maxCountOverride=false) {
 		// Null Catch
 		if ((attackList.Length > maxAttackCount) && (!maxCountOverride)) {
 			return false;
@@ -57,11 +57,11 @@ public partial class PlayerAttackDirector : Node3D
 
 		int newAttackIndex = GetNextAttackIndex();
 
-		playerAttack.SetAttackIndex(newAttackIndex);
-
 		// Update the Attack List
-		attackList[newAttackIndex] = new AttackObject(
-			playerAttack, 
+		attackList[newAttackIndex] = new PlayerAttackObject(
+			damageVal, 
+			delayVal,
+			newAttackIndex,
 			attackTimerList[newAttackIndex]);
 
 		return true;
@@ -82,8 +82,8 @@ public partial class PlayerAttackDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Debug/Demo Methods
 	private void InitSomeAttacks() {
-		AddAttack(new PlayerAttackInfo(10, 1));
-		AddAttack(new PlayerAttackInfo(1,  5));	
+		AddAttack(10, 1);
+		AddAttack(1,  5);	
 	}
 
 	private void PrintTimerNames() {
