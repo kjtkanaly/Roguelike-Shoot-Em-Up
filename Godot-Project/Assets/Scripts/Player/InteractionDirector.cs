@@ -18,9 +18,6 @@ public partial class InteractionDirector : Node3D
 	{
 		playerAttack = GetNode<PlayerAttackDirector>("Player-Attack-Director");
 		playerData = GetNode<PlayerDataDirector>("../Player-Data-Director");
-		pickupArea = GetNode<ObjectPickupCtrl>("Pickup-Area");
-
-		pickupArea.AreaEntered += pickupArea.AddFreeActionToNearbyList;
 	}
 
 	//-------------------------------------------------------------------------
