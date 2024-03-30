@@ -100,6 +100,20 @@ public partial class PlayerAttackDirector : Node3D
 		attackList[index].InitTimer(attackTimerList[index]);
 	}	
 
+	public bool IsActionAlreadyEquipped(string id) {
+		for (int i = 0; i < attackList.Length; i++) {
+			if (attackList[i].data == null) {
+				continue;
+			}
+
+			if (attackList[i].data.id == id) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	//-------------------------------------------------------------------------
 	// Debug/Demo Methods
 	private void InitSomeAttacks() {

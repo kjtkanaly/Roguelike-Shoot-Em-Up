@@ -30,6 +30,10 @@ public partial class PlayerInteractionDirector : Node3D
 		playerAttack.SetAttackSlotObjectProps(index, data);
 	}
 
+	public bool IsActionAlreadyEquipped(string id) {
+		return playerAttack.IsActionAlreadyEquipped(id);
+	}
+
 	//-------------------------------------------------------------------------
 	// Debug Methods
 }
