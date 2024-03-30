@@ -25,11 +25,8 @@ public partial class PlayerAttackDirector : Node3D
 		// Get all of the potential Attack Timers
 		GetAttackTimers();
 
-		// Set the maxAttackCount equal the number available timers
-		maxAttackCount = attackTimerList.Count;
-
-		// Init the Attacks Array to be equal in length to the number of timers
-		attackList = new PlayerAttackObject[maxAttackCount];
+		// Init the Attack Object List 
+		InitAttackObjectList();
 
 		if (DemoMode) {
 			InitSomeAttacks();
@@ -43,6 +40,19 @@ public partial class PlayerAttackDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
+	private void InitAttackObjectList() {
+		// Set the maxAttackCount equal the number available timers
+		maxAttackCount = attackTimerList.Count;
+
+		// Init the Attacks Array to be equal in length to the number of timers
+		attackList = new PlayerAttackObject[maxAttackCount];
+
+		// Loop through the array and contruct the attack objects
+		for (int i = 0; i < maxAttackCount; i++) {
+			attackList[i] = new PlayerAttackObject();
+		}
+	}
+
 	private void GetAttackTimers() {
 		// Grab the Attack Timer(s) Container
 		attackTimersContainer = GetNode<Node>("Weapon-Timer-Container");
@@ -57,7 +67,7 @@ public partial class PlayerAttackDirector : Node3D
 		int index = 0;
 
 		for (index = 0; index < attackList.Length; index++) {
-			if (attackList[index] == null) {
+			if (attackList[index].attackIndex == -1) {
 				return index;
 			}
 		}
@@ -65,10 +75,7 @@ public partial class PlayerAttackDirector : Node3D
 		return -1;
 	}
 
-	public void InitAttackSlotObject(int index, PlayerAttackData data) {
-		// Contruct the Attack Object
-		attackList[index] = new PlayerAttackObject();
-
+	public void SetAttackSlotObjectProps(int index, PlayerAttackData data) {
 		// Update the open action slot's index value
 		SetAttackSlotIndex(index);
 

@@ -58,6 +58,20 @@ public partial class PlayerAttackObject : AttackObject
 
 	private void CallAttack() {
 		GD.Print($"Attack Index {attackIndex}: Time Delay = {delay}s");
+
+		if (type == AttackObject.Type.Projectile) {
+			ProjectileAttackSequence();
+		} else if (type == AttackObject.Type.AreaOfEffect) {
+
+		} else if (type == AttackObject.Type.Melee) {
+
+		} else {
+
+		}
+	}
+
+	private void CallProjectileAttack() {
+		
 	}
 
 	//-------------------------------------------------------------------------

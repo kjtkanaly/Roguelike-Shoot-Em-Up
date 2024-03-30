@@ -14,7 +14,7 @@ class PlayerInteractionDirector <<Node3D>>{
     .. Public ..
     + _Ready() : void
     + GetOpenActionSlotIndex() : int
-    + InitAttackSlotObject() : void
+    + SetAttackSlotObjectProps() : void
 }
 
 class PlayerObjectPickup <<Area3D>> {
@@ -45,12 +45,15 @@ class PlayerAttackDirector <<Node3D>> {
 
     == Methods ==
     .. Private ..
+    - InitAttackObjectList() : void
+    - GetAttackTimers() : void
     - SetAttackSlotIndex() : void
     - SetAttackSlotData() : void
     - InitAttackSlotTimer() : void
     .. Public ..
     + _Ready() : void
-    + InitAttackSlotObject() : void
+    + GetOpenActionSlotIndex() : void
+    + SetAttackSlotObjectProps() : void
 }
 
 PlayerInteractionDirector *-- PlayerObjectPickup

@@ -39,11 +39,6 @@ public partial class PlayerObjectPickup : Area3D
 		nearbyFreeActionNodes.Remove((Node3D) freeActionArea);
 	}
 
-	private void RemoveFreeActionFromNearbyList(Node3D freeActionNode) {
-		GD.Print($"{freeActionNode.Name} was picked up");
-		nearbyFreeActionNodes.Remove(freeActionNode);
-	}
-
 	private bool PickupFirstFreeAction() {
 		// Get the player's next open action slot index
 		int index = interactionDir.GetOpenActionSlotIndex();
@@ -57,11 +52,10 @@ public partial class PlayerObjectPickup : Area3D
 		FreeAction freeAction = (FreeAction) nearbyFreeActionNodes[0];
 
 		// Init the open action slot's Attack Object
-		interactionDir.InitAttackSlotObject(index, freeAction.attackData);
+		interactionDir.SetAttackSlotObjectProps(index, freeAction.attackData);
 
 		// Destroy the now equipped action node
 		nearbyFreeActionNodes[0].QueueFree();
-		RemoveFreeActionFromNearbyList(nearbyFreeActionNodes[0]);
 
 		return true;
 	}

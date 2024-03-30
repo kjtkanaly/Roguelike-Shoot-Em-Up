@@ -26,10 +26,10 @@ public partial class PlayerInteractionDirector : Node3D
 		return playerAttack.GetOpenActionSlotIndex();
 	}
 
-	public void InitAttackSlotObject(int index, PlayerAttackData data) {
-		playerAttack.InitAttackSlotObject(index, data);
+	public void SetAttackSlotObjectProps(int index, PlayerAttackData data) {
+		playerAttack.SetAttackSlotObjectProps(index, data);
 	}
-	
+
 	//-------------------------------------------------------------------------
 	// Debug Methods
 }

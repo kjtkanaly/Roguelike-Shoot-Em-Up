@@ -1,13 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkrxxu1c7wjcb"]
+[gd_scene load_steps=5 format=3 uid="uid://bkrxxu1c7wjcb"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/General/FreeAction.cs" id="1_3hb60"]
-[ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/PlayerAttackData.cs" id="2_y8imo"]
-
-[sub_resource type="Resource" id="Resource_4pey5"]
-script = ExtResource("2_y8imo")
-type = 0
-damage = 1.0
-delay = 1.0
+[ext_resource type="Resource" uid="uid://466obo3hjleh" path="res://Assets/Resources/Player Attack Data Files/Default_00.tres" id="2_n5mor"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jj87h"]
 
@@ -15,7 +9,7 @@ delay = 1.0
 
 [node name="Free-Action" type="Area3D"]
 script = ExtResource("1_3hb60")
-attackData = SubResource("Resource_4pey5")
+attackData = ExtResource("2_n5mor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_jj87h")
