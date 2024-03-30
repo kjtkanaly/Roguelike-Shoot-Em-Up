@@ -14,8 +14,8 @@ public partial class PlayerAttackObject : AttackObject
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public PlayerAttackObject(float damageVal, float delayVal, int indexVal, Timer timerObj, AttackObject.Type typeVal) : 
-		base(damageVal, delayVal, typeVal){
+	public PlayerAttackObject(PlayerAttackData dataVal, int indexVal, Timer timerObj) : 
+		base(dataVal){
 		attackIndex = indexVal;
 		timer = timerObj;
 		timer.Timeout += CallAttack;
@@ -24,20 +24,18 @@ public partial class PlayerAttackObject : AttackObject
 		StartTimer();
 	}
 
-	public PlayerAttackObject() :
-		base(){
+	public PlayerAttackObject() : base(){
 		attackIndex = -1;
 		timer = null;
+		data = null;
 	}
 
 	public void SetAttackIndex(int index) {
 		attackIndex = index;
 	}
 
-	public void SetData(PlayerAttackData data) {
-		type = data.type;
-		damage = data.damage;
-		delay = data.delay;
+	public void SetData(PlayerAttackData dataVal) {
+		data = dataVal;
 	}
 
 	public void InitTimer(Timer timerInstance) {
@@ -49,7 +47,7 @@ public partial class PlayerAttackObject : AttackObject
 	}
 
 	private void UpdateTimerTime() {
-		timer.WaitTime = delay;
+		timer.WaitTime = data.delay;
 	}
 
 	private void StartTimer() {
@@ -57,13 +55,13 @@ public partial class PlayerAttackObject : AttackObject
 	}
 
 	private void CallAttack() {
-		GD.Print($"Attack Index {attackIndex}: Time Delay = {delay}s");
+		GD.Print($"Attack Index {attackIndex}: Time Delay = {data.delay}s");
 
-		if (type == AttackObject.Type.Projectile) {
+		if (data.type == AttackObject.Type.Projectile) {
 			ProjectileAttackSequence();
-		} else if (type == AttackObject.Type.AreaOfEffect) {
+		} else if (data.type == AttackObject.Type.AreaOfEffect) {
 
-		} else if (type == AttackObject.Type.Melee) {
+		} else if (data.type == AttackObject.Type.Melee) {
 
 		} else {
 

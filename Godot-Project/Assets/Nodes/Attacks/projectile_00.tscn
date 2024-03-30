@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://da1tle17d4rbp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8pj1y"]
+
+[node name="Projectile-00" type="Node3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_8pj1y")

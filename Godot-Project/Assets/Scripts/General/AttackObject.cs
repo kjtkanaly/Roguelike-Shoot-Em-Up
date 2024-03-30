@@ -10,23 +10,25 @@ public partial class AttackObject : Node3D
 		AreaOfEffect = 2,
 		Melee = 3
 	}
-	[Export] public float damage = 1.0f;
-	[Export] public float delay = 1.0f;
-	[Export] public Type type = Type.None;
+	public PlayerAttackData data = null;
+	private Node MainRoot = null;
+	private Node3D projectileInst = null;
 
-	public AttackObject(float damageVal, float delayVal, Type typeVal) {
-		damage = damageVal;
-		delay = delayVal;
-		type = typeVal;
+	public AttackObject(PlayerAttackData dataVal) {
+		data = dataVal;        
 	}
 
 	public AttackObject() {
-		type = Type.None;
-		damage = 1.0f;
-		delay = 1.0f;
+	}
+
+	public void SetMainRootVar() {
+		MainRoot = GetTree().Root.GetChild(0);
 	}
 
 	public void ProjectileAttackSequence() {
-		GD.Print($"Projectile Attack!");
+		// Instantiate the bullet
+		projectileInst = (Node3D) data.projectile.Instantiate();
+		GD.Print(MainRoot);
+		MainRoot.AddChild(projectileInst);
 	}
 }

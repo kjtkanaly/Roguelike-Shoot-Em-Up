@@ -50,6 +50,8 @@ public partial class PlayerAttackDirector : Node3D
 		// Loop through the array and contruct the attack objects
 		for (int i = 0; i < maxAttackCount; i++) {
 			attackList[i] = new PlayerAttackObject();
+			AddChild(attackList[i]);
+			attackList[i].SetMainRootVar();
 		}
 	}
 
@@ -67,7 +69,7 @@ public partial class PlayerAttackDirector : Node3D
 		int index = 0;
 
 		for (index = 0; index < attackList.Length; index++) {
-			if (attackList[index].attackIndex == -1) {
+			if (attackList[index].data == null) {
 				return index;
 			}
 		}
@@ -100,28 +102,7 @@ public partial class PlayerAttackDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Debug/Demo Methods
-	public bool AddAttack(float damageVal, float delayVal, bool maxCountOverride=false) {
-		// Null Catch
-		if ((attackList.Length > maxAttackCount) && (!maxCountOverride)) {
-			return false;
-		}
-
-		int newAttackIndex = GetOpenActionSlotIndex();
-
-		// Update the Attack List
-		attackList[newAttackIndex] = new PlayerAttackObject(
-			damageVal, 
-			delayVal,
-			newAttackIndex,
-			attackTimerList[newAttackIndex],
-			AttackObject.Type.None);
-
-		return true;
-	}
-
 	private void InitSomeAttacks() {
-		AddAttack(10, 1);
-		AddAttack(1,  5);	
 	}
 
 	private void PrintTimerNames() {
