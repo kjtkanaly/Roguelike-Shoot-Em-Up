@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerAttackData" load_steps=3 format=3 uid="uid://btdfyoctam7j8"]
 
-[ext_resource type="PackedScene" uid="uid://da1tle17d4rbp" path="res://Assets/Nodes/Attacks/projectile_00.tscn" id="1_lwpdq"]
+[ext_resource type="PackedScene" uid="uid://dk1fgwm6q1us5" path="res://Assets/Nodes/Attacks/projectile_01.tscn" id="1_i1s3j"]
 [ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/PlayerAttackData.cs" id="2_i1iax"]
 
 [resource]
@@ -10,5 +10,5 @@ type = 1
 damage = 1.0
 delay = 1.0
 maxLevel = 6
-projectile = ExtResource("1_lwpdq")
+projectile = ExtResource("1_i1s3j")
 projectileSpeed = 40.0

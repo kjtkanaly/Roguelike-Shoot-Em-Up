@@ -27,14 +27,25 @@ public partial class AttackObject : Node3D
 	}
 
 	public void ProjectileAttackSequence() {
-		GD.Print(level);
+		int angleStepSizeDeg = 360 / level;
 
-		// Instantiate the bullet
-		projectileInst = (RigidBody3D) data.projectile.Instantiate();
-		MainRoot.AddChild(projectileInst);
-		projectileInst.GlobalPosition = GlobalPosition;
+		GD.Print($"{data.id}:");
+		for (int angleDeg = 0; angleDeg < 360; angleDeg += angleStepSizeDeg) {
+			// Instantiate the bullet
+			projectileInst = (RigidBody3D) data.projectile.Instantiate();
+			MainRoot.AddChild(projectileInst);
+			projectileInst.GlobalPosition = GlobalPosition;
 
-		// Apply an impulse to the projectle
-		projectileInst.LinearVelocity = new Vector3(1, 0, 0) * data.projectileSpeed;
+			// Get the projectile's launch velocity
+			Vector3 velocityNorm = new Vector3(
+				Mathf.Cos(Mathf.DegToRad(angleDeg)),
+				0,
+				Mathf.Sin(Mathf.DegToRad(angleDeg)));
+
+			GD.Print($"{angleDeg}: {velocityNorm}");
+
+			// Set the projectle's velocity
+			projectileInst.LinearVelocity = velocityNorm * data.projectileSpeed;
+		}
 	}
 }
