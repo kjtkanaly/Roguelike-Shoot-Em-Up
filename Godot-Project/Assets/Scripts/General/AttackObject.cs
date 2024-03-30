@@ -28,7 +28,7 @@ public partial class AttackObject : Node3D
 	public void ProjectileAttackSequence() {
 		// Instantiate the bullet
 		projectileInst = (Node3D) data.projectile.Instantiate();
-		GD.Print(MainRoot);
 		MainRoot.AddChild(projectileInst);
+		projectileInst.GlobalPosition = GlobalPosition;
 	}
 }
