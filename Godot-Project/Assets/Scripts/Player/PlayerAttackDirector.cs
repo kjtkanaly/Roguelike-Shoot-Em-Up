@@ -8,10 +8,9 @@ public partial class PlayerAttackDirector : Node3D
 	// Game Componenets
 	// Private
 	private PlayerInteractionDirector interactionDir = null;
-	private PlayerDataDirector dataDir = null;
 	private Node attackTimersContainer = null;
 	private List<Timer> attackTimerList = new List<Timer>();
-	private int maxAttackCount = 6;
+	private int maxAttackCount = 0;
 	private bool DemoMode = false;
 
 	// Public
@@ -21,15 +20,15 @@ public partial class PlayerAttackDirector : Node3D
 	// Game Events
 	public override void _Ready()
 	{
-		GetUsefulNodes();
+		interactionDir = GetNode<PlayerInteractionDirector>("..");
 
-		// Grab the Attack Timer(s) Container and the available timers
-		attackTimersContainer = GetNode<Node>("Weapon-Timer-Container");
-		foreach (Node node in attackTimersContainer.GetChildren()) {
-			attackTimerList.Add((Timer) node);
-		}
+		// Get all of the potential Attack Timers
+		GetAttackTimers();
 
-		// Init the Attacks Array
+		// Set the maxAttackCount equal the number available timers
+		maxAttackCount = attackTimerList.Count;
+
+		// Init the Attacks Array to be equal in length to the number of timers
 		attackList = new PlayerAttackObject[maxAttackCount];
 
 		if (DemoMode) {
@@ -44,9 +43,14 @@ public partial class PlayerAttackDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
-	private void GetUsefulNodes() {
-		interactionDir = GetNode<PlayerInteractionDirector>("..");
-		dataDir =  GetNode<PlayerDataDirector>("../../Player-Data-Director");
+	private void GetAttackTimers() {
+		// Grab the Attack Timer(s) Container
+		attackTimersContainer = GetNode<Node>("Weapon-Timer-Container");
+
+		// Iterate thru the child timers
+		foreach (Node node in attackTimersContainer.GetChildren()) {
+			attackTimerList.Add((Timer) node);
+		}
 	}
 
 	public int GetOpenActionSlotIndex() {
@@ -61,19 +65,29 @@ public partial class PlayerAttackDirector : Node3D
 		return -1;
 	}
 
-	public void InitAttackSlotObject(int index) {
+	public void InitAttackSlotObject(int index, PlayerAttackData data) {
+		// Contruct the Attack Object
 		attackList[index] = new PlayerAttackObject();
+
+		// Update the open action slot's index value
+		SetAttackSlotIndex(index);
+
+		// Update the open action slot with the Free Action's Attack data
+		SetAttackSlotData(index, data);
+
+		// Activate the open action slot's timer
+		InitAttackSlotTimer(index);
 	}
 
-	public void SetAttackSlotIndex(int index) {
+	private void SetAttackSlotIndex(int index) {
 		attackList[index].SetAttackIndex(index);
 	}
 
-	public void SetAttackSlotData(int index, PlayerAttackData data) {
+	private void SetAttackSlotData(int index, PlayerAttackData data) {
 		attackList[index].SetData(data);
 	}
 
-	public void InitAttackSlotTimer(int index) {
+	private void InitAttackSlotTimer(int index) {
 		attackList[index].InitTimer(attackTimerList[index]);
 	}	
 

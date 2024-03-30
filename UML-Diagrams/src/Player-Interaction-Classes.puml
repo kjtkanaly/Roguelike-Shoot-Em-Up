@@ -1,0 +1,60 @@
+@startuml Player Interaction Classes
+title Player Interaction Classes
+
+class PlayerInteractionDirector <<Node3D>>{
+    == Data ==
+    .. Private ..
+    - PlayerAttackDirector playerAttack
+    - PlayerDataDirector playerData
+    - PlayerObjectPickup pickupArea
+    .. Public ..
+
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    + _Ready() : void
+    + GetOpenActionSlotIndex() : int
+    + InitAttackSlotObject() : void
+}
+
+class PlayerObjectPickup <<Area3D>> {
+    == Data ==
+    .. Private ..
+    - PlayerInteractionDirector interactionDir
+    .. Public ..
+    + List<Node3D> nearbyFreeActionNodes
+
+    == Methods ==
+    .. Private ..
+    - RemoveFreeActionFromNearbyList()
+    - PickupFirstFreeAction()
+    .. Public ..
+    + _Ready() : void
+}
+
+class PlayerAttackDirector <<Node3D>> {
+    == Data ==
+    .. Private ..
+    - PlayerInteractionDirector interactionDir
+    - Node attackTimersContainer
+    - List<Timer> attackTimerList
+    - int maxAttackCount
+    - bool DemoMode
+    .. Public ..
+    + PlayerAttackObject[] attackList
+
+    == Methods ==
+    .. Private ..
+    - SetAttackSlotIndex() : void
+    - SetAttackSlotData() : void
+    - InitAttackSlotTimer() : void
+    .. Public ..
+    + _Ready() : void
+    + InitAttackSlotObject() : void
+}
+
+PlayerInteractionDirector *-- PlayerObjectPickup
+PlayerInteractionDirector *-- PlayerAttackDirector
+
+
+@enduml

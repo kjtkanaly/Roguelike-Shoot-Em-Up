@@ -20,14 +20,19 @@ repeat
 
         if (Player has an open **attack slot**) then (yes)
 
-            :Copy the **player attack** data
-            from the **Free Action** object
-            to the open **attack list** slot;
+            :Get the first **Free Action's** 
+            attack data;
+
+            :Initialize the open **Attack Slot's**
+            **Attack Object**;
+
+            :Set the **Attack Slot's** index value;
+
+            :Set the **Attack Slot's** attack data;
+
+            :Initialize the **Attack Slot's** timer;
 
             :Destroy the **Free Action** object;
-
-            :Call the **player attack's**
-            **pickup()** method;
 
             :Update the **player UI**;
 

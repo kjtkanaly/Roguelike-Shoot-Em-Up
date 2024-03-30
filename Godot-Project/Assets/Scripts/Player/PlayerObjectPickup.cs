@@ -25,7 +25,7 @@ public partial class PlayerObjectPickup : Area3D
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public void AddFreeActionToNearbyList(Area3D freeActionArea) {
+	private void AddFreeActionToNearbyList(Area3D freeActionArea) {
 		GD.Print($"{freeActionArea.Name} is within range");
 		nearbyFreeActionNodes.Add((Node3D) freeActionArea);
 
@@ -34,12 +34,12 @@ public partial class PlayerObjectPickup : Area3D
 		PickupFirstFreeAction();
 	}
 
-	public void RemoveFreeActionFromNearbyList(Area3D freeActionArea) {
+	private void RemoveFreeActionFromNearbyList(Area3D freeActionArea) {
 		GD.Print($"{freeActionArea.Name} is out of range");
 		nearbyFreeActionNodes.Remove((Node3D) freeActionArea);
 	}
 
-	public void RemoveFreeActionFromNearbyList(Node3D freeActionNode) {
+	private void RemoveFreeActionFromNearbyList(Node3D freeActionNode) {
 		GD.Print($"{freeActionNode.Name} was picked up");
 		nearbyFreeActionNodes.Remove(freeActionNode);
 	}
@@ -57,16 +57,7 @@ public partial class PlayerObjectPickup : Area3D
 		FreeAction freeAction = (FreeAction) nearbyFreeActionNodes[0];
 
 		// Init the open action slot's Attack Object
-		interactionDir.InitAttackSlotObject(index);
-
-		// Update the open action slot's index value
-		interactionDir.SetAttackSlotIndex(index);
-
-		// Update the open action slot with the Free Action's Attack data
-		interactionDir.SetAttackSlotData(index, freeAction.attackData);
-
-		// Activate the open action slot's timer
-		interactionDir.InitAttackSlotTimer(index);
+		interactionDir.InitAttackSlotObject(index, freeAction.attackData);
 
 		// Destroy the now equipped action node
 		nearbyFreeActionNodes[0].QueueFree();
