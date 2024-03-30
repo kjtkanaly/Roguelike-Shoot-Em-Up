@@ -12,7 +12,7 @@ public partial class AttackObject : Node3D
 	}
 	public PlayerAttackData data = null;
 	private Node MainRoot = null;
-	private Node3D projectileInst = null;
+	private RigidBody3D projectileInst = null;
 
 	public AttackObject(PlayerAttackData dataVal) {
 		data = dataVal;        
@@ -27,8 +27,11 @@ public partial class AttackObject : Node3D
 
 	public void ProjectileAttackSequence() {
 		// Instantiate the bullet
-		projectileInst = (Node3D) data.projectile.Instantiate();
+		projectileInst = (RigidBody3D) data.projectile.Instantiate();
 		MainRoot.AddChild(projectileInst);
 		projectileInst.GlobalPosition = GlobalPosition;
+
+		// Apply an impulse to the projectle
+		projectileInst.LinearVelocity = new Vector3(1, 0, 0) * data.projectileSpeed;
 	}
 }

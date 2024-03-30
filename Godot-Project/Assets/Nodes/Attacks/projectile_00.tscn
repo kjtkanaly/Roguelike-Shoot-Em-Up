@@ -1,9 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://da1tle17d4rbp"]
+[gd_scene load_steps=4 format=3 uid="uid://da1tle17d4rbp"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/General/ProjectileDir.cs" id="1_acwtk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pwuin"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_8pj1y"]
 
-[node name="Projectile-00" type="Node3D"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+[node name="Projectile-00" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 4
+gravity_scale = 0.0
+script = ExtResource("1_acwtk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Despawn-Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("SphereShape3D_pwuin")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("SphereMesh_8pj1y")
+skeleton = NodePath("../..")

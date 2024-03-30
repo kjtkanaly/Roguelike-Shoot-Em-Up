@@ -6,6 +6,7 @@ public partial class PlayerAttackObject : AttackObject
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
+	private bool debug = false;
 	// Public
 	public Timer timer = null;
 	public int attackIndex = -1;	
@@ -55,7 +56,9 @@ public partial class PlayerAttackObject : AttackObject
 	}
 
 	private void CallAttack() {
-		GD.Print($"Attack Index {attackIndex}: Time Delay = {data.delay}s");
+		if (debug) {
+			GD.Print($"Attack Index {attackIndex}: Time Delay = {data.delay}s");
+		}
 
 		if (data.type == AttackObject.Type.Projectile) {
 			ProjectileAttackSequence();
@@ -66,10 +69,6 @@ public partial class PlayerAttackObject : AttackObject
 		} else {
 
 		}
-	}
-
-	private void CallProjectileAttack() {
-		
 	}
 
 	//-------------------------------------------------------------------------
