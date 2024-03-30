@@ -8,7 +8,7 @@ public partial class PlayerObjectPickup : Area3D
 	// Game Componenets
 	// Private
 	private PlayerInteractionDirector interactionDir = null; 
-	private bool debug = true;
+	private bool debug = false;
 
 	// Public
 	public List<Node3D> nearbyFreeActionNodes = null;
@@ -55,13 +55,20 @@ public partial class PlayerObjectPickup : Area3D
 
 		if (alreadyEquipped) {
 			// Level Up Action
-			GD.Print($"Already Pickuped {freeAction.attackData.id}");
-			LevelUpEquippedAction(freeAction);
+			if (!interactionDir.LevelUpEquippedAction(freeAction.attackData)) {
+				return false;
+			}
 		} else {
 			// Equip New Action
-			GD.Print($"New Attack");
-			return EquipNewFreeAction(freeAction);
+			if (!EquipNewFreeAction(freeAction)) {
+				return false;
+			}
 		}
+
+		// Destroy the now equipped action node
+		nearbyFreeActionNodes[0].QueueFree();
+
+		// To Do: Update player UI
 
 		return true;
 	}
@@ -70,27 +77,11 @@ public partial class PlayerObjectPickup : Area3D
 		// Get the player's next open action slot index
 		int index = interactionDir.GetOpenActionSlotIndex();
 		if (index == -1) {
-			if (debug) {
-				GD.Print("No free attack slots");
-			}
-			
 			return false;
 		}
-
-		if (debug) {
-			GD.Print($"Attack Slot {index} is open");
-		}
-
 		// Init the open action slot's Attack Object
 		interactionDir.SetAttackSlotObjectProps(index, freeAction.attackData);
 
-		// Destroy the now equipped action node
-		nearbyFreeActionNodes[0].QueueFree();
-
-		return true;
-	}
-
-	private bool LevelUpEquippedAction(FreeAction freeAction) {
 		return true;
 	}
 

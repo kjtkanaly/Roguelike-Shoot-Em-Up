@@ -11,6 +11,7 @@ public partial class AttackObject : Node3D
 		Melee = 3
 	}
 	public PlayerAttackData data = null;
+	public int level = 1;
 	private Node MainRoot = null;
 	private RigidBody3D projectileInst = null;
 
@@ -26,6 +27,8 @@ public partial class AttackObject : Node3D
 	}
 
 	public void ProjectileAttackSequence() {
+		GD.Print(level);
+
 		// Instantiate the bullet
 		projectileInst = (RigidBody3D) data.projectile.Instantiate();
 		MainRoot.AddChild(projectileInst);

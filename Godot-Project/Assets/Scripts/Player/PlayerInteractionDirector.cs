@@ -34,6 +34,10 @@ public partial class PlayerInteractionDirector : Node3D
 		return playerAttack.IsActionAlreadyEquipped(id);
 	}
 
+	public bool LevelUpEquippedAction(PlayerAttackData attackData) {
+		return playerAttack.LevelUpEquippedAction(attackData);
+	}
+
 	//-------------------------------------------------------------------------
 	// Debug Methods
 }

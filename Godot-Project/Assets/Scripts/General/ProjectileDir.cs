@@ -6,7 +6,7 @@ public partial class ProjectileDir : RigidBody3D
     //-------------------------------------------------------------------------
     // Game Componenets
     private Timer despawnTimer = null;
-    private bool debug = true;
+    private bool debug = false;
 
     //-------------------------------------------------------------------------
     // Game Events

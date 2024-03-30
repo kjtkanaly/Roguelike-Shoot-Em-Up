@@ -114,6 +114,43 @@ public partial class PlayerAttackDirector : Node3D
 		return false;
 	}
 
+	private int GetEquippedActionSlotIndex(string id) {
+		for (int i = 0; i < attackList.Length; i++) {
+			if (attackList[i].data == null) {
+				continue;
+			}
+
+			if (attackList[i].data.id == id) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	private bool IsActionSlotMaxLevel(int index) { 
+		if (attackList[index].level < attackList[index].data.maxLevel) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public bool LevelUpEquippedAction(PlayerAttackData data) {
+		// Get the Action index
+		int index = GetEquippedActionSlotIndex(data.id);
+
+		// Check if the Action is below the max level
+		if (IsActionSlotMaxLevel(index)) {
+			return false;
+		}
+
+		// Increment the level
+		attackList[index].level += 1;
+
+		return true;
+	}
+
 	//-------------------------------------------------------------------------
 	// Debug/Demo Methods
 	private void InitSomeAttacks() {

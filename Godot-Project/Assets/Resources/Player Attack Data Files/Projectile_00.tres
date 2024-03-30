@@ -5,9 +5,10 @@
 
 [resource]
 script = ExtResource("1_pve5j")
-ID = "Proj-001"
+id = "Proj-00"
 type = 1
 damage = 1.0
 delay = 1.0
+maxLevel = 6
 projectile = ExtResource("1_g5ddg")
 projectileSpeed = 40.0

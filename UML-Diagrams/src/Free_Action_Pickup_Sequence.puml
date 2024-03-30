@@ -22,13 +22,19 @@ repeat
 
             :Get the slot index for the already equipped action;
 
-            :Level up the equipped action;
+            if (Can the equipped action be leveled up?) then (yes)
 
-            :Destroy the **Free Action** object;
+                :Level up the equipped action;
 
-            :Update the **player UI**;
+                :Destroy the **Free Action** object;
 
-            end
+                :Update the **player UI**;
+
+                end
+
+            else (no)
+
+            endif
 
         else (no)
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://oci5wna7f12b"]
+[gd_scene load_steps=6 format=3 uid="uid://oci5wna7f12b"]
 
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_ixuhq"]
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_odr4j"]
 [ext_resource type="PackedScene" uid="uid://bkrxxu1c7wjcb" path="res://Assets/Nodes/Interactables/free_action.tscn" id="3_shpvh"]
 [ext_resource type="Resource" uid="uid://cvfsp2vixj0ok" path="res://Assets/Resources/Player Attack Data Files/Projectile_00.tres" id="4_kuxk8"]
+[ext_resource type="Resource" uid="uid://btdfyoctam7j8" path="res://Assets/Resources/Player Attack Data Files/Projectile_01.tres" id="5_2871l"]
 
 [node name="Player-Test-001" type="Node3D"]
 
@@ -23,15 +24,15 @@ attackData = ExtResource("4_kuxk8")
 
 [node name="Free-Action2" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
-attackData = ExtResource("4_kuxk8")
+attackData = ExtResource("5_2871l")
 
 [node name="Free-Action3" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -15)
-attackData = ExtResource("4_kuxk8")
+attackData = ExtResource("5_2871l")
 
 [node name="Free-Action4" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 0)
-attackData = ExtResource("4_kuxk8")
+attackData = ExtResource("5_2871l")
 
 [node name="Free-Action5" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 15)
