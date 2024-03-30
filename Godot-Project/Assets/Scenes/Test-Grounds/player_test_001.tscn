@@ -23,18 +23,24 @@ attackData = ExtResource("4_kuxk8")
 
 [node name="Free-Action2" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
+attackData = ExtResource("4_kuxk8")
 
 [node name="Free-Action3" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -15)
+attackData = ExtResource("4_kuxk8")
 
 [node name="Free-Action4" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 0)
+attackData = ExtResource("4_kuxk8")
 
 [node name="Free-Action5" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 15)
+attackData = ExtResource("4_kuxk8")
 
 [node name="Free-Action6" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -15)
+attackData = ExtResource("4_kuxk8")
 
 [node name="Free-Action7" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -15)
+attackData = ExtResource("4_kuxk8")

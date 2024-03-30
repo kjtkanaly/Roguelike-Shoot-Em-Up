@@ -18,19 +18,11 @@ repeat
         the player has space
     end note
 
-        if (Player has an open **attack slot**) then (yes)
+        if (Check if player has picked up \nthis kind of **attack** before) then (yes)
 
-            :Get the first **Free Action's** 
-            attack data;
+            :Get the slot index for the already equipped action;
 
-            :Initialize the open **Attack Slot's**
-            **Attack Object**;
-
-            :Set the **Attack Slot's** index value;
-
-            :Set the **Attack Slot's** attack data;
-
-            :Initialize the **Attack Slot's** timer;
+            :Level up the equipped action;
 
             :Destroy the **Free Action** object;
 
@@ -40,8 +32,32 @@ repeat
 
         else (no)
 
-            :Inform the player they 
-            can't pickup the **Free Action**;
+            if (Does the Player have an open **attack slot**) then (yes)
+
+                :Get the first **Free Action's** 
+                attack data;
+
+                :Initialize the open **Attack Slot's**
+                **Attack Object**;
+
+                :Set the **Attack Slot's** index value;
+
+                :Set the **Attack Slot's** attack data;
+
+                :Initialize the **Attack Slot's** timer;
+
+                :Destroy the **Free Action** object;
+
+                :Update the **player UI**;
+
+                end
+
+            else (no)
+
+                :Inform the player they 
+                can't pickup the **Free Action**;
+
+            endif
 
         endif
 
@@ -50,6 +66,8 @@ repeat
     endif
 
 repeat while(Player is within **pickup range**) is (yes) not (no)
+
+:Remove the **Free Action** from the \n**Interaction Director's** list of nearby actions;
 
 end
 
