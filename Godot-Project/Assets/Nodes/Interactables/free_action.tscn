@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkrxxu1c7wjcb"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/General/FreeAction.cs" id="1_3hb60"]
-[ext_resource type="Resource" uid="uid://466obo3hjleh" path="res://Assets/Resources/Player Attack Data Files/Default_00.tres" id="2_n5mor"]
+[ext_resource type="Resource" uid="uid://466obo3hjleh" path="res://Assets/Resources/Player_Attack_Data_Files/Default_00.tres" id="2_n5mor"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jj87h"]
 

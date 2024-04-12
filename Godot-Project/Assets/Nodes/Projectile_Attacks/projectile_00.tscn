@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://da1tle17d4rbp"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/General/ProjectileDir.cs" id="1_acwtk"]
+[ext_resource type="Script" path="res://Assets/Scripts/General/ProjectileDir.cs" id="1_rcr3c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pwuin"]
 
@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_mfwt4")
 collision_layer = 2
 collision_mask = 4
 gravity_scale = 0.0
-script = ExtResource("1_acwtk")
+script = ExtResource("1_rcr3c")
 
 [node name="Despawn-Timer" type="Timer" parent="."]
 one_shot = true

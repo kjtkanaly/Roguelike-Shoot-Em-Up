@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerAttackData" load_steps=3 format=3 uid="uid://btdfyoctam7j8"]
 
-[ext_resource type="PackedScene" uid="uid://dk1fgwm6q1us5" path="res://Assets/Nodes/Attacks/projectile_01.tscn" id="1_i1s3j"]
+[ext_resource type="PackedScene" uid="uid://dk1fgwm6q1us5" path="res://Assets/Nodes/Projectile_Attacks/projectile_01.tscn" id="1_i1s3j"]
 [ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/PlayerAttackData.cs" id="2_i1iax"]
 
 [resource]
