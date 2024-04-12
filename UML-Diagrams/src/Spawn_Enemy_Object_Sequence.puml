@@ -1,0 +1,15 @@
+@startuml Spawn_Enemy_Object_Sequence
+
+title Spawn Enemy Object Sequence
+
+start
+
+:Initialize Enemy Object;
+
+:Get Reference to the Player \nInteraction Director object;
+
+:Add the Player Interaction Director's Area of signal;
+
+end
+
+@enduml
