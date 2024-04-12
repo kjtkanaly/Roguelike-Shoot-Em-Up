@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PlayerAttackData" load_steps=3 format=3 uid="uid://r04ohdfh54o2"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/PlayerAttackData.cs" id="1_so8ed"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5fugo"]
+
+[resource]
+script = ExtResource("1_so8ed")
+id = "AoE-01"
+type = 2
+damage = 10.0
+delay = 2.0
+maxLevel = 6
+projectileSpeed = 1.0
+areaMesh = SubResource("SphereMesh_5fugo")
