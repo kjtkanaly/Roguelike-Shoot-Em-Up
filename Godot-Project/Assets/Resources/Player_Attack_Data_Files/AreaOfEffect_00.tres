@@ -12,3 +12,4 @@ delay = 2.0
 maxLevel = 6
 projectileSpeed = 1.0
 areaMesh = ExtResource("1_k5uhv")
+lvlUpAreaStepSize = 0.2

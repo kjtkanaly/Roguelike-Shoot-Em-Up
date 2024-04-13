@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdocty3p0wd1e"]
+
+[ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_7l6gd"]
+[ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_sxlnm"]
+[ext_resource type="PackedScene" uid="uid://bkrxxu1c7wjcb" path="res://Assets/Nodes/Interactables/free_action.tscn" id="3_xqwn6"]
+[ext_resource type="Resource" uid="uid://cvfsp2vixj0ok" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_00.tres" id="4_3yl2p"]
+[ext_resource type="Resource" uid="uid://r04ohdfh54o2" path="res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres" id="5_selg7"]
+[ext_resource type="Resource" uid="uid://btdfyoctam7j8" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres" id="6_y3aff"]
+
+[node name="Player-Test-001" type="Node3D"]
+
+[node name="Demo-Plane" parent="." instance=ExtResource("1_7l6gd")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+
+[node name="Player-Director" parent="." instance=ExtResource("2_sxlnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15665, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 10, 10)
+shadow_enabled = true
+
+[node name="Free-Action" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 0)
+attackData = ExtResource("4_3yl2p")
+
+[node name="Free-Action2" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
+attackData = ExtResource("5_selg7")
+
+[node name="Free-Action3" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -15)
+attackData = ExtResource("6_y3aff")
+
+[node name="Free-Action4" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 0)
+attackData = ExtResource("6_y3aff")
+
+[node name="Free-Action5" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 15)
+attackData = ExtResource("4_3yl2p")
+
+[node name="Free-Action6" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -15)
+attackData = ExtResource("4_3yl2p")
+
+[node name="Free-Action7" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -15)
+attackData = ExtResource("4_3yl2p")
+
+[node name="Free-Action8" parent="." instance=ExtResource("3_xqwn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 15)
+attackData = ExtResource("5_selg7")
