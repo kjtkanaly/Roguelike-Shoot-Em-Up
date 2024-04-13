@@ -14,7 +14,7 @@ public partial class PlayerAttackObject : AttackObject
 	// Game Events
 	public override void _Ready()
 	{
-		timer = (Timer) GetChild(0);
+		timer = GetAttackTimer();
 		SetMainRootVar();
 	}
 	//-------------------------------------------------------------------------
@@ -33,6 +33,16 @@ public partial class PlayerAttackObject : AttackObject
 		attackIndex = -1;
 		timer = null;
 		data = null;
+	}
+
+	public Timer GetAttackTimer() {
+		foreach (Node node in GetChildren()) {
+			if (node.Name == "Attack Timer") {
+				return (Timer) node;
+			}
+		}
+
+		return null;
 	}
 
 	public void SetAttackIndex(int index) {

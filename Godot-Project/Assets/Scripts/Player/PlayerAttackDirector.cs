@@ -53,7 +53,7 @@ public partial class PlayerAttackDirector : Node3D
 	private void GetAttackTimers() {
 		// Iterate thru the attack objects
 		foreach (PlayerAttackObject attackObject in attackList) {
-			attackTimerList.Add((Timer) attackObject.GetChild(0));
+			attackTimerList.Add(attackObject.GetAttackTimer());
 		}
 	}
 
