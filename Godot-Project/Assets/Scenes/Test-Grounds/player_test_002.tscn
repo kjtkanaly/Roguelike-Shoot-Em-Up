@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdocty3p0wd1e"]
+[gd_scene load_steps=8 format=3 uid="uid://bdocty3p0wd1e"]
 
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_7l6gd"]
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_sxlnm"]
@@ -6,8 +6,9 @@
 [ext_resource type="Resource" uid="uid://cvfsp2vixj0ok" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_00.tres" id="4_3yl2p"]
 [ext_resource type="Resource" uid="uid://r04ohdfh54o2" path="res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres" id="5_selg7"]
 [ext_resource type="Resource" uid="uid://btdfyoctam7j8" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres" id="6_y3aff"]
+[ext_resource type="PackedScene" uid="uid://k81q72warg70" path="res://Assets/Nodes/NPCs/Practice_Dummy/practice_dummy_director.tscn" id="7_qdyky"]
 
-[node name="Player-Test-001" type="Node3D"]
+[node name="Player-Test-002" type="Node3D"]
 
 [node name="Demo-Plane" parent="." instance=ExtResource("1_7l6gd")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
@@ -50,3 +51,6 @@ attackData = ExtResource("4_3yl2p")
 [node name="Free-Action8" parent="." instance=ExtResource("3_xqwn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 15)
 attackData = ExtResource("5_selg7")
+
+[node name="Practice-Dummy-Director" parent="." instance=ExtResource("7_qdyky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 25)
