@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerAttackData" load_steps=3 format=3 uid="uid://r04ohdfh54o2"]
 
-[ext_resource type="SphereMesh" uid="uid://tb3mhi6xqssm" path="res://Assets/Resources/Meshes/Area_of_Effect/AoE_Mesh_00.tres" id="1_k5uhv"]
+[ext_resource type="CylinderMesh" uid="uid://bw682n0ykdkn1" path="res://Assets/Resources/Meshes/Area_of_Effect/AoE_Mesh_01.tres" id="1_0ky8q"]
 [ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/PlayerAttackData.cs" id="2_eur53"]
 
 [resource]
@@ -11,5 +11,5 @@ damage = 10.0
 delay = 2.0
 maxLevel = 6
 projectileSpeed = 1.0
-areaMesh = ExtResource("1_k5uhv")
+areaMesh = ExtResource("1_0ky8q")
 lvlUpAreaStepSize = 0.2
