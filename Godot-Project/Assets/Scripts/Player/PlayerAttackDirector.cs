@@ -78,6 +78,9 @@ public partial class PlayerAttackDirector : Node3D
 
 		// Activate the open action slot's timer
 		InitAttackSlotTimer(index);
+
+		// Update any visuals for the attack
+		SetAttackVisuals(index, data);
 	}
 
 	private void SetAttackSlotIndex(int index) {
@@ -91,6 +94,10 @@ public partial class PlayerAttackDirector : Node3D
 	private void InitAttackSlotTimer(int index) {
 		attackList[index].InitTimer(attackTimerList[index]);
 	}	
+
+	private void SetAttackVisuals(int index, PlayerAttackData data) {
+		attackList[index].SetVisuals(data);
+	}
 
 	public bool IsActionAlreadyEquipped(string id) {
 		for (int i = 0; i < attackList.Count; i++) {
@@ -138,7 +145,7 @@ public partial class PlayerAttackDirector : Node3D
 		}
 
 		// Increment the level
-		attackList[index].level += 1;
+		attackList[index].LevelUpAttack();
 
 		return true;
 	}

@@ -15,4 +15,5 @@ public partial class PlayerAttackData : Resource
     [Export] public float projectileSpeed = 1.0f;
     // Area of Effect Parameters
     [Export] public Mesh areaMesh;
+    [Export] public float lvlUpAreaStepSize = 0.2f;
 }

@@ -7,6 +7,7 @@ public partial class PlayerAttackObject : AttackObject
 	// Game Componenets
 	// Private
 	private bool debug = false;
+	private MeshInstance3D meshInstance = null;
 	// Public
 	public Timer timer = null;
 	public int attackIndex = -1;
@@ -15,6 +16,7 @@ public partial class PlayerAttackObject : AttackObject
 	public override void _Ready()
 	{
 		timer = GetAttackTimer();
+		meshInstance = GetMeshInstance();
 		SetMainRootVar();
 	}
 	//-------------------------------------------------------------------------
@@ -45,6 +47,16 @@ public partial class PlayerAttackObject : AttackObject
 		return null;
 	}
 
+	public MeshInstance3D GetMeshInstance() {
+		foreach (Node node in GetChildren()) {
+			if (node.Name == "Attack Mesh") {
+				return (MeshInstance3D) node;
+			}
+		}
+
+		return null;
+	}
+
 	public void SetAttackIndex(int index) {
 		attackIndex = index;
 	}
@@ -59,6 +71,12 @@ public partial class PlayerAttackObject : AttackObject
 
 		UpdateTimerTime();
 		StartTimer();
+	}
+
+	public void SetVisuals(PlayerAttackData data) {
+		if (data.type == AttackObject.Type.AreaOfEffect) {
+			meshInstance.Mesh = data.areaMesh;
+		}
 	}
 
 	private void UpdateTimerTime() {
@@ -82,6 +100,21 @@ public partial class PlayerAttackObject : AttackObject
 
 		} else {
 
+		}
+	}
+
+	public void LevelUpAttack() {
+		level += 1;
+
+		// Type Specefic Level Up Actions
+		switch(data.type) {
+			case Type.Projectile:
+				break;
+			case Type.AreaOfEffect:
+				Scale += new Vector3(1, 1, 1) * data.lvlUpAreaStepSize;
+				break;
+			case Type.Melee:
+				break;            
 		}
 	}
 

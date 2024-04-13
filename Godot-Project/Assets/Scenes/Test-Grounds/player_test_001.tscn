@@ -46,3 +46,7 @@ attackData = ExtResource("4_kuxk8")
 [node name="Free-Action7" parent="." instance=ExtResource("3_shpvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -15)
 attackData = ExtResource("4_kuxk8")
+
+[node name="Free-Action8" parent="." instance=ExtResource("3_shpvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 15)
+attackData = ExtResource("5_ixvbe")
