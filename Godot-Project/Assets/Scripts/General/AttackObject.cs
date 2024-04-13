@@ -10,11 +10,19 @@ public partial class AttackObject : Node3D
 		AreaOfEffect = 2,
 		Melee = 3
 	}
-	public PlayerAttackData data = null;
-	public int level = 1;
+	//-------------------------------------------------------------------------
+	// Game Componenets
+	// Private
 	private Node MainRoot = null;
 	private RigidBody3D projectileInst = null;
-
+	// Public
+	public PlayerAttackData data = null;
+	public int level = 1;
+	//-------------------------------------------------------------------------
+	// Game Events
+	
+	//-------------------------------------------------------------------------
+	// Methods
 	public AttackObject(PlayerAttackData dataVal) {
 		data = dataVal;        
 	}

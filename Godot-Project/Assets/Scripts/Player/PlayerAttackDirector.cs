@@ -10,11 +10,11 @@ public partial class PlayerAttackDirector : Node3D
 	private PlayerInteractionDirector interactionDir = null;
 	private Node attackTimersContainer = null;
 	private List<Timer> attackTimerList = new List<Timer>();
-	private int maxAttackCount = 0;
+	private int attackCount = 0;
 	private bool DemoMode = false;
 
 	// Public
-	public PlayerAttackObject[] attackList = null;
+	public List<PlayerAttackObject> attackList = null;
 	
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -22,11 +22,11 @@ public partial class PlayerAttackDirector : Node3D
 	{
 		interactionDir = GetNode<PlayerInteractionDirector>("..");
 
+		// Get all of the Player Attack Objects
+		GetPlayerAttackObjects();
+
 		// Get all of the potential Attack Timers
 		GetAttackTimers();
-
-		// Init the Attack Object List 
-		InitAttackObjectList();
 
 		if (DemoMode) {
 			InitSomeAttacks();
@@ -40,35 +40,27 @@ public partial class PlayerAttackDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
-	private void InitAttackObjectList() {
-		// Set the maxAttackCount equal the number available timers
-		maxAttackCount = attackTimerList.Count;
+	private void GetPlayerAttackObjects() {
+		attackList = new List<PlayerAttackObject>();
 
-		// Init the Attacks Array to be equal in length to the number of timers
-		attackList = new PlayerAttackObject[maxAttackCount];
-
-		// Loop through the array and contruct the attack objects
-		for (int i = 0; i < maxAttackCount; i++) {
-			attackList[i] = new PlayerAttackObject();
-			AddChild(attackList[i]);
-			attackList[i].SetMainRootVar();
+		foreach (PlayerAttackObject attackObject in GetChildren()) {
+			attackList.Add(attackObject);
 		}
+
+		attackCount = attackList.Count;
 	}
 
 	private void GetAttackTimers() {
-		// Grab the Attack Timer(s) Container
-		attackTimersContainer = GetNode<Node>("Weapon-Timer-Container");
-
-		// Iterate thru the child timers
-		foreach (Node node in attackTimersContainer.GetChildren()) {
-			attackTimerList.Add((Timer) node);
+		// Iterate thru the attack objects
+		foreach (PlayerAttackObject attackObject in attackList) {
+			attackTimerList.Add((Timer) attackObject.GetChild(0));
 		}
 	}
 
 	public int GetOpenActionSlotIndex() {
 		int index = 0;
 
-		for (index = 0; index < attackList.Length; index++) {
+		for (index = 0; index < attackList.Count; index++) {
 			if (attackList[index].data == null) {
 				return index;
 			}
@@ -101,7 +93,7 @@ public partial class PlayerAttackDirector : Node3D
 	}	
 
 	public bool IsActionAlreadyEquipped(string id) {
-		for (int i = 0; i < attackList.Length; i++) {
+		for (int i = 0; i < attackList.Count; i++) {
 			if (attackList[i].data == null) {
 				continue;
 			}
@@ -115,7 +107,7 @@ public partial class PlayerAttackDirector : Node3D
 	}
 
 	private int GetEquippedActionSlotIndex(string id) {
-		for (int i = 0; i < attackList.Length; i++) {
+		for (int i = 0; i < attackList.Count; i++) {
 			if (attackList[i].data == null) {
 				continue;
 			}

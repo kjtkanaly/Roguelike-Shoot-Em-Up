@@ -9,10 +9,14 @@ public partial class PlayerAttackObject : AttackObject
 	private bool debug = false;
 	// Public
 	public Timer timer = null;
-	public int attackIndex = -1;	
+	public int attackIndex = -1;
 	//-------------------------------------------------------------------------
 	// Game Events
-
+	public override void _Ready()
+	{
+		timer = (Timer) GetChild(0);
+		SetMainRootVar();
+	}
 	//-------------------------------------------------------------------------
 	// Methods
 	public PlayerAttackObject(PlayerAttackData dataVal, int indexVal, Timer timerObj) : 
