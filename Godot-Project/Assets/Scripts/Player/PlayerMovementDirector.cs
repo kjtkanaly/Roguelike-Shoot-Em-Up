@@ -9,29 +9,26 @@ public partial class PlayerMovementDirector : MovementDirector
 	// Game Componenets
 	// Private
 	private PlayerMovementData playerData;
-	private Vector2 lateralVelocitySnapshot;
 	private Vector2 inputDirection;
-	private float verticalVelocitySnapshot;
-	private float gravity = ProjectSettings.GetSetting(
-						   "physics/3d/default_gravity").AsSingle();
 	// Public
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
-		playerData = GetNode<PlayerDataDirector>("Player-Data-Director").movementData;
+		playerData = base.SetPlayerData();
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		base._PhysicsProcess(delta);
+
 		// Update Velocity Snapshot Variables
 		lateralVelocitySnapshot = new Vector2(Velocity.X, 
 											  Velocity.Z);
 		verticalVelocitySnapshot = Velocity.Y;
 
 		// Apply Vertical Velocity M A T H & Logic
-		ApplyGravity((float)delta);
 		HandleJump(playerData.jumpVelocity);
 
 		// Apply Laterial Velocity Logic
@@ -39,22 +36,20 @@ public partial class PlayerMovementDirector : MovementDirector
 		HandleDodgeRoll((float)delta);
 
 		Velocity = new Vector3(lateralVelocitySnapshot.X, 
-							   			verticalVelocitySnapshot, 
-							   			lateralVelocitySnapshot.Y);
+							   verticalVelocitySnapshot, 
+							   lateralVelocitySnapshot.Y);
 
 		MoveAndSlide();
+		GD.Print($"Player Movement Director");
 	}
 
 	//-------------------------------------------------------------------------
 	// Methods
-	private void ApplyGravity(float timeDelta) {
-		if (!IsOnFloor())
-			verticalVelocitySnapshot -= playerData.mass * gravity * timeDelta;
-	}
-
 	private void HandleJump(float jumpVelocity) {
-		if (Input.IsActionJustPressed("Jump") && IsOnFloor())
+		if (Input.IsActionJustPressed("Jump") && IsOnFloor()) {
 			verticalVelocitySnapshot = jumpVelocity;
+			GD.Print("Test Jump");
+		}
 	}
 
 	private void HandleBasicLateralMovement(float delta) {
