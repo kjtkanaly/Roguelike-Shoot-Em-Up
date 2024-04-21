@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://cvfsp2vixj0ok" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_00.tres" id="4_3yl2p"]
 [ext_resource type="Resource" uid="uid://r04ohdfh54o2" path="res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres" id="5_selg7"]
 [ext_resource type="Resource" uid="uid://btdfyoctam7j8" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres" id="6_y3aff"]
-[ext_resource type="PackedScene" uid="uid://k81q72warg70" path="res://Assets/Nodes/NPCs/Practice_Dummy/practice_dummy_director.tscn" id="7_qdyky"]
+[ext_resource type="PackedScene" uid="uid://d3566upaslqpj" path="res://Assets/Nodes/NPCs/General_NPC/npc_director.tscn" id="7_2lnck"]
 
 [node name="Player-Test-002" type="Node3D"]
 
@@ -52,5 +52,5 @@ attackData = ExtResource("4_3yl2p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 15)
 attackData = ExtResource("5_selg7")
 
-[node name="Practice-Dummy-Director" parent="." instance=ExtResource("7_qdyky")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 25)
+[node name="NPC-Director" parent="." instance=ExtResource("7_2lnck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.8, 25)
