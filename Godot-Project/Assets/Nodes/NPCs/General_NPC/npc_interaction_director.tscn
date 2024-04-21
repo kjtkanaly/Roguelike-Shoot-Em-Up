@@ -9,9 +9,9 @@ height = 1.0
 
 [node name="NPC-Attack-Director" parent="." instance=ExtResource("1_knsac")]
 
-[node name="NPC-Hit-Box-Director" type="Area3D" parent="NPC-Attack-Director"]
-
-[node name="NPC-Hit-Box" type="CollisionShape3D" parent="NPC-Attack-Director/NPC-Hit-Box-Director"]
-shape = SubResource("CylinderShape3D_rwtvg")
-
 [node name="Damage-Timer" type="Timer" parent="."]
+
+[node name="NPC-Hit-Box-Director" type="Area3D" parent="."]
+
+[node name="NPC-Hit-Box" type="CollisionShape3D" parent="NPC-Hit-Box-Director"]
+shape = SubResource("CylinderShape3D_rwtvg")
