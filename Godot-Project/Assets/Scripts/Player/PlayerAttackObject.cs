@@ -8,6 +8,8 @@ public partial class PlayerAttackObject : AttackObject
 	// Private
 	private bool debug = false;
 	private MeshInstance3D meshInstance = null;
+	private Area3D AoEHitBoxDirector = null;
+	private CollisionShape3D AoEHitBox = null;
 	// Public
 	public Timer timer = null;
 	public int attackIndex = -1;
@@ -17,6 +19,7 @@ public partial class PlayerAttackObject : AttackObject
 	{
 		timer = GetAttackTimer();
 		meshInstance = GetMeshInstance();
+		SetAoEObjects();
 		SetMainRootVar();
 	}
 	//-------------------------------------------------------------------------
@@ -57,6 +60,11 @@ public partial class PlayerAttackObject : AttackObject
 		return null;
 	}
 
+	public void SetAoEObjects() {
+		AoEHitBoxDirector = GetNode<Area3D>("AoE-Hit-Box-Director");
+		AoEHitBox = AoEHitBoxDirector.GetNode<CollisionShape3D>("AoE-Hit-Box");
+	}
+
 	public void SetAttackIndex(int index) {
 		attackIndex = index;
 	}
@@ -76,6 +84,12 @@ public partial class PlayerAttackObject : AttackObject
 	public void SetVisuals(PlayerAttackData data) {
 		if (data.type == AttackObject.Type.AreaOfEffect) {
 			meshInstance.Mesh = data.areaMesh;
+		}
+	}
+
+	public void SetColliderInformation(PlayerAttackData data) {
+		if (data.type == AttackObject.Type.AreaOfEffect) {
+			AoEHitBox.Shape = data.areaColliderShape;
 		}
 	}
 
@@ -121,3 +135,4 @@ public partial class PlayerAttackObject : AttackObject
 	//-------------------------------------------------------------------------
 	// Debug Methods
 }
+

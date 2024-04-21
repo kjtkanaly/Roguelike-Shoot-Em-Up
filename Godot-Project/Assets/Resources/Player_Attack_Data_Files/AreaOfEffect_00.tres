@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="PlayerAttackData" load_steps=3 format=3 uid="uid://r04ohdfh54o2"]
+[gd_resource type="Resource" script_class="PlayerAttackData" load_steps=4 format=3 uid="uid://r04ohdfh54o2"]
 
 [ext_resource type="CylinderMesh" uid="uid://bw682n0ykdkn1" path="res://Assets/Resources/Meshes/Area_of_Effect/AoE_Mesh_01.tres" id="1_0ky8q"]
+[ext_resource type="Shape3D" uid="uid://dakaq4w6ecrrn" path="res://Assets/Resources/Shapes/AoE_Shape_01.tres" id="1_780cg"]
 [ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/PlayerAttackData.cs" id="2_eur53"]
 
 [resource]
@@ -12,4 +13,5 @@ delay = 2.0
 maxLevel = 6
 projectileSpeed = 1.0
 areaMesh = ExtResource("1_0ky8q")
+areaColliderShape = ExtResource("1_780cg")
 lvlUpAreaStepSize = 0.2

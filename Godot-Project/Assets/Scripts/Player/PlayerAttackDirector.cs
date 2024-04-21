@@ -81,6 +81,9 @@ public partial class PlayerAttackDirector : Node3D
 
 		// Update any visuals for the attack
 		SetAttackVisuals(index, data);
+
+		// Set Collider Information
+		SetColliderInformation(index, data);
 	}
 
 	private void SetAttackSlotIndex(int index) {
@@ -97,6 +100,10 @@ public partial class PlayerAttackDirector : Node3D
 
 	private void SetAttackVisuals(int index, PlayerAttackData data) {
 		attackList[index].SetVisuals(data);
+	}
+
+	private void SetColliderInformation(int index, PlayerAttackData data) {
+		attackList[index].SetColliderInformation(data);
 	}
 
 	public bool IsActionAlreadyEquipped(string id) {
