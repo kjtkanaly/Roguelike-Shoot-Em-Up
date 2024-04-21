@@ -21,6 +21,7 @@ public partial class NPCInteractionDirector : Node3D
 		HitBoxDirector.BodyEntered += KickoffSequence;
 
 		DamageTimer = GetNode<Timer>("Damage-Timer");
+		DamageTimer.Timeout += TakeAoEDamage;
 	}
 
 
@@ -53,7 +54,6 @@ public partial class NPCInteractionDirector : Node3D
 		TakeAoEDamage();
 
 		// Begin Damage Timer
-		DamageTimer.Timeout += TakeAoEDamage;
 		SetDamageTimerProps(aoeData.delay, false);
 		DamageTimer.Start();
 	}
