@@ -30,7 +30,7 @@ public partial class MovementDirector : CharacterBody3D
 
     //-------------------------------------------------------------------------
     // Methods
-    protected PlayerMovementData SetPlayerData() {
+    protected PlayerMovementData GetPlayerData() {
         return (PlayerMovementData) movementData;
     }
 

@@ -16,7 +16,7 @@ public partial class PlayerMovementDirector : MovementDirector
 	// Game Events
 	public override void _Ready()
 	{
-		playerData = base.SetPlayerData();
+		playerData = base.GetPlayerData();
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -1,0 +1,44 @@
+@startuml Movement Class Structure
+
+title Movement Class Structure
+
+class MovementDirector <<CharacterBody3D>>{
+    == Data ==
+    .. Private ..
+    - float gravity
+    .. Public ..
+    .. Protected ..
+    + Vector2 lateralVelocitySnapshot
+    + float verticalVelocitySnapshot
+    + MovementData movementData
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    + _PhysicsProcess() : void
+    .. Protected ..
+    + GetPlayerData() : PlayerMovementData
+    + ApplyGravity() : void
+}
+
+class PlayerMovementDirector <<MovementDirector>>{
+    == Data ==
+    .. Private ..
+    - PlayerMovementData playerData
+	- Vector2 inputDirection
+    .. Public ..
+    .. Protected ..
+    == Methods ==
+    .. Private ..
+    - HandleJump() : void
+    - HandleBasicLateralMovement() : void
+    - HandleDodgeRoll() : void
+    - GetGlobalInputDirectionNorm() : Vector3
+    .. Public ..
+    + _Ready() : void
+    + _PhysicsProcess() : void
+    .. Protected ..
+}
+
+MovementDirector *-- PlayerMovementDirector
+
+@enduml
