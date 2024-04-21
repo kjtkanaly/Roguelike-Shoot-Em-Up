@@ -7,8 +7,9 @@
 script = ExtResource("2_i1iax")
 id = "Proj-01"
 type = 1
-damage = 1.0
+damage = 8.0
 delay = 1.0
 maxLevel = 6
 projectile = ExtResource("1_i1s3j")
 projectileSpeed = 40.0
+lvlUpAreaStepSize = 0.2

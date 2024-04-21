@@ -10,6 +10,8 @@
 height = 1.0
 
 [node name="NPC-Director" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ic5l3")
 movementData = ExtResource("2_aei3y")
 

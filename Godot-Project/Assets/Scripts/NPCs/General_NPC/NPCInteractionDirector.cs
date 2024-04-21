@@ -18,6 +18,7 @@ public partial class NPCInteractionDirector : Node3D
 		HitBoxDirector = GetNode<Area3D>("NPC-Hit-Box-Director");
 		HitBoxDirector.AreaEntered += KickoffSequence;
 		HitBoxDirector.AreaExited += StopSequence;
+		HitBoxDirector.BodyEntered += KickoffSequence;
 
 		DamageTimer = GetNode<Timer>("Damage-Timer");
 	}
@@ -28,6 +29,12 @@ public partial class NPCInteractionDirector : Node3D
 	private void KickoffSequence(Area3D otherArea){
 		if (otherArea.Name == "AoE-Hit-Box-Director") {
 			BeginAoEDamageSequence(otherArea);
+		}
+	}
+
+	private void KickoffSequence(Node3D otherNode) {
+		if ((string) otherNode.GetMeta("ID") == "Projectile") {
+			ProjectileDamageSequence(otherNode);
 		}
 	}
 
@@ -70,6 +77,14 @@ public partial class NPCInteractionDirector : Node3D
 
 	public void TakeDamage(float damageValue) {
 		GD.Print($"Enemey took {damageValue} damage");
+	}
+
+	private void ProjectileDamageSequence(Node3D projNode) {
+		// Get the projectile's damage
+		float damage = ((ProjectileDir) projNode).damage;
+
+		// Take damage from the projectile
+		TakeDamage(damage);
 	}
 
 	//-------------------------------------------------------------------------

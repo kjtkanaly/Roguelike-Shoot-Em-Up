@@ -5,8 +5,11 @@ public partial class ProjectileDir : RigidBody3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
+	// Private
 	private Timer despawnTimer = null;
 	private bool debug = false;
+	// Public
+	public float damage = 0.0f;
 
 	//-------------------------------------------------------------------------
 	// Game Events
