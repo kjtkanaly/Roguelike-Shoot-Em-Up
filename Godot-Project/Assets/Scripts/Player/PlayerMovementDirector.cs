@@ -23,12 +23,7 @@ public partial class PlayerMovementDirector : MovementDirector
 	{
 		base._PhysicsProcess(delta);
 
-		// Update Velocity Snapshot Variables
-		lateralVelocitySnapshot = new Vector2(Velocity.X, 
-											  Velocity.Z);
-		verticalVelocitySnapshot = Velocity.Y;
-
-		// Apply Vertical Velocity M A T H & Logic
+		// Apply Vertical Velocity Logic
 		HandleJump(playerData.jumpVelocity);
 
 		// Apply Laterial Velocity Logic
@@ -40,7 +35,6 @@ public partial class PlayerMovementDirector : MovementDirector
 							   lateralVelocitySnapshot.Y);
 
 		MoveAndSlide();
-		GD.Print($"Player Movement Director");
 	}
 
 	//-------------------------------------------------------------------------

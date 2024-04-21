@@ -18,10 +18,14 @@ public partial class MovementDirector : CharacterBody3D
     // Game Events
     public override void _PhysicsProcess(double delta)
     {
+        // Update Velocity Snapshot Variables
+		lateralVelocitySnapshot = new Vector2(Velocity.X, 
+											  Velocity.Z);
+		verticalVelocitySnapshot = Velocity.Y;
+
         ApplyGravity((float)delta);
 
-        // MoveAndSlide();
-        GD.Print($"Movement Director");
+        MoveAndSlide();
     }
 
     //-------------------------------------------------------------------------
