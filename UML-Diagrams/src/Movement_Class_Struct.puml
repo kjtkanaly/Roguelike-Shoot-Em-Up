@@ -39,6 +39,42 @@ class PlayerMovementDirector <<MovementDirector>>{
     .. Protected ..
 }
 
+class NPCMovementDirector <<MovementDirector>>{
+    == Data ==
+    .. Private ..
+    .. Public ..
+    .. Protected ..
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    .. Protected ..
+}
+
+class GenericEnemyMovementDirector <<NPCMovementDirector>>{
+    == Data ==
+    .. Private ..
+    .. Public ..
+    .. Protected ..
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    .. Protected ..
+}
+
+class PracticeDummyMovementDir <<GenericEnemyMovementDirector>>{
+    == Data ==
+    .. Private ..
+    .. Public ..
+    .. Protected ..
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    .. Protected ..
+}
+
 MovementDirector *-- PlayerMovementDirector
+MovementDirector *-- NPCMovementDirector
+NPCMovementDirector *-- GenericEnemyMovementDirector
+GenericEnemyMovementDirector *-- PracticeDummyMovementDir
 
 @enduml
