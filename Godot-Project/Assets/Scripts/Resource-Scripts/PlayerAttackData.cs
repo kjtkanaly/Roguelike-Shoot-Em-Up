@@ -10,11 +10,4 @@ public partial class PlayerAttackData : Resource
 	[Export] public float damage = 1.0f;
 	[Export] public float delay = 1.0f;
     [Export] public int maxLevel = 6;
-    // Projectile Parameters
-    [Export] public PackedScene projectile;
-    [Export] public float projectileSpeed = 1.0f;
-    // Area of Effect Parameters
-    [Export] public Mesh areaMesh;
-    [Export] public Shape3D areaColliderShape;
-    [Export] public float lvlUpAreaStepSize = 0.2f;
 }

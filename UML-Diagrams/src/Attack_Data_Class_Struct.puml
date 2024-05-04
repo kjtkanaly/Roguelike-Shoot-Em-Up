@@ -1,0 +1,30 @@
+@startuml Attack Data Class Struct
+
+title Attack Data Class Struct
+
+class PlayerAttackData <<Resource>>{
+    == Data ==
+    + string lateralVelocitySnapshot
+    + Type type
+    + float damage
+    + float delay
+    + int maxLevel
+}
+
+class ProjectileData <<PlayerAttackData>> {
+    == Data ==
+    + PackedScene projectile
+    + float projectileSpeed
+}
+
+class AreaOfEffectData <<PlayerAttackData>> {
+    == Data ==
+    + Mesh areaMesh
+    + Shape3D areaColliderShape
+    + float lvlUpAreaStepSize
+}
+
+PlayerAttackData *-- ProjectileData
+PlayerAttackData *-- AreaOfEffectData
+
+@enduml
