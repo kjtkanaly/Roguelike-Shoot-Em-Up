@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class PlayerAttackData : Resource
+public partial class AttackData : Resource
 {
     // General Parameters
     [Export] public string id = "Default-001";

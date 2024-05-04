@@ -2,7 +2,7 @@
 
 title Attack Data Class Struct
 
-class PlayerAttackData <<Resource>>{
+class AttackData <<Resource>>{
     == Data ==
     + string lateralVelocitySnapshot
     + Type type
@@ -11,20 +11,20 @@ class PlayerAttackData <<Resource>>{
     + int maxLevel
 }
 
-class ProjectileData <<PlayerAttackData>> {
+class ProjectileData <<AttackData>> {
     == Data ==
     + PackedScene projectile
     + float projectileSpeed
 }
 
-class AreaOfEffectData <<PlayerAttackData>> {
+class AreaOfEffectData <<AttackData>> {
     == Data ==
     + Mesh areaMesh
     + Shape3D areaColliderShape
     + float lvlUpAreaStepSize
 }
 
-PlayerAttackData *-- ProjectileData
-PlayerAttackData *-- AreaOfEffectData
+AttackData *-- ProjectileData
+AttackData *-- AreaOfEffectData
 
 @enduml

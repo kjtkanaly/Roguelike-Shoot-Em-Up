@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class AreaOfEffectData : PlayerAttackData
+public partial class AreaOfEffectData : AttackData
 {
     // Area of Effect Parameters
     [Export] public Mesh areaMesh;
