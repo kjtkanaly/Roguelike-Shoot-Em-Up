@@ -31,3 +31,6 @@ Devlopment-Notes.txt
 
 # Art assests
 *.png
+
+# Mac
+*.DS_Store
