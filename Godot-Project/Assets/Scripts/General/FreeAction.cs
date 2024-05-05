@@ -7,7 +7,7 @@ public partial class FreeAction : Area3D
 	// Game Componenets
 	// Private
 	// Public
-	[Export] public PlayerAttackData attackData;
+	[Export] public AttackData attackData;
 
 	//-------------------------------------------------------------------------
 	// Game Events

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dek1kik60vinj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7x4jh"]
+
+[node name="Generic-Projectile" type="RigidBody3D"]
+
+[node name="Despawn-Timer" type="Timer" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7x4jh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]

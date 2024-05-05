@@ -4,12 +4,6 @@ using System.Collections.Generic;
 
 public partial class AttackObject : Node3D
 {
-	public enum Type {
-		None = 0,
-		Projectile = 1,
-		AreaOfEffect = 2,
-		Melee = 3
-	}
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
@@ -17,14 +11,14 @@ public partial class AttackObject : Node3D
 	private ProjectileDir projectileInst = null;
 	private RigidBody3D projectileInstRB = null;
 	// Public
-	public PlayerAttackData data = null;
+	public AttackData data = null;
 	public int level = 1;
 	//-------------------------------------------------------------------------
 	// Game Events
 	
 	//-------------------------------------------------------------------------
 	// Methods
-	public AttackObject(PlayerAttackData dataVal) {
+	public AttackObject(AttackData dataVal) {
 		data = dataVal;        
 	}
 
