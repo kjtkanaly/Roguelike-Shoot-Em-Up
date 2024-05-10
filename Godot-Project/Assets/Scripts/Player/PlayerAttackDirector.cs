@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerAttackDirector : Node3D
+public partial class PlayerAttackDirector : Node
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
@@ -88,7 +88,7 @@ public partial class PlayerAttackDirector : Node3D
 	protected virtual void CallAttack() {
 		if (debug) {
 			GD.Print($"Generic Attack:");
-            GD.Print($"Index {attackIndex}");
+			GD.Print($"Index {attackIndex}");
 		}
 	}
 

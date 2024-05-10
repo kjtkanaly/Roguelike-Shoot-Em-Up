@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAttackDirector.cs" id="1_gdhip"]
 
-[node name="Player-Attack-Object" type="Node3D"]
+[node name="Player-Attack-Object" type="Node"]
 script = ExtResource("1_gdhip")
 
 [node name="Attack Timer" type="Timer" parent="."]

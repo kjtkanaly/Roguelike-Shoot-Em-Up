@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class PlayerAttackSlotsDirector : Node3D
+public partial class PlayerAttackSlotsDirector : Node
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
