@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public partial class PlayerInteractionDirector : Node3D
+public partial class PlayerInteractionDirector : Node
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
-	private PlayerAttackDirector playerAttack = null;
+	private PlayerAttackSlotsDirector playerAttack = null;
 	private PlayerDataDirector playerData = null;
 	private PlayerObjectPickup pickupArea = null;
 
@@ -16,7 +16,7 @@ public partial class PlayerInteractionDirector : Node3D
 	// Game Events
 	public override void _Ready()
 	{
-		playerAttack = GetNode<PlayerAttackDirector>("Player-Attack-Director");
+		playerAttack = GetNode<PlayerAttackSlotsDirector>("Player-Attack-Director");
 		playerData = GetNode<PlayerDataDirector>("../Player-Data-Director");
 	}
 
@@ -26,7 +26,7 @@ public partial class PlayerInteractionDirector : Node3D
 		return playerAttack.GetOpenActionSlotIndex();
 	}
 
-	public void SetAttackSlotObjectProps(int index, PlayerAttackData data) {
+	public void SetAttackSlotObjectProps(int index, AttackData data) {
 		playerAttack.SetAttackSlotObjectProps(index, data);
 	}
 
@@ -34,7 +34,7 @@ public partial class PlayerInteractionDirector : Node3D
 		return playerAttack.IsActionAlreadyEquipped(id);
 	}
 
-	public bool LevelUpEquippedAction(PlayerAttackData attackData) {
+	public bool LevelUpEquippedAction(AttackData attackData) {
 		return playerAttack.LevelUpEquippedAction(attackData);
 	}
 

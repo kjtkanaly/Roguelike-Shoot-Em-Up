@@ -6,6 +6,9 @@ public partial class PlayerAttackSlotsDirector : Node
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
+	// Public
+	public List<PlayerAttackDirector> attackList = null;
+
 	// Private
 	private PlayerInteractionDirector interactionDir = null;
 	private Node attackTimersContainer = null;
@@ -13,9 +16,6 @@ public partial class PlayerAttackSlotsDirector : Node
 	private int attackCount = 0;
 	private bool DemoMode = false;
 
-	// Public
-	public List<PlayerAttackDirector> attackList = null;
-	
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()

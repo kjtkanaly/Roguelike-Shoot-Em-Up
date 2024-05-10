@@ -8,7 +8,7 @@
 height = 1.0
 radius = 1.0
 
-[node name="Player-Interaction-Director" type="Node3D"]
+[node name="Player-Interaction-Director" type="Node"]
 script = ExtResource("1_xg1bb")
 
 [node name="Player-Attack-Director" parent="." instance=ExtResource("1_tp631")]
