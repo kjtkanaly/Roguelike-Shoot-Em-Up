@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerAttackDirector : Node
+public partial class PlayerAttackDirector : Node3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets

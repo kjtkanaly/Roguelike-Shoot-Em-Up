@@ -2,7 +2,7 @@
 
 title Player Attack Class Structure
 
-class PlayerAttackDirector <<Node>>{
+class PlayerAttackDirector <<Node3D>>{
     == Data ==
     .. Public ..
     + Timer timer
