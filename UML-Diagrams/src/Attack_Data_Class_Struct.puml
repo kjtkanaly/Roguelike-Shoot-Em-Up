@@ -12,20 +12,20 @@ class AttackData <<Resource>>{
     + int maxLevel
 }
 
-class ProjectileData <<AttackData>> {
+class ProjectileData {
     == Data ==
-    + PackedScene projectile
+    + PackedScene projectileObject
     + float projectileSpeed
 }
 
-class AreaOfEffectData <<AttackData>> {
+class AreaOfEffectData {
     == Data ==
     + Mesh areaMesh
     + Shape3D areaColliderShape
     + float lvlUpAreaStepSize
 }
 
-AttackData *-- ProjectileData
-AttackData *-- AreaOfEffectData
+AttackData <|-- ProjectileData
+AttackData <|-- AreaOfEffectData
 
 @enduml

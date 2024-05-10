@@ -8,7 +8,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_0bqvg"]
 
 [node name="Free-Action" type="Area3D"]
-collision_layer = 8
+collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_3hb60")
 attackData = ExtResource("2_n5mor")
