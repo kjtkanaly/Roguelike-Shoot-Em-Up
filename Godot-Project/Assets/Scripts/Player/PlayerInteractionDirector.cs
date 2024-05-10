@@ -6,7 +6,7 @@ public partial class PlayerInteractionDirector : Node
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
-	private PlayerAttackSlotsDirector playerAttack = null;
+	private PlayerAttackSlotsDirector playerAttackSlotsDir = null;
 	private PlayerDataDirector playerData = null;
 	private PlayerObjectPickup pickupArea = null;
 
@@ -16,26 +16,26 @@ public partial class PlayerInteractionDirector : Node
 	// Game Events
 	public override void _Ready()
 	{
-		playerAttack = GetNode<PlayerAttackSlotsDirector>("Player-Attack-Director");
+		playerAttackSlotsDir = GetNode<PlayerAttackSlotsDirector>("Player-Attack-Director");
 		playerData = GetNode<PlayerDataDirector>("../Player-Data-Director");
 	}
 
 	//-------------------------------------------------------------------------
 	// Methods
 	public int GetOpenActionSlotIndex() {
-		return playerAttack.GetOpenActionSlotIndex();
+		return playerAttackSlotsDir.GetOpenActionSlotIndex();
 	}
 
-	public void SetAttackSlotObjectProps(int index, AttackData data) {
-		playerAttack.SetAttackSlotObjectProps(index, data);
+	public void InitAttackSlotObject(int index, AttackData data) {
+		playerAttackSlotsDir.InitAttackSlotObject(index, data);
 	}
 
 	public bool IsActionAlreadyEquipped(string id) {
-		return playerAttack.IsActionAlreadyEquipped(id);
+		return playerAttackSlotsDir.IsActionAlreadyEquipped(id);
 	}
 
 	public bool LevelUpEquippedAction(AttackData attackData) {
-		return playerAttack.LevelUpEquippedAction(attackData);
+		return playerAttackSlotsDir.LevelUpEquippedAction(attackData);
 	}
 
 	//-------------------------------------------------------------------------

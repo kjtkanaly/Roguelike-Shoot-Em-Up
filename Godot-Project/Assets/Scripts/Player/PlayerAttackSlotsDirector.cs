@@ -69,7 +69,7 @@ public partial class PlayerAttackSlotsDirector : Node
 		return -1;
 	}
 
-	public void SetAttackSlotObjectProps(int index, AttackData data) {
+	public void InitAttackSlotObject(int index, AttackData data) {
 		// Update the open action slot's index value
 		SetAttackSlotIndex(index);
 

@@ -33,7 +33,7 @@ public partial class PlayerObjectPickup : Area3D
 
 		nearbyFreeActionNodes.Add((Node3D) freeActionArea);
 
-		// To DO: Move the following behind input logic later on
+		// TO DO: Move the following behind input logic later on
 		// See sequence diagram note for more context
 		PickupFirstFreeAction();
 	}
@@ -80,7 +80,7 @@ public partial class PlayerObjectPickup : Area3D
 			return false;
 		}
 		// Init the open action slot's Attack Object
-		interactionDir.SetAttackSlotObjectProps(index, freeAction.attackData);
+		interactionDir.InitAttackSlotObject(index, freeAction.attackData);
 
 		return true;
 	}
