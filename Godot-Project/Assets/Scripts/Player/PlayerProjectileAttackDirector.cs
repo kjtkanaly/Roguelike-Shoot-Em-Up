@@ -33,11 +33,11 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
             GD.Print($"Index {attackIndex} | Time Delay = {data.delay}s");
 		}
 
-        ProjectileSequence(data);
+        ProjectileSequence();
 	}
 
     // Private 
-    private void ProjectileSequence (ProjectileData data) {
+    private void ProjectileSequence () {
         Vector3[] initVels = GetProjectileInitVelocities(
                                  level, 
                                  data.initVelAngleOffsetDeg);
