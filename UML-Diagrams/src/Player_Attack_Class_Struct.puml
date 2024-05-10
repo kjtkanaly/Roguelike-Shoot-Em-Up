@@ -22,9 +22,12 @@ class PlayerAttackDirector <<Node3D>>{
     + void SetAttackIndex()
     + void InitTimer()
     + void SetData()
+    + bool IsDataEmpty()
     + void SetVisuals()
     + void SetColliderInformation()
     + void LevelUpAttack()
+    + string GetAttackId()
+    + int GetAttackMaxLevel()
     .. Protected ..
     # void UpdateTimerTime()
     # void StartTimer()

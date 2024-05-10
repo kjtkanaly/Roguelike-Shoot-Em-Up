@@ -64,6 +64,10 @@ public partial class PlayerAttackDirector : Node3D
 		data = dataVal;
 	}
 
+	public bool IsDataEmpty() {
+		return data == null;
+	}
+
 	public virtual void SetVisuals() {
 		
 	}
@@ -74,6 +78,14 @@ public partial class PlayerAttackDirector : Node3D
 
 	public virtual void LevelUpAttack() {
 		level += 1;
+	}
+
+	public string GetAttackId() {
+		return data.id;
+	}
+
+	public int GetAttackMaxLevel() {
+		return data.maxLevel;
 	}
 
 	// Protected

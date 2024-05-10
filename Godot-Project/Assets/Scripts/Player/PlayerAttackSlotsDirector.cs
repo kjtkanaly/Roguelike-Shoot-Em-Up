@@ -14,7 +14,7 @@ public partial class PlayerAttackSlotsDirector : Node
 	private bool DemoMode = false;
 
 	// Public
-	public List<PlayerAttackObject> attackList = null;
+	public List<PlayerAttackDirector> attackList = null;
 	
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -41,9 +41,9 @@ public partial class PlayerAttackSlotsDirector : Node
 	//-------------------------------------------------------------------------
 	// Methods
 	private void GetPlayerAttackObjects() {
-		attackList = new List<PlayerAttackObject>();
+		attackList = new List<PlayerAttackDirector>();
 
-		foreach (PlayerAttackObject attackObject in GetChildren()) {
+		foreach (PlayerAttackDirector attackObject in GetChildren()) {
 			attackList.Add(attackObject);
 		}
 
@@ -52,7 +52,7 @@ public partial class PlayerAttackSlotsDirector : Node
 
 	private void GetAttackTimers() {
 		// Iterate thru the attack objects
-		foreach (PlayerAttackObject attackObject in attackList) {
+		foreach (PlayerAttackDirector attackObject in attackList) {
 			attackTimerList.Add(attackObject.GetAttackTimer());
 		}
 	}
@@ -61,7 +61,7 @@ public partial class PlayerAttackSlotsDirector : Node
 		int index = 0;
 
 		for (index = 0; index < attackList.Count; index++) {
-			if (attackList[index].data == null) {
+			if (attackList[index].IsDataEmpty()) {
 				return index;
 			}
 		}
@@ -69,7 +69,7 @@ public partial class PlayerAttackSlotsDirector : Node
 		return -1;
 	}
 
-	public void SetAttackSlotObjectProps(int index, PlayerAttackData data) {
+	public void SetAttackSlotObjectProps(int index, AttackData data) {
 		// Update the open action slot's index value
 		SetAttackSlotIndex(index);
 
@@ -79,18 +79,19 @@ public partial class PlayerAttackSlotsDirector : Node
 		// Activate the open action slot's timer
 		InitAttackSlotTimer(index);
 
+		// TO DO: Consider just making a general init attack object fx
 		// Update any visuals for the attack
-		SetAttackVisuals(index, data);
+		SetAttackVisuals(index);
 
 		// Set Collider Information
-		SetColliderInformation(index, data);
+		SetColliderInformation(index);
 	}
 
 	private void SetAttackSlotIndex(int index) {
 		attackList[index].SetAttackIndex(index);
 	}
 
-	private void SetAttackSlotData(int index, PlayerAttackData data) {
+	private void SetAttackSlotData(int index, AttackData data) {
 		attackList[index].SetData(data);
 	}
 
@@ -98,21 +99,21 @@ public partial class PlayerAttackSlotsDirector : Node
 		attackList[index].InitTimer(attackTimerList[index]);
 	}	
 
-	private void SetAttackVisuals(int index, PlayerAttackData data) {
-		attackList[index].SetVisuals(data);
+	private void SetAttackVisuals(int index) {
+		attackList[index].SetVisuals();
 	}
 
-	private void SetColliderInformation(int index, PlayerAttackData data) {
-		attackList[index].SetColliderInformation(data);
+	private void SetColliderInformation(int index) {
+		attackList[index].SetColliderInformation();
 	}
 
 	public bool IsActionAlreadyEquipped(string id) {
 		for (int i = 0; i < attackList.Count; i++) {
-			if (attackList[i].data == null) {
+			if (attackList[i].IsDataEmpty()) {
 				continue;
 			}
 
-			if (attackList[i].data.id == id) {
+			if (attackList[i].GetAttackId() == id) {
 				return true;
 			}
 		}
@@ -122,11 +123,11 @@ public partial class PlayerAttackSlotsDirector : Node
 
 	private int GetEquippedActionSlotIndex(string id) {
 		for (int i = 0; i < attackList.Count; i++) {
-			if (attackList[i].data == null) {
+			if (attackList[i].IsDataEmpty()) {
 				continue;
 			}
 
-			if (attackList[i].data.id == id) {
+			if (attackList[i].GetAttackId() == id) {
 				return i;
 			}
 		}
@@ -135,14 +136,14 @@ public partial class PlayerAttackSlotsDirector : Node
 	}
 
 	private bool IsActionSlotMaxLevel(int index) { 
-		if (attackList[index].level < attackList[index].data.maxLevel) {
+		if (attackList[index].level < attackList[index].GetAttackMaxLevel()) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 
-	public bool LevelUpEquippedAction(PlayerAttackData data) {
+	public bool LevelUpEquippedAction(AttackData data) {
 		// Get the Action index
 		int index = GetEquippedActionSlotIndex(data.id);
 
