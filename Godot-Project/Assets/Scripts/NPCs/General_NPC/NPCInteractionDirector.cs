@@ -47,7 +47,7 @@ public partial class NPCInteractionDirector : Node3D
 
 	private void BeginAoEDamageSequence(Area3D aoeArea) {
 		// Get the Attack Information
-		PlayerAttackData aoeData = aoeArea.GetParent<PlayerAttackObject>().data;
+		AttackData aoeData = aoeArea.GetParent<PlayerAttackDirector>().GetAttackData();
 
 		// Take the Initial Damage
 		currentAoEDamage = aoeData.damage;

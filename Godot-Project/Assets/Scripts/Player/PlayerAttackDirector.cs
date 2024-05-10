@@ -28,6 +28,9 @@ public partial class PlayerAttackDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public Methods
+	public virtual AttackData GetAttackData() {
+		return data;
+	}
 	public Timer GetAttackTimer() {
 		foreach (Node node in GetChildren()) {
 			if (node.Name == "Attack Timer") {
