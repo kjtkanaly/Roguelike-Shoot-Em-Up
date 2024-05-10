@@ -1,0 +1,23 @@
+@startuml Player Attack Class Structure
+
+title Player Attack Class Structure
+
+class PlayerAttackDirector <<Node3D>>{
+    == Data ==
+    == Methods ==
+}
+
+class PlayerProjectileAttackDirector <<AttackData>> {
+    == Data ==
+    == Methods ==
+}
+
+class PlayerAoEAttackDirector <<AttackData>> {
+    == Data ==
+    == Methods ==
+}
+
+PlayerAttackDirector *-- PlayerProjectileAttackDirector
+PlayerAttackDirector *-- PlayerAoEAttackDirector
+
+@enduml

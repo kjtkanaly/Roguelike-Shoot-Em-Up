@@ -4,6 +4,7 @@ title Attack Data Class Struct
 
 class AttackData <<Resource>>{
     == Data ==
+    + enum Type()
     + string lateralVelocitySnapshot
     + Type type
     + float damage
