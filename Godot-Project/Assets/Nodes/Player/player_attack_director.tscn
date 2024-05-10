@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://df1ikcf5pnn6f"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAttackDirector.cs" id="1_hlsyp"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAttackSlotsDirector.cs" id="1_hlsyp"]
 [ext_resource type="PackedScene" uid="uid://bkc0hy0qtb8o8" path="res://Assets/Nodes/Player/player_attack_object.tscn" id="2_g4cr0"]
 
 [node name="Player-Attack-Director" type="Node3D"]

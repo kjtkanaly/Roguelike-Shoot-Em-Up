@@ -1,170 +1,145 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 public partial class PlayerAttackDirector : Node3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
-	private PlayerInteractionDirector interactionDir = null;
-	private Node attackTimersContainer = null;
-	private List<Timer> attackTimerList = new List<Timer>();
-	private int attackCount = 0;
-	private bool DemoMode = false;
-
+	private Node MainRoot;
+	private bool debug = false;
+	private MeshInstance3D meshInstance = null;
+	private Area3D AoEHitBoxDirector = null;
+	private CollisionShape3D AoEHitBox = null;
+	private AttackData data = null;
 	// Public
-	public List<PlayerAttackObject> attackList = null;
-	
+	public Timer timer = null;
+	public int attackIndex = -1;
+	public int level = 1;
+	public AttackData.Type type = AttackData.Type.None;
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
-		interactionDir = GetNode<PlayerInteractionDirector>("..");
-
-		// Get all of the Player Attack Objects
-		GetPlayerAttackObjects();
-
-		// Get all of the potential Attack Timers
-		GetAttackTimers();
-
-		if (DemoMode) {
-			InitSomeAttacks();
-		}
+		timer = GetAttackTimer();
+		meshInstance = GetMeshInstance();
+		SetAoEObjects();
+		MainRoot = GetTree().Root.GetChild(0);
 	}
-
-	public override void _Process(double delta)
-	{
-		
-	}
-
 	//-------------------------------------------------------------------------
 	// Methods
-	private void GetPlayerAttackObjects() {
-		attackList = new List<PlayerAttackObject>();
-
-		foreach (PlayerAttackObject attackObject in GetChildren()) {
-			attackList.Add(attackObject);
-		}
-
-		attackCount = attackList.Count;
-	}
-
-	private void GetAttackTimers() {
-		// Iterate thru the attack objects
-		foreach (PlayerAttackObject attackObject in attackList) {
-			attackTimerList.Add(attackObject.GetAttackTimer());
-		}
-	}
-
-	public int GetOpenActionSlotIndex() {
-		int index = 0;
-
-		for (index = 0; index < attackList.Count; index++) {
-			if (attackList[index].data == null) {
-				return index;
+	public Timer GetAttackTimer() {
+		foreach (Node node in GetChildren()) {
+			if (node.Name == "Attack Timer") {
+				return (Timer) node;
 			}
 		}
 
-		return -1;
+		return null;
 	}
 
-	public void SetAttackSlotObjectProps(int index, PlayerAttackData data) {
-		// Update the open action slot's index value
-		SetAttackSlotIndex(index);
-
-		// Update the open action slot with the Free Action's Attack data
-		SetAttackSlotData(index, data);
-
-		// Activate the open action slot's timer
-		InitAttackSlotTimer(index);
-
-		// Update any visuals for the attack
-		SetAttackVisuals(index, data);
-
-		// Set Collider Information
-		SetColliderInformation(index, data);
-	}
-
-	private void SetAttackSlotIndex(int index) {
-		attackList[index].SetAttackIndex(index);
-	}
-
-	private void SetAttackSlotData(int index, PlayerAttackData data) {
-		attackList[index].SetData(data);
-	}
-
-	private void InitAttackSlotTimer(int index) {
-		attackList[index].InitTimer(attackTimerList[index]);
-	}	
-
-	private void SetAttackVisuals(int index, PlayerAttackData data) {
-		attackList[index].SetVisuals(data);
-	}
-
-	private void SetColliderInformation(int index, PlayerAttackData data) {
-		attackList[index].SetColliderInformation(data);
-	}
-
-	public bool IsActionAlreadyEquipped(string id) {
-		for (int i = 0; i < attackList.Count; i++) {
-			if (attackList[i].data == null) {
-				continue;
-			}
-
-			if (attackList[i].data.id == id) {
-				return true;
+	public MeshInstance3D GetMeshInstance() {
+		foreach (Node node in GetChildren()) {
+			if (node.Name == "Attack Mesh") {
+				return (MeshInstance3D) node;
 			}
 		}
 
-		return false;
+		return null;
 	}
 
-	private int GetEquippedActionSlotIndex(string id) {
-		for (int i = 0; i < attackList.Count; i++) {
-			if (attackList[i].data == null) {
-				continue;
-			}
+	public void SetAoEObjects() {
+		AoEHitBoxDirector = GetNode<Area3D>("AoE-Hit-Box-Director");
+		AoEHitBox = AoEHitBoxDirector.GetNode<CollisionShape3D>("AoE-Hit-Box");
+	}
 
-			if (attackList[i].data.id == id) {
-				return i;
-			}
+	public void SetAttackIndex(int index) {
+		attackIndex = index;
+	}
+
+	public void SetData(AttackData dataVal) {
+		data = dataVal;
+	}
+
+	public void InitTimer(Timer timerInstance) {
+		timer = timerInstance;
+		timer.Timeout += CallAttack;
+
+		UpdateTimerTime();
+		StartTimer();
+	}
+
+	public void SetVisuals(AttackData data) {
+		if (data.type == AttackData.Type.AreaOfEffect) {
+			meshInstance.Mesh = ((AreaOfEffectData) data).areaMesh;
+		}
+	}
+
+	public void SetColliderInformation(AttackData data) {
+		if (data.type == AttackData.Type.AreaOfEffect) {
+			AoEHitBox.Shape = ((AreaOfEffectData) data).areaColliderShape;
+		}
+	}
+
+	private void UpdateTimerTime() {
+		timer.WaitTime = data.delay;
+	}
+
+	private void StartTimer() {
+		timer.Start();
+	}
+
+	private void CallAttack() {
+		if (debug) {
+			GD.Print($"Attack Index {attackIndex}: Time Delay = {data.delay}s");
 		}
 
-		return -1;
-	}
+		if (data.type == AttackData.Type.Projectile) {
+			ProjectileAttackSequence((ProjectileData) data);
+		} else if (data.type == AttackData.Type.AreaOfEffect) {
 
-	private bool IsActionSlotMaxLevel(int index) { 
-		if (attackList[index].level < attackList[index].data.maxLevel) {
-			return false;
+		} else if (data.type == AttackData.Type.Melee) {
+
 		} else {
-			return true;
+
 		}
 	}
 
-	public bool LevelUpEquippedAction(PlayerAttackData data) {
-		// Get the Action index
-		int index = GetEquippedActionSlotIndex(data.id);
+	public void LevelUpAttack() {
+		level += 1;
 
-		// Check if the Action is below the max level
-		if (IsActionSlotMaxLevel(index)) {
-			return false;
+		// Type Specefic Level Up Actions
+		switch(data.type) {
+			case AttackData.Type.Projectile:
+				break;
+			case AttackData.Type.AreaOfEffect:
+				Scale += new Vector3(1, 1, 1) 
+						 * ((AreaOfEffectData) data).areaIncreaseStepSize;
+				break;
+			case AttackData.Type.Melee:
+				break;            
 		}
+	}
 
-		// Increment the level
-		attackList[index].LevelUpAttack();
-
-		return true;
+	public void ProjectileAttackSequence (ProjectileData data) {
+		// Set the projectle's velocity
+		Vector3[] initVels = ProjectileAttackObject.GetProjectileInitVelocities(
+			1,
+			level);
+		
+		for (int i = 0; i < level; i++) {
+			// Instantiate the projectile
+			ProjectileDir projectileInst = 
+				(ProjectileDir) data.projectile.Instantiate();
+			MainRoot.AddChild(projectileInst);
+			projectileInst.SetMeta("ID", "Projectile");
+			projectileInst.GlobalPosition = GlobalPosition;
+			projectileInst.LinearVelocity = initVels[i] * data.projectileSpeed;
+			projectileInst.damage = data.damage;
+		}
 	}
 
 	//-------------------------------------------------------------------------
-	// Debug/Demo Methods
-	private void InitSomeAttacks() {
-	}
-
-	private void PrintTimerNames() {
-		foreach(Timer timer in attackTimerList) {
-			GD.Print(timer.Name);
-		}
-	}
+	// Debug Methods
 }
+
