@@ -5,14 +5,22 @@ public partial class <ExampleClassName> : <ExampleClassInheritance>
 {
     //-------------------------------------------------------------------------
     // Game Componenets
-    // Private
     // Public
+
+    // Protected
+
+    // Private
 
     //-------------------------------------------------------------------------
 	// Game Events
 
     //-------------------------------------------------------------------------
 	// Methods
+    // Public
+
+    // Protected
+
+    // Private
 
     //-------------------------------------------------------------------------
 	// Debug Methods
