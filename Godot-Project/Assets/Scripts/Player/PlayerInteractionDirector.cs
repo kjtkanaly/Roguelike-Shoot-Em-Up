@@ -26,16 +26,20 @@ public partial class PlayerInteractionDirector : Node
 		return playerAttackSlotsDir.GetOpenActionSlotIndex();
 	}
 
-	public void InitAttackSlotObject(int index, AttackData data) {
-		playerAttackSlotsDir.InitAttackSlotObject(index, data);
+	public int IsActionAlreadyEquipped(string itemName) {
+		return playerAttackSlotsDir.IsActionAlreadyEquipped(itemName);
 	}
 
-	public bool IsActionAlreadyEquipped(string id) {
-		return playerAttackSlotsDir.IsActionAlreadyEquipped(id);
+	public bool IsPlayerMaxedOutOnAttacks() {
+		return playerAttackSlotsDir.IsPlayerMaxedOutOnAttacks();
 	}
 
-	public bool LevelUpEquippedAction(AttackData attackData) {
-		return playerAttackSlotsDir.LevelUpEquippedAction(attackData);
+	public bool LevelUpEquippedAction(int itemIndex) {
+		return playerAttackSlotsDir.LevelUpEquippedAction(itemIndex);
+	}
+
+	public void EquipNewAttack(PackedScene newAttack) {
+		playerAttackSlotsDir.EquipNewAttack(newAttack);
 	}
 
 	//-------------------------------------------------------------------------

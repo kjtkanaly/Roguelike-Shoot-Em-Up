@@ -1,9 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkc0hy0qtb8o8"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAttackDirector.cs" id="1_gdhip"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAttackDirector.cs" id="1_mq288"]
 
 [node name="Player-Attack-Object" type="Node3D"]
-script = ExtResource("1_gdhip")
+script = ExtResource("1_mq288")
+metadata/ItemName = ""
 
 [node name="Attack Timer" type="Timer" parent="."]
 

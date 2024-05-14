@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://oci5wna7f12b"]
+[gd_scene load_steps=6 format=3 uid="uid://oci5wna7f12b"]
 
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_ixuhq"]
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_odr4j"]
-[ext_resource type="PackedScene" uid="uid://bkrxxu1c7wjcb" path="res://Assets/Nodes/Interactables/free_action.tscn" id="3_shpvh"]
-[ext_resource type="Resource" uid="uid://cvfsp2vixj0ok" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_00.tres" id="4_kuxk8"]
-[ext_resource type="Resource" uid="uid://btdfyoctam7j8" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres" id="5_2871l"]
-[ext_resource type="Resource" uid="uid://r04ohdfh54o2" path="res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres" id="5_ixvbe"]
+[ext_resource type="PackedScene" uid="uid://bugnhb5l786jq" path="res://Assets/Nodes/Pickupables/Attacks/Projectiles/projectile_00_pickup.tscn" id="3_hgstf"]
+[ext_resource type="PackedScene" uid="uid://b83e4lv25nuvh" path="res://Assets/Nodes/Pickupables/Attacks/Projectiles/projectile_01_pickup.tscn" id="4_j668e"]
+[ext_resource type="PackedScene" uid="uid://cs8gwtocl7o8m" path="res://Assets/Nodes/Pickupables/Attacks/Area-Of-Effect/AoE_00_pickup.tscn" id="5_1itig"]
 
 [node name="Player-Test-001" type="Node3D"]
 
@@ -19,34 +18,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15665, 0)
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 10, 10)
 shadow_enabled = true
 
-[node name="Free-Action" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 0)
-attackData = ExtResource("4_kuxk8")
+[node name="Projectile-00-Pickup" parent="." instance=ExtResource("3_hgstf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -20)
 
-[node name="Free-Action2" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
-attackData = ExtResource("5_ixvbe")
+[node name="Projectile-00-Pickup2" parent="." instance=ExtResource("3_hgstf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -20)
 
-[node name="Free-Action3" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -15)
-attackData = ExtResource("5_2871l")
+[node name="Projectile-00-Pickup3" parent="." instance=ExtResource("3_hgstf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -20)
 
-[node name="Free-Action4" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 0)
-attackData = ExtResource("5_2871l")
+[node name="Projectile-01-Pickup" parent="." instance=ExtResource("4_j668e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 0)
 
-[node name="Free-Action5" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 15)
-attackData = ExtResource("4_kuxk8")
+[node name="Projectile-01-Pickup2" parent="." instance=ExtResource("4_j668e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
 
-[node name="Free-Action6" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -15)
-attackData = ExtResource("4_kuxk8")
+[node name="AoE-00-Pickup" parent="." instance=ExtResource("5_1itig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 20)
 
-[node name="Free-Action7" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -15)
-attackData = ExtResource("4_kuxk8")
+[node name="AoE-00-Pickup2" parent="." instance=ExtResource("5_1itig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
 
-[node name="Free-Action8" parent="." instance=ExtResource("3_shpvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 15)
-attackData = ExtResource("5_ixvbe")
+[node name="AoE-00-Pickup3" parent="." instance=ExtResource("5_1itig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 20)

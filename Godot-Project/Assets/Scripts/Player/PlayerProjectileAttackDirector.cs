@@ -3,49 +3,53 @@ using System;
 
 public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 {
-    //-------------------------------------------------------------------------
-    // Game Componenets
-    // Public
+	//-------------------------------------------------------------------------
+	// Game Componenets
+	// Public
 
-    // Protected
+	// Protected
 
-    // Private
-    private ProjectileData data = null;
+	// Private
+	[Export] private ProjectileData data = null;
 
-    //-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 	// Game Events
 
-    //-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 	// Methods
-    // Public
-    public override void SetData(AttackData dataVal) {
+	// Public
+	public override void SetData(AttackData dataVal) {
 		data = (ProjectileData) dataVal;
 	}
 
-    public override void LevelUpAttack() {
+	public override AttackData GetAttackData() {
+		return data;
+	}
+	
+	public override void LevelUpAttack() {
 		level += 1;
 	}
 
-    // Protected
-    protected override void CallAttack() {
+	// Protected
+	protected override void CallAttack() {
 		if (debug) {
 			GD.Print($"Projectile Attack:");
-            GD.Print($"Index {attackIndex} | Time Delay = {data.delay}s");
+			GD.Print($"Index {attackIndex} | Time Delay = {data.delay}s");
 		}
 
-        ProjectileSequence();
+		ProjectileSequence();
 	}
 
-    // Private 
-    private void ProjectileSequence () {
-        Vector3[] initVels = GetProjectileInitVelocities(
-                                 level, 
-                                 data.initVelAngleOffsetDeg);
+	// Private 
+	private void ProjectileSequence () {
+		Vector3[] initVels = GetProjectileInitVelocities(
+								 level, 
+								 data.initVelAngleOffsetDeg);
 
 		for (int i = 0; i < level; i++) {
 			// Instantiate the projectile
 			ProjectileDir projectileInst = 
-                (ProjectileDir) data.projectileObject.Instantiate();
+				(ProjectileDir) data.projectileObject.Instantiate();
 			MainRoot.AddChild(projectileInst);
 			projectileInst.SetMeta("ID", "Projectile");
 			projectileInst.GlobalPosition = GlobalPosition;
@@ -54,23 +58,23 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 		}
 	}
 
-    private Vector3[] GetProjectileInitVelocities(int level, float angleOffsetDeg) {
-        Vector3[] initVels = new Vector3[level];
+	private Vector3[] GetProjectileInitVelocities(int level, float angleOffsetDeg) {
+		Vector3[] initVels = new Vector3[level];
 
-        float angleStepSizeDeg = 360.0f / level;
-        float angleDeg = 0.0f + angleOffsetDeg;
+		float angleStepSizeDeg = 360.0f / level;
+		float angleDeg = 0.0f + angleOffsetDeg;
 
-        for (int i = 0; i < level; i++) {
-            // Get the projectile's launch velocity
-            initVels[i] = new Vector3(Mathf.Cos(Mathf.DegToRad(angleDeg)),
-                                        0,
-                                        Mathf.Sin(Mathf.DegToRad(angleDeg)));
-            angleDeg += angleStepSizeDeg;
-        }
-        
-        return initVels;
+		for (int i = 0; i < level; i++) {
+			// Get the projectile's launch velocity
+			initVels[i] = new Vector3(Mathf.Cos(Mathf.DegToRad(angleDeg)),
+										0,
+										Mathf.Sin(Mathf.DegToRad(angleDeg)));
+			angleDeg += angleStepSizeDeg;
+		}
+		
+		return initVels;
 	}
 
-    //-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 	// Debug Methods
 }

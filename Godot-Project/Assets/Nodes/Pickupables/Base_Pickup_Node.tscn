@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkrxxu1c7wjcb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jj87h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0bqvg"]
+
+[node name="Base-Pickup-Node" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+metadata/Item_Name = ""
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jj87h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0bqvg")
+skeleton = NodePath("")

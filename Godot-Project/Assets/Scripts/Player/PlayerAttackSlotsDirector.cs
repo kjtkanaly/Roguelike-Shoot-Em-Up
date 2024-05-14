@@ -14,6 +14,7 @@ public partial class PlayerAttackSlotsDirector : Node
 	private Node attackTimersContainer = null;
 	private List<Timer> attackTimerList = new List<Timer>();
 	private int attackCount = 0;
+	private int maxAttackCount = 6;
 	private bool DemoMode = false;
 
 	//-------------------------------------------------------------------------
@@ -87,6 +88,12 @@ public partial class PlayerAttackSlotsDirector : Node
 		SetColliderInformation(index);
 	}
 
+	public void InitAttackSlotObject(int index, ProjectileData data) {
+	}
+
+	public void InitAttackSlotObject(int index, AreaOfEffectData data) {
+	}
+
 	private void SetAttackSlotIndex(int index) {
 		attackList[index].SetAttackIndex(index);
 	}
@@ -107,18 +114,13 @@ public partial class PlayerAttackSlotsDirector : Node
 		attackList[index].SetColliderInformation();
 	}
 
-	public bool IsActionAlreadyEquipped(string id) {
+	public int IsActionAlreadyEquipped(string itemName) {
 		for (int i = 0; i < attackList.Count; i++) {
-			if (attackList[i].IsDataEmpty()) {
-				continue;
-			}
-
-			if (attackList[i].GetAttackId() == id) {
-				return true;
+			if (attackList[i].GetAttackId() == itemName) {
+				return i;
 			}
 		}
-
-		return false;
+		return -1;
 	}
 
 	private int GetEquippedActionSlotIndex(string id) {
@@ -143,17 +145,28 @@ public partial class PlayerAttackSlotsDirector : Node
 		}
 	}
 
-	public bool LevelUpEquippedAction(AttackData data) {
-		// Get the Action index
-		int index = GetEquippedActionSlotIndex(data.id);
+	public bool IsPlayerMaxedOutOnAttacks() {
+		if (attackList.Count >= maxAttackCount) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
+	public void EquipNewAttack(PackedScene newAttack) {
+		PlayerAttackDirector newAttackObject = 
+			(PlayerAttackDirector) newAttack.Instantiate().GetChild(0);
+		GD.Print($"Equiped New Attack: {newAttackObject.GetAttackData().id}");
+	}
+
+	public bool LevelUpEquippedAction(int itemIndex) {
 		// Check if the Action is below the max level
-		if (IsActionSlotMaxLevel(index)) {
+		if (IsActionSlotMaxLevel(itemIndex)) {
 			return false;
 		}
 
 		// Increment the level
-		attackList[index].LevelUpAttack();
+		attackList[itemIndex].LevelUpAttack();
 
 		return true;
 	}

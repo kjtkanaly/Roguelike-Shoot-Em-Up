@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_7l6gd"]
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_sxlnm"]
-[ext_resource type="PackedScene" uid="uid://bkrxxu1c7wjcb" path="res://Assets/Nodes/Interactables/free_action.tscn" id="3_xqwn6"]
+[ext_resource type="PackedScene" uid="uid://bkrxxu1c7wjcb" path="res://Assets/Nodes/Pickupables/Base_Pickup_Node.tscn" id="3_xqwn6"]
 [ext_resource type="Resource" uid="uid://cvfsp2vixj0ok" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_00.tres" id="4_3yl2p"]
 [ext_resource type="Resource" uid="uid://r04ohdfh54o2" path="res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres" id="5_selg7"]
 [ext_resource type="Resource" uid="uid://btdfyoctam7j8" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres" id="6_y3aff"]

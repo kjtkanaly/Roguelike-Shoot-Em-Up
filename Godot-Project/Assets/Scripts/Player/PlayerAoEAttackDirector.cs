@@ -10,7 +10,7 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     // Protected
 
     // Private
-    private AreaOfEffectData data = null;
+    [Export] private AreaOfEffectData data = null;
     private Area3D AoEHitBoxDirector = null;
 	private CollisionShape3D AoEHitBox = null;
 
@@ -30,6 +30,10 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     // Public
     public override void SetData(AttackData dataVal) {
 		data = (AreaOfEffectData) dataVal;
+	}
+
+    public override AttackData GetAttackData() {
+		return data;
 	}
 
     public override void SetVisuals() {

@@ -16,7 +16,7 @@ public partial class PlayerAttackDirector : Node3D
 	protected MeshInstance3D meshInstance = null;
 
 	// Private 
-	private AttackData data = null;
+	[Export] private AttackData data = null;
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
@@ -31,6 +31,7 @@ public partial class PlayerAttackDirector : Node3D
 	public virtual AttackData GetAttackData() {
 		return data;
 	}
+	
 	public Timer GetAttackTimer() {
 		foreach (Node node in GetChildren()) {
 			if (node.Name == "Attack Timer") {

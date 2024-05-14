@@ -1,20 +1,31 @@
 using Godot;
 using System;
 
-public partial class FreeAction : Area3D
+public partial class AreaOfEffectPickupDir : AttackPickupDir
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
-	// Private
 	// Public
-	[Export] public AttackData attackData;
+
+	// Protected
+
+	// Private
 
 	//-------------------------------------------------------------------------
 	// Game Events
 
 	//-------------------------------------------------------------------------
 	// Methods
+	// Public
+
+	// Protected
+
+	// Private
 
 	//-------------------------------------------------------------------------
 	// Debug Methods
 }
+
+// If you want to denote an area for future devlopement mark with it
+// with a to do comment. Example,
+// TO DO: Do some shit

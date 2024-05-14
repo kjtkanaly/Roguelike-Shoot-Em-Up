@@ -11,14 +11,14 @@ public partial class PlayerObjectPickup : Area3D
 	private bool debug = false;
 
 	// Public
-	public List<Node3D> nearbyFreeActionNodes = null;
+	public List<AttackPickupDir> nearbyFreeActionNodes = null;
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready() {
 		interactionDir = GetNode<PlayerInteractionDirector>("..");
 
-		nearbyFreeActionNodes = new List<Node3D>();
+		nearbyFreeActionNodes = new List<AttackPickupDir>();
 
 		AreaEntered += AddFreeActionToNearbyList;
 		AreaExited += RemoveFreeActionFromNearbyList;
@@ -31,7 +31,7 @@ public partial class PlayerObjectPickup : Area3D
 			GD.Print($"{freeActionArea.Name} is within range");
 		}
 
-		nearbyFreeActionNodes.Add((Node3D) freeActionArea);
+		nearbyFreeActionNodes.Add((AttackPickupDir) freeActionArea);
 
 		// TO DO: Move the following behind input logic later on
 		// See sequence diagram note for more context
@@ -42,25 +42,24 @@ public partial class PlayerObjectPickup : Area3D
 		if (debug) {
 			GD.Print($"{freeActionArea.Name} is out of range");
 		}
-		nearbyFreeActionNodes.Remove((Node3D) freeActionArea);
+		nearbyFreeActionNodes.Remove((AttackPickupDir) freeActionArea);
 	}
 
 	private bool PickupFirstFreeAction() {
-		// Get the First Free Action's Attack data
-		FreeAction freeAction = (FreeAction) nearbyFreeActionNodes[0];
+		// Get the nearby item's name
+		string itemName = (string) nearbyFreeActionNodes[0].GetMeta("Item_Name");
 
 		// Check if we have already picked this up (Level Up or New Attack)
-		bool alreadyEquipped = interactionDir.IsActionAlreadyEquipped(
-			freeAction.attackData.id);
+		int attackIndex = interactionDir.IsActionAlreadyEquipped(itemName);
 
-		if (alreadyEquipped) {
+		if (attackIndex != -1) {
 			// Level Up Action
-			if (!interactionDir.LevelUpEquippedAction(freeAction.attackData)) {
+			if (!interactionDir.LevelUpEquippedAction(attackIndex)) {
 				return false;
 			}
 		} else {
 			// Equip New Action
-			if (!EquipNewFreeAction(freeAction)) {
+			if (!EquipNewFreeAction(nearbyFreeActionNodes[0].attackObject)) {
 				return false;
 			}
 		}
@@ -69,18 +68,16 @@ public partial class PlayerObjectPickup : Area3D
 		nearbyFreeActionNodes[0].QueueFree();
 
 		// To Do: Update player UI
-
 		return true;
 	}
 
-	private bool EquipNewFreeAction(FreeAction freeAction) {
-		// Get the player's next open action slot index
-		int index = interactionDir.GetOpenActionSlotIndex();
-		if (index == -1) {
+	private bool EquipNewFreeAction(PackedScene newAttack) {
+		// Check if the player can equip more attacks
+		if (interactionDir.IsPlayerMaxedOutOnAttacks()) {
 			return false;
 		}
 		// Init the open action slot's Attack Object
-		interactionDir.InitAttackSlotObject(index, freeAction.attackData);
+		interactionDir.EquipNewAttack(newAttack);
 
 		return true;
 	}
