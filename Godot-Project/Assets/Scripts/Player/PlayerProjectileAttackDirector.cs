@@ -40,6 +40,10 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	}
 
 	// Protected
+	protected override void UpdateTimerTime() {
+		timer.WaitTime = data.delay;
+	}
+
 	protected override void CallAttack() {
 		if (debug) {
 			GD.Print($"Projectile Attack:");
@@ -57,9 +61,12 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 
 		for (int i = 0; i < level; i++) {
 			// Instantiate the projectile
+			Node3D projectileInstParent = 
+				(Node3D) data.projectileObject.Instantiate();
+			MainRoot.AddChild(projectileInstParent);
+
 			ProjectileDir projectileInst = 
-				(ProjectileDir) data.projectileObject.Instantiate();
-			MainRoot.AddChild(projectileInst);
+				(ProjectileDir) projectileInstParent.GetChild(0);			
 			projectileInst.SetMeta("ID", "Projectile");
 			projectileInst.GlobalPosition = GlobalPosition;
 			projectileInst.LinearVelocity = initVels[i] * data.projectileSpeed;

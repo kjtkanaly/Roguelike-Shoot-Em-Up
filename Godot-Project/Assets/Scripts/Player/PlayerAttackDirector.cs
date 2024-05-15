@@ -24,6 +24,10 @@ public partial class PlayerAttackDirector : Node3D
 		timer = GetAttackTimer();
 		meshInstance = GetMeshInstance();
 		MainRoot = GetTree().Root.GetChild(0);
+
+		// Init the attack's timer
+		InitTimer();
+
 	}
 	//-------------------------------------------------------------------------
 	// Methods
@@ -56,8 +60,7 @@ public partial class PlayerAttackDirector : Node3D
 		attackIndex = index;
 	}
 
-	public void InitTimer(Timer timerInstance) {
-		timer = timerInstance;
+	public void InitTimer() {
 		timer.Timeout += CallAttack;
 
 		UpdateTimerTime();
@@ -94,7 +97,7 @@ public partial class PlayerAttackDirector : Node3D
 	}
 
 	// Protected
-	protected void UpdateTimerTime() {
+	protected virtual void UpdateTimerTime() {
 		timer.WaitTime = data.delay;
 	}
 

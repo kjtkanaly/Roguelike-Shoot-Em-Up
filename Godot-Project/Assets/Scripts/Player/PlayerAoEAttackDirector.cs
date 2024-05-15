@@ -22,6 +22,9 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 		meshInstance = GetMeshInstance();
 		MainRoot = GetTree().Root.GetChild(0);
 
+        // Init the attack's timer
+		InitTimer();
+
         SetAoEObjects();
     }
 
@@ -62,6 +65,10 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 	}
 
     // Protected
+    protected override void UpdateTimerTime() {
+		timer.WaitTime = data.delay;
+	}
+
     protected override void CallAttack() {
 		if (debug) {
 			GD.Print($"AoE Attack:");
