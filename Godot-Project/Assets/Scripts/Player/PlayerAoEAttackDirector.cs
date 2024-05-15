@@ -45,6 +45,8 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 	}
 
     public override void LevelUpAttack() {
+        GD.Print("Level Up AoE");
+
 		level += 1;
 
         Scale += new Vector3(1, 1, 1) 

@@ -27,6 +27,7 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	}
 	
 	public override void LevelUpAttack() {
+		GD.Print("Level Up Projectile");
 		level += 1;
 	}
 

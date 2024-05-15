@@ -11,3 +11,5 @@ script = ExtResource("2_e48yo")
 data = ExtResource("3_ujeoe")
 data = ExtResource("3_ujeoe")
 metadata/ItemName = "Projectile-01"
+
+[editable path="Player-Attack-Object"]

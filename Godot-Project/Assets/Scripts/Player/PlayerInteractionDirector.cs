@@ -22,10 +22,6 @@ public partial class PlayerInteractionDirector : Node
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public int GetOpenActionSlotIndex() {
-		return playerAttackSlotsDir.GetOpenActionSlotIndex();
-	}
-
 	public int IsActionAlreadyEquipped(string itemName) {
 		return playerAttackSlotsDir.IsActionAlreadyEquipped(itemName);
 	}

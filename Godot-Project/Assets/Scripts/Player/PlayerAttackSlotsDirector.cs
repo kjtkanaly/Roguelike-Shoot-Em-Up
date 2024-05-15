@@ -58,82 +58,12 @@ public partial class PlayerAttackSlotsDirector : Node
 		}
 	}
 
-	public int GetOpenActionSlotIndex() {
-		int index = 0;
-
-		for (index = 0; index < attackList.Count; index++) {
-			if (attackList[index].IsDataEmpty()) {
-				return index;
-			}
-		}
-
-		return -1;
-	}
-
-	public void InitAttackSlotObject(int index, AttackData data) {
-		// Update the open action slot's index value
-		SetAttackSlotIndex(index);
-
-		// Update the open action slot with the Free Action's Attack data
-		SetAttackSlotData(index, data);
-
-		// Activate the open action slot's timer
-		InitAttackSlotTimer(index);
-
-		// TO DO: Consider just making a general init attack object fx
-		// Update any visuals for the attack
-		SetAttackVisuals(index);
-
-		// Set Collider Information
-		SetColliderInformation(index);
-	}
-
-	public void InitAttackSlotObject(int index, ProjectileData data) {
-	}
-
-	public void InitAttackSlotObject(int index, AreaOfEffectData data) {
-	}
-
-	private void SetAttackSlotIndex(int index) {
-		attackList[index].SetAttackIndex(index);
-	}
-
-	private void SetAttackSlotData(int index, AttackData data) {
-		attackList[index].SetData(data);
-	}
-
-	private void InitAttackSlotTimer(int index) {
-		attackList[index].InitTimer(attackTimerList[index]);
-	}	
-
-	private void SetAttackVisuals(int index) {
-		attackList[index].SetVisuals();
-	}
-
-	private void SetColliderInformation(int index) {
-		attackList[index].SetColliderInformation();
-	}
-
 	public int IsActionAlreadyEquipped(string itemName) {
 		for (int i = 0; i < attackList.Count; i++) {
 			if (attackList[i].GetAttackId() == itemName) {
 				return i;
 			}
 		}
-		return -1;
-	}
-
-	private int GetEquippedActionSlotIndex(string id) {
-		for (int i = 0; i < attackList.Count; i++) {
-			if (attackList[i].IsDataEmpty()) {
-				continue;
-			}
-
-			if (attackList[i].GetAttackId() == id) {
-				return i;
-			}
-		}
-
 		return -1;
 	}
 
@@ -156,9 +86,13 @@ public partial class PlayerAttackSlotsDirector : Node
 	public void EquipNewAttack(PackedScene newAttack) {
 		PlayerAttackDirector newAttackObject = 
 			(PlayerAttackDirector) newAttack.Instantiate().GetChild(0);
-		GD.Print($"Equiped New Attack: {newAttackObject.GetAttackData().id}");
+		this.AddChild(newAttackObject.GetParent());
 
 		attackList.Add(newAttackObject);
+
+		// Debug
+		GD.Print($"Equiped New Attack: {newAttackObject.GetAttackData().id}");
+		GD.Print($"Postion: {newAttackObject.Position}");
 	}
 
 	public bool LevelUpEquippedAction(int itemIndex) {
