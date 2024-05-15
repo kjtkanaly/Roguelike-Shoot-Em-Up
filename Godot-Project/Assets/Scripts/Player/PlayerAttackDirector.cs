@@ -31,7 +31,7 @@ public partial class PlayerAttackDirector : Node3D
 	public virtual AttackData GetAttackData() {
 		return data;
 	}
-	
+
 	public Timer GetAttackTimer() {
 		foreach (Node node in GetChildren()) {
 			if (node.Name == "Attack Timer") {
@@ -84,11 +84,11 @@ public partial class PlayerAttackDirector : Node3D
 		level += 1;
 	}
 
-	public string GetAttackId() {
+	public virtual string GetAttackId() {
 		return data.id;
 	}
 
-	public int GetAttackMaxLevel() {
+	public virtual int GetAttackMaxLevel() {
 		return data.maxLevel;
 	}
 

@@ -51,6 +51,14 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 				 * ((AreaOfEffectData) data).areaIncreaseStepSize;
 	}
 
+    public override string GetAttackId() {
+		return data.id;
+	}
+
+    public override int GetAttackMaxLevel() {
+		return data.maxLevel;
+	}
+
     // Protected
     protected override void CallAttack() {
 		if (debug) {

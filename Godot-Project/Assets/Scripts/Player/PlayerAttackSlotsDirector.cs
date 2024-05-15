@@ -157,6 +157,8 @@ public partial class PlayerAttackSlotsDirector : Node
 		PlayerAttackDirector newAttackObject = 
 			(PlayerAttackDirector) newAttack.Instantiate().GetChild(0);
 		GD.Print($"Equiped New Attack: {newAttackObject.GetAttackData().id}");
+
+		attackList.Add(newAttackObject);
 	}
 
 	public bool LevelUpEquippedAction(int itemIndex) {
