@@ -47,7 +47,7 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	protected override void CallAttack() {
 		if (debug) {
 			GD.Print($"Projectile Attack:");
-			GD.Print($"Index {attackIndex} | Time Delay = {data.delay}s");
+			GD.Print($"Time Delay = {data.delay}s");
 		}
 
 		ProjectileSequence();

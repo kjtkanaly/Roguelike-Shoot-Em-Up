@@ -72,7 +72,7 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     protected override void CallAttack() {
 		if (debug) {
 			GD.Print($"AoE Attack:");
-            GD.Print($"Index {attackIndex} | Time Delay = {data.delay}s");
+            GD.Print($"Time Delay = {data.delay}s");
 		}
 
         // Call AoE Attack Sequence

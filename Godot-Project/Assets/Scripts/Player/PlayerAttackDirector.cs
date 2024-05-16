@@ -7,7 +7,6 @@ public partial class PlayerAttackDirector : Node3D
 	// Game Componenets
 	// Public
 	public Timer timer = null;
-	public int attackIndex = -1;
 	public int level = 1;
 
 	// Protected
@@ -54,10 +53,6 @@ public partial class PlayerAttackDirector : Node3D
 		}
 
 		return null;
-	}
-
-	public void SetAttackIndex(int index) {
-		attackIndex = index;
 	}
 
 	public void InitTimer() {
@@ -108,7 +103,6 @@ public partial class PlayerAttackDirector : Node3D
 	protected virtual void CallAttack() {
 		if (debug) {
 			GD.Print($"Generic Attack:");
-			GD.Print($"Index {attackIndex}");
 		}
 	}
 

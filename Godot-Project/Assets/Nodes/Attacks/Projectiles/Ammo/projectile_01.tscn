@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://qay1jtlfkp8j"]
+
+[ext_resource type="PackedScene" uid="uid://dek1kik60vinj" path="res://Assets/Nodes/Attacks/generic_projectile.tscn" id="1_v37hf"]
+[ext_resource type="SphereMesh" uid="uid://bqlaf1jalbk4g" path="res://Assets/Resources/Meshes/Projectiles/Projectile_Mesh_01.tres" id="2_tq0b7"]
+
+[node name="Projectile-01" type="Node3D"]
+
+[node name="Generic-Projectile" parent="." instance=ExtResource("1_v37hf")]
+
+[node name="MeshInstance3D" parent="Generic-Projectile/CollisionShape3D" index="0"]
+mesh = ExtResource("2_tq0b7")
+
+[editable path="Generic-Projectile"]
