@@ -62,10 +62,6 @@ public partial class PlayerAttackDirector : Node3D
 		StartTimer();
 	}
 
-	public virtual void SetData(AttackData dataVal) {
-		data = dataVal;
-	}
-
 	public bool IsDataEmpty() {
 		return data == null;
 	}

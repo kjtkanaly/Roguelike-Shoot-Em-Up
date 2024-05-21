@@ -18,10 +18,6 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public override void SetData(AttackData dataVal) {
-		data = (ProjectileData) dataVal;
-	}
-
 	public override AttackData GetAttackData() {
 		return data;
 	}

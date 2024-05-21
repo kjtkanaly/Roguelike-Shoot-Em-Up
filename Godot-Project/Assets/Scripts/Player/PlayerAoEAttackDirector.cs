@@ -31,10 +31,6 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     //-------------------------------------------------------------------------
     // Methods
     // Public
-    public override void SetData(AttackData dataVal) {
-		data = (AreaOfEffectData) dataVal;
-	}
-
     public override AttackData GetAttackData() {
 		return data;
 	}

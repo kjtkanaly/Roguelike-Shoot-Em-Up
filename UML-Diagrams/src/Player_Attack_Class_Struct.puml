@@ -6,7 +6,6 @@ class PlayerAttackDirector <<Node3D>>{
     == Data ==
     .. Public ..
     + Timer timer
-    + int attackIndex
     + int level
     .. Protected ..
     # Node MainRoot
@@ -17,11 +16,10 @@ class PlayerAttackDirector <<Node3D>>{
 
     == Methods ==
     .. Public ..
+    + AttackData GetAttackData()
     + Timer GetAttackTimer()
     + MeshInstance3D GetMeshInstance()
-    + void SetAttackIndex()
     + void InitTimer()
-    + void SetData()
     + bool IsDataEmpty()
     + void SetVisuals()
     + void SetColliderInformation()
@@ -41,9 +39,12 @@ class PlayerProjectileAttackDirector {
 
     == Methods ==
     .. Public ..
-    + void SetData()
+    + AttackData GetAttackData()
     + void LevelUpAttack()
+    + int GetAttackId()
+    + int GetAttackMaxLevel()
     .. Protected ..
+    # void UpdateTimerTime()
     # void CallAttack()
     .. Private ..
     - void ProjectileSequence()
@@ -59,11 +60,14 @@ class PlayerAoEAttackDirector {
 
     == Methods ==
     .. Public ..
-    + void SetData()
+    + AttackData GetAttackData()
     + void SetVisuals()
     + void SetColliderInformation()
     + void LevelUpAttack()
+    + int GetAttackId()
+    + int GetAttackMaxLevel()
     .. Protected ..
+    # void UpdateTimerTime()
     # void CallAttack()
     .. Private ..
     - void SetAoEObjects()
