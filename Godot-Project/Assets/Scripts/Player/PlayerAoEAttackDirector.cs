@@ -31,7 +31,7 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     //-------------------------------------------------------------------------
     // Methods
     // Public
-    public override AttackData GetAttackData() {
+    public override AreaOfEffectData GetAttackData() {
 		return data;
 	}
 
@@ -44,9 +44,7 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 	}
 
     public override void LevelUpAttack() {
-        GD.Print("Level Up AoE");
-
-		level += 1;
+        base.LevelUpAttack();
 
         Scale += new Vector3(1, 1, 1) 
 				 * ((AreaOfEffectData) data).areaIncreaseStepSize;

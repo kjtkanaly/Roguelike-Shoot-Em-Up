@@ -14,17 +14,20 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 
 	//-------------------------------------------------------------------------
 	// Game Events
+	public override void _Ready()
+	{
+		base._Ready();
+	}
 
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public override AttackData GetAttackData() {
+	public override ProjectileData GetAttackData() {
 		return data;
 	}
 	
 	public override void LevelUpAttack() {
-		GD.Print("Level Up Projectile");
-		level += 1;
+		base.LevelUpAttack();
 	}
 
 	public override string GetAttackId() {

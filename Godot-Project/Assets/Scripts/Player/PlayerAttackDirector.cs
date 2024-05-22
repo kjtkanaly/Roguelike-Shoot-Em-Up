@@ -75,7 +75,7 @@ public partial class PlayerAttackDirector : Node3D
 	}
 
 	public virtual void LevelUpAttack() {
-		GD.Print("Level Up Generic");
+		GD.Print("Universal Level Up");
 		level += 1;
 	}
 
