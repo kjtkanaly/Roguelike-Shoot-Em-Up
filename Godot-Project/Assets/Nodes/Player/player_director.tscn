@@ -12,6 +12,7 @@
 height = 1.0
 
 [node name="Player-Director" type="CharacterBody3D"]
+collision_mask = 9
 script = ExtResource("1_a5tol")
 movementData = ExtResource("2_ya8m2")
 

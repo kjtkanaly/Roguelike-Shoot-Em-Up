@@ -12,6 +12,6 @@ metadata/ItemName = ""
 
 [node name="AoE-Hit-Box-Director" type="Area3D" parent="."]
 collision_layer = 256
-collision_mask = 256
+collision_mask = 0
 
 [node name="AoE-Hit-Box" type="CollisionShape3D" parent="AoE-Hit-Box-Director"]
