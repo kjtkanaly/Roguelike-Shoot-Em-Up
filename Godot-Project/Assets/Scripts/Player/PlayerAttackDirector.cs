@@ -8,6 +8,7 @@ public partial class PlayerAttackDirector : Node3D
 	// Public
 	public Timer timer = null;
 	public int level = 1;
+	[Export] public string dataPath;
 
 	// Protected
 	protected Node MainRoot;
@@ -15,11 +16,13 @@ public partial class PlayerAttackDirector : Node3D
 	protected MeshInstance3D meshInstance = null;
 
 	// Private 
-	[Export] private AttackData data = null;
+	private AttackData data = null;
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
+		LoadAttackDataFile();
+
 		timer = GetAttackTimer();
 		meshInstance = GetMeshInstance();
 		MainRoot = GetTree().Root.GetChild(0);
@@ -31,6 +34,10 @@ public partial class PlayerAttackDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public Methods
+	public virtual void LoadAttackDataFile() {
+		data = (AttackData) GD.Load(dataPath);
+	}
+
 	public virtual AttackData GetAttackData() {
 		return data;
 	}

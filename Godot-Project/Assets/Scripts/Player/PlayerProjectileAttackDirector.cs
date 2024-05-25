@@ -10,7 +10,7 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	// Protected
 
 	// Private
-	[Export] private ProjectileData data = null;
+	private ProjectileData data = null;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -22,6 +22,10 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
+	public override void LoadAttackDataFile() {
+		data = (ProjectileData) GD.Load(dataPath);
+	}
+
 	public override ProjectileData GetAttackData() {
 		return data;
 	}

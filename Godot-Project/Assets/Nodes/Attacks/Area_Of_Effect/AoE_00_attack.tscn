@@ -1,17 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfd1pel6ux432"]
+[gd_scene load_steps=5 format=3 uid="uid://dfd1pel6ux432"]
 
 [ext_resource type="PackedScene" uid="uid://bkc0hy0qtb8o8" path="res://Assets/Nodes/Attacks/player_attack_object.tscn" id="1_ykr1r"]
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAoEAttackDirector.cs" id="2_nqbou"]
-[ext_resource type="Resource" uid="uid://r04ohdfh54o2" path="res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres" id="3_ycyjc"]
 [ext_resource type="CylinderMesh" uid="uid://bw682n0ykdkn1" path="res://Assets/Resources/Meshes/Area_of_Effect/AoE_Mesh_01.tres" id="4_wqigc"]
 [ext_resource type="Shape3D" uid="uid://dakaq4w6ecrrn" path="res://Assets/Resources/Shapes/AoE_Shape_01.tres" id="5_cmrf8"]
 
-[node name="Projectile-00-Attack" type="Node3D"]
+[node name="AoE-00-Attack" type="Node3D"]
 
 [node name="Player-Attack-Object" parent="." instance=ExtResource("1_ykr1r")]
 script = ExtResource("2_nqbou")
-data = ExtResource("3_ycyjc")
-data = ExtResource("3_ycyjc")
+dataPath = "res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres"
 metadata/ItemName = "AoE-00"
 
 [node name="Attack Mesh" parent="Player-Attack-Object" index="1"]

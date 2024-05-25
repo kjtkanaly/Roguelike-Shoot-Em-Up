@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2g04my3x0jsg"]
+[gd_scene load_steps=3 format=3 uid="uid://b2g04my3x0jsg"]
 
 [ext_resource type="PackedScene" uid="uid://bkc0hy0qtb8o8" path="res://Assets/Nodes/Attacks/player_attack_object.tscn" id="1_po5r8"]
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerProjectileAttackDirector.cs" id="2_e48yo"]
-[ext_resource type="Resource" uid="uid://btdfyoctam7j8" path="res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres" id="3_ujeoe"]
 
-[node name="Projectile-00-Attack" type="Node3D"]
+[node name="Projectile-01-Attack" type="Node3D"]
 
 [node name="Player-Attack-Object" parent="." instance=ExtResource("1_po5r8")]
 script = ExtResource("2_e48yo")
-data = ExtResource("3_ujeoe")
-data = ExtResource("3_ujeoe")
+dataPath = "res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres"
 metadata/ItemName = "Projectile-01"
 
 [editable path="Player-Attack-Object"]

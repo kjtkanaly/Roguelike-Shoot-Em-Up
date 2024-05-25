@@ -10,7 +10,7 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     // Protected
 
     // Private
-    [Export] private AreaOfEffectData data = null;
+    private AreaOfEffectData data = null;
     private Area3D AoEHitBoxDirector = null;
 	private CollisionShape3D AoEHitBox = null;
 
@@ -18,12 +18,7 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     // Game Events
     public override void _Ready()
     {
-        timer = GetAttackTimer();
-		meshInstance = GetMeshInstance();
-		MainRoot = GetTree().Root.GetChild(0);
-
-        // Init the attack's timer
-		InitTimer();
+        base._Ready();
 
         SetAoEObjects();
     }
@@ -31,6 +26,10 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
     //-------------------------------------------------------------------------
     // Methods
     // Public
+    public override void LoadAttackDataFile() {
+		data = (AreaOfEffectData) GD.Load(dataPath);
+	}
+
     public override AreaOfEffectData GetAttackData() {
 		return data;
 	}
