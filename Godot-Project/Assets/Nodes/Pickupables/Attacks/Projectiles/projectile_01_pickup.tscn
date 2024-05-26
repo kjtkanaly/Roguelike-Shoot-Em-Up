@@ -11,6 +11,8 @@
 [node name="Base-Pickup-Node" parent="." instance=ExtResource("2_nsuw3")]
 script = ExtResource("2_02t7h")
 attackObject = ExtResource("3_jd5s5")
+idleFrequency = 1.0
+idleAmplitude = 0.01
 metadata/Item_Name = "Proj-01"
 
 [node name="MeshInstance3D" parent="Base-Pickup-Node" index="1"]

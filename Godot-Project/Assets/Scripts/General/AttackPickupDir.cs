@@ -9,23 +9,39 @@ public partial class AttackPickupDir : Area3D
 	[Export] public PackedScene attackObject;
 	
 	// Protected
+	[Export] protected float idleFrequency = 1.0f;
+	[Export] protected float idleAmplitude = 0.01f;
+	protected Vector3 pos;
 
 	// Private
-	[Export] private AttackData data;
+	private float time = 0.0f;
 
-	//-------------------------------------------------------------------------
-	// Game Events
+    //-------------------------------------------------------------------------
+    // Game Events
+    public override void _Ready()
+    {
+		
+    }
 
-	//-------------------------------------------------------------------------
-	// Methods
-	// Public
-	public virtual AttackData GetData() {
-		return data;
+    public override void _Process(double delta)
+    {
+		time += (float) delta;
+        IdleAnimation(time);
+    }
+
+    //-------------------------------------------------------------------------
+    // Methods
+    // Public
+
+    // Protected
+    protected virtual void IdleAnimation(float time) {
+		pos = Position;
+		pos.Y += idleAmplitude * MathF.Sin(2 * Mathf.Pi * idleFrequency * time);
+		Position = pos;
 	}
 
-	// Protected
-
 	// Private
+
 
 	//-------------------------------------------------------------------------
 	// Debug Methods
