@@ -16,25 +16,25 @@ public partial class AttackPickupDir : Area3D
 	// Private
 	private float time = 0.0f;
 
-    //-------------------------------------------------------------------------
-    // Game Events
-    public override void _Ready()
-    {
+	//-------------------------------------------------------------------------
+	// Game Events
+	public override void _Ready()
+	{
 		
-    }
+	}
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		time += (float) delta;
-        IdleAnimation(time);
-    }
+		IdleAnimation(time);
+	}
 
-    //-------------------------------------------------------------------------
-    // Methods
-    // Public
+	//-------------------------------------------------------------------------
+	// Methods
+	// Public
 
-    // Protected
-    protected virtual void IdleAnimation(float time) {
+	// Protected
+	protected virtual void IdleAnimation(float time) {
 		pos = Position;
 		pos.Y += idleAmplitude * MathF.Sin(2 * Mathf.Pi * idleFrequency * time);
 		Position = pos;
