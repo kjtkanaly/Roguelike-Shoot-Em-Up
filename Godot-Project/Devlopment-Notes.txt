@@ -1,0 +1,38 @@
+# Godot Version: 4.2.1
+
+## Things to setup
+[X] Git
+[X] Godot
+[X] VS Code
+[X] UML Editor in VS Code
+
+## Important To Do's
+[X] Make sure EVERYONE is on the same version
+
+## Useful Notes
+[X] The shadow issue that Dak had was due to the Shadow flag
+    uner the Light3D prop being set false
+
+
+# Weekly Goal 3/3
+[X] Basic attack mechanic demo
+
+# Weekly Goal 4/11
+[X] Setup attack slot objects under the attack dir
+[X] Give each attack slot object a timer and mesh instance
+[X] Practice Dummy demo
+[X] AoE Attack Demo
+
+# Attack Overhaul
+Lets revamp how we handle attack pickup. Lets literally store a copy of the
+attack object in each pickup object
+
+# Attack Clean up
+[X] Explore the base call feature
+[X] Update the diagrams
+[X] Make Obj diagram for attack generic
+
+[ ] Make Generic NPC Node
+[ ] Create Generic Enemy Node (Utilizes Generic NPC node)
+[ ] Make diagram for the NPC class levels
+[ ] Make diagram for the attack object nodes

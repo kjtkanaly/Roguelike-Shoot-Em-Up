@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://de7oo5wb2pmou"]
+
+[ext_resource type="PackedScene" uid="uid://bmmlqjdlho5w8" path="res://Assets/Nodes/NPCs/General_NPC/npc_attack_director.tscn" id="1_knsac"]
+[ext_resource type="Script" path="res://Assets/Scripts/NPCs/General_NPC/NPCInteractionDirector.cs" id="1_qfsub"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rwtvg"]
+height = 1.0
+
+[node name="NPC-Interaction-Director" type="Node3D"]
+script = ExtResource("1_qfsub")
+
+[node name="NPC-Attack-Director" parent="." instance=ExtResource("1_knsac")]
+
+[node name="Damage-Timer" type="Timer" parent="."]
+
+[node name="NPC-Hit-Box-Director" type="Area3D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="NPC-Hit-Box" type="CollisionShape3D" parent="NPC-Hit-Box-Director"]
+shape = SubResource("CylinderShape3D_rwtvg")

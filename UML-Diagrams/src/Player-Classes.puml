@@ -64,4 +64,41 @@ class PlayerSceneDirector <<Node3D>>{
     + _Input() : void
 }
 
+class InteractionDirector <<Node3D>>{
+    == Data ==
+    .. Private ..
+    - PlayerAttackDirector playerAttack
+    - PlayerDataDirector playerData
+    .. Public ..
+
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    + _Ready() : void
+}
+
+class PlayerDataDirector <<Node3D>>{
+    == Data ==
+    .. Private ..
+    - PlayerInventoryDirector InventoryDir
+    .. Public ..
+    + PlayerMovementData movementData
+
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    + GetInventoryItem() : int
+}
+
+class PlayerInventoryDirector <<Node3D>>{
+    == Data ==
+    .. Private ..
+    .. Public ..
+
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    + GetInventoryItem() : int
+}
+
 @enduml

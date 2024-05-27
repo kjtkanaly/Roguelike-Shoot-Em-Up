@@ -1,0 +1,13 @@
+class TestClassName <<Inherits>>{
+    == Data ==
+    .. Private ..
+    - TestType TestName
+    .. Public ..
+    .. Protected ..
+
+    == Methods ==
+    .. Private ..
+    .. Public ..
+    + TestFx() : TestTypeReturn
+    .. Protected ..
+}

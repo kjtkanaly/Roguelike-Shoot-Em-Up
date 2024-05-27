@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ProjectileData" load_steps=4 format=3 uid="uid://btdfyoctam7j8"]
+
+[ext_resource type="SphereMesh" uid="uid://bqlaf1jalbk4g" path="res://Assets/Resources/Meshes/Projectiles/Projectile_Mesh_01.tres" id="1_bt5fg"]
+[ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/ProjectileData.cs" id="2_i1iax"]
+[ext_resource type="PackedScene" uid="uid://qay1jtlfkp8j" path="res://Assets/Nodes/Attacks/Projectiles/Ammo/projectile_01.tscn" id="2_pskwm"]
+
+[resource]
+script = ExtResource("2_i1iax")
+projectileObject = ExtResource("2_pskwm")
+projectileSpeed = 40.0
+initVelAngleOffsetDeg = 0.0
+projectileIndex = 1
+projectileMesh = ExtResource("1_bt5fg")
+id = "Proj-01"
+type = 1
+damage = 8.0
+delay = 1.0
+maxLevel = 6

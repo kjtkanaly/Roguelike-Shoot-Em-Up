@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://coc53hqnl23g"]
+
+[ext_resource type="PackedScene" uid="uid://d3566upaslqpj" path="res://Assets/Nodes/NPCs/General_NPC/npc_director.tscn" id="1_oqvgc"]
+[ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="2_d18nm"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="NPC-Director" parent="." instance=ExtResource("1_oqvgc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51852, 0)
+
+[node name="Demo-Plane" parent="." instance=ExtResource("2_d18nm")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

@@ -1,0 +1,83 @@
+@startuml Player Attack Class Structure
+
+title Player Attack Class Structure
+
+class PlayerAttackDirector <<Node3D>>{
+    == Data ==
+    .. Public ..
+    + Timer timer
+    + int level
+    + string dataPath
+    .. Protected ..
+    # Node MainRoot
+    # bool debug
+    # MeshInstance3D meshInstance
+    .. Private ..
+    - AttackData data
+
+    == Methods ==
+    .. Public ..
+    + void LoadAttackDataFile()
+    + AttackData GetAttackData()
+    + Timer GetAttackTimer()
+    + MeshInstance3D GetMeshInstance()
+    + void InitTimer()
+    + bool IsDataEmpty()
+    + void SetVisuals()
+    + void SetColliderInformation()
+    + void LevelUpAttack()
+    + string GetAttackId()
+    + int GetAttackMaxLevel()
+    .. Protected ..
+    # void UpdateTimerTime()
+    # void StartTimer()
+    # void CallAttack()
+}
+
+class PlayerProjectileAttackDirector {
+    == Data ==
+    .. Private ..
+    - ProjectileData data
+
+    == Methods ==
+    .. Public ..
+    + void LoadAttackDataFile()
+    + AttackData GetAttackData()
+    + void LevelUpAttack()
+    + int GetAttackId()
+    + int GetAttackMaxLevel()
+    .. Protected ..
+    # void UpdateTimerTime()
+    # void CallAttack()
+    .. Private ..
+    - void ProjectileSequence()
+    - Vector3[] GetProjectileInitVelocities()
+}
+
+class PlayerAoEAttackDirector {
+    == Data ==
+    .. Private ..
+    - AreaOfEffectData data
+    - Area3D AoEHitBoxDirector
+    - CollisionShape3D AoEHitBox
+
+    == Methods ==
+    .. Public ..
+    + void LoadAttackDataFile()
+    + AttackData GetAttackData()
+    + void SetVisuals()
+    + void SetColliderInformation()
+    + void LevelUpAttack()
+    + int GetAttackId()
+    + int GetAttackMaxLevel()
+    .. Protected ..
+    # void UpdateTimerTime()
+    # void CallAttack()
+    .. Private ..
+    - void SetAoEObjects()
+}
+
+PlayerAttackDirector <|-- PlayerProjectileAttackDirector
+PlayerAttackDirector <|-- PlayerAoEAttackDirector
+
+@enduml

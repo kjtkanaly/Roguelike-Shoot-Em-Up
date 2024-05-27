@@ -1,0 +1,12 @@
+@startuml AoE_Damage_Enemy_Sequence
+title Area of Effect Damage to Enemy Sequence
+
+start
+
+:Enemy Object eneters Player Area of Effect;
+
+:Toggle the Enemy Object **to Listen for Damage**;
+
+end
+
+@enduml

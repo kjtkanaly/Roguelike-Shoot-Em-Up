@@ -3,60 +3,47 @@ using Godot.Collections;
 using System;
 using System.Diagnostics;
 
-public partial class PlayerMovement : Node3D
+public partial class PlayerMovementDirector : MovementDirector
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
 	private PlayerMovementData playerData;
-	private CharacterBody3D charBody;
-	private Vector2 lateralVelocitySnapshot;
 	private Vector2 inputDirection;
-	private float verticalVelocitySnapshot;
-	private float gravity = ProjectSettings.GetSetting(
-						   "physics/3d/default_gravity").AsSingle();
 	// Public
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
-		charBody = GetNode<CharacterBody3D>("../");
-		playerData = GetNode<PlayerData>("../Player-Data-Director").movementData;
+		playerData = base.GetPlayerData();
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Update Velocity Snapshot Variables
-		lateralVelocitySnapshot = new Vector2(charBody.Velocity.X, 
-											  charBody.Velocity.Z);
-		verticalVelocitySnapshot = charBody.Velocity.Y;
+		base._PhysicsProcess(delta);
 
-		// Apply Vertical Velocity M A T H & Logic
-		ApplyGravity((float)delta);
+		// Apply Vertical Velocity Logic
 		HandleJump(playerData.jumpVelocity);
 
 		// Apply Laterial Velocity Logic
 		HandleBasicLateralMovement((float)delta);
 		HandleDodgeRoll((float)delta);
 
-		charBody.Velocity = new Vector3(lateralVelocitySnapshot.X, 
-							   			verticalVelocitySnapshot, 
-							   			lateralVelocitySnapshot.Y);
+		Velocity = new Vector3(lateralVelocitySnapshot.X, 
+							   verticalVelocitySnapshot, 
+							   lateralVelocitySnapshot.Y);
 
-		charBody.MoveAndSlide();
+		MoveAndSlide();
 	}
 
 	//-------------------------------------------------------------------------
 	// Methods
-	private void ApplyGravity(float timeDelta) {
-		if (!charBody.IsOnFloor())
-			verticalVelocitySnapshot -= playerData.mass * gravity * timeDelta;
-	}
-
 	private void HandleJump(float jumpVelocity) {
-		if (Input.IsActionJustPressed("Jump") && charBody.IsOnFloor())
+		if (Input.IsActionJustPressed("Jump") && IsOnFloor()) {
 			verticalVelocitySnapshot = jumpVelocity;
+			GD.Print("Test Jump");
+		}
 	}
 
 	private void HandleBasicLateralMovement(float delta) {
@@ -90,7 +77,7 @@ public partial class PlayerMovement : Node3D
 		if (PAD.CheckPlayingStatus() && (PAD.GetCurrentAnimationName() == "Roll"))
 			return;
 
-		if (Input.IsActionPressed("Roll") && charBody.IsOnFloor()) {
+		if (Input.IsActionPressed("Roll") && IsOnFloor()) {
 			Vector3 direction = GetGlobalInputDirectionNorm();
 
 			if (direction == Vector3.Zero) {

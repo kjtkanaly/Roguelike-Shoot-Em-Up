@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdocty3p0wd1e"]
+
+[ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_7l6gd"]
+[ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_sxlnm"]
+[ext_resource type="PackedScene" uid="uid://bugnhb5l786jq" path="res://Assets/Nodes/Pickupables/Attacks/Projectiles/projectile_00_pickup.tscn" id="4_ly117"]
+[ext_resource type="PackedScene" uid="uid://b83e4lv25nuvh" path="res://Assets/Nodes/Pickupables/Attacks/Projectiles/projectile_01_pickup.tscn" id="5_qkk1i"]
+[ext_resource type="PackedScene" uid="uid://cs8gwtocl7o8m" path="res://Assets/Nodes/Pickupables/Attacks/Area-Of-Effect/AoE_00_pickup.tscn" id="6_p56lf"]
+[ext_resource type="PackedScene" uid="uid://d3566upaslqpj" path="res://Assets/Nodes/NPCs/General_NPC/npc_director.tscn" id="7_2lnck"]
+
+[node name="Player-Test-002" type="Node3D"]
+
+[node name="Player-Director" parent="." instance=ExtResource("2_sxlnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15665, 0)
+
+[node name="NPC-Director" parent="." instance=ExtResource("7_2lnck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 4, 25)
+collision_layer = 0
+
+[node name="Demo-Plane" parent="." instance=ExtResource("1_7l6gd")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 10, 10)
+shadow_enabled = true
+
+[node name="Projectile-00-Pickup" parent="." instance=ExtResource("4_ly117")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -20)
+
+[node name="Projectile-00-Pickup2" parent="." instance=ExtResource("4_ly117")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -20)
+
+[node name="Projectile-00-Pickup3" parent="." instance=ExtResource("4_ly117")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -20)
+
+[node name="Projectile-01-Pickup" parent="." instance=ExtResource("5_qkk1i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 0)
+
+[node name="Projectile-01-Pickup2" parent="." instance=ExtResource("5_qkk1i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
+
+[node name="AoE-00-Pickup" parent="." instance=ExtResource("6_p56lf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 20)
+
+[node name="AoE-00-Pickup2" parent="." instance=ExtResource("6_p56lf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 20)
+
+[node name="AoE-00-Pickup3" parent="." instance=ExtResource("6_p56lf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 20)

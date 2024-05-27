@@ -26,12 +26,8 @@ mono_crash.*.json
 __pycache__
 /dist/
 
-# csharp files
-*/Godot-Project.csproj
-*/Godot-Project.sln
-
-# General Notes 4 Me
-Devlopment-Notes.txt
-
 # Art assests
 *.png
+
+# Mac
+*.DS_Store

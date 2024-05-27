@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://df1ikcf5pnn6f"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerAttackSlotsDirector.cs" id="1_hlsyp"]
+
+[node name="Player-Attack-Director" type="Node3D"]
+script = ExtResource("1_hlsyp")

@@ -7,6 +7,7 @@ object "Player Director" as Player
 object "Movement Director" as Movement
 object "Camera Director" as CameraDir
 object "Data Director" as Data
+object "Inventory Director" as InventoryDir
 object "Visual Director" as Visual
 object "Collider" as Collider
 object "Camera 3D" as Camera
@@ -15,11 +16,13 @@ object "Animation Director" as Animation
 object "Mesh Director" as Mesh
 object "Player Scene Director" as SceneDir
 object "Quit Game" as QuitTimer
+object "Interaction Director" as InteractionDir
 
 Player : Type = CharacterBody3D
 Movement : Type = Node3D
 CameraDir : Type = Node3D
 Data : Type = Node3D
+InventoryDir : Typer = Node3D
 Visual : Type = Node3D
 Collider : Type = CollisionShape3D
 Camera : Type = Camera3D
@@ -27,10 +30,12 @@ Animation : Type = AnimationPlayer
 Mesh : Type = MeshInstance3D
 SceneDir : Type = Node3D
 QuitTimer : Type = Timer
+InteractionDir : Type = Node3D
 
 Player *-- Movement
 Player *-- CameraDir
 Player *-- Data
+Data *-- InventoryDir
 Player *-- Visual
 Player *-- Collider
 CameraDir *-- Camera
@@ -39,5 +44,6 @@ Visual *-- Animation
 Visual *-- Mesh
 Player *-- SceneDir
 SceneDir *-- QuitTimer
+Player *-- InteractionDir
 
 @enduml

@@ -1,0 +1,35 @@
+@startuml Basic_Enemy_Object
+
+title Basic Enemy Object
+
+object "Enemy Director" as Enemy
+
+object "Movement Director" as Movement
+object "Data Director" as Data
+object "Inventory Director" as InventoryDir
+object "Visual Director" as Visual
+object "Collider" as Collider
+object "Animation Director" as Animation
+object "Mesh Director" as Mesh
+object "Interaction Director" as InteractionDir
+
+Enemy : Type = CharacterBody3D
+Movement : Type = Node3D
+Data : Type = Node3D
+InventoryDir : Typer = Node3D
+Visual : Type = Node3D
+Collider : Type = CollisionShape3D
+Animation : Type = AnimationPlayer
+Mesh : Type = MeshInstance3D
+InteractionDir : Type = Node3D
+
+Enemy *-- Movement
+Enemy *-- Data
+Data *-- InventoryDir
+Enemy *-- Visual
+Enemy *-- Collider
+Visual *-- Animation
+Visual *-- Mesh
+Enemy *-- InteractionDir
+
+@enduml

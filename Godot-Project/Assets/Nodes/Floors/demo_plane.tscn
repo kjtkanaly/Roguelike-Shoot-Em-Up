@@ -2,13 +2,14 @@
 
 [ext_resource type="PlaneMesh" uid="uid://dra31jptpy2ic" path="res://Assets/Graphics/Mesh-Objects/demo-plane-mesh-001.tres" id="1_gt7my"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h2h5g"]
-size = Vector3(2, 0, 2)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i55q1"]
 
 [node name="Demo-Plane" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_h2h5g")
+shape = SubResource("WorldBoundaryShape3D_i55q1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = ExtResource("1_gt7my")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs8gwtocl7o8m"]
+
+[ext_resource type="PackedScene" uid="uid://bkrxxu1c7wjcb" path="res://Assets/Nodes/Pickupables/Base_Pickup_Node.tscn" id="2_fw235"]
+[ext_resource type="Script" path="res://Assets/Scripts/General/AttackPickupDir.cs" id="2_so8wg"]
+[ext_resource type="PackedScene" uid="uid://dfd1pel6ux432" path="res://Assets/Nodes/Attacks/Area_Of_Effect/AoE_00_attack.tscn" id="3_tppxn"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mnwe5"]
+height = 1.0
+
+[node name="AoE-00-Pickup" type="Node3D"]
+
+[node name="Base-Pickup-Node" parent="." instance=ExtResource("2_fw235")]
+script = ExtResource("2_so8wg")
+attackObject = ExtResource("3_tppxn")
+metadata/Item_Name = "AoE-00"
+
+[node name="MeshInstance3D" parent="Base-Pickup-Node" index="1"]
+mesh = SubResource("CylinderMesh_mnwe5")
+
+[editable path="Base-Pickup-Node"]
