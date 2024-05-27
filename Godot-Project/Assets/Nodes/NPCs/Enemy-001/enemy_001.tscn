@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdplet6ncrewt"]
+
+[ext_resource type="PackedScene" uid="uid://d3566upaslqpj" path="res://Assets/Nodes/NPCs/General_NPC/npc_director.tscn" id="1_o1y4h"]
+
+[node name="Enemy-001" type="Node3D"]
+
+[node name="NPC-Director" parent="." instance=ExtResource("1_o1y4h")]
