@@ -32,7 +32,7 @@ attack object in each pickup object
 [X] Update the diagrams
 [X] Make Obj diagram for attack generic
 
-[ ] Make Generic NPC Node
+[X] Make Generic NPC Node
 [ ] Create Generic Enemy Node (Utilizes Generic NPC node)
 [ ] Make diagram for the NPC class levels
 [ ] Make diagram for the attack object nodes
