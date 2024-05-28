@@ -1,6 +1,13 @@
+# Development Notes
+## Next time on Dragon Ball Z
+- Cont working on the generic enemy node, that we use in the Enemey 001. Make 
+sure the hit box collision shape isn't fucking with the physics collider. 
+consider if we need both idk.
+
+## General Notes
 # Godot Version: 4.2.1
 
-## Things to setup
+## General To Do Plans
 [X] Git
 [X] Godot
 [X] VS Code
@@ -38,3 +45,6 @@ attack object in each pickup object
 [X] Create Generic Enemy Node (Utilizes Generic NPC node)
 [x] Make diagram for the NPC class levels
 [ ] Make diagram for the attack object nodes
+[X] Think through utilizing a generic enemy node
+[ ] Clean up the player node dir. We don't really need a dedicated node for each thing
+[ ] Get Health, die, spawn demo together

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://byncinq0ln5wr"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/NPCs/General_Enemy/EnemeyInteractionDirector.cs" id="1_7kjgh"]
+
+[node name="Enemy-Interaction-Director" type="Node3D"]
+script = ExtResource("1_7kjgh")
+
+[node name="Damage-Timer" type="Timer" parent="."]
+
+[node name="Hit-Box" type="CollisionShape3D" parent="."]

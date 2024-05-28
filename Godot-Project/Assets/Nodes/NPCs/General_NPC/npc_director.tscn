@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3566upaslqpj"]
+[gd_scene load_steps=4 format=3 uid="uid://d3566upaslqpj"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/NPCs/General_NPC/NPCMovementDirector.cs" id="1_ic5l3"]
 [ext_resource type="PackedScene" uid="uid://d2swbr2sokxw4" path="res://Assets/Nodes/NPCs/General_NPC/npc_visual_director.tscn" id="1_m04l7"]
 [ext_resource type="PackedScene" uid="uid://de7oo5wb2pmou" path="res://Assets/Nodes/NPCs/General_NPC/npc_interaction_director.tscn" id="2_4hl8f"]
-[ext_resource type="PackedScene" uid="uid://cd87loqsin1ap" path="res://Assets/Nodes/NPCs/General_NPC/npc_data_director.tscn" id="3_df27i"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_nvwvg"]
-height = 1.0
 
 [node name="NPC-Director" type="CharacterBody3D"]
 collision_layer = 2
@@ -14,10 +10,9 @@ collision_mask = 8
 script = ExtResource("1_ic5l3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_nvwvg")
 
 [node name="NPC-Visual-Director" parent="." instance=ExtResource("1_m04l7")]
 
 [node name="NPC-Interaction-Director" parent="." instance=ExtResource("2_4hl8f")]
 
-[node name="NPC-Data-Director" parent="." instance=ExtResource("3_df27i")]
+[editable path="NPC-Visual-Director"]

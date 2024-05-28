@@ -3,29 +3,42 @@ using System;
 
 public partial class NPCMovementDirector : MovementDirector
 {
-    //-------------------------------------------------------------------------
-    // Game Componenets
-    // Public
+	public enum Mode {
+		Idle = 0,
+		Active = 1,
+		Attack = 2,
+		FollowPlayer = 3
+	}
+	
+	//-------------------------------------------------------------------------
+	// Game Componenets
+	// Public
+	public Mode mode = Mode.Idle;
 
-    // Protected
+	// Protected
 
-    // Private
+	// Private
 	private NPCMovementData movementData;
 
-    //-------------------------------------------------------------------------
-    // Game Events
-    public override void _Ready()
-    {
-        base._Ready();
-    }
+	//-------------------------------------------------------------------------
+	// Game Events
+	public override void _Ready()
+	{
+		base._Ready();
+	}
 
-    public override void _PhysicsProcess(double delta) {
+	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
 	}
 
-    //-------------------------------------------------------------------------
+	public override void _Process(double delta)
+	{
+		
+	}
+
+	//-------------------------------------------------------------------------
 	// Methods
-    // Public
+	// Public
 	public override void LoadMovementkData() {
 		movementData = (NPCMovementData) GD.Load(movementDataPath);
 	}
@@ -34,9 +47,9 @@ public partial class NPCMovementDirector : MovementDirector
 		return movementData.mass;
 	}
 
-    // Protected
+	// Protected
 
-    // Private
+	// Private
 
 	//-------------------------------------------------------------------------
 	// Debug Methods

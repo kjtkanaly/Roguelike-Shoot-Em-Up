@@ -1,9 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2swbr2sokxw4"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_tgbxu"]
-height = 1.0
+[gd_scene format=3 uid="uid://d2swbr2sokxw4"]
 
 [node name="NPC-Visual-Director" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_tgbxu")

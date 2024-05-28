@@ -3,37 +3,52 @@ using System;
 
 public partial class EnemyMovementDirector : NPCMovementDirector
 {
-    //-------------------------------------------------------------------------
-    // Game Componenets
-    // Public
+	//-------------------------------------------------------------------------
+	// Game Componenets
+	// Public
 
-    // Protected
+	// Protected
 
-    // Private
-    private EnemyMovementData movementData;
+	// Private
+	private EnemyMovementData movementData;
+	private EnemeyInteractionDirector interactionDir;
 
-    //-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
 	// Game Events
-    public override void _Ready()
-    {
-        base._Ready();
-    }
+	public override void _Ready()
+	{
+		base._Ready();
 
-    //-------------------------------------------------------------------------
+		interactionDir = GetNode<EnemeyInteractionDirector>("NPC-Interaction-Director");
+	}
+
+	public override void _PhysicsProcess(double delta) {
+		base._PhysicsProcess(delta);
+	}
+
+	public override void _Process(double delta)
+	{
+		CheckIfPlayerIsAttackRange();
+	}
+
+	//-------------------------------------------------------------------------
 	// Methods
-    // Public
-    public override void LoadMovementkData() {
+	// Public
+	public override void LoadMovementkData() {
 		movementData = (EnemyMovementData) GD.Load(movementDataPath);
 	}
 
-    public override float GetMass() {
+	public override float GetMass() {
 		return movementData.mass;
 	}
 
-    // Protected
+	// Protected
 
-    // Private
+	// Private
+	private void CheckIfPlayerIsAttackRange() {
 
-    //-------------------------------------------------------------------------
+	}
+
+	//-------------------------------------------------------------------------
 	// Debug Methods
 }

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjgsjohqrqnlp"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/NPCs/General_Enemy/EnemyMovementDirector.cs" id="1_q6vwq"]
+[ext_resource type="PackedScene" uid="uid://byncinq0ln5wr" path="res://Assets/Nodes/NPCs/Generic_Enemy/enemy_interaction_director.tscn" id="2_c3rsd"]
+
+[node name="Enemy-Director" type="CharacterBody3D"]
+script = ExtResource("1_q6vwq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Visual-Director" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual-Director"]
+
+[node name="Enemy-Interaction-Director" parent="." instance=ExtResource("2_c3rsd")]
+
+[editable path="Enemy-Interaction-Director"]
