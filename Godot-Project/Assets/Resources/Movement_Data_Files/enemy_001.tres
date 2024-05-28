@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyMovementData" load_steps=2 format=3 uid="uid://bhpl03kdnkhtb"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/EnemyMovementData.cs" id="1_fvglm"]
+
+[resource]
+script = ExtResource("1_fvglm")
+speed = 20.0
+acceleration = 1000.0
+friction = 1000.0
+mass = 10.0

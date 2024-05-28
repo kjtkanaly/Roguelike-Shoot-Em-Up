@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class NPCMovementDirector : MovementDirector
+public partial class EnemyMovementDirector : NPCMovementDirector
 {
     //-------------------------------------------------------------------------
     // Game Componenets
@@ -10,27 +10,23 @@ public partial class NPCMovementDirector : MovementDirector
     // Protected
 
     // Private
-	private NPCMovementData movementData;
+    private EnemyMovementData movementData;
 
     //-------------------------------------------------------------------------
-    // Game Events
+	// Game Events
     public override void _Ready()
     {
         base._Ready();
     }
 
-    public override void _PhysicsProcess(double delta) {
-		base._PhysicsProcess(delta);
-	}
-
     //-------------------------------------------------------------------------
 	// Methods
     // Public
-	public override void LoadMovementkData() {
-		movementData = (NPCMovementData) GD.Load(movementDataPath);
+    public override void LoadMovementkData() {
+		movementData = (EnemyMovementData) GD.Load(movementDataPath);
 	}
 
-	public override float GetMass() {
+    public override float GetMass() {
 		return movementData.mass;
 	}
 
@@ -38,6 +34,6 @@ public partial class NPCMovementDirector : MovementDirector
 
     // Private
 
-	//-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
 	// Debug Methods
 }

@@ -7,6 +7,7 @@
 [node name="Enemy-001" type="Node3D"]
 
 [node name="NPC-Director" parent="." instance=ExtResource("1_o1y4h")]
+movementDataPath = "res://Assets/Resources/Movement_Data_Files/enemy_001.tres"
 
 [node name="CollisionShape3D" parent="NPC-Director" index="0"]
 shape = ExtResource("2_ym4m2")
