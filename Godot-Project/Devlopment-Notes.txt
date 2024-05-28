@@ -35,6 +35,6 @@ attack object in each pickup object
 # NPC Devlopement
 [X] Make Generic NPC Node
 [ ] Potentially overhaul the movement classes (atleast move them into common dir)
-[ ] Create Generic Enemy Node (Utilizes Generic NPC node)
-[ ] Make diagram for the NPC class levels
+[X] Create Generic Enemy Node (Utilizes Generic NPC node)
+[x] Make diagram for the NPC class levels
 [ ] Make diagram for the attack object nodes
