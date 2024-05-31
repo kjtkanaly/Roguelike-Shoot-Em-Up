@@ -15,7 +15,7 @@ public partial class NPCInteractionDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready(){
-		HitBoxDirector = GetNode<Area3D>("NPC-Hit-Box-Director");
+		HitBoxDirector = GetNode<Area3D>("Hit-Box-Director");
 		HitBoxDirector.AreaEntered += KickoffSequence;
 		HitBoxDirector.AreaExited += StopSequence;
 		HitBoxDirector.BodyEntered += KickoffSequence;
@@ -28,19 +28,20 @@ public partial class NPCInteractionDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Methods
 	private void KickoffSequence(Area3D otherArea){
-		if (otherArea.Name == "AoE-Hit-Box-Director") {
+		if (otherArea.Name == "Hit-Box-Director") {
 			BeginAoEDamageSequence(otherArea);
 		}
 	}
 
 	private void KickoffSequence(Node3D otherNode) {
+		GD.Print(otherNode.Name);
 		if ((string) otherNode.GetMeta("ID") == "Projectile") {
 			ProjectileDamageSequence(otherNode);
 		}
 	}
 
 	private void StopSequence(Area3D otherArea) {
-		if (otherArea.Name == "AoE-Hit-Box-Director") {
+		if (otherArea.Name == "Hit-Box-Director") {
 			StopAoEDamageSequence();
 		}
 	}

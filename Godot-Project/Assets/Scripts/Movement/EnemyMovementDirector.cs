@@ -19,7 +19,7 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 	{
 		base._Ready();
 
-		interactionDir = GetNode<EnemeyInteractionDirector>("NPC-Interaction-Director");
+		interactionDir = GetNode<EnemeyInteractionDirector>("Enemy-Interaction-Director");
 	}
 
 	public override void _PhysicsProcess(double delta) {

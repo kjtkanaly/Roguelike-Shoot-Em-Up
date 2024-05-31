@@ -15,7 +15,7 @@ shape = ExtResource("2_ym4m2")
 [node name="MeshInstance3D" parent="Enemy-Director/Visual-Director" index="0"]
 mesh = ExtResource("2_liyw1")
 
-[node name="Hit-Box" parent="Enemy-Director/Enemy-Interaction-Director" index="1"]
+[node name="Hit-Box" parent="Enemy-Director/Enemy-Interaction-Director/Hit-Box-Director" index="0"]
 shape = ExtResource("2_ym4m2")
 
 [editable path="Enemy-Director"]

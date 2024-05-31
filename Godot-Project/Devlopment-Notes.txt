@@ -5,7 +5,12 @@ sure the hit box collision shape isn't fucking with the physics collider.
 consider if we need both idk.
 
 ## General Notes
-# Godot Version: 4.2.1
+### Version 
+Godot Version: 4.2.1
+
+### Collision Layer
+- Layer: Sets the physics layer of the object
+- Mask: Controls which layers the object collides with
 
 ## General To Do Plans
 [X] Git
@@ -41,7 +46,7 @@ attack object in each pickup object
 
 # NPC Devlopement
 [X] Make Generic NPC Node
-[ ] Potentially overhaul the movement classes (atleast move them into common dir)
+[X] Potentially overhaul the movement classes (atleast move them into common dir)
 [X] Create Generic Enemy Node (Utilizes Generic NPC node)
 [x] Make diagram for the NPC class levels
 [ ] Make diagram for the attack object nodes
