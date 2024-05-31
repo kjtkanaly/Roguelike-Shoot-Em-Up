@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3566upaslqpj"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/NPCs/General_NPC/NPCMovementDirector.cs" id="1_ic5l3"]
+[ext_resource type="Script" path="res://Assets/Scripts/Movement/NPCMovementDirector.cs" id="1_ic5l3"]
 [ext_resource type="PackedScene" uid="uid://d2swbr2sokxw4" path="res://Assets/Nodes/NPCs/General_NPC/npc_visual_director.tscn" id="1_m04l7"]
 [ext_resource type="PackedScene" uid="uid://de7oo5wb2pmou" path="res://Assets/Nodes/NPCs/General_NPC/npc_interaction_director.tscn" id="2_4hl8f"]
 

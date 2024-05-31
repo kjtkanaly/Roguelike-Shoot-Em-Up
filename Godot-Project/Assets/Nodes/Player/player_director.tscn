@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhxmej5jdupx8"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerMovementDirector.cs" id="1_a5tol"]
+[ext_resource type="Script" path="res://Assets/Scripts/Movement/PlayerMovementDirector.cs" id="1_yd83r"]
 [ext_resource type="PackedScene" uid="uid://dndaomo1pjwyr" path="res://Assets/Nodes/Player/camera_director.tscn" id="2_m0ese"]
 [ext_resource type="PackedScene" uid="uid://dcj4ce0kkhruf" path="res://Assets/Nodes/Player/visual_director.tscn" id="3_qawdn"]
 [ext_resource type="PackedScene" uid="uid://dofme3ylpyfbe" path="res://Assets/Nodes/Player/player_scene_director.tscn" id="4_5u3ck"]
@@ -12,7 +12,7 @@ height = 1.0
 
 [node name="Player-Director" type="CharacterBody3D"]
 collision_mask = 9
-script = ExtResource("1_a5tol")
+script = ExtResource("1_yd83r")
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/default_player_001.tres"
 
 [node name="Camera-Director" parent="." instance=ExtResource("2_m0ese")]

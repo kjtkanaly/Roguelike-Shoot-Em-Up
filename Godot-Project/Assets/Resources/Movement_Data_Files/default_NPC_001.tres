@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MovementData" load_steps=2 format=3 uid="uid://cy1ibp155dg4y"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/MovementData.cs" id="1_d7tab"]
+[ext_resource type="Script" path="res://Assets/Scripts/Movement/MovementData.cs" id="1_d7tab"]
 
 [resource]
 script = ExtResource("1_d7tab")
