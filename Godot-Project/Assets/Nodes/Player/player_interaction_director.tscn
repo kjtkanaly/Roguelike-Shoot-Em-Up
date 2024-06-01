@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://4ntyyivyx4mj"]
 
 [ext_resource type="PackedScene" uid="uid://df1ikcf5pnn6f" path="res://Assets/Nodes/Player/player_attack_director.tscn" id="1_tp631"]
-[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerInteractionDirector.cs" id="1_xg1bb"]
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/PlayerInteractionDirector.cs" id="1_xg1bb"]
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerObjectPickup.cs" id="3_y17dk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_owfwg"]

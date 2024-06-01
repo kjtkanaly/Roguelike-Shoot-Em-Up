@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://de7oo5wb2pmou"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/NPCs/General_NPC/NPCInteractionDirector.cs" id="1_qfsub"]
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/NPCInteractionDirector.cs" id="1_qfsub"]
 
 [node name="NPC-Interaction-Director" type="Node3D"]
 script = ExtResource("1_qfsub")

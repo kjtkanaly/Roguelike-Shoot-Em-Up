@@ -1,0 +1,60 @@
+@startuml Interaction Class Structure
+
+title Interaction Class Structure
+
+' Method Classes
+class InteractionDirector <<Node3D>>{
+    == Data ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+
+    == Methods ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+class PlayerInteractionDirector {
+    == Data ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+
+    == Methods ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+class NPCInteractionDirector {
+    == Data ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+
+    == Methods ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+class EnemeyInteractionDirector {
+    == Data ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+
+    == Methods ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+InteractionDirector <|-- PlayerInteractionDirector
+InteractionDirector <|-- NPCInteractionDirector
+NPCInteractionDirector <|-- EnemeyInteractionDirector
+
+' Resource Classes
+
+@enduml
