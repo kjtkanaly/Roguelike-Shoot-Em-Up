@@ -1,0 +1,26 @@
+@startuml Interaction Object struct
+
+title Interaction Object Structure
+
+' Interaction Objects
+object GenericInteractionDirector_Object <<Node3D>> {
+}
+
+object PlayerInteractionDirector_Object {
+}
+
+object NPCInteractionDirector_Object {
+}
+
+object EnemyInteractionDirector_Object {
+}
+
+GenericInteractionDirector_Object *-- HitBoxDirector
+GenericInteractionDirector_Object *-- TakeDamageTimer
+HitBoxDirector *-- HitBoxShape
+
+GenericInteractionDirector_Object <|-- PlayerInteractionDirector_Object
+GenericInteractionDirector_Object <|-- NPCInteractionDirector_Object
+NPCInteractionDirector_Object <|-- EnemyInteractionDirector_Object
+
+@enduml

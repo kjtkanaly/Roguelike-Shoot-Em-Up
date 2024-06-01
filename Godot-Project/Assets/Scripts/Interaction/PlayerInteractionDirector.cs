@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public partial class PlayerInteractionDirector : Node
+public partial class PlayerInteractionDirector : InteractionDirector
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
-	private PlayerAttackSlotsDirector playerAttackSlotsDir = null;
+	private PlayerAttackSlotsDirector attackDir = null;
 	private PlayerDataDirector playerData = null;
 	private PlayerObjectPickup pickupArea = null;
 
@@ -16,26 +16,28 @@ public partial class PlayerInteractionDirector : Node
 	// Game Events
 	public override void _Ready()
 	{
-		playerAttackSlotsDir = GetNode<PlayerAttackSlotsDirector>("Player-Attack-Director");
+		base._Ready();
+
+		attackDir = GetNode<PlayerAttackSlotsDirector>("Player-Attack-Director");
 		playerData = GetNode<PlayerDataDirector>("../Player-Data-Director");
 	}
 
 	//-------------------------------------------------------------------------
 	// Methods
 	public int IsActionAlreadyEquipped(string itemName) {
-		return playerAttackSlotsDir.IsActionAlreadyEquipped(itemName);
+		return attackDir.IsActionAlreadyEquipped(itemName);
 	}
 
 	public bool IsPlayerMaxedOutOnAttacks() {
-		return playerAttackSlotsDir.IsPlayerMaxedOutOnAttacks();
+		return attackDir.IsPlayerMaxedOutOnAttacks();
 	}
 
 	public bool LevelUpEquippedAction(int itemIndex) {
-		return playerAttackSlotsDir.LevelUpEquippedAction(itemIndex);
+		return attackDir.LevelUpEquippedAction(itemIndex);
 	}
 
 	public void EquipNewAttack(PackedScene newAttack) {
-		playerAttackSlotsDir.EquipNewAttack(newAttack);
+		attackDir.EquipNewAttack(newAttack);
 	}
 
 	//-------------------------------------------------------------------------

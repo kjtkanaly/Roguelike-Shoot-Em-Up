@@ -52,4 +52,7 @@ attack object in each pickup object
 [ ] Make diagram for the attack object nodes
 [X] Think through utilizing a generic enemy node
 [ ] Clean up the player node dir. We don't really need a dedicated node for each thing
+[ ] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
+    stores the attack objects
 [ ] Get Health, die, spawn demo together
+

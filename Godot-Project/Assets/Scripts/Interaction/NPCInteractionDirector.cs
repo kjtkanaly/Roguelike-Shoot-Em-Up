@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class NPCInteractionDirector : Node3D
+public partial class NPCInteractionDirector : InteractionDirector
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
@@ -15,6 +15,8 @@ public partial class NPCInteractionDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready(){
+		base._Ready();
+
 		HitBoxDirector = GetNode<Area3D>("Hit-Box-Director");
 		HitBoxDirector.AreaEntered += KickoffSequence;
 		HitBoxDirector.AreaExited += StopSequence;
