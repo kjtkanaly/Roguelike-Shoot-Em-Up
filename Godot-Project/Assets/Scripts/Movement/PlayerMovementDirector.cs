@@ -43,7 +43,7 @@ public partial class PlayerMovementDirector : MovementDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public override void LoadMovementkData() {
+	public override void LoadMovementData() {
 		movementData = (PlayerMovementData) GD.Load(movementDataPath);
 	}
 

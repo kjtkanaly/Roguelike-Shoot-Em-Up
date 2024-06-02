@@ -39,7 +39,7 @@ public partial class NPCMovementDirector : MovementDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public override void LoadMovementkData() {
+	public override void LoadMovementData() {
 		movementData = (NPCMovementData) GD.Load(movementDataPath);
 	}
 

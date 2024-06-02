@@ -35,7 +35,7 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public override void LoadMovementkData() {
+	public override void LoadMovementData() {
 		movementData = (EnemyMovementData) GD.Load(movementDataPath);
 	}
 

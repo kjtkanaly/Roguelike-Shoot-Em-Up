@@ -21,7 +21,7 @@ public partial class MovementDirector : CharacterBody3D
 	// Game Events
 	public override void _Ready()
 	{
-		LoadMovementkData();
+		LoadMovementData();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -43,7 +43,7 @@ public partial class MovementDirector : CharacterBody3D
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public virtual void LoadMovementkData() {
+	public virtual void LoadMovementData() {
 		movementData = (MovementData) GD.Load(movementDataPath);
 	}
 

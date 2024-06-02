@@ -1,8 +1,8 @@
 # Development Notes
 ## Next time on Dragon Ball Z
-- Cont working on the generic enemy node, that we use in the Enemey 001. Make 
-sure the hit box collision shape isn't fucking with the physics collider. 
-consider if we need both idk.
+- Continue working on the interaction classes and adding to the newly created
+  interaction data resources. Stay focused on the long term goal of the enemy
+  wave demo
 
 ## General Notes
 ### Version 
@@ -52,8 +52,8 @@ attack object in each pickup object
 [ ] Make diagram for the attack object nodes
 [X] Think through utilizing a generic enemy node
 [ ] Clean up the player node dir. We don't really need a dedicated node for each thing
-[ ] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
+[X] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
     stores the attack objects
-[ ] go fix the name of the load movement data method
+[ ] Continue working on the interaction director classes. Focus on damage
 [ ] Get Health, die, spawn demo together
 
