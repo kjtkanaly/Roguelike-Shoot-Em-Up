@@ -5,25 +5,36 @@ public partial class NPCInteractionDirector : InteractionDirector
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
+	// Public
+
+	// Protected
+
 	// Private
 	private float currentAoEDamage = 0.0f;
-
-	// Public
+	private NPCInteractionData interactionData;
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready(){
 		base._Ready();
 
-		HitBoxDir.AreaEntered += KickoffSequence;
-		HitBoxDir.AreaExited += StopSequence;
-		HitBoxDir.BodyEntered += KickoffSequence;
-		TakeDamageTimer.Timeout += TakeAoEDamage;
+		hitBoxDir.AreaEntered += KickoffSequence;
+		hitBoxDir.AreaExited += StopSequence;
+		hitBoxDir.BodyEntered += KickoffSequence;
+		takeDamageTimer.Timeout += TakeAoEDamage;
 	}
 
 
 	//-------------------------------------------------------------------------
 	// Methods
+	// Public
+
+	// Protected
+	protected override void LoadInteractionData() {
+		interactionData = (NPCInteractionData) GD.Load(interactionDataPath);
+	}
+
+	// Private
 	private void KickoffSequence(Area3D otherArea){
 		if (otherArea.Name == "Hit-Box-Director") {
 			BeginAoEDamageSequence(otherArea);
@@ -52,8 +63,8 @@ public partial class NPCInteractionDirector : InteractionDirector
 		TakeAoEDamage();
 
 		// Begin Damage Timer
-		SetTakeDamageTimerProps(aoeData.delay, false);
-		TakeDamageTimer.Start();
+		SettakeDamageTimerProps(aoeData.delay, false);
+		takeDamageTimer.Start();
 	}
 
 	private void StopAoEDamageSequence() {
@@ -61,20 +72,16 @@ public partial class NPCInteractionDirector : InteractionDirector
 		currentAoEDamage = 0.0f;
 
 		// Stop Damage TImer
-		TakeDamageTimer.Stop();
+		takeDamageTimer.Stop();
 	}
 
-	private void SetTakeDamageTimerProps(float waitTimeVal, bool oneShotVal) {
-		TakeDamageTimer.WaitTime = waitTimeVal;
-		TakeDamageTimer.OneShot = oneShotVal;
+	private void SettakeDamageTimerProps(float waitTimeVal, bool oneShotVal) {
+		takeDamageTimer.WaitTime = waitTimeVal;
+		takeDamageTimer.OneShot = oneShotVal;
 	}
 
 	private void TakeAoEDamage() {
 		TakeDamage(currentAoEDamage);
-	}
-
-	public void TakeDamage(float damageValue) {
-		GD.Print($"Enemey took {damageValue} damage");
 	}
 
 	private void ProjectileDamageSequence(Node3D projNode) {

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PlayerInteractionData" load_steps=2 format=3 uid="uid://k05u7fvo4d4w"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/PlayerInteractionData.cs" id="1_tl7by"]
+
+[resource]
+script = ExtResource("1_tl7by")
+maxHealth = 10.0

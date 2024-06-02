@@ -54,5 +54,6 @@ attack object in each pickup object
 [ ] Clean up the player node dir. We don't really need a dedicated node for each thing
 [ ] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
     stores the attack objects
+[ ] go fix the name of the load movement data method
 [ ] Get Health, die, spawn demo together
 

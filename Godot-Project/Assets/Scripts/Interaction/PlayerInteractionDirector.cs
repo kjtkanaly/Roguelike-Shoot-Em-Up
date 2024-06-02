@@ -9,10 +9,11 @@ public partial class PlayerInteractionDirector : InteractionDirector
 	[Export] public int maxAttackCount = 6;
 
 	// Protected
+	protected PlayerInventoryDirector inventoryDir = null;
+	protected PlayerObjectPickup pickupArea = null;
 
 	// Private
-	private PlayerInventoryDirector inventoryDir = null;
-	private PlayerObjectPickup pickupArea = null;
+	private PlayerInteractionData interactionData;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -26,6 +27,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
 
 	//-------------------------------------------------------------------------
 	// Methods
+	// Public
 	public int IsActionAlreadyEquipped(string itemName) {
 		return inventoryDir.IsActionAlreadyEquipped(itemName);
 	}
@@ -41,6 +43,13 @@ public partial class PlayerInteractionDirector : InteractionDirector
 	public void EquipNewAttack(PackedScene newAttack) {
 		inventoryDir.EquipNewAttack(newAttack);
 	}
+
+	// Protected
+	protected override void LoadInteractionData() {
+        interactionData = (PlayerInteractionData) GD.Load(interactionDataPath);
+    }
+
+	// Private
 
 	//-------------------------------------------------------------------------
 	// Debug Methods

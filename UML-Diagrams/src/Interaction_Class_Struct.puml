@@ -36,6 +36,7 @@ class InteractionDirector <<Node3D>>{
     == Methods ==
     .. Public ..
     + _Ready() : void
+    + TakeDamage() : void
     .. Protected ..
     .. Private ..
 }
@@ -43,12 +44,19 @@ class InteractionDirector <<Node3D>>{
 class PlayerInteractionDirector {
     == Data ==
     .. Public ..
+    + int maxAttackCount
     .. Protected ..
     .. Private ..
+    - PlayerInventoryDirector inventoryDir
+    - PlayerObjectPickup pickupArea
 
     == Methods ==
     .. Public ..
     + _Ready() : void
+    + IsActionAlreadyEquipped() : int
+    + IsPlayerMaxedOutOnAttacks() : bool
+    + LevelUpEquippedAction() : bool
+    + EquipNewAttack() : void
     .. Protected ..
     .. Private ..
 }
@@ -57,11 +65,13 @@ class NPCInteractionDirector {
     == Data ==
     .. Public ..
     .. Protected ..
+    + float currentAoEDamage
     .. Private ..
 
     == Methods ==
     .. Public ..
     + _Ready() : void
+    + TakeDamage() : void
     .. Protected ..
     .. Private ..
 }

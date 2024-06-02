@@ -10,6 +10,7 @@ public partial class EnemeyInteractionDirector : NPCInteractionDirector
 	// Protected
 
 	// Private
+	private EnemyInteractionData interactionData;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -23,6 +24,9 @@ public partial class EnemeyInteractionDirector : NPCInteractionDirector
 	// Public
 
 	// Protected
+	protected override void LoadInteractionData() {
+		interactionData = (EnemyInteractionData) GD.Load(interactionDataPath);
+	}
 
 	// Private
 

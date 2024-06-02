@@ -21,5 +21,6 @@ shape = SubResource("CylinderShape3D_owfwg")
 [node name="Generic-Interaction-Director" parent="." instance=ExtResource("4_3qvm7")]
 script = ExtResource("1_wx6w4")
 maxAttackCount = 6
+interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/enemy_001.tres"
 
 [editable path="Generic-Interaction-Director"]
