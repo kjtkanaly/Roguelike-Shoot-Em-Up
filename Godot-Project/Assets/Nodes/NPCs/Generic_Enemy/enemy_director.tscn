@@ -16,8 +16,5 @@ script = ExtResource("1_kc0qc")
 
 [node name="Enemy-Interaction-Director" parent="." instance=ExtResource("2_c3rsd")]
 
-[node name="Hit-Box-Director" parent="Enemy-Interaction-Director" index="1"]
-collision_layer = 384
-collision_mask = 0
-
 [editable path="Enemy-Interaction-Director"]
+[editable path="Enemy-Interaction-Director/Generic-Interaction-Director"]

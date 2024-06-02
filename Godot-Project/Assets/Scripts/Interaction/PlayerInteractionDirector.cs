@@ -5,12 +5,14 @@ public partial class PlayerInteractionDirector : InteractionDirector
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
-	// Private
-	private PlayerAttackSlotsDirector attackDir = null;
-	private PlayerDataDirector playerData = null;
-	private PlayerObjectPickup pickupArea = null;
-
 	// Public
+	[Export] public int maxAttackCount = 6;
+
+	// Protected
+
+	// Private
+	private PlayerInventoryDirector inventoryDir = null;
+	private PlayerObjectPickup pickupArea = null;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -18,26 +20,26 @@ public partial class PlayerInteractionDirector : InteractionDirector
 	{
 		base._Ready();
 
-		attackDir = GetNode<PlayerAttackSlotsDirector>("Player-Attack-Director");
-		playerData = GetNode<PlayerDataDirector>("../Player-Data-Director");
+		pickupArea = GetNode<PlayerObjectPickup>("../Item-Pickup-Director");
+		inventoryDir = new PlayerInventoryDirector(maxAttackCount);
 	}
 
 	//-------------------------------------------------------------------------
 	// Methods
 	public int IsActionAlreadyEquipped(string itemName) {
-		return attackDir.IsActionAlreadyEquipped(itemName);
+		return inventoryDir.IsActionAlreadyEquipped(itemName);
 	}
 
 	public bool IsPlayerMaxedOutOnAttacks() {
-		return attackDir.IsPlayerMaxedOutOnAttacks();
+		return inventoryDir.IsPlayerMaxedOutOnAttacks();
 	}
 
 	public bool LevelUpEquippedAction(int itemIndex) {
-		return attackDir.LevelUpEquippedAction(itemIndex);
+		return inventoryDir.LevelUpEquippedAction(itemIndex);
 	}
 
 	public void EquipNewAttack(PackedScene newAttack) {
-		attackDir.EquipNewAttack(newAttack);
+		inventoryDir.EquipNewAttack(newAttack);
 	}
 
 	//-------------------------------------------------------------------------

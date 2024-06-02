@@ -16,7 +16,7 @@ public partial class PlayerObjectPickup : Area3D
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready() {
-		interactionDir = GetNode<PlayerInteractionDirector>("..");
+		interactionDir = GetNode<PlayerInteractionDirector>("../Generic-Interaction-Director");
 
 		nearbyFreeActionNodes = new List<AttackPickupDir>();
 

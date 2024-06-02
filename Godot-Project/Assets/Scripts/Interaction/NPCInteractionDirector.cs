@@ -6,8 +6,6 @@ public partial class NPCInteractionDirector : InteractionDirector
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Private
-	private Area3D HitBoxDirector = null;
-	private Timer DamageTimer = null;
 	private float currentAoEDamage = 0.0f;
 
 	// Public
@@ -17,13 +15,10 @@ public partial class NPCInteractionDirector : InteractionDirector
 	public override void _Ready(){
 		base._Ready();
 
-		HitBoxDirector = GetNode<Area3D>("Hit-Box-Director");
-		HitBoxDirector.AreaEntered += KickoffSequence;
-		HitBoxDirector.AreaExited += StopSequence;
-		HitBoxDirector.BodyEntered += KickoffSequence;
-
-		DamageTimer = GetNode<Timer>("Damage-Timer");
-		DamageTimer.Timeout += TakeAoEDamage;
+		HitBoxDir.AreaEntered += KickoffSequence;
+		HitBoxDir.AreaExited += StopSequence;
+		HitBoxDir.BodyEntered += KickoffSequence;
+		TakeDamageTimer.Timeout += TakeAoEDamage;
 	}
 
 
@@ -57,8 +52,8 @@ public partial class NPCInteractionDirector : InteractionDirector
 		TakeAoEDamage();
 
 		// Begin Damage Timer
-		SetDamageTimerProps(aoeData.delay, false);
-		DamageTimer.Start();
+		SetTakeDamageTimerProps(aoeData.delay, false);
+		TakeDamageTimer.Start();
 	}
 
 	private void StopAoEDamageSequence() {
@@ -66,12 +61,12 @@ public partial class NPCInteractionDirector : InteractionDirector
 		currentAoEDamage = 0.0f;
 
 		// Stop Damage TImer
-		DamageTimer.Stop();
+		TakeDamageTimer.Stop();
 	}
 
-	private void SetDamageTimerProps(float waitTimeVal, bool oneShotVal) {
-		DamageTimer.WaitTime = waitTimeVal;
-		DamageTimer.OneShot = oneShotVal;
+	private void SetTakeDamageTimerProps(float waitTimeVal, bool oneShotVal) {
+		TakeDamageTimer.WaitTime = waitTimeVal;
+		TakeDamageTimer.OneShot = oneShotVal;
 	}
 
 	private void TakeAoEDamage() {

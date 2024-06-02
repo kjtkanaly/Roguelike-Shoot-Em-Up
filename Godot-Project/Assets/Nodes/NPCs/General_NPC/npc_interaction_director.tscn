@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://dxe2dh3ca635s" path="res://Assets/Nodes/Generics/generic_interaction_director.tscn" id="2_erifj"]
 
 [node name="NPC-Interaction-Director" type="Node3D"]
-script = ExtResource("1_qfsub")
 
 [node name="NPC-Attack-Director" type="Node3D" parent="."]
 
 [node name="Generic-Interaction-Director" parent="." instance=ExtResource("2_erifj")]
+script = ExtResource("1_qfsub")
 
 [editable path="Generic-Interaction-Director"]

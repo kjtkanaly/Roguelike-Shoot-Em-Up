@@ -19,7 +19,8 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 	{
 		base._Ready();
 
-		interactionDir = GetNode<EnemeyInteractionDirector>("Enemy-Interaction-Director");
+		string intDirPath = "Enemy-Interaction-Director/Generic-Interaction-Director";
+		interactionDir = GetNode<EnemeyInteractionDirector>(intDirPath);
 	}
 
 	public override void _PhysicsProcess(double delta) {
