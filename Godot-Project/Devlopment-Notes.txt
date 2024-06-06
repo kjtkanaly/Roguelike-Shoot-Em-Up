@@ -1,8 +1,7 @@
 # Development Notes
 ## Next time on Dragon Ball Z
-- Continue working on the interaction classes and adding to the newly created
-  interaction data resources. Stay focused on the long term goal of the enemy
-  wave demo
+- Figure out why the AoE damage isn't working/triggering. Then keep working on
+  the interaction classes.
 
 ## General Notes
 ### Version 
