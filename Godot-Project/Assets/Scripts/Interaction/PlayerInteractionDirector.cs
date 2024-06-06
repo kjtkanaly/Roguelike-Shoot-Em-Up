@@ -22,7 +22,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
 		base._Ready();
 
 		pickupArea = GetNode<PlayerObjectPickup>("../Item-Pickup-Director");
-		inventoryDir = new PlayerInventoryDirector(maxAttackCount);
+		inventoryDir = new PlayerInventoryDirector(maxAttackCount, this);
 	}
 
 	//-------------------------------------------------------------------------
@@ -46,8 +46,8 @@ public partial class PlayerInteractionDirector : InteractionDirector
 
 	// Protected
 	protected override void LoadInteractionData() {
-        interactionData = (PlayerInteractionData) GD.Load(interactionDataPath);
-    }
+		interactionData = (PlayerInteractionData) GD.Load(interactionDataPath);
+	}
 
 	// Private
 

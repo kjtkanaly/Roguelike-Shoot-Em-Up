@@ -12,11 +12,14 @@ public partial class PlayerInventoryDirector : Node
 
 	// Private
 	private int maxAttackCount;
+	private PlayerInteractionDirector interDir;
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public PlayerInventoryDirector(int maxAttackCountVal) {
+	public PlayerInventoryDirector(int maxAttackCountVal, PlayerInteractionDirector interDirInst) {
+		attackInventory = new List<PlayerAttackDirector>();
 		maxAttackCount = maxAttackCountVal;
+		interDir = interDirInst;
 	}
 
 	public int IsActionAlreadyEquipped(string itemName) {
@@ -47,7 +50,7 @@ public partial class PlayerInventoryDirector : Node
 	public void EquipNewAttack(PackedScene newAttack) {
 		PlayerAttackDirector newAttackObject = 
 			(PlayerAttackDirector) newAttack.Instantiate().GetChild(0);
-		this.AddChild(newAttackObject.GetParent());
+		interDir.AddChild(newAttackObject.GetParent());
 
 		attackInventory.Add(newAttackObject);
 

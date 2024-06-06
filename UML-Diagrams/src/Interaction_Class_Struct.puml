@@ -36,8 +36,9 @@ class InteractionDirector <<Node3D>>{
     == Methods ==
     .. Public ..
     + _Ready() : void
-    + TakeDamage() : void
+    + TickHealth() : void
     .. Protected ..
+    # LoadInteractionData() : void
     .. Private ..
 }
 
@@ -58,6 +59,7 @@ class PlayerInteractionDirector {
     + LevelUpEquippedAction() : bool
     + EquipNewAttack() : void
     .. Protected ..
+    # LoadInteractionData() : void
     .. Private ..
 }
 
@@ -71,8 +73,8 @@ class NPCInteractionDirector {
     == Methods ==
     .. Public ..
     + _Ready() : void
-    + TakeDamage() : void
     .. Protected ..
+    # LoadInteractionData() : void
     .. Private ..
 }
 
@@ -86,6 +88,7 @@ class EnemeyInteractionDirector {
     .. Public ..
     + _Ready() : void
     .. Protected ..
+    # LoadInteractionData() : void
     .. Private ..
 }
 
@@ -94,5 +97,13 @@ InteractionDirector <|-- NPCInteractionDirector
 NPCInteractionDirector <|-- EnemeyInteractionDirector
 
 ' Resource Classes
+class InteractionData <<Resource>> {
+    .. Public ..
+    + bool canTakeDamage
+    + float maxHealth
+    + float currentHealth
+    .. Protected ..
+    .. Private ..
+}
 
 @enduml

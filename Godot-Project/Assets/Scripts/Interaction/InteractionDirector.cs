@@ -26,17 +26,19 @@ public partial class InteractionDirector : Node3D
 		takeDamageTimer = GetNode<Timer>("Take-Damage-Timer");
 
 		LoadInteractionData();
+		
+		hitBoxDir.BodyEntered += ProjectileDamageSequence;
 	}
 
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public void TakeDamage(float damageValue) {
+	public void TickHealth(float damageValue) {
 		interactionData.currentHealth -= damageValue;
 
 		if (debugMode) {
-			GD.Print($"Enemey took {damageValue} damage");
-			GD.Print($"{this.Name} current health: {interactionData.currentHealth}");
+			GD.Print($"{this.Name} took {damageValue} damage");
+			GD.Print($"current health: {interactionData.currentHealth}\n");
 		}
 	}
 
@@ -45,10 +47,67 @@ public partial class InteractionDirector : Node3D
 		interactionData = (InteractionData) GD.Load(interactionDataPath);
 	}
 
+	protected void BeginAoEDamageSequence(Area3D aoeArea) {
+		if (aoeArea.Name != "Hit-Box-Director") {
+			return;
+		}
+
+		// Get the Attack Information
+		AreaOfEffectData aoeData = aoeArea.GetParent<PlayerAoEAttackDirector>().GetAttackData();
+
+		// Take the Initial Damage
+		TickHealth(aoeData.damage);
+
+		// Create the new AoE object
+		ActiveAoE aoe = new ActiveAoE(this, aoeData);
+
+		// Setup the aoe to end once out of range
+		hitBoxDir.AreaExited += aoe.Destroy;
+	}
+
+	private void ProjectileDamageSequence(Node3D projNode) {
+		if ((string) projNode.GetMeta("ID") != "Projectile") {
+			return;
+		}
+
+		// Get the projectile's damage
+		float damage = ((ProjectileDir) projNode).damage;
+
+		// Take damage from the projectile
+		TickHealth(damage);
+	}
+
 	// Private
 
 	//-------------------------------------------------------------------------
 	// Debug Methods
+
+	//-------------------------------------------------------------------------
+	// Nested Classes
+	public partial class ActiveAoE : Node{
+		public float damage = 0.0f;
+		public Timer delayTimer;
+		private InteractionDirector interDir;	
+
+		public ActiveAoE(InteractionDirector interDirInst, AreaOfEffectData aoeData) {
+			interDir = interDirInst;
+
+			damage = aoeData.damage;
+
+			delayTimer = new Timer();
+			delayTimer.WaitTime = aoeData.delay;
+			delayTimer.Timeout += Tick;
+			delayTimer.Start();
+		}
+
+		public void Destroy(Area3D area) {
+			this.Dispose();
+		}
+
+		private void Tick() {
+			interDir.TickHealth(damage);
+		}
+	}
 }
 
 // If you want to denote an area for future devlopement mark with it

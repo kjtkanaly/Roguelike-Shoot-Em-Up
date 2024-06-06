@@ -7,5 +7,6 @@
 
 [node name="Generic-Interaction-Director" parent="." instance=ExtResource("2_rayia")]
 script = ExtResource("1_siubu")
+interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/enemy_001.tres"
 
 [editable path="Generic-Interaction-Director"]
