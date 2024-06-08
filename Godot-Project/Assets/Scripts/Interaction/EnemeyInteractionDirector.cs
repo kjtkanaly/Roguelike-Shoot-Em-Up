@@ -22,6 +22,9 @@ public partial class EnemeyInteractionDirector : NPCInteractionDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
+	public override EnemyInteractionData GetInteractionData() {
+		return interactionData;
+	}
 
 	// Protected
 	protected override void LoadInteractionData() {

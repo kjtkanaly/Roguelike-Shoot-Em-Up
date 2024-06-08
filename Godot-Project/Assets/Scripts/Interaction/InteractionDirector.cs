@@ -26,19 +26,25 @@ public partial class InteractionDirector : Node3D
 		takeDamageTimer = GetNode<Timer>("Take-Damage-Timer");
 
 		LoadInteractionData();
+		InitHealthData();
 		
-		hitBoxDir.BodyEntered += ProjectileDamageSequence;
+		hitBoxDir.AreaEntered += BeginAoEDamageSequence;
+		hitBoxDir.BodyEntered += ProjectileDamageSequence; 
 	}
 
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
+	public virtual InteractionData GetInteractionData() {
+		return interactionData;
+	}
+
 	public void TickHealth(float damageValue) {
-		interactionData.currentHealth -= damageValue;
+		GetInteractionData().currentHealth -= damageValue;
 
 		if (debugMode) {
 			GD.Print($"{this.Name} took {damageValue} damage");
-			GD.Print($"current health: {interactionData.currentHealth}\n");
+			GD.Print($"current health: {GetInteractionData().currentHealth}\n");
 		}
 	}
 
@@ -47,8 +53,12 @@ public partial class InteractionDirector : Node3D
 		interactionData = (InteractionData) GD.Load(interactionDataPath);
 	}
 
+	protected virtual void InitHealthData() {
+		GetInteractionData().currentHealth = GetInteractionData().maxHealth;
+	}
+
 	protected void BeginAoEDamageSequence(Area3D aoeArea) {
-		if (aoeArea.Name != "Hit-Box-Director") {
+		if (aoeArea.Name != "AoE-Hit-Box-Director") {
 			return;
 		}
 

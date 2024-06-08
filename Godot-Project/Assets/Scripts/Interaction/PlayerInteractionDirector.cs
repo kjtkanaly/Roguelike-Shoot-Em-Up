@@ -28,6 +28,10 @@ public partial class PlayerInteractionDirector : InteractionDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
+	public override PlayerInteractionData GetInteractionData() {
+		return interactionData;
+	}
+
 	public int IsActionAlreadyEquipped(string itemName) {
 		return inventoryDir.IsActionAlreadyEquipped(itemName);
 	}

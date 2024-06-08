@@ -23,6 +23,9 @@ public partial class NPCInteractionDirector : InteractionDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
+	public override NPCInteractionData GetInteractionData() {
+		return interactionData;
+	}
 
 	// Protected
 	protected override void LoadInteractionData() {
