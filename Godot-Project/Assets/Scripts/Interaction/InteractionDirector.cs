@@ -13,6 +13,7 @@ public partial class InteractionDirector : Node3D
 	protected Area3D hitBoxDir;
 	protected CollisionShape3D  hitBoxShape;
 	protected Timer takeDamageTimer;
+	protected Node MainRoot;
 
 	// Private
 	private InteractionData interactionData;
@@ -24,6 +25,7 @@ public partial class InteractionDirector : Node3D
 		hitBoxDir = GetNode<Area3D>("Hit-Box-Director");
 		hitBoxShape = GetNode<CollisionShape3D>("Hit-Box-Director/Hit-Box-Shape");
 		takeDamageTimer = GetNode<Timer>("Take-Damage-Timer");
+		MainRoot = GetTree().Root.GetChild(0);
 
 		LoadInteractionData();
 		InitHealthData();
@@ -70,15 +72,21 @@ public partial class InteractionDirector : Node3D
 
 		// Create the new AoE object
 		ActiveAoE aoe = new ActiveAoE(this, aoeData);
+        this.AddChild(aoe);
+
+        // Start the AoE Damage Timer
+        aoe.delayTimer.Start();
 
 		// Setup the aoe to end once out of range
 		hitBoxDir.AreaExited += aoe.Destroy;
 	}
 
+    
+
 	private void ProjectileDamageSequence(Node3D projNode) {
-		if ((string) projNode.GetMeta("ID") != "Projectile") {
-			return;
-		}
+		if (projNode.Name != "Generic-Projectile") {
+            return;
+        }
 
 		// Get the projectile's damage
 		float damage = ((ProjectileDir) projNode).damage;
@@ -105,13 +113,14 @@ public partial class InteractionDirector : Node3D
 			damage = aoeData.damage;
 
 			delayTimer = new Timer();
+			this.AddChild(delayTimer);
 			delayTimer.WaitTime = aoeData.delay;
 			delayTimer.Timeout += Tick;
-			delayTimer.Start();
 		}
 
 		public void Destroy(Area3D area) {
-			this.Dispose();
+            GD.Print("Destroy");
+			this.QueueFree();
 		}
 
 		private void Tick() {
