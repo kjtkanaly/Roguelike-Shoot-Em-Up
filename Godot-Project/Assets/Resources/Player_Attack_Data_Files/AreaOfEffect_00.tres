@@ -8,9 +8,9 @@
 script = ExtResource("2_eur53")
 areaMesh = ExtResource("1_0ky8q")
 areaColliderShape = ExtResource("1_780cg")
-areaIncreaseStepSize = 0.2
+areaIncreaseStepSize = 0.4
 id = "AoE-00"
 type = 2
-damage = 1.0
-delay = 2.0
+damage = 2.0
+delay = 1.0
 maxLevel = 6

@@ -27,19 +27,43 @@ NPCInteractionDirector_Object <|-- EnemyInteractionDirector_Object
 class InteractionDirector <<Node3D>>{
     == Data ==
     .. Public ..
+    + string interactionDataPath
     .. Protected ..
     # Area3D HitBoxDir
     # CollisionShape3D HitBoxShape
     # Timer TakeDamageTimer
     .. Private ..
+    - InteractionData interactionData
 
     == Methods ==
     .. Public ..
     + _Ready() : void
+    + GetInteractionData() : InteractionData
     + TickHealth() : void
     .. Protected ..
     # LoadInteractionData() : void
+    # InitHealthData() : void
+    # BeginAoEDamageSequence() : void
+    # ProjectileDamageSequence() : void
     .. Private ..
+}
+
+class ActiveAoE <<Node>>{
+     == Data ==
+    .. Public ..
+    + float damage
+    + Timer delayTimer
+    .. Protected ..
+    .. Private ..
+    - InteractionDirector interDir
+
+    == Methods ==
+    .. Public ..
+    + ActiveAoE()
+    + Destroy() : void
+    .. Protected ..
+    .. Private ..
+    - TickInteractionDirHealth() : void
 }
 
 class PlayerInteractionDirector {
@@ -92,6 +116,8 @@ class EnemeyInteractionDirector {
     .. Private ..
 }
 
+GenericInteractionDirector_Object *- InteractionDirector
+InteractionDirector *- ActiveAoE
 InteractionDirector <|-- PlayerInteractionDirector
 InteractionDirector <|-- NPCInteractionDirector
 NPCInteractionDirector <|-- EnemeyInteractionDirector
