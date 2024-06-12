@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chspqdq8wydgh"]
 
 [node name="Damage-Value" type="Label3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2, 0)
 text = "Test"
 font_size = 128
 outline_size = 16

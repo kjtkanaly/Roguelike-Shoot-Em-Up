@@ -43,6 +43,8 @@ public partial class InteractionDirector : Node3D
 	public void TickHealth(float damageValue) {
 		GetInteractionData().currentHealth -= damageValue;
 
+		DisplayDamageValue(damageValue);
+
 		if (debugMode) {
 			GD.Print($"{this.Name} took {damageValue} damage");
 			GD.Print($"current health: {GetInteractionData().currentHealth}\n");
@@ -50,6 +52,14 @@ public partial class InteractionDirector : Node3D
 	}
 
 	// Protected
+	protected virtual void DisplayDamageValue(float damageValue) {
+		Label3D damageLabelInst = 
+			(Label3D) damageLabel.Instantiate();
+		this.AddChild(damageLabelInst);
+
+		damageLabelInst.Text = damageValue.ToString("0.00");
+	}
+
 	protected virtual void LoadInteractionData() {
 		interactionData = (InteractionData) GD.Load(interactionDataPath);
 	}
