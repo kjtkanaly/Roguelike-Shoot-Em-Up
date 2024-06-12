@@ -10,7 +10,6 @@ public partial class NPCInteractionDirector : InteractionDirector
 	// Protected
 
 	// Private
-	private float currentAoEDamage = 0.0f;
 	private NPCInteractionData interactionData;
 
 	//-------------------------------------------------------------------------
@@ -34,32 +33,6 @@ public partial class NPCInteractionDirector : InteractionDirector
 
 	// Private
 
-	private void StopSequence(Area3D otherArea) {
-		if (otherArea.Name == "Hit-Box-Director") {
-			StopAoEDamageSequence();
-		}
-	}
-
-	private void StopAoEDamageSequence() {
-		// Reset currentAoEDamage
-		currentAoEDamage = 0.0f;
-
-		// Stop Damage TImer
-		takeDamageTimer.Stop();
-	}
-
-	private void SettakeDamageTimerProps(float waitTimeVal, bool oneShotVal) {
-		takeDamageTimer.WaitTime = waitTimeVal;
-		takeDamageTimer.OneShot = oneShotVal;
-	}
-
-	private void ProjectileDamageSequence(Node3D projNode) {
-		// Get the projectile's damage
-		float damage = ((ProjectileDir) projNode).damage;
-
-		// Take damage from the projectile
-		TickHealth(damage);
-	}
 
 	//-------------------------------------------------------------------------
 	// Debug Methods

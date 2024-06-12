@@ -71,17 +71,17 @@ public partial class InteractionDirector : Node3D
 		// Create the new AoE object
 		ActiveAoE aoe = new ActiveAoE(this, aoeData);
 
-        // Start the AoE Damage Timer
-        aoe.delayTimer.Start();
+		// Start the AoE Damage Timer
+		aoe.delayTimer.Start();
 
 		// Setup the aoe to end once out of range
 		hitBoxDir.AreaExited += aoe.Destroy;
 	}
 
-	private void ProjectileDamageSequence(Node3D projNode) {
+	protected void ProjectileDamageSequence(Node3D projNode) {
 		if (projNode.Name != "Generic-Projectile") {
-            return;
-        }
+			return;
+		}
 
 		// Get the projectile's damage
 		float damage = ((ProjectileDir) projNode).damage;
@@ -104,7 +104,7 @@ public partial class InteractionDirector : Node3D
 
 		public ActiveAoE(InteractionDirector interDirInst, AreaOfEffectData aoeData) {
 			interDir = interDirInst;
-            interDir.AddChild(this);
+			interDir.AddChild(this);
 
 			damage = aoeData.damage;
 

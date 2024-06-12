@@ -71,13 +71,15 @@ class PlayerInteractionDirector {
     .. Public ..
     + int maxAttackCount
     .. Protected ..
+    # PlayerInventoryDirector inventoryDir
+    # PlayerObjectPickup pickupArea
     .. Private ..
-    - PlayerInventoryDirector inventoryDir
-    - PlayerObjectPickup pickupArea
+    - PlayerInteractionData interactionData
 
     == Methods ==
     .. Public ..
     + _Ready() : void
+    + GetInteractionData() : PlayerInteractionData
     + IsActionAlreadyEquipped() : int
     + IsPlayerMaxedOutOnAttacks() : bool
     + LevelUpEquippedAction() : bool
@@ -91,12 +93,13 @@ class NPCInteractionDirector {
     == Data ==
     .. Public ..
     .. Protected ..
-    + float currentAoEDamage
     .. Private ..
+    - NPCInteractionData interactionData
 
     == Methods ==
     .. Public ..
     + _Ready() : void
+    + GetInteractionData() : NPCInteractionData
     .. Protected ..
     # LoadInteractionData() : void
     .. Private ..
@@ -107,10 +110,12 @@ class EnemeyInteractionDirector {
     .. Public ..
     .. Protected ..
     .. Private ..
+    - EnemyInteractionData interactionData
 
     == Methods ==
     .. Public ..
     + _Ready() : void
+    + GetInteractionData() : EnemyInteractionData
     .. Protected ..
     # LoadInteractionData() : void
     .. Private ..
