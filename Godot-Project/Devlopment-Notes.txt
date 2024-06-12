@@ -1,7 +1,6 @@
 # Development Notes
 ## Next time on Dragon Ball Z
-- Figure out why the AoE damage isn't working/triggering. Then keep working on
-  the interaction classes.
+- Working on the damage value texts
 
 ## General Notes
 ### Version 

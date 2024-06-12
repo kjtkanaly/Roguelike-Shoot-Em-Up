@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxe2dh3ca635s"]
+[gd_scene load_steps=3 format=3 uid="uid://dxe2dh3ca635s"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Interaction/InteractionDirector.cs" id="1_2r1d0"]
+[ext_resource type="PackedScene" uid="uid://chspqdq8wydgh" path="res://Assets/Nodes/Labels/Damage/damage_value.tscn" id="2_gra45"]
 
 [node name="Generic-Interaction-Director" type="Node3D"]
 script = ExtResource("1_2r1d0")
+damageLabel = ExtResource("2_gra45")
 
 [node name="Hit-Box-Director" type="Area3D" parent="."]
 

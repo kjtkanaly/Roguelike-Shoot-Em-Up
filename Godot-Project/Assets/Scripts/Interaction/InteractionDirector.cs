@@ -13,6 +13,7 @@ public partial class InteractionDirector : Node3D
 	protected Area3D hitBoxDir;
 	protected CollisionShape3D  hitBoxShape;
 	protected Timer takeDamageTimer;
+	[Export] protected PackedScene damageLabel;
 
 	// Private
 	private InteractionData interactionData;
