@@ -8,3 +8,6 @@ text = "Test"
 font_size = 128
 outline_size = 16
 script = ExtResource("1_oayil")
+
+[node name="Duration-Timer" type="Timer" parent="."]
+one_shot = true

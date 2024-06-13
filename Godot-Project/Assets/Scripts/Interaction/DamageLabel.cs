@@ -10,6 +10,7 @@ public partial class DamageLabel : Label3D
     // Protected
 
     // Private
+    private Timer durationTimer;
     [Export] private float duration = 1.0f;
     private float time = 0.0f;
     private float maxAlpha = 1.0f;
@@ -20,6 +21,8 @@ public partial class DamageLabel : Label3D
     public override void _Ready()
     {
         base._Ready();
+
+        InitDurationTimer();
 
         alphaSlope = -maxAlpha / duration;
     }
@@ -40,6 +43,13 @@ public partial class DamageLabel : Label3D
     // Protected
 
     // Private
+    private void InitDurationTimer() {
+        durationTimer = GetNode<Timer>("Duration-Timer");
+        durationTimer.WaitTime = duration;
+        durationTimer.Start();
+        durationTimer.Timeout += QueueFree;
+    }
+
     private void FadeSprite() {
         float alpha = alphaSlope * time + maxAlpha;
 
@@ -56,7 +66,3 @@ public partial class DamageLabel : Label3D
     //-------------------------------------------------------------------------
 	// Debug Methods
 }
-
-// If you want to denote an area for future devlopement mark with it
-// with a to do comment. Example,
-// TO DO: Do some shit
