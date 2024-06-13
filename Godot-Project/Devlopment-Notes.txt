@@ -1,6 +1,8 @@
 # Development Notes
 ## Next time on Dragon Ball Z
-- Working on the damage value texts
+- Work out/find a better curve/motion fx for the animation of the dmg value.
+  However not high priotirty. Lets focus on the basic enemy pathfinding and
+  the enemy wave demo scene.
 
 ## General Notes
 ### Version 
@@ -49,9 +51,14 @@ attack object in each pickup object
 [x] Make diagram for the NPC class levels
 [ ] Make diagram for the attack object nodes
 [X] Think through utilizing a generic enemy node
-[ ] Clean up the player node dir. We don't really need a dedicated node for each thing
+[X] Clean up the player node dir. We don't really need a dedicated node for each thing
 [X] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
     stores the attack objects
-[ ] Continue working on the interaction director classes. Focus on damage
+[X] Continue working on the interaction director classes. Focus on damage
+[X] Make a damage label that spawns when a character takes damage
+[ ] curve/motion fx for the animation of the dmg value
+[ ] Set the enemy motion controller to to just move towards the player at a
+    constant speed
+[ ] Get a demo scene together that spawns mutiple enemies in a pattern
 [ ] Get Health, die, spawn demo together
 
