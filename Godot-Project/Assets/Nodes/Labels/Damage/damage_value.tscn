@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://chspqdq8wydgh"]
+[gd_scene load_steps=2 format=3 uid="uid://chspqdq8wydgh"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/DamageLabel.cs" id="1_oayil"]
 
 [node name="Damage-Value" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2, 0)
 text = "Test"
 font_size = 128
 outline_size = 16
+script = ExtResource("1_oayil")
