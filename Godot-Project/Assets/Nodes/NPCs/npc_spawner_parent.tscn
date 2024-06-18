@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://d3ou4sqysyd5t"]
+
+[node name="NPC-Spawner-Parent" type="Node3D"]
