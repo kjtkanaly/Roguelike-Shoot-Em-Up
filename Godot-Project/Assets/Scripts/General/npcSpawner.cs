@@ -32,6 +32,12 @@ public partial class NpcSpawner : Node3D
 		mainRoot.AddChild(npcNodeInst);
 	}
 
+	public float GetDistanceToPoint(Vector2 point) {
+		Vector2 thisPos = new Vector2(Position.X, Position.Z);
+		
+		return thisPos.DistanceTo(point);
+	}
+
 	// Protected
 
 	// Private

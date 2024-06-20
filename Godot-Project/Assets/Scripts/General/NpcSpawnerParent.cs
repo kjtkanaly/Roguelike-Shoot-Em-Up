@@ -15,6 +15,7 @@ public partial class NpcSpawnerParent : Node3D
 	private Timer spawnTimer;
 	[Export] private float spawnTimerWaitTime = 1.0f;
 	[Export] private bool spawnTimerOneShot = true;
+	private Node3D playerNode;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -29,7 +30,10 @@ public partial class NpcSpawnerParent : Node3D
 			}
 		}
 
-		// Get the Spawner Timer
+		// Get the player node
+		playerNode = GetNode<Node3D>("../Player-Director");
+
+		// Initialize the Spawner Timer
 		InitSpawnTimer();
 		
 	}
@@ -50,11 +54,38 @@ public partial class NpcSpawnerParent : Node3D
 	}
 
 	private void SpawnEnemies() {
-		GD.Print("Spawning Enemies");
-
+		/*
 		foreach (NpcSpawner spawner in spawnerList) {
 			spawner.SpawnNpc();
 		}
+		*/
+		GD.Print("Spawning Enemies");
+
+		NpcSpawner spawner = GetFurthestSpawnerFromPlayer();
+
+		// Defautl Check
+		if (spawner == null) {
+			GD.PushError("Null furthest spawner");
+		}
+
+		spawner.SpawnNpc();
+	}
+
+	private NpcSpawner GetFurthestSpawnerFromPlayer() {
+		Vector2 playerPos = new Vector2(playerNode.Position.X, 
+										playerNode.Position.Z);
+		float maxDistance = 0.0f;
+		NpcSpawner furthestSpawner = null;
+
+		foreach (NpcSpawner spawner in spawnerList) {
+			float dist2Player = spawner.GetDistanceToPoint(playerPos);
+			if (dist2Player > maxDistance) {
+				maxDistance = dist2Player;
+				furthestSpawner = spawner;
+			}
+		}
+
+		return furthestSpawner;
 	}
 
 	//-------------------------------------------------------------------------
