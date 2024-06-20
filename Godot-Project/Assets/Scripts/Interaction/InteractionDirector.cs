@@ -49,6 +49,8 @@ public partial class InteractionDirector : Node3D
 			GD.Print($"{this.Name} took {damageValue} damage");
 			GD.Print($"current health: {GetInteractionData().currentHealth}\n");
 		}
+
+		CheckIfDead();
 	}
 
 	// Protected
@@ -99,6 +101,16 @@ public partial class InteractionDirector : Node3D
 
 		// Take damage from the projectile
 		TickHealth(damage);
+	}
+
+	protected void CheckIfDead() {
+		if (GetInteractionData().currentHealth <= 0.0f) {
+			DeathSequence();
+		}
+	}
+
+	protected virtual void DeathSequence() {
+		QueueFree();
 	}
 
 	// Private

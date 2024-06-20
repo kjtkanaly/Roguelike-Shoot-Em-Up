@@ -4,7 +4,7 @@
 [ext_resource type="Shape3D" uid="uid://d0swo8vle8v5s" path="res://Assets/Resources/Shapes/Enemies/enemy_001.tres" id="2_ym4m2"]
 [ext_resource type="PackedScene" uid="uid://cjgsjohqrqnlp" path="res://Assets/Nodes/NPCs/Generic_Enemy/enemy_director.tscn" id="6_dr8d7"]
 
-[node name="Enemy-001" type="Node3D"]
+[node name="Enemy-001" type="Node3D" groups=["Enemy-Parent-Node"]]
 
 [node name="Enemy-Director" parent="." instance=ExtResource("6_dr8d7")]
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/enemy_001.tres"
