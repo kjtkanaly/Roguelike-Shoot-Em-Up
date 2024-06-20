@@ -1,8 +1,12 @@
 # Development Notes
 ## Next time on Dragon Ball Z
 - Work out/find a better curve/motion fx for the animation of the dmg value.
-  However not high priotirty. Lets focus on the basic enemy pathfinding and
-  the enemy wave demo scene.
+  However not high priotirty. 
+  
+- Add basic path following for the enemy. Just head straight towards the player
+- Move the spawn logic in the Demo003 class to a spawner parent class 
+- Add a timer to the npc spawner parent that will spawn a new enemy at the
+  spawner furthest from the player. 
 
 ## General Notes
 ### Version 
@@ -11,6 +15,9 @@ Godot Version: 4.2.1
 ### Collision Layer
 - Layer: Sets the physics layer of the object
 - Mask: Controls which layers the object collides with
+
+### Groups
+Can be used to organize child nodes and get only certain nodes
 
 ## General To Do Plans
 [X] Git

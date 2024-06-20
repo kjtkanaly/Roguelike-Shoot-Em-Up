@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7rwvv6eqv8hf"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/General/npcSpawner.cs" id="1_xvlku"]
+[ext_resource type="Script" path="res://Assets/Scripts/General/NpcSpawner.cs" id="1_g81wt"]
 
-[node name="NPC-Spawner" type="Node3D"]
-script = ExtResource("1_xvlku")
+[node name="NPC-Spawner" type="Node3D" groups=["NPC-Spawner"]]
+script = ExtResource("1_g81wt")

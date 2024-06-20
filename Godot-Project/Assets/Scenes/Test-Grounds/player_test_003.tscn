@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb7ic08f7s1sk"]
+[gd_scene load_steps=8 format=3 uid="uid://cb7ic08f7s1sk"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Demo003.cs" id="1_2vxik"]
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="1_pir4u"]
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="2_2x6ag"]
 [ext_resource type="Script" path="res://Assets/Scripts/Boundary/CardinalBoundaryBox.cs" id="3_v45bl"]
@@ -11,7 +10,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmaw7"]
 
 [node name="Player-Test-003" type="Node3D"]
-script = ExtResource("1_2vxik")
 
 [node name="Player-Director" parent="." instance=ExtResource("1_pir4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05568, 0)
