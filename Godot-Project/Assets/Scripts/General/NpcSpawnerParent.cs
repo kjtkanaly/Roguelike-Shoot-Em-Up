@@ -54,8 +54,6 @@ public partial class NpcSpawnerParent : Node3D
 	}
 
 	private void SpawnEnemies() {
-		GD.Print("Spawning Enemies");
-
 		NpcSpawner spawner = GetFurthestSpawnerFromPlayer();
 
 		// Defautl Check

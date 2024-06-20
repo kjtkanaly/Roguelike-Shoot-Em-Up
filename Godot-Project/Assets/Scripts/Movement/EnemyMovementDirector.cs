@@ -61,9 +61,6 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 										playerNode.Position.Z);
 		Vector2 thisPos = new Vector2(GlobalPosition.X, GlobalPosition.Z); 
 		Vector2 xzVelocity = (playerPos - thisPos).Normalized() * movementData.speed;
-		GD.Print($"Player Pos: {playerPos}");
-		GD.Print($"This Pos: {thisPos}");
-		GD.Print($"XZ Velocity: {xzVelocity}\n");
 		Velocity = new Vector3(xzVelocity.X, Velocity.Y, xzVelocity.Y);
 	}
 
