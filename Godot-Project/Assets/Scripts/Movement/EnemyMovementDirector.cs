@@ -12,6 +12,7 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 	// Private
 	private EnemyMovementData movementData;
 	private EnemeyInteractionDirector interactionDir;
+	private Node3D playerNode;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -21,10 +22,15 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 
 		string intDirPath = "Enemy-Interaction-Director/Generic-Interaction-Director";
 		interactionDir = GetNode<EnemeyInteractionDirector>(intDirPath);
+
+		playerNode = GetTree().Root.GetChild(0).GetNode<Node3D>("Player-Director");
 	}
 
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
+
+		FollowPlayer();
+		MoveAndSlide();
 	}
 
 	public override void _Process(double delta)
@@ -48,6 +54,17 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 	// Private
 	private void CheckIfPlayerIsAttackRange() {
 
+	}
+
+	private void FollowPlayer() {
+		Vector2 playerPos = new Vector2(playerNode.Position.X, 
+										playerNode.Position.Z);
+		Vector2 thisPos = new Vector2(GlobalPosition.X, GlobalPosition.Z); 
+		Vector2 xzVelocity = (playerPos - thisPos).Normalized() * movementData.speed;
+		GD.Print($"Player Pos: {playerPos}");
+		GD.Print($"This Pos: {thisPos}");
+		GD.Print($"XZ Velocity: {xzVelocity}\n");
+		Velocity = new Vector3(xzVelocity.X, Velocity.Y, xzVelocity.Y);
 	}
 
 	//-------------------------------------------------------------------------
