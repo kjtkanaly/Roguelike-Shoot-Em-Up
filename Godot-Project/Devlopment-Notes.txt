@@ -3,9 +3,9 @@
 - Work out/find a better curve/motion fx for the animation of the dmg value.
   However not high priotirty. 
   
-- Figure out why the tick animation is playing for aoe not based on the timer
-  delay. If your aoe attack leaves the enemy bounds then it auto resets to tick,
-  but it does seem to still take the required time to count down
+- Figured out why the aoe attacks weren't working. Is resolved now. Need to 
+  record the demo video for the team next. Then update the diagrams. Then add
+  some sort of death animation, currently they just despawn.
 
 ## General Notes
 ### Version 
@@ -17,6 +17,10 @@ Godot Version: 4.2.1
 
 ### Groups
 Can be used to organize child nodes and get only certain nodes
+
+### Resource Files
+Different instances of the same object will access the same file. They won't
+get their own unique instance of the resource file. 
 
 ## General To Do Plans
 [X] Git

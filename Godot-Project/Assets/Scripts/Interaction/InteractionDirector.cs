@@ -7,13 +7,14 @@ public partial class InteractionDirector : Node3D
 	// Game Componenets
 	// Public
 	[Export] public string interactionDataPath;
-	[Export] public bool debugMode = true;
+	[Export] public bool debugMode = false;
 
 	// Protected
 	protected Area3D hitBoxDir;
 	protected CollisionShape3D  hitBoxShape;
 	protected Timer takeDamageTimer;
 	[Export] protected PackedScene damageLabel;
+	protected float currentHealth = 0.0f;
 
 	// Private
 	private InteractionData interactionData;
@@ -41,16 +42,16 @@ public partial class InteractionDirector : Node3D
 	}
 
 	public void TickHealth(float damageValue) {
-		GetInteractionData().currentHealth -= damageValue;
+		currentHealth -= damageValue;
 
 		DisplayDamageValue(damageValue);
 
-		if (debugMode) {
-			GD.Print($"{this.Name} took {damageValue} damage");
-			GD.Print($"current health: {GetInteractionData().currentHealth}\n");
-		}
-
 		CheckIfDead();
+
+		if (debugMode) {
+			GD.Print($"{this} took {damageValue} damage");
+			GD.Print($"current health: {currentHealth}\n");
+		}
 	}
 
 	// Protected
@@ -67,7 +68,7 @@ public partial class InteractionDirector : Node3D
 	}
 
 	protected void InitHealthData() {
-		GetInteractionData().currentHealth = GetInteractionData().maxHealth;
+		currentHealth = GetInteractionData().maxHealth;
 	}
 
 	protected void BeginAoEDamageSequence(Area3D aoeArea) {
@@ -104,7 +105,7 @@ public partial class InteractionDirector : Node3D
 	}
 
 	protected void CheckIfDead() {
-		if (GetInteractionData().currentHealth <= 0.0f) {
+		if (currentHealth <= 0.0f) {
 			DeathSequence();
 		}
 	}
@@ -138,7 +139,7 @@ public partial class InteractionDirector : Node3D
 		}
 
 		public void Destroy(Area3D area) {
-			this.QueueFree();
+			QueueFree();
 		}
 
 		private void TickInteractionDirHealth() {

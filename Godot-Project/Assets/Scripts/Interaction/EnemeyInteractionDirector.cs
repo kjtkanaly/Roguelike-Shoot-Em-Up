@@ -20,12 +20,18 @@ public partial class EnemeyInteractionDirector : NPCInteractionDirector
 		base._Ready();
 
 		GetParentNode();
+
+		if (debugMode) {
+			GD.Print($"Enemy Node: {Name}");
+			GD.Print($"Parent Node: {parentNode}");
+			GD.Print($"Current Health: {currentHealth}\n");
+		}
 	}
 
-	//-------------------------------------------------------------------------
-	// Methods
-	// Public
-	public override EnemyInteractionData GetInteractionData() {
+    //-------------------------------------------------------------------------
+    // Methods
+    // Public
+    public override EnemyInteractionData GetInteractionData() {
 		return interactionData;
 	}
 
