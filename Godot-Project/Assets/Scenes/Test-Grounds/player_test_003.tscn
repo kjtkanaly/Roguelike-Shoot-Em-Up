@@ -15,6 +15,9 @@
 [node name="Player-Director" parent="." instance=ExtResource("1_pir4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05568, 0)
 
+[node name="Debug-Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 30, 20)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 2.4663e-16, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 10, 10)
 shadow_enabled = true
