@@ -1,22 +1,26 @@
 [gd_scene load_steps=5 format=3 uid="uid://4ntyyivyx4mj"]
 
-[ext_resource type="PackedScene" uid="uid://df1ikcf5pnn6f" path="res://Assets/Nodes/Player/player_attack_director.tscn" id="1_tp631"]
-[ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerInteractionDirector.cs" id="1_xg1bb"]
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/PlayerInteractionDirector.cs" id="1_wx6w4"]
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerObjectPickup.cs" id="3_y17dk"]
+[ext_resource type="PackedScene" uid="uid://dxe2dh3ca635s" path="res://Assets/Nodes/Generics/generic_interaction_director.tscn" id="4_3qvm7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_owfwg"]
 height = 1.0
 radius = 1.0
 
 [node name="Player-Interaction-Director" type="Node3D"]
-script = ExtResource("1_xg1bb")
 
-[node name="Player-Attack-Director" parent="." instance=ExtResource("1_tp631")]
-
-[node name="Pickup-Area" type="Area3D" parent="."]
+[node name="Item-Pickup-Director" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_y17dk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup-Area"]
+[node name="Item-Pickup-Shape" type="CollisionShape3D" parent="Item-Pickup-Director"]
 shape = SubResource("CylinderShape3D_owfwg")
+
+[node name="Generic-Interaction-Director" parent="." instance=ExtResource("4_3qvm7")]
+script = ExtResource("1_wx6w4")
+maxAttackCount = 6
+interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Player/default_player_001.tres"
+
+[editable path="Generic-Interaction-Director"]

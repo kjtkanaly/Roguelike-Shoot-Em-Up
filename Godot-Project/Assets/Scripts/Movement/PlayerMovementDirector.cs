@@ -7,16 +7,19 @@ public partial class PlayerMovementDirector : MovementDirector
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
-	// Private
-	private PlayerMovementData playerData;
-	private Vector2 inputDirection;
 	// Public
+
+	// Protected
+
+	// Private
+	private PlayerMovementData movementData;
+	private Vector2 inputDirection;
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
-		playerData = base.GetPlayerData();
+		base._Ready();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -24,7 +27,7 @@ public partial class PlayerMovementDirector : MovementDirector
 		base._PhysicsProcess(delta);
 
 		// Apply Vertical Velocity Logic
-		HandleJump(playerData.jumpVelocity);
+		HandleJump(movementData.jumpVelocity);
 
 		// Apply Laterial Velocity Logic
 		HandleBasicLateralMovement((float)delta);
@@ -39,6 +42,18 @@ public partial class PlayerMovementDirector : MovementDirector
 
 	//-------------------------------------------------------------------------
 	// Methods
+	// Public
+	public override void LoadMovementData() {
+		movementData = (PlayerMovementData) GD.Load(movementDataPath);
+	}
+
+	public override float GetMass() {
+		return movementData.mass;
+	}
+
+	// Protected
+
+	// Private
 	private void HandleJump(float jumpVelocity) {
 		if (Input.IsActionJustPressed("Jump") && IsOnFloor()) {
 			verticalVelocitySnapshot = jumpVelocity;
@@ -52,22 +67,22 @@ public partial class PlayerMovementDirector : MovementDirector
 		if (direction != Vector3.Zero) {
 			lateralVelocitySnapshot.X = Mathf.MoveToward(
 				lateralVelocitySnapshot.X, 
-				playerData.speed * direction.X, 
-				playerData.acceleration * delta);
+				movementData.speed * direction.X, 
+				movementData.acceleration * delta);
 
 			lateralVelocitySnapshot.Y = Mathf.MoveToward(
 				lateralVelocitySnapshot.Y,
-				playerData.speed * direction.Z,
-				playerData.acceleration * delta);
+				movementData.speed * direction.Z,
+				movementData.acceleration * delta);
 
 			lateralVelocitySnapshot = GeneralStatic.MagnitudeClamp(
 				lateralVelocitySnapshot, 
-				playerData.speed);
+				movementData.speed);
 		}
 		else {
 			lateralVelocitySnapshot = lateralVelocitySnapshot.MoveToward(
 				Vector2.Zero,
-				playerData.friction * delta);
+				movementData.friction * delta);
 		}
 	}
 
@@ -86,7 +101,7 @@ public partial class PlayerMovementDirector : MovementDirector
 			}
 
 			lateralVelocitySnapshot = new Vector2(direction.X, direction.Z) 
-									  * playerData.rollSpeed;
+									  * movementData.rollSpeed;
 			PAD.PlayRollAnimation(); // To Do: Change to a signals that the object will emit
 		}*/
 	}

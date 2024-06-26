@@ -1,6 +1,29 @@
-# Godot Version: 4.2.1
+# Development Notes
+## Next time on Dragon Ball Z
+- Work out/find a better curve/motion fx for the animation of the dmg value.
+  However not high priotirty. 
+  
+- Update the diagrams. Add death animation, currently they just despawn which
+  is not very poggers. Create a diagram that shows each collision object and
+  then list their levels and masking values. This will serve as a good quick 
+  ref.
 
-## Things to setup
+## General Notes
+### Version 
+Godot Version: 4.2.1
+
+### Collision Layer
+- Layer: Sets the physics layer of the object
+- Mask: Controls which layers the object collides with
+
+### Groups
+Can be used to organize child nodes and get only certain nodes
+
+### Resource Files
+Different instances of the same object will access the same file. They won't
+get their own unique instance of the resource file. 
+
+## General To Do Plans
 [X] Git
 [X] Godot
 [X] VS Code
@@ -32,7 +55,24 @@ attack object in each pickup object
 [X] Update the diagrams
 [X] Make Obj diagram for attack generic
 
-[ ] Make Generic NPC Node
-[ ] Create Generic Enemy Node (Utilizes Generic NPC node)
-[ ] Make diagram for the NPC class levels
+# NPC Devlopement
+[X] Make Generic NPC Node
+[X] Potentially overhaul the movement classes (atleast move them into common dir)
+[X] Create Generic Enemy Node (Utilizes Generic NPC node)
+[x] Make diagram for the NPC class levels
 [ ] Make diagram for the attack object nodes
+[X] Think through utilizing a generic enemy node
+[X] Clean up the player node dir. We don't really need a dedicated node for each thing
+[X] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
+    stores the attack objects
+[X] Continue working on the interaction director classes. Focus on damage
+[X] Make a damage label that spawns when a character takes damage
+[ ] curve/motion fx for the animation of the dmg value
+[X] Set the enemy motion controller to to just move towards the player at a
+    constant speed
+[X] Get a demo scene together that spawns mutiple enemies in a pattern
+[X] Get Health, die, spawn demo together
+[ ] Setup Attacks on the Player
+[ ] Create a Collision Diagram
+[ ] Add death animations
+

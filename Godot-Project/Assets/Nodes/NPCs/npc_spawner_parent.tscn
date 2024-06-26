@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3ou4sqysyd5t"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/General/NpcSpawnerParent.cs" id="1_ir3iq"]
+
+[node name="NPC-Spawner-Parent" type="Node3D"]
+script = ExtResource("1_ir3iq")
+
+[node name="Spawn-Timer" type="Timer" parent="."]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://byncinq0ln5wr"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/EnemeyInteractionDirector.cs" id="1_siubu"]
+[ext_resource type="PackedScene" uid="uid://dxe2dh3ca635s" path="res://Assets/Nodes/Generics/generic_interaction_director.tscn" id="2_rayia"]
+
+[node name="Enemy-Interaction-Director" type="Node3D"]
+
+[node name="Generic-Interaction-Director" parent="." instance=ExtResource("2_rayia")]
+script = ExtResource("1_siubu")
+interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/enemy_001.tres"
+
+[editable path="Generic-Interaction-Director"]

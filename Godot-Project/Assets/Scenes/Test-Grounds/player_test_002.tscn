@@ -1,20 +1,19 @@
 [gd_scene load_steps=7 format=3 uid="uid://bdocty3p0wd1e"]
 
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="1_7l6gd"]
+[ext_resource type="PackedScene" uid="uid://bdplet6ncrewt" path="res://Assets/Nodes/NPCs/Enemy-001/enemy_001.tscn" id="2_7cuyi"]
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="2_sxlnm"]
 [ext_resource type="PackedScene" uid="uid://bugnhb5l786jq" path="res://Assets/Nodes/Pickupables/Attacks/Projectiles/projectile_00_pickup.tscn" id="4_ly117"]
 [ext_resource type="PackedScene" uid="uid://b83e4lv25nuvh" path="res://Assets/Nodes/Pickupables/Attacks/Projectiles/projectile_01_pickup.tscn" id="5_qkk1i"]
 [ext_resource type="PackedScene" uid="uid://cs8gwtocl7o8m" path="res://Assets/Nodes/Pickupables/Attacks/Area-Of-Effect/AoE_00_pickup.tscn" id="6_p56lf"]
-[ext_resource type="PackedScene" uid="uid://d3566upaslqpj" path="res://Assets/Nodes/NPCs/General_NPC/npc_director.tscn" id="7_2lnck"]
 
 [node name="Player-Test-002" type="Node3D"]
 
 [node name="Player-Director" parent="." instance=ExtResource("2_sxlnm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15665, 0)
 
-[node name="NPC-Director" parent="." instance=ExtResource("7_2lnck")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 4, 25)
-collision_layer = 0
+[node name="Enemy-001" parent="." instance=ExtResource("2_7cuyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 25)
 
 [node name="Demo-Plane" parent="." instance=ExtResource("1_7l6gd")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)

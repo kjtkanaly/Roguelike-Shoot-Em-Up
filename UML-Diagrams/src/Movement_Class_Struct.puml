@@ -2,79 +2,121 @@
 
 title Movement Class Structure
 
+' Method Classes
 class MovementDirector <<CharacterBody3D>>{
     == Data ==
-    .. Private ..
-    - float gravity
     .. Public ..
+    + string movementDataPath
     .. Protected ..
-    + Vector2 lateralVelocitySnapshot
-    + float verticalVelocitySnapshot
-    + MovementData movementData
+    # Vector2 lateralVelocitySnapshot
+    # float verticalVelocitySnapshot
+    # float gravity
+    .. Private ..
+    - MovementData movementData
     == Methods ==
-    .. Private ..
     .. Public ..
+    + _Ready() : void
     + _PhysicsProcess() : void
+    + LoadMovementkData() : void
+    + GetMass() : float
     .. Protected ..
-    + GetPlayerData() : PlayerMovementData
-    + ApplyGravity() : void
+    .. Private ..
+    - ApplyGravity() : void
 }
 
-class PlayerMovementDirector <<MovementDirector>>{
+class PlayerMovementDirector{
     == Data ==
-    .. Private ..
-    - PlayerMovementData playerData
-	- Vector2 inputDirection
     .. Public ..
     .. Protected ..
+    .. Private ..
+    - PlayerMovementData movementData
+	- Vector2 inputDirection
     == Methods ==
+    .. Public ..
+    + _Ready() : void
+    + _PhysicsProcess() : void
+    + LoadMovementkData() : void
+    + GetMass() : float
+    .. Protected ..
     .. Private ..
     - HandleJump() : void
     - HandleBasicLateralMovement() : void
     - HandleDodgeRoll() : void
     - GetGlobalInputDirectionNorm() : Vector3
+}
+
+class NPCMovementDirector{
+    == Data ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+    - NPCMovementData movementData
+    == Methods ==
     .. Public ..
     + _Ready() : void
     + _PhysicsProcess() : void
+    + LoadMovementkData() : void
+    + GetMass() : float
     .. Protected ..
+    .. Private ..
 }
 
-class NPCMovementDirector <<MovementDirector>>{
+class EnemyMovementDirector {
     == Data ==
-    .. Private ..
     .. Public ..
     .. Protected ..
+    .. Private ..
+    - EnemyMovementData movementData
     == Methods ==
-    .. Private ..
     .. Public ..
+    + _Ready() : void
+    + _PhysicsProcess() : void
+    + LoadMovementkData() : void
+    + GetMass() : float
     .. Protected ..
+    .. Private ..
 }
 
-class GenericEnemyMovementDirector <<NPCMovementDirector>>{
-    == Data ==
-    .. Private ..
+MovementDirector <|-- PlayerMovementDirector
+MovementDirector <|-- NPCMovementDirector
+NPCMovementDirector <|-- EnemyMovementDirector
+
+' Resource Classes
+class MovementData <<Resource>> {
     .. Public ..
+    + float speed
+	+ float acceleration
+	+ float friction
+	+ float mass
     .. Protected ..
-    == Methods ==
     .. Private ..
-    .. Public ..
-    .. Protected ..
 }
 
-class PracticeDummyMovementDir <<GenericEnemyMovementDirector>>{
-    == Data ==
-    .. Private ..
+class PlayerMovementData <<Resource>> {
     .. Public ..
+    + float jumpVelocity  
+	+ float rotationSpeed
+	+ float rotationAcceleration
+	+ float mouseSensitivity
+	+ float rollSpeed
     .. Protected ..
-    == Methods ==
     .. Private ..
-    .. Public ..
-    .. Protected ..
 }
 
-MovementDirector *-- PlayerMovementDirector
-MovementDirector *-- NPCMovementDirector
-NPCMovementDirector *-- GenericEnemyMovementDirector
-GenericEnemyMovementDirector *-- PracticeDummyMovementDir
+class NPCMovementData <<Resource>> {
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+class EnemyMovementData <<Resource>> {
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+MovementData <|-- PlayerMovementData
+MovementData <|-- NPCMovementData
+NPCMovementData <|-- EnemyMovementData
 
 @enduml

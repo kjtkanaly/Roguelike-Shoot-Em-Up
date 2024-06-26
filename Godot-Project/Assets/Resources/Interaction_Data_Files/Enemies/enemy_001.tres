@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemyInteractionData" load_steps=2 format=3 uid="uid://3e0py7vbgx2k"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/EnemyInteractionData.cs" id="1_dwd76"]
+
+[resource]
+script = ExtResource("1_dwd76")
+maxHealth = 10.0

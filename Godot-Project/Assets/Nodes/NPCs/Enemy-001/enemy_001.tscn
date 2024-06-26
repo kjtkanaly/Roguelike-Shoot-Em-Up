@@ -1,7 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdplet6ncrewt"]
+[gd_scene load_steps=4 format=3 uid="uid://bdplet6ncrewt"]
 
-[ext_resource type="PackedScene" uid="uid://d3566upaslqpj" path="res://Assets/Nodes/NPCs/General_NPC/npc_director.tscn" id="1_o1y4h"]
+[ext_resource type="CapsuleMesh" uid="uid://bejip5100mptj" path="res://Assets/Resources/Meshes/Enemies/enemy_001.tres" id="2_liyw1"]
+[ext_resource type="Shape3D" uid="uid://d0swo8vle8v5s" path="res://Assets/Resources/Shapes/Enemies/enemy_001.tres" id="2_ym4m2"]
+[ext_resource type="PackedScene" uid="uid://cjgsjohqrqnlp" path="res://Assets/Nodes/NPCs/Generic_Enemy/enemy_director.tscn" id="6_dr8d7"]
 
-[node name="Enemy-001" type="Node3D"]
+[node name="Enemy-001" type="Node3D" groups=["Enemy-Parent-Node"]]
 
-[node name="NPC-Director" parent="." instance=ExtResource("1_o1y4h")]
+[node name="Enemy-Director" parent="." instance=ExtResource("6_dr8d7")]
+movementDataPath = "res://Assets/Resources/Movement_Data_Files/enemy_001.tres"
+
+[node name="CollisionShape3D" parent="Enemy-Director" index="0"]
+shape = ExtResource("2_ym4m2")
+
+[node name="MeshInstance3D" parent="Enemy-Director/Visual-Director" index="0"]
+mesh = ExtResource("2_liyw1")
+
+[node name="Hit-Box-Shape" parent="Enemy-Director/Enemy-Interaction-Director/Generic-Interaction-Director/Hit-Box-Director" index="0"]
+shape = ExtResource("2_ym4m2")
+
+[editable path="Enemy-Director"]
+[editable path="Enemy-Director/Enemy-Interaction-Director"]
+[editable path="Enemy-Director/Enemy-Interaction-Director/Generic-Interaction-Director"]

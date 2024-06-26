@@ -5,17 +5,25 @@ public partial class MovementDirector : CharacterBody3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
-	// Private
-	private float gravity = ProjectSettings.GetSetting(
-						   "physics/3d/default_gravity").AsSingle();
 	// Public
+	[Export] public string movementDataPath;
+
 	// Protected 
 	protected Vector2 lateralVelocitySnapshot;
 	protected float verticalVelocitySnapshot;
-	[Export] protected MovementData movementData;
+	protected float gravity = ProjectSettings.GetSetting(
+						   "physics/3d/default_gravity").AsSingle();
+
+	// Private
+	private MovementData movementData;
 
 	//-------------------------------------------------------------------------
 	// Game Events
+	public override void _Ready()
+	{
+		LoadMovementData();
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		// Update Velocity Snapshot Variables
@@ -23,7 +31,7 @@ public partial class MovementDirector : CharacterBody3D
 											  Velocity.Z);
 		verticalVelocitySnapshot = Velocity.Y;
 
-		ApplyGravity((float)delta);
+		ApplyGravity((float) delta);
 
 		Velocity = new Vector3(lateralVelocitySnapshot.X, 
 							   verticalVelocitySnapshot, 
@@ -34,13 +42,22 @@ public partial class MovementDirector : CharacterBody3D
 
 	//-------------------------------------------------------------------------
 	// Methods
-	protected PlayerMovementData GetPlayerData() {
-		return (PlayerMovementData) movementData;
+	// Public
+	public virtual void LoadMovementData() {
+		movementData = (MovementData) GD.Load(movementDataPath);
 	}
 
-	protected void ApplyGravity(float timeDelta) {
+	public virtual float GetMass() {
+		return movementData.mass;
+	}
+
+	// Protected
+
+
+	// Private
+	private void ApplyGravity(float timeDelta) {
 		if (!IsOnFloor())
-			verticalVelocitySnapshot -= movementData.mass * gravity * timeDelta;
+			verticalVelocitySnapshot -= GetMass() * gravity * timeDelta;
 	}
 
 	//-------------------------------------------------------------------------
