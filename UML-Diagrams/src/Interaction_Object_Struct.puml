@@ -4,20 +4,20 @@ title Interaction Object Structure
 
 ' Interaction Objects
 object GenericInteractionDirector_Object <<Node3D>> {
+    script = InteractionDirector()
 }
 
 object PlayerInteractionDirector_Object {
+    script = PlayerInteractionDirector()
 }
 
 object NPCInteractionDirector_Object {
+    script = NPCInteractionDirector()
 }
 
 object EnemyInteractionDirector_Object {
+    script = EnemeyInteractionDirector()
 }
-
-GenericInteractionDirector_Object *-- HitBoxDirector
-GenericInteractionDirector_Object *-- TakeDamageTimer
-HitBoxDirector *-- HitBoxShape
 
 GenericInteractionDirector_Object <|-- PlayerInteractionDirector_Object
 GenericInteractionDirector_Object <|-- NPCInteractionDirector_Object

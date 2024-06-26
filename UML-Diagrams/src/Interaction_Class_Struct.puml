@@ -2,36 +2,16 @@
 
 title Interaction Class Structure
 
-' Interaction Objects
-object GenericInteractionDirector_Object <<Node3D>> {
-    script = InteractionDirector()
-}
-
-object PlayerInteractionDirector_Object {
-    script = PlayerInteractionDirector()
-}
-
-object NPCInteractionDirector_Object {
-    script = NPCInteractionDirector()
-}
-
-object EnemyInteractionDirector_Object {
-    script = EnemeyInteractionDirector()
-}
-
-GenericInteractionDirector_Object <|-- PlayerInteractionDirector_Object
-GenericInteractionDirector_Object <|-- NPCInteractionDirector_Object
-NPCInteractionDirector_Object <|-- EnemyInteractionDirector_Object
-
-' Method Classes
 class InteractionDirector <<Node3D>>{
     == Data ==
     .. Public ..
     + string interactionDataPath
     .. Protected ..
-    # Area3D HitBoxDir
-    # CollisionShape3D HitBoxShape
-    # Timer TakeDamageTimer
+    # Area3D hitBoxDir
+    # CollisionShape3D hitBoxShape
+    # Timer takeDamageTimer
+    # PackedScene damageLabel
+    # float currentHealth
     .. Private ..
     - InteractionData interactionData
 
@@ -41,10 +21,13 @@ class InteractionDirector <<Node3D>>{
     + GetInteractionData() : InteractionData
     + TickHealth() : void
     .. Protected ..
+    # DisplayDamageValue() : void
     # LoadInteractionData() : void
     # InitHealthData() : void
     # BeginAoEDamageSequence() : void
     # ProjectileDamageSequence() : void
+    # CheckIfDead() : void
+    # DeathSequence() : void
     .. Private ..
 }
 
@@ -111,6 +94,7 @@ class EnemeyInteractionDirector {
     .. Protected ..
     .. Private ..
     - EnemyInteractionData interactionData
+    - Node parentNode
 
     == Methods ==
     .. Public ..
@@ -118,23 +102,14 @@ class EnemeyInteractionDirector {
     + GetInteractionData() : EnemyInteractionData
     .. Protected ..
     # LoadInteractionData() : void
+    # DeathSequence() : void
     .. Private ..
+    - GetParentNode() : void
 }
 
-GenericInteractionDirector_Object *- InteractionDirector
 InteractionDirector *- ActiveAoE
 InteractionDirector <|-- PlayerInteractionDirector
 InteractionDirector <|-- NPCInteractionDirector
 NPCInteractionDirector <|-- EnemeyInteractionDirector
-
-' Resource Classes
-class InteractionData <<Resource>> {
-    .. Public ..
-    + bool canTakeDamage
-    + float maxHealth
-    + float currentHealth
-    .. Protected ..
-    .. Private ..
-}
 
 @enduml
