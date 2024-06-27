@@ -72,6 +72,8 @@ attack object in each pickup object
     constant speed
 [X] Get a demo scene together that spawns mutiple enemies in a pattern
 [X] Get Health, die, spawn demo together
+[X] Update the interaction diagrams
+[ ] Setup Player Model and Animation Controller
 [ ] Setup Attacks on the Player
 [ ] Create a Collision Diagram
 [ ] Add death animations
