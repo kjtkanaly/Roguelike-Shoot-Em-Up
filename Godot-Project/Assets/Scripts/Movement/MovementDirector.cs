@@ -51,6 +51,10 @@ public partial class MovementDirector : CharacterBody3D
 		return movementData.mass;
 	}
 
+	public Vector2 GetLateralVelocitySnapshot() {
+		return lateralVelocitySnapshot;
+	}
+
 	// Protected
 
 
