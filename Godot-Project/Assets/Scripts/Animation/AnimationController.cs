@@ -61,7 +61,7 @@ public partial class AnimationController : Node3D
 
     // Protected
     protected virtual void SetAnimationPlayer() {
-        animationPlyr = GetNode<AnimationPlayer>("AnimationPlayer");
+        animationPlyr = GetNode<AnimationPlayer>("Animation_Player");
     }
 
     protected virtual void SetMovementDirector() {
@@ -75,7 +75,6 @@ public partial class AnimationController : Node3D
     protected void OrientateModel() {
         Vector2 velocity = GetMovementDirector().GetLateralVelocitySnapshot();
         float angle = -1 * (velocity.Angle() - Mathf.Pi/2);
-        GD.Print(angle);
 
         Rotation = new Vector3(Rotation.X, angle, Rotation.Z);
     }

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwxb12sxsnts7"
-path.s3tc="res://.godot/imported/Kidproto_Mask.png-efd6bc78e3df6b58e1a70de896190d0e.s3tc.ctex"
+uid="uid://dhsear7wacb63"
+path.s3tc="res://.godot/imported/Kid_Source_Mask.png-7e44e18a1a3e72f823aeabe48f460816.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Assets/Models/Import-From-Dropbox/Kidproto_Mask.png"
-dest_files=["res://.godot/imported/Kidproto_Mask.png-efd6bc78e3df6b58e1a70de896190d0e.s3tc.ctex"]
+source_file="res://Assets/Models/Import-From-Dropbox/Kid_Source_Mask.png"
+dest_files=["res://.godot/imported/Kid_Source_Mask.png-7e44e18a1a3e72f823aeabe48f460816.s3tc.ctex"]
 
 [params]
 
