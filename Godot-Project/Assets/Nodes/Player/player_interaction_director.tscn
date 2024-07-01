@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://4ntyyivyx4mj"]
+[gd_scene load_steps=6 format=3 uid="uid://4ntyyivyx4mj"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Interaction/PlayerInteractionDirector.cs" id="1_wx6w4"]
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerObjectPickup.cs" id="3_y17dk"]
@@ -7,6 +7,9 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_owfwg"]
 height = 1.0
 radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xw17q"]
+height = 1.0
 
 [node name="Player-Interaction-Director" type="Node3D"]
 
@@ -22,5 +25,12 @@ shape = SubResource("CylinderShape3D_owfwg")
 script = ExtResource("1_wx6w4")
 maxAttackCount = 6
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Player/default_player_001.tres"
+
+[node name="Hit-Box-Director" parent="Generic-Interaction-Director" index="0"]
+collision_layer = 0
+collision_mask = 512
+
+[node name="Hit-Box-Shape" parent="Generic-Interaction-Director/Hit-Box-Director" index="0"]
+shape = SubResource("CylinderShape3D_xw17q")
 
 [editable path="Generic-Interaction-Director"]

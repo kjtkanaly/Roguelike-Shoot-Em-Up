@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class AreaOfEffectData : AttackData
+public partial class AreaOfEffectData : TimeDelayedAttackData
 {
     // Area of Effect Parameters
     [Export] public Mesh areaMesh;

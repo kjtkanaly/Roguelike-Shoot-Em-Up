@@ -3,114 +3,114 @@ using System;
 
 public partial class PlayerAttackDirector : Node3D
 {
-	//-------------------------------------------------------------------------
-	// Game Componenets
-	// Public
-	public Timer timer = null;
-	public int level = 1;
-	[Export] public string dataPath;
+    //-------------------------------------------------------------------------
+    // Game Componenets
+    // Public
+    public Timer timer = null;
+    public int level = 1;
+    [Export] public string dataPath;
 
-	// Protected
-	protected Node MainRoot;
-	protected bool debug = false;
-	protected MeshInstance3D meshInstance = null;
+    // Protected
+    protected Node MainRoot;
+    protected bool debug = false;
+    protected MeshInstance3D meshInstance = null;
 
-	// Private 
-	private AttackData data = null;
-	//-------------------------------------------------------------------------
-	// Game Events
-	public override void _Ready()
-	{
-		LoadAttackDataFile();
+    // Private 
+    private AttackData data = null;
+    //-------------------------------------------------------------------------
+    // Game Events
+    public override void _Ready()
+    {
+        LoadAttackDataFile();
 
-		timer = GetAttackTimer();
-		meshInstance = GetMeshInstance();
-		MainRoot = GetTree().Root.GetChild(0);
+        timer = GetAttackTimer();
+        meshInstance = GetMeshInstance();
+        MainRoot = GetTree().Root.GetChild(0);
 
-		// Init the attack's timer
-		InitTimer();
+        // Init the attack's timer
+        InitTimer();
 
-	}
-	//-------------------------------------------------------------------------
-	// Methods
-	// Public Methods
-	public virtual void LoadAttackDataFile() {
-		data = (AttackData) GD.Load(dataPath);
-	}
+    }
+    //-------------------------------------------------------------------------
+    // Methods
+    // Public Methods
+    public virtual void LoadAttackDataFile() {
+        data = (AttackData) GD.Load(dataPath);
+    }
 
-	public virtual AttackData GetAttackData() {
-		return data;
-	}
+    public virtual AttackData GetAttackData() {
+        return data;
+    }
 
-	public Timer GetAttackTimer() {
-		foreach (Node node in GetChildren()) {
-			if (node.Name == "Attack Timer") {
-				return (Timer) node;
-			}
-		}
+    public Timer GetAttackTimer() {
+        foreach (Node node in GetChildren()) {
+            if (node.Name == "Attack Timer") {
+                return (Timer) node;
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	public MeshInstance3D GetMeshInstance() {
-		foreach (Node node in GetChildren()) {
-			if (node.Name == "Attack Mesh") {
-				return (MeshInstance3D) node;
-			}
-		}
+    public MeshInstance3D GetMeshInstance() {
+        foreach (Node node in GetChildren()) {
+            if (node.Name == "Attack Mesh") {
+                return (MeshInstance3D) node;
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	public void InitTimer() {
-		timer.Timeout += CallAttack;
+    public void InitTimer() {
+        timer.Timeout += CallAttack;
 
-		UpdateTimerTime();
-		StartTimer();
-	}
+        UpdateTimerTime();
+        StartTimer();
+    }
 
-	public bool IsDataEmpty() {
-		return data == null;
-	}
+    public bool IsDataEmpty() {
+        return data == null;
+    }
 
-	public virtual void SetVisuals() {
-		
-	}
+    public virtual void SetVisuals() {
+        
+    }
 
-	public virtual void SetColliderInformation() {
-		
-	}
+    public virtual void SetColliderInformation() {
+        
+    }
 
-	public virtual void LevelUpAttack() {
-		level += 1;
-	}
+    public virtual void LevelUpAttack() {
+        level += 1;
+    }
 
-	public virtual string GetAttackId() {
-		return data.id;
-	}
+    public virtual string GetAttackId() {
+        return data.id;
+    }
 
-	public virtual int GetAttackMaxLevel() {
-		return data.maxLevel;
-	}
+    public virtual int GetAttackMaxLevel() {
+        return data.maxLevel;
+    }
 
-	// Protected
-	protected virtual void UpdateTimerTime() {
-		timer.WaitTime = data.delay;
-	}
+    // Protected
+    protected virtual void UpdateTimerTime() {
+        timer.WaitTime = data.delay;
+    }
 
-	protected void StartTimer() {
-		timer.Start();
-	}
+    protected void StartTimer() {
+        timer.Start();
+    }
 
-	protected virtual void CallAttack() {
-		if (debug) {
-			GD.Print($"Generic Attack:");
-		}
-	}
+    protected virtual void CallAttack() {
+        if (debug) {
+            GD.Print($"Generic Attack:");
+        }
+    }
 
-	// Private Methods
+    // Private Methods
 
-	//-------------------------------------------------------------------------
-	// Debug Methods
+    //-------------------------------------------------------------------------
+    // Debug Methods
 }
 

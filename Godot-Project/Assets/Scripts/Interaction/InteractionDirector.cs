@@ -77,13 +77,17 @@ public partial class InteractionDirector : Node3D
 		}
 
 		// Get the Attack Information
-		AreaOfEffectData aoeData = aoeArea.GetParent<PlayerAoEAttackDirector>().GetAttackData();
+		TimeDelayedAttackData aoeData = (TimeDelayedAttackData) aoeArea.GetParent<PlayerAoEAttackDirector>().GetAttackData();
 
+		TimeDelayedDamageSequence(aoeData);
+	}
+
+	protected void TimeDelayedDamageSequence(TimeDelayedAttackData attackData) {
 		// Take the Initial Damage
-		TickHealth(aoeData.damage);
+		TickHealth(attackData.damage);
 
 		// Create the new AoE object
-		ActiveAoE aoe = new ActiveAoE(this, aoeData);
+		ActiveAoE aoe = new ActiveAoE(this, attackData);
 
 		// Start the AoE Damage Timer
 		aoe.delayTimer.Start();
@@ -126,7 +130,7 @@ public partial class InteractionDirector : Node3D
 		public Timer delayTimer;
 		private InteractionDirector interDir;	
 
-		public ActiveAoE(InteractionDirector interDirInst, AreaOfEffectData aoeData) {
+		public ActiveAoE(InteractionDirector interDirInst, TimeDelayedAttackData aoeData) {
 			interDir = interDirInst;
 			interDir.AddChild(this);
 

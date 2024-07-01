@@ -23,6 +23,8 @@ public partial class PlayerInteractionDirector : InteractionDirector
 
 		pickupArea = GetNode<PlayerObjectPickup>("../Item-Pickup-Director");
 		inventoryDir = new PlayerInventoryDirector(maxAttackCount, this);
+
+		hitBoxDir.AreaEntered += TakeMeleeDamage;
 	}
 
 	//-------------------------------------------------------------------------
@@ -54,6 +56,18 @@ public partial class PlayerInteractionDirector : InteractionDirector
 	}
 
 	// Private
+	private void TakeMeleeDamage(Area3D enemyArea) {
+		if (!enemyArea.IsInGroup("TimeDelayedAttack")) {
+			return;
+		}
+
+		// Get the Attack Information
+		EnemyInteractionData enemyInteractionData = enemyArea.GetParent<EnemeyInteractionDirector>().GetInteractionData();
+
+		// Take the Initial Damage
+		TickHealth(enemyInteractionData.meleeDamage);
+		TimeDelayedDamageSequence(aoeData);
+	}
 
 	//-------------------------------------------------------------------------
 	// Debug Methods

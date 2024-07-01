@@ -15,6 +15,9 @@ shape = ExtResource("2_ym4m2")
 [node name="MeshInstance3D" parent="Enemy-Director/Visual-Director" index="0"]
 mesh = ExtResource("2_liyw1")
 
+[node name="Hit-Box-Director" parent="Enemy-Director/Enemy-Interaction-Director/Generic-Interaction-Director" index="0"]
+collision_mask = 896
+
 [node name="Hit-Box-Shape" parent="Enemy-Director/Enemy-Interaction-Director/Generic-Interaction-Director/Hit-Box-Director" index="0"]
 shape = ExtResource("2_ym4m2")
 
