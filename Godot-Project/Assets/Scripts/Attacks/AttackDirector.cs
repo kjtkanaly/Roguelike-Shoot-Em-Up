@@ -1,19 +1,21 @@
 using Godot;
 using System;
 
-public partial class PlayerAttackDirector : Node3D
+public partial class AttackDirector : Node3D
 {
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    public Timer timer = null;
     public int level = 1;
     [Export] public string dataPath;
 
     // Protected
-    protected Node MainRoot;
     protected bool debug = false;
-    protected MeshInstance3D meshInstance = null;
+    protected Node mainRoot;
+    protected Timer attackTimer = null;
+    protected MeshInstance3D attackMesh = null;
+    protected Area3D hitBoxDirector = null;
+	protected CollisionShape3D hitBoxShape = null;
 
     // Private 
     private AttackData data = null;
@@ -23,13 +25,12 @@ public partial class PlayerAttackDirector : Node3D
     {
         LoadAttackDataFile();
 
-        timer = GetAttackTimer();
-        meshInstance = GetMeshInstance();
-        MainRoot = GetTree().Root.GetChild(0);
+        attackTimer = GetAttackTimerObject();
+        attackMesh = GetMeshInstanceObject();
+        mainRoot = GetTree().Root.GetChild(0);
 
-        // Init the attack's timer
-        InitTimer();
-
+        // Init the attack's Attack Timer
+        UpdateTimerSettings();
     }
     //-------------------------------------------------------------------------
     // Methods
@@ -42,9 +43,9 @@ public partial class PlayerAttackDirector : Node3D
         return data;
     }
 
-    public Timer GetAttackTimer() {
+    public Timer GetAttackTimerObject() {
         foreach (Node node in GetChildren()) {
-            if (node.Name == "Attack Timer") {
+            if (node.Name == "Attack-Timer") {
                 return (Timer) node;
             }
         }
@@ -52,21 +53,14 @@ public partial class PlayerAttackDirector : Node3D
         return null;
     }
 
-    public MeshInstance3D GetMeshInstance() {
+    public MeshInstance3D GetMeshInstanceObject() {
         foreach (Node node in GetChildren()) {
-            if (node.Name == "Attack Mesh") {
+            if (node.Name == "Attack-Mesh") {
                 return (MeshInstance3D) node;
             }
         }
 
         return null;
-    }
-
-    public void InitTimer() {
-        timer.Timeout += CallAttack;
-
-        UpdateTimerTime();
-        StartTimer();
     }
 
     public bool IsDataEmpty() {
@@ -86,20 +80,21 @@ public partial class PlayerAttackDirector : Node3D
     }
 
     public virtual string GetAttackId() {
-        return data.id;
+        return GetAttackData().id;
     }
 
     public virtual int GetAttackMaxLevel() {
-        return data.maxLevel;
+        return GetAttackData().maxLevel;
     }
 
     // Protected
-    protected virtual void UpdateTimerTime() {
-        timer.WaitTime = data.delay;
+    protected virtual void UpdateTimerSettings() {
+        attackTimer.Timeout += CallAttack;
+        attackTimer.WaitTime = GetAttackData().delay;
     }
 
     protected void StartTimer() {
-        timer.Start();
+        attackTimer.Start();
     }
 
     protected virtual void CallAttack() {

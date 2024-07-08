@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ProjectileData" load_steps=4 format=3 uid="uid://cvfsp2vixj0ok"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Resource-Scripts/ProjectileData.cs" id="1_pve5j"]
+[ext_resource type="Script" path="res://Assets/Scripts/Attacks/ProjectileData.cs" id="1_pve5j"]
 [ext_resource type="SphereMesh" uid="uid://ddgvwcsqc2bw5" path="res://Assets/Resources/Meshes/Projectiles/Projectile_Mesh_00.tres" id="1_slle8"]
 [ext_resource type="PackedScene" uid="uid://tsqtoijwgg5w" path="res://Assets/Nodes/Attacks/Projectiles/Ammo/projectile_00.tscn" id="2_lskt0"]
 

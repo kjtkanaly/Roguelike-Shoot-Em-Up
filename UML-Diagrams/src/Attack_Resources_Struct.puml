@@ -1,6 +1,6 @@
-@startuml Attack Data Class Struct
+@startuml Attack Resources Struct
 
-title Attack Data Class Struct
+title Attack Resources Struct
 
 class AttackData <<Resource>>{
     == Data ==

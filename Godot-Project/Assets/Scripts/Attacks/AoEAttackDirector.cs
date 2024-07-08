@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerAoEAttackDirector : PlayerAttackDirector
+public partial class AoEAttackDirector : RepetativeAttackDirector
 {
     //-------------------------------------------------------------------------
     // Game Componenets
@@ -11,8 +11,6 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 
     // Private
     private AreaOfEffectData data = null;
-    private Area3D AoEHitBoxDirector = null;
-	private CollisionShape3D AoEHitBox = null;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -35,11 +33,11 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 	}
 
     public override void SetVisuals() {
-        meshInstance.Mesh = data.areaMesh;
+        attackMesh.Mesh = data.areaMesh;
 	}
 
 	public override void SetColliderInformation() {
-        AoEHitBox.Shape = data.areaColliderShape;
+        hitBoxShape.Shape = data.areaColliderShape;
 	}
 
     public override void LevelUpAttack() {
@@ -58,10 +56,6 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 	}
 
     // Protected
-    protected override void UpdateTimerTime() {
-		timer.WaitTime = data.delay;
-	}
-
     protected override void CallAttack() {
 		if (debug) {
 			GD.Print($"AoE Attack:");
@@ -73,7 +67,7 @@ public partial class PlayerAoEAttackDirector : PlayerAttackDirector
 
     // Private
     private void SetAoEObjects() {
-		AoEHitBoxDirector = GetNode<Area3D>("AoE-Hit-Box-Director");
-		AoEHitBox = AoEHitBoxDirector.GetNode<CollisionShape3D>("AoE-Hit-Box");
+		hitBoxDirector = GetNode<Area3D>("AoE-Hit-Box-Director");
+		hitBoxShape = hitBoxDirector.GetNode<CollisionShape3D>("AoE-Hit-Box");
 	}
 }

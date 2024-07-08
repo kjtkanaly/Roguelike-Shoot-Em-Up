@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
+public partial class ProjectileAttackDirector : SingularAttackDirector
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
@@ -35,22 +35,18 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	}
 
 	public override string GetAttackId() {
-		return data.id;
+		return GetAttackData().id;
 	}
 
 	public override int GetAttackMaxLevel() {
-		return data.maxLevel;
+		return GetAttackData().maxLevel;
 	}
 
 	// Protected
-	protected override void UpdateTimerTime() {
-		timer.WaitTime = data.delay;
-	}
-
 	protected override void CallAttack() {
 		if (debug) {
 			GD.Print($"Projectile Attack:");
-			GD.Print($"Time Delay = {data.delay}s");
+			GD.Print($"Time Delay = {GetAttackData().delay}s");
 		}
 
 		ProjectileSequence();
@@ -60,20 +56,20 @@ public partial class PlayerProjectileAttackDirector : PlayerAttackDirector
 	private void ProjectileSequence () {
 		Vector3[] initVels = GetProjectileInitVelocities(
 								 level, 
-								 data.initVelAngleOffsetDeg);
+								 GetAttackData().initVelAngleOffsetDeg);
 
 		for (int i = 0; i < level; i++) {
 			// Instantiate the projectile
 			Node3D projectileInstParent = 
-				(Node3D) data.projectileObject.Instantiate();
-			MainRoot.AddChild(projectileInstParent);
+				(Node3D) GetAttackData().projectileObject.Instantiate();
+			mainRoot.AddChild(projectileInstParent);
 
 			ProjectileDir projectileInst = 
 				(ProjectileDir) projectileInstParent.GetChild(0);			
 			projectileInst.SetMeta("ID", "Projectile");
 			projectileInst.GlobalPosition = GlobalPosition;
-			projectileInst.LinearVelocity = initVels[i] * data.projectileSpeed;
-			projectileInst.damage = data.damage;
+			projectileInst.LinearVelocity = initVels[i] * GetAttackData().projectileSpeed;
+			projectileInst.damage = GetAttackData().damage;
 		}
 	}
 

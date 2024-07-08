@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class ProjectileData : AttackData
+public partial class ProjectileData : SingularAttackData
 {
     // Projectile Parameters
     [Export] public PackedScene projectileObject;

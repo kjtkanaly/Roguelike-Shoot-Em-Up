@@ -1,7 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cru1af3foat86"]
 
-[ext_resource type="PackedScene" uid="uid://bkc0hy0qtb8o8" path="res://Assets/Nodes/Attacks/player_attack_object.tscn" id="1_y4pp1"]
+[ext_resource type="PackedScene" uid="uid://bkc0hy0qtb8o8" path="res://Assets/Nodes/Attacks/attack_object.tscn" id="1_y4pp1"]
 
 [node name="Melee-Attack-001" type="Node3D"]
 
-[node name="Player-Attack-Object" parent="." instance=ExtResource("1_y4pp1")]
+[node name="Attack-Object" parent="." instance=ExtResource("1_y4pp1")]
+
+[editable path="Attack-Object"]
