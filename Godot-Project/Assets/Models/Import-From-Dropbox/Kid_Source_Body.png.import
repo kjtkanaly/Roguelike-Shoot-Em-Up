@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu0rntkqlbsu7"
+uid="uid://5ult7s6hr1f5"
 path.s3tc="res://.godot/imported/Kid_Source_Body.png-c86bd36c39141e93fd4fdf16ffeb7aa6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
