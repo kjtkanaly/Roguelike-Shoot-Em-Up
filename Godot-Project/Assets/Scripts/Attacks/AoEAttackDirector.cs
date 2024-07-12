@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class AoEAttackDirector : RepetativeAttackDirector
 {
@@ -11,6 +12,10 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
 
     // Private
     private AoEData data = null;
+    private int enemyCount = 0;
+    Dictionary<int, SceneTreeTimer> enemyTimers = 
+        new Dictionary<int, SceneTreeTimer>(); 
+    // GetTree().CreateTimer(1.0f)
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -70,14 +75,15 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
         // Call AoE Attack Sequence
 	}
 
-    protected void BeginAoEDamageSequence(Area3D enemyArea) {
-        GD.Print("Enemy Entered AoE");
+    protected void BeginAoEDamageSequence(Area3D opposingArea) {
+        GD.Print($"{opposingArea.Name} Entered AoE");
+
+        InteractionDirector otherIteraction = opposingArea.GetNode<InteractionDirector>("..");
+        TimeDelayedDamageSequence(otherIteraction);
 
         /*
 		// Get the Attack Information
 		RepetativeAttackData aoeData = (RepetativeAttackData) enemyArea.GetParent<AoEAttackDirector>().GetAttackData();
-
-		TimeDelayedDamageSequence(aoeData);
         */
 	}
 
@@ -85,11 +91,10 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
         GD.Print("Enemy Exited AoE");
     }
 
-	protected void TimeDelayedDamageSequence(RepetativeAttackData attackData) {
-		/*
+	protected void TimeDelayedDamageSequence(InteractionDirector otherIteraction) {
         // Take the Initial Damage
-		TickHealth(attackData.damage);
-
+		otherIteraction.TickHealth(GetAttackData().damage);
+        /*
 		// Create the new AoE object
 		ActiveAoE aoe = new ActiveAoE(this, attackData);
 
