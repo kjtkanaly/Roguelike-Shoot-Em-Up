@@ -9,13 +9,16 @@
 
 [node name="Attack-Object" parent="." instance=ExtResource("1_70t06")]
 script = ExtResource("2_5eboc")
-dataPath = "res://Assets/Resources/Player_Attack_Data_Files/AreaOfEffect_00.tres"
+dataPath = "res://Assets/Resources/Attack_Data_Files/AreaOfEffect_00.tres"
 metadata/ItemName = "AoE-00"
 
-[node name="Attack Mesh" parent="Attack-Object" index="1"]
+[node name="Attack-Mesh" parent="Attack-Object" index="1"]
 mesh = ExtResource("4_wqigc")
 
-[node name="AoE-Hit-Box" parent="Attack-Object/AoE-Hit-Box-Director" index="0"]
+[node name="Hit-Box-Director" parent="Attack-Object" index="2"]
+collision_layer = 0
+
+[node name="Hit-Box-Shape" parent="Attack-Object/Hit-Box-Director" index="0"]
 shape = ExtResource("5_cmrf8")
 
 [editable path="Attack-Object"]

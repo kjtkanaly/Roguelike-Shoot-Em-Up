@@ -62,10 +62,10 @@ public partial class PlayerInteractionDirector : InteractionDirector
         }
 
         // Get the Attack Information
-        TimeDelayedAttackData enemyInteractionData = enemyArea.GetParent<EnemeyInteractionDirector>().GetInteractionData();
+        EnemyInteractionData enemyInteractionData = enemyArea.GetParent<EnemeyInteractionDirector>().GetInteractionData();
 
         // Take the Initial Damage
-        TimeDelayedDamageSequence(enemyInteractionData);
+        // TimeDelayedDamageSequence(enemyInteractionData);
     }
 
     //-------------------------------------------------------------------------

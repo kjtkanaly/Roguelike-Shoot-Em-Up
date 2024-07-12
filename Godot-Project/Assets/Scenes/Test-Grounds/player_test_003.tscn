@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb7ic08f7s1sk"]
+[gd_scene load_steps=10 format=3 uid="uid://cb7ic08f7s1sk"]
 
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="1_pir4u"]
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="2_2x6ag"]
+[ext_resource type="PackedScene" uid="uid://dfd1pel6ux432" path="res://Assets/Nodes/Attacks/Area_Of_Effect/AoE_00_attack.tscn" id="2_5v7fu"]
 [ext_resource type="Script" path="res://Assets/Scripts/Boundary/CardinalBoundaryBox.cs" id="3_v45bl"]
 [ext_resource type="PackedScene" uid="uid://d3ou4sqysyd5t" path="res://Assets/Nodes/NPCs/npc_spawner_parent.tscn" id="4_2538u"]
 [ext_resource type="PackedScene" uid="uid://b7rwvv6eqv8hf" path="res://Assets/Nodes/NPCs/npc_spawner.tscn" id="5_4r0q7"]
@@ -14,6 +15,11 @@
 
 [node name="Player-Director" parent="." instance=ExtResource("1_pir4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05568, 0)
+
+[node name="AoE-00-Attack" parent="Player-Director" instance=ExtResource("2_5v7fu")]
+
+[node name="Attack-Object" parent="Player-Director/AoE-00-Attack" index="0"]
+collisionMaskValues = PackedInt32Array(10)
 
 [node name="Debug-Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 30, 20)
@@ -96,3 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 2.08165e-12)
 
 [node name="AoE-00-Pickup4" parent="." instance=ExtResource("7_rnfqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 2.08165e-12)
+
+[editable path="Player-Director/AoE-00-Attack"]
+[editable path="Player-Director/AoE-00-Attack/Attack-Object"]

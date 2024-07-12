@@ -27,8 +27,8 @@ maxAttackCount = 6
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Player/default_player_001.tres"
 
 [node name="Hit-Box-Director" parent="Generic-Interaction-Director" index="0"]
-collision_layer = 0
-collision_mask = 512
+collision_layer = 1024
+collision_mask = 0
 
 [node name="Hit-Box-Shape" parent="Generic-Interaction-Director/Hit-Box-Director" index="0"]
 shape = SubResource("CylinderShape3D_xw17q")

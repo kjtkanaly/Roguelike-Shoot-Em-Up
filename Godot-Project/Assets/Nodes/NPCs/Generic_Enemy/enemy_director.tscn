@@ -18,6 +18,7 @@ script = ExtResource("1_kc0qc")
 
 [node name="Hit-Box-Director" parent="Enemy-Interaction-Director/Generic-Interaction-Director" index="0" groups=["TimeDelayedAttack"]]
 collision_layer = 512
+collision_mask = 0
 
 [editable path="Enemy-Interaction-Director"]
 [editable path="Enemy-Interaction-Director/Generic-Interaction-Director"]

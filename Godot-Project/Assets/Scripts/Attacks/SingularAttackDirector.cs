@@ -14,6 +14,10 @@ public partial class SingularAttackDirector : AttackDirector
 
     //-------------------------------------------------------------------------
 	// Game Events
+    public override void _Ready()
+    {
+        base._Ready();
+    }
 
     //-------------------------------------------------------------------------
 	// Methods

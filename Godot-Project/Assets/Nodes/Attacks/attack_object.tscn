@@ -6,9 +6,9 @@
 script = ExtResource("1_ihvv3")
 metadata/ItemName = ""
 
-[node name="Attack Timer" type="Timer" parent="."]
+[node name="Attack-Timer" type="Timer" parent="."]
 
-[node name="Attack Mesh" type="MeshInstance3D" parent="."]
+[node name="Attack-Mesh" type="MeshInstance3D" parent="."]
 
 [node name="Hit-Box-Director" type="Area3D" parent="."]
 collision_layer = 256

@@ -8,7 +8,7 @@ public partial class PlayerInventoryDirector : Node
 	// Game Componenets
 	// Public
 	// Protected
-	protected List<PlayerAttackDirector> attackInventory = null;
+	protected List<AttackDirector> attackInventory = null;
 
 	// Private
 	private int maxAttackCount;
@@ -17,7 +17,7 @@ public partial class PlayerInventoryDirector : Node
 	//-------------------------------------------------------------------------
 	// Methods
 	public PlayerInventoryDirector(int maxAttackCountVal, PlayerInteractionDirector interDirInst) {
-		attackInventory = new List<PlayerAttackDirector>();
+		attackInventory = new List<AttackDirector>();
 		maxAttackCount = maxAttackCountVal;
 		interDir = interDirInst;
 	}
@@ -48,8 +48,8 @@ public partial class PlayerInventoryDirector : Node
 	}
 
 	public void EquipNewAttack(PackedScene newAttack) {
-		PlayerAttackDirector newAttackObject = 
-			(PlayerAttackDirector) newAttack.Instantiate().GetChild(0);
+		AttackDirector newAttackObject = 
+			(AttackDirector) newAttack.Instantiate().GetChild(0);
 		interDir.AddChild(newAttackObject.GetParent());
 
 		attackInventory.Add(newAttackObject);

@@ -7,7 +7,7 @@
 
 [node name="Attack-Object" parent="." instance=ExtResource("1_po5r8")]
 script = ExtResource("2_e48yo")
-dataPath = "res://Assets/Resources/Player_Attack_Data_Files/Projectile_01.tres"
+dataPath = "res://Assets/Resources/Attack_Data_Files/Projectile_01.tres"
 metadata/ItemName = "Projectile-01"
 
 [editable path="Attack-Object"]

@@ -7,15 +7,16 @@ public partial class AttackDirector : Node3D
     // Game Componenets
     // Public
     public int level = 1;
+    [Export] int[] collisionMaskValues = {1};
     [Export] public string dataPath;
 
     // Protected
-    protected bool debug = false;
+    protected bool debug = true;
     protected Node mainRoot;
     protected Timer attackTimer = null;
     protected MeshInstance3D attackMesh = null;
     protected Area3D hitBoxDirector = null;
-	protected CollisionShape3D hitBoxShape = null;
+    protected CollisionShape3D hitBoxShape = null;
 
     // Private 
     private AttackData data = null;
@@ -28,9 +29,6 @@ public partial class AttackDirector : Node3D
         attackTimer = GetAttackTimerObject();
         attackMesh = GetMeshInstanceObject();
         mainRoot = GetTree().Root.GetChild(0);
-
-        // Init the attack's Attack Timer
-        UpdateTimerSettings();
     }
     //-------------------------------------------------------------------------
     // Methods
@@ -100,6 +98,12 @@ public partial class AttackDirector : Node3D
     protected virtual void CallAttack() {
         if (debug) {
             GD.Print($"Generic Attack:");
+        }
+    }
+
+    protected virtual void SetCollisionMaskValues() {
+        foreach (int val in collisionMaskValues) {
+            hitBoxDirector.SetCollisionMaskValue(val, true);
         }
     }
 

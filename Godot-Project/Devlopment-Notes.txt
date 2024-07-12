@@ -12,6 +12,11 @@
   then list their levels and masking values. This will serve as a good quick 
   ref.
 
+- Work on transfering the damage methods to the respective attack classes and
+  out of the interaction class
+
+- Manually equip attacks while we get those working
+
 ## General Notes
 ### Version 
 Godot Version: 4.2.1

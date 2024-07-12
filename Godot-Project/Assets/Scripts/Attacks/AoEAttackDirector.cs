@@ -10,7 +10,7 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
     // Protected
 
     // Private
-    private AreaOfEffectData data = null;
+    private AoEData data = null;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -19,16 +19,21 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
         base._Ready();
 
         SetAoEObjects();
+        SetCollisionMaskValues();    
+
+        hitBoxDirector.AreaEntered += BeginAoEDamageSequence;
+        hitBoxDirector.AreaExited += EndAoEDamageSequence;
     }
 
     //-------------------------------------------------------------------------
     // Methods
     // Public
     public override void LoadAttackDataFile() {
-		data = (AreaOfEffectData) GD.Load(dataPath);
+        // Start here 7/10/2024
+		data = (AoEData) GD.Load(dataPath);
 	}
 
-    public override AreaOfEffectData GetAttackData() {
+    public override AoEData GetAttackData() {
 		return data;
 	}
 
@@ -44,7 +49,7 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
         base.LevelUpAttack();
 
         Scale += new Vector3(1, 1, 1) 
-				 * ((AreaOfEffectData) data).areaIncreaseStepSize;
+				 * ((AoEData) data).areaIncreaseStepSize;
 	}
 
     public override string GetAttackId() {
@@ -65,9 +70,40 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
         // Call AoE Attack Sequence
 	}
 
+    protected void BeginAoEDamageSequence(Area3D enemyArea) {
+        GD.Print("Enemy Entered AoE");
+
+        /*
+		// Get the Attack Information
+		RepetativeAttackData aoeData = (RepetativeAttackData) enemyArea.GetParent<AoEAttackDirector>().GetAttackData();
+
+		TimeDelayedDamageSequence(aoeData);
+        */
+	}
+
+    protected void EndAoEDamageSequence(Area3D enemyArea) {
+        GD.Print("Enemy Exited AoE");
+    }
+
+	protected void TimeDelayedDamageSequence(RepetativeAttackData attackData) {
+		/*
+        // Take the Initial Damage
+		TickHealth(attackData.damage);
+
+		// Create the new AoE object
+		ActiveAoE aoe = new ActiveAoE(this, attackData);
+
+		// Start the AoE Damage Timer
+		aoe.delayTimer.Start();
+
+		// Setup the aoe to end once out of range
+		hitBoxDir.AreaExited += aoe.Destroy;
+        /**/
+	}
+
     // Private
     private void SetAoEObjects() {
-		hitBoxDirector = GetNode<Area3D>("AoE-Hit-Box-Director");
-		hitBoxShape = hitBoxDirector.GetNode<CollisionShape3D>("AoE-Hit-Box");
+		hitBoxDirector = GetNode<Area3D>("Hit-Box-Director");
+		hitBoxShape = hitBoxDirector.GetNode<CollisionShape3D>("Hit-Box-Shape");
 	}
 }
