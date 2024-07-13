@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class AoEAttackDirector : RepetativeAttackDirector
 {
@@ -26,6 +27,7 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
 		SetCollisionMaskValues();    
 
 		hitBoxDirector.AreaEntered += AddEnemyTimer;
+		hitBoxDirector.AreaExited += RemoveEnemyTimer;
 	}
 
 	public override void _Process(double delta)
@@ -72,18 +74,7 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
 	}
 
 	// Protected
-	protected override void CallAttack() {
-		if (debug) {
-			GD.Print($"AoE Attack:");
-			GD.Print($"Time Delay = {data.delay}s");
-		}
-
-		// Call AoE Attack Sequence
-	}
-
 	protected void AddEnemyTimer(Area3D enemyArea) {
-		GD.Print($"{enemyArea.Name} Entered AoE");
-
 		// Get the Opposing objects Interaction Director
 		InteractionDirector otherIteraction = 
 			enemyArea.GetNode<InteractionDirector>("..");
@@ -102,13 +93,36 @@ public partial class AoEAttackDirector : RepetativeAttackDirector
 		
 		// Log the Opposing Area and it's timer
 		enemyTimers.Add(otherIteraction.GetInstanceId(), timer);
+
+		if (debug) {
+			GD.Print($"{otherIteraction.GetInstanceId()} has entered the AoE");
+		}
 	}
 
-	protected void EndAoEDamageSequence(Area3D enemyArea) {
-		GD.Print("Enemy Exited AoE");
+	protected void RemoveEnemyTimer(Area3D enemyArea) {
+		// Get the Opposing objects Interaction Director
+		InteractionDirector otherIteraction = 
+			enemyArea.GetNode<InteractionDirector>("..");
+
+		// Safety Check
+		if (otherIteraction == null) {
+			GD.Print($"{enemyArea.Name} had no Interaction Area");
+			return;
+		}
+
+		// Get the enemy's interaction dir Unique ID
+		ulong enemyID = otherIteraction.GetInstanceId();
+
+		// Remove the enemy's damage timer from the dictionary
+		enemyTimers.Remove(enemyID);
+
+		if (debug) {
+			GD.Print($"{enemyID} has left the AoE");
+		}
 	}
 
 	protected void CheckEnemyTimers() {
+		// Loop through the current list of enemy timers
 		foreach(KeyValuePair<ulong, SceneTreeTimer> enemyTimer in enemyTimers) {
 			if (enemyTimer.Value.TimeLeft <= 0) {
 				InteractionDirector enemyInteraction = 
