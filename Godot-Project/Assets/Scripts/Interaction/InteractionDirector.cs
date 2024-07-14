@@ -30,7 +30,6 @@ public partial class InteractionDirector : Node3D
 		LoadInteractionData();
 		InitHealthData();
 		
-		hitBoxDir.AreaEntered += BeginAoEDamageSequence;
 		hitBoxDir.BodyEntered += ProjectileDamageSequence; 
 	}
 
@@ -71,31 +70,6 @@ public partial class InteractionDirector : Node3D
 		currentHealth = GetInteractionData().maxHealth;
 	}
 
-	protected void BeginAoEDamageSequence(Area3D aoeArea) {
-		if (aoeArea.Name != "AoE-Hit-Box-Director") {
-			return;
-		}
-
-		// Get the Attack Information
-		RepetativeAttackData aoeData = (RepetativeAttackData) aoeArea.GetParent<AoEAttackDirector>().GetAttackData();
-
-		TimeDelayedDamageSequence(aoeData);
-	}
-
-	protected void TimeDelayedDamageSequence(RepetativeAttackData attackData) {
-		// Take the Initial Damage
-		TickHealth(attackData.damage);
-
-		// Create the new AoE object
-		ActiveAoE aoe = new ActiveAoE(this, attackData);
-
-		// Start the AoE Damage Timer
-		aoe.delayTimer.Start();
-
-		// Setup the aoe to end once out of range
-		hitBoxDir.AreaExited += aoe.Destroy;
-	}
-
 	protected void ProjectileDamageSequence(Node3D projNode) {
 		if (projNode.Name != "Generic-Projectile") {
 			return;
@@ -122,34 +96,6 @@ public partial class InteractionDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Debug Methods
-
-	//-------------------------------------------------------------------------
-	// Nested Classes
-	public partial class ActiveAoE : Node{
-		public float damage = 0.0f;
-		public Timer delayTimer;
-		private InteractionDirector interDir;	
-
-		public ActiveAoE(InteractionDirector interDirInst, RepetativeAttackData aoeData) {
-			interDir = interDirInst;
-			interDir.AddChild(this);
-
-			damage = aoeData.damage;
-
-			delayTimer = new Timer();
-			this.AddChild(delayTimer);
-			delayTimer.WaitTime = aoeData.delay;
-			delayTimer.Timeout += TickInteractionDirHealth;
-		}
-
-		public void Destroy(Area3D area) {
-			QueueFree();
-		}
-
-		private void TickInteractionDirHealth() {
-			interDir.TickHealth(damage);
-		}
-	}
 }
 
 // If you want to denote an area for future devlopement mark with it
