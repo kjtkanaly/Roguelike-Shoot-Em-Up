@@ -3,67 +3,67 @@ using System;
 
 public partial class EnemyMovementDirector : NPCMovementDirector
 {
-	//-------------------------------------------------------------------------
-	// Game Componenets
-	// Public
+    //-------------------------------------------------------------------------
+    // Game Componenets
+    // Public
 
-	// Protected
+    // Protected
 
-	// Private
-	private EnemyMovementData movementData;
-	private EnemeyInteractionDirector interactionDir;
-	private Node3D playerNode;
+    // Private
+    private EnemyMovementData movementData;
+    private EnemeyInteractionDirector interactionDir;
+    private Node3D playerNode;
 
-	//-------------------------------------------------------------------------
-	// Game Events
-	public override void _Ready()
-	{
-		base._Ready();
+    //-------------------------------------------------------------------------
+    // Game Events
+    public override void _Ready()
+    {
+        base._Ready();
 
-		string intDirPath = "Enemy-Interaction-Director/Generic-Interaction-Director";
-		interactionDir = GetNode<EnemeyInteractionDirector>(intDirPath);
+        string intDirPath = "Enemy-Interaction-Director/Generic-Interaction-Director";
+        interactionDir = GetNode<EnemeyInteractionDirector>(intDirPath);
 
-		playerNode = GetTree().Root.GetChild(0).GetNode<Node3D>("Player-Director");
-	}
+        playerNode = GetTree().Root.GetChild(0).GetNode<Node3D>("Player-Director");
+    }
 
-	public override void _PhysicsProcess(double delta) {
-		base._PhysicsProcess(delta);
+    public override void _PhysicsProcess(double delta) {
+        base._PhysicsProcess(delta);
 
-		FollowPlayer();
-		MoveAndSlide();
-	}
+        FollowPlayer();
+        MoveAndSlide();
+    }
 
-	public override void _Process(double delta)
-	{
-		CheckIfPlayerIsAttackRange();
-	}
+    public override void _Process(double delta)
+    {
+        CheckIfPlayerIsAttackRange();
+    }
 
-	//-------------------------------------------------------------------------
-	// Methods
-	// Public
-	public override void LoadMovementData() {
-		movementData = (EnemyMovementData) GD.Load(movementDataPath);
-	}
+    //-------------------------------------------------------------------------
+    // Methods
+    // Public
+    public override void LoadMovementData() {
+        movementData = (EnemyMovementData) GD.Load(movementDataPath);
+    }
 
-	public override float GetMass() {
-		return movementData.mass;
-	}
+    public override float GetMass() {
+        return movementData.mass;
+    }
 
-	// Protected
+    // Protected
 
-	// Private
-	private void CheckIfPlayerIsAttackRange() {
+    // Private
+    private void CheckIfPlayerIsAttackRange() {
 
-	}
+    }
 
-	private void FollowPlayer() {
-		Vector2 playerPos = new Vector2(playerNode.Position.X, 
-										playerNode.Position.Z);
-		Vector2 thisPos = new Vector2(GlobalPosition.X, GlobalPosition.Z); 
-		Vector2 xzVelocity = (playerPos - thisPos).Normalized() * movementData.speed;
-		Velocity = new Vector3(xzVelocity.X, Velocity.Y, xzVelocity.Y);
-	}
+    private void FollowPlayer() {
+        Vector2 playerPos = new Vector2(playerNode.Position.X, 
+                                        playerNode.Position.Z);
+        Vector2 thisPos = new Vector2(GlobalPosition.X, GlobalPosition.Z); 
+        Vector2 xzVelocity = (playerPos - thisPos).Normalized() * movementData.speed;
+        Velocity = new Vector3(xzVelocity.X, Velocity.Y, xzVelocity.Y);
+    }
 
-	//-------------------------------------------------------------------------
-	// Debug Methods
+    //-------------------------------------------------------------------------
+    // Debug Methods
 }
