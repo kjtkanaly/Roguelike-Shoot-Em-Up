@@ -18,11 +18,13 @@ public partial class InteractionDirector : Node3D
 
 	// Private
 	private InteractionData interactionData;
+	private Node mainRoot;
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
+		mainRoot = GetTree().Root.GetChild(0);
 		hitBoxDir = GetNode<Area3D>("Hit-Box-Director");
 		hitBoxShape = GetNode<CollisionShape3D>("Hit-Box-Director/Hit-Box-Shape");
 		takeDamageTimer = GetNode<Timer>("Take-Damage-Timer");
@@ -57,9 +59,13 @@ public partial class InteractionDirector : Node3D
 	protected virtual void DisplayDamageValue(float damageValue) {
 		Label3D damageLabelInst = 
 			(Label3D) damageLabel.Instantiate();
-		this.AddChild(damageLabelInst);
+		mainRoot.AddChild(damageLabelInst);
 
 		damageLabelInst.Text = damageValue.ToString("0.00");
+		damageLabelInst.GlobalPosition = 
+			new Vector3(GlobalPosition.X, 
+						damageLabelInst.GlobalPosition.Y, 
+						GlobalPosition.Z);
 	}
 
 	protected virtual void LoadInteractionData() {
