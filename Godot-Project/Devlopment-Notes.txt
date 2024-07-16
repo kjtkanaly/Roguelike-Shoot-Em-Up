@@ -15,7 +15,8 @@
 - Work on transfering the damage methods to the respective attack classes and
   out of the interaction class
 
-- Manually equip attacks while we get those working
+- 7/16/2024 - Update the UML for the AoE class. Get the melee attacks to work 
+  and be demoble. And then the projectile.
 
 ## General Notes
 ### Version 
@@ -68,8 +69,8 @@ attack object in each pickup object
 [X] Make Generic NPC Node
 [X] Potentially overhaul the movement classes (atleast move them into common dir)
 [X] Create Generic Enemy Node (Utilizes Generic NPC node)
-[x] Make diagram for the NPC class levels
-[ ] Make diagram for the attack object nodes
+[X] Make diagram for the NPC class levels
+[X] Make diagram for the attack object nodes
 [X] Think through utilizing a generic enemy node
 [X] Clean up the player node dir. We don't really need a dedicated node for each thing
 [X] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
@@ -83,7 +84,18 @@ attack object in each pickup object
 [X] Get Health, die, spawn demo together
 [X] Update the interaction diagrams
 [X] Setup Player Model and Animation Controller
-[ ] Setup Attacks on the Player
-[ ] Create a Collision Diagram
+[X] Setup Attacks on the Player
+[ ] Update the Attack and Movement class diagrams
+[ ] Unbreak the interaction class
+[ ] Create Merge into master
+
+# Demo-Run Up
+[ ] Create a Collision Layer Diagram
 [ ] Add death animations
+[ ] Add hit animations (Hue Shifting)
+[ ] Research how other 3-D games display damage labels
+[ ] Set the damage labels to be on the correct visual layer
+[ ] Bring in Dak's neighborhood scene 
+[ ] Create the player UI (Health, play time, display active attacks)
+[ ] Create the basic game loop (spawn in, die, stats screen,restart)
 
