@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb7ic08f7s1sk"]
+[gd_scene load_steps=11 format=3 uid="uid://cb7ic08f7s1sk"]
 
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="1_pir4u"]
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="2_2x6ag"]
-[ext_resource type="PackedScene" uid="uid://dfd1pel6ux432" path="res://Assets/Nodes/Attacks/Area_Of_Effect/AoE_00_attack.tscn" id="2_5v7fu"]
+[ext_resource type="PackedScene" uid="uid://dy7qxgnmaykmd" path="res://Assets/Nodes/Attacks/Area_Of_Effect/pentagram_AoE.tscn" id="2_t6aug"]
+[ext_resource type="Script" path="res://Assets/Scripts/Camera/CameraMovement.cs" id="3_gwisj"]
 [ext_resource type="Script" path="res://Assets/Scripts/Boundary/CardinalBoundaryBox.cs" id="3_v45bl"]
 [ext_resource type="PackedScene" uid="uid://d3ou4sqysyd5t" path="res://Assets/Nodes/NPCs/npc_spawner_parent.tscn" id="4_2538u"]
 [ext_resource type="PackedScene" uid="uid://b7rwvv6eqv8hf" path="res://Assets/Nodes/NPCs/npc_spawner.tscn" id="5_4r0q7"]
-[ext_resource type="PackedScene" uid="uid://bdplet6ncrewt" path="res://Assets/Nodes/NPCs/Enemy-001/enemy_001.tscn" id="7_ckx01"]
 [ext_resource type="PackedScene" uid="uid://cs8gwtocl7o8m" path="res://Assets/Nodes/Pickupables/Attacks/Area-Of-Effect/AoE_00_pickup.tscn" id="7_rnfqn"]
+[ext_resource type="PackedScene" uid="uid://cpkos2hxaqs60" path="res://Assets/Nodes/NPCs/Enemies/ghost.tscn" id="8_0bgt1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmaw7"]
 
@@ -16,10 +17,12 @@
 [node name="Player-Director" parent="." instance=ExtResource("1_pir4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05568, 0)
 
-[node name="AoE-00-Attack" parent="Player-Director" instance=ExtResource("2_5v7fu")]
+[node name="Pentagram-AoE" parent="Player-Director" instance=ExtResource("2_t6aug")]
 
-[node name="Attack-Object" parent="Player-Director/AoE-00-Attack" index="0"]
-collisionMaskValues = PackedInt32Array(10)
+[node name="Main-Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 7)
+current = true
+script = ExtResource("3_gwisj")
 
 [node name="Debug-Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 30, 20)
@@ -77,19 +80,19 @@ spawnTimerOneShot = false
 
 [node name="NPC-Spawner" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 2.08165e-12)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner2" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 2.08165e-12)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner3" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, -20)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner4" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 20)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
 [node name="AoE-00-Pickup" parent="." instance=ExtResource("7_rnfqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 15)
@@ -103,5 +106,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 2.08165e-12)
 [node name="AoE-00-Pickup4" parent="." instance=ExtResource("7_rnfqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 2.08165e-12)
 
-[editable path="Player-Director/AoE-00-Attack"]
-[editable path="Player-Director/AoE-00-Attack/Attack-Object"]
+[editable path="Player-Director/Pentagram-AoE"]
+[editable path="Player-Director/Pentagram-AoE/Attack-Object"]

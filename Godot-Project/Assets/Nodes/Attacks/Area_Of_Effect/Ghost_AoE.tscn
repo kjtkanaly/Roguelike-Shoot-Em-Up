@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://chgl7m71h00ka"]
+
+[ext_resource type="PackedScene" uid="uid://bkc0hy0qtb8o8" path="res://Assets/Nodes/Attacks/attack_object.tscn" id="1_q6r15"]
+[ext_resource type="Shape3D" uid="uid://dxl75o58lq53n" path="res://Assets/Resources/Shapes/AoE-Shapes/ghost_aoe.tres" id="2_fd67k"]
+[ext_resource type="Script" path="res://Assets/Scripts/Attacks/AoEAttackDirector.cs" id="2_we45t"]
+
+[node name="Ghost-AoE" type="Node3D"]
+
+[node name="Attack-Object" parent="." instance=ExtResource("1_q6r15")]
+script = ExtResource("2_we45t")
+collisionMaskValues = PackedInt32Array(11)
+dataPath = "res://Assets/Resources/Attack_Data_Files/AreaOfEffect_00.tres"
+
+[node name="Hit-Box-Shape" parent="Attack-Object/Hit-Box-Director" index="0"]
+shape = ExtResource("2_fd67k")
+
+[node name="Attack-Animated-Sprite" parent="Attack-Object" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[editable path="Attack-Object"]

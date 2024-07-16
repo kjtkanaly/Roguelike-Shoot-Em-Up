@@ -15,3 +15,5 @@ collision_layer = 256
 collision_mask = 0
 
 [node name="Hit-Box-Shape" type="CollisionShape3D" parent="Hit-Box-Director"]
+
+[node name="Attack-Animated-Sprite" type="AnimatedSprite3D" parent="."]

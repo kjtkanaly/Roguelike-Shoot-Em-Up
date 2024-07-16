@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy7qxgnmaykmd"]
+
+[ext_resource type="PackedScene" uid="uid://bkc0hy0qtb8o8" path="res://Assets/Nodes/Attacks/attack_object.tscn" id="1_ss7gc"]
+[ext_resource type="SpriteFrames" uid="uid://bn8pvmy21kkvb" path="res://Assets/Resources/Sprite_Frames/pentagram.tres" id="2_1r6f1"]
+[ext_resource type="Script" path="res://Assets/Scripts/Attacks/AoEAttackDirector.cs" id="2_bp1w5"]
+[ext_resource type="Shape3D" uid="uid://cqgo526l3ptdq" path="res://Assets/Resources/Shapes/AoE-Shapes/pentagram_aoe.tres" id="2_qq0bk"]
+
+[node name="Pentagram-AoE" type="Node3D"]
+
+[node name="Attack-Object" parent="." instance=ExtResource("1_ss7gc")]
+script = ExtResource("2_bp1w5")
+collisionMaskValues = PackedInt32Array(10)
+dataPath = "res://Assets/Resources/Attack_Data_Files/AreaOfEffect_00.tres"
+
+[node name="Hit-Box-Shape" parent="Attack-Object/Hit-Box-Director" index="0"]
+shape = ExtResource("2_qq0bk")
+
+[node name="Attack-Animated-Sprite" parent="Attack-Object" index="3"]
+transform = Transform3D(8, 0, 0, 0, -3.49691e-07, -8, 0, 8, -3.49691e-07, 0, 0, 0)
+texture_filter = 0
+sprite_frames = ExtResource("2_1r6f1")
+autoplay = "default"
+frame = 5
+frame_progress = 0.565728
+
+[editable path="Attack-Object"]
