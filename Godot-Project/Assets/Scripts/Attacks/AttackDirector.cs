@@ -28,6 +28,8 @@ public partial class AttackDirector : Node3D
 
         attackTimer = GetAttackTimerObject();
         attackMesh = GetMeshInstanceObject();
+        hitBoxDirector = GetNode<Area3D>("Hit-Box-Director");
+		hitBoxShape = hitBoxDirector.GetNode<CollisionShape3D>("Hit-Box-Shape");
         mainRoot = GetTree().Root.GetChild(0);
     }
     //-------------------------------------------------------------------------
