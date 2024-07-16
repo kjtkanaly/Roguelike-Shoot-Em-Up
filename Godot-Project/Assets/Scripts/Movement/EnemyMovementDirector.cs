@@ -45,9 +45,9 @@ public partial class EnemyMovementDirector : NPCMovementDirector
         movementData = (EnemyMovementData) GD.Load(movementDataPath);
     }
 
-    public override float GetMass() {
-        return movementData.mass;
-    }
+    public override EnemyMovementData GetMovementData() {
+		return movementData;
+	}
 
     // Protected
 
@@ -60,7 +60,8 @@ public partial class EnemyMovementDirector : NPCMovementDirector
         Vector2 playerPos = new Vector2(playerNode.Position.X, 
                                         playerNode.Position.Z);
         Vector2 thisPos = new Vector2(GlobalPosition.X, GlobalPosition.Z); 
-        Vector2 xzVelocity = (playerPos - thisPos).Normalized() * movementData.speed;
+        Vector2 xzVelocity = (playerPos - thisPos).Normalized() 
+                             * GetMovementData().speed;
         Velocity = new Vector3(xzVelocity.X, Velocity.Y, xzVelocity.Y);
     }
 

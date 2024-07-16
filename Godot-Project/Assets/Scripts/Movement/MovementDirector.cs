@@ -9,7 +9,7 @@ public partial class MovementDirector : CharacterBody3D
 	[Export] public string movementDataPath;
 
 	// Protected 
-	protected Vector2 lateralVelocitySnapshot;
+	protected Vector2 lateralDirection;
 	protected float verticalVelocitySnapshot;
 	protected float gravity = ProjectSettings.GetSetting(
 						   "physics/3d/default_gravity").AsSingle();
@@ -27,15 +27,13 @@ public partial class MovementDirector : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		// Update Velocity Snapshot Variables
-		lateralVelocitySnapshot = new Vector2(Velocity.X, 
-											  Velocity.Z);
 		verticalVelocitySnapshot = Velocity.Y;
 
 		ApplyGravity((float) delta);
 
-		Velocity = new Vector3(lateralVelocitySnapshot.X, 
-							   verticalVelocitySnapshot, 
-							   lateralVelocitySnapshot.Y);
+		UpdateLateralDirection();
+		OrientateBody();
+		SetLateralVelocity((float) delta);
 
 		MoveAndSlide();
 	}
@@ -47,21 +45,50 @@ public partial class MovementDirector : CharacterBody3D
 		movementData = (MovementData) GD.Load(movementDataPath);
 	}
 
-	public virtual float GetMass() {
-		return movementData.mass;
+	public virtual MovementData GetMovementData() {
+		return movementData;
 	}
 
-	public Vector2 GetLateralVelocitySnapshot() {
-		return lateralVelocitySnapshot;
+	public float GetLateralVelocityMag() {
+		Vector2 lateralVelocity = new Vector2(Velocity.X, Velocity.Z);
+		return lateralVelocity.Length();
 	}
 
 	// Protected
+	protected virtual void UpdateLateralDirection() {
+		Vector3 globalDirection = new Vector3(0.0f, 0.0f, 1.0f);
+		lateralDirection = new Vector2(globalDirection.X, globalDirection.Z);
+	}
 
+	protected void SetLateralVelocity(float delta) {
+		float currentSpeed = Velocity.Z;
+		float goalSpeed = 0;
+		if (lateralDirection.Length() != 0) {
+			goalSpeed = GetMovementData().speed;
+		}
+		currentSpeed = Mathf.MoveToward(
+				currentSpeed, 
+				goalSpeed, 
+				GetMovementData().acceleration * delta);
+		Vector2 latVelocity = 
+			new Vector2(Mathf.Sin(Rotation.Y), Mathf.Cos(Rotation.Y))
+			* currentSpeed;
+		Velocity = new Vector3(latVelocity.X, Velocity.Y, latVelocity.Y);
+	}
+
+	protected void OrientateBody() {
+		if (lateralDirection != Vector2.Zero) {
+			float angle = -1 * (lateralDirection.Angle() - Mathf.Pi/2);
+			Rotation = new Vector3(Rotation.X, angle, Rotation.Z);
+		}
+    }
 
 	// Private
 	private void ApplyGravity(float timeDelta) {
 		if (!IsOnFloor())
-			verticalVelocitySnapshot -= GetMass() * gravity * timeDelta;
+			verticalVelocitySnapshot -= GetMovementData().mass 
+										* gravity 
+										* timeDelta;
 	}
 
 	//-------------------------------------------------------------------------

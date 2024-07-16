@@ -43,8 +43,8 @@ public partial class NPCMovementDirector : MovementDirector
 		movementData = (NPCMovementData) GD.Load(movementDataPath);
 	}
 
-	public override float GetMass() {
-		return movementData.mass;
+	public override NPCMovementData GetMovementData() {
+		return movementData;
 	}
 
 	// Protected

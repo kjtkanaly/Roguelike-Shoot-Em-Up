@@ -27,15 +27,10 @@ public partial class PlayerMovementDirector : MovementDirector
 		base._PhysicsProcess(delta);
 
 		// Apply Vertical Velocity Logic
-		HandleJump(movementData.jumpVelocity);
+		HandleJump(GetMovementData().jumpVelocity);
 
 		// Apply Laterial Velocity Logic
-		HandleBasicLateralMovement((float)delta);
 		HandleDodgeRoll((float)delta);
-
-		Velocity = new Vector3(lateralVelocitySnapshot.X, 
-							   verticalVelocitySnapshot, 
-							   lateralVelocitySnapshot.Y);
 
 		MoveAndSlide();
 	}
@@ -47,11 +42,14 @@ public partial class PlayerMovementDirector : MovementDirector
 		movementData = (PlayerMovementData) GD.Load(movementDataPath);
 	}
 
-	public override float GetMass() {
-		return movementData.mass;
+	public override PlayerMovementData GetMovementData() {
+		return movementData;
 	}
 
 	// Protected
+	protected override void UpdateLateralDirection() {
+		lateralDirection = Input.GetVector("Left", "Right", "Up", "Down");
+	}
 
 	// Private
 	private void HandleJump(float jumpVelocity) {
@@ -62,9 +60,11 @@ public partial class PlayerMovementDirector : MovementDirector
 	}
 
 	private void HandleBasicLateralMovement(float delta) {
-		Vector3 direction = GetGlobalInputDirectionNorm();
+		/*
+		GD.Print(direction);
 
 		if (direction != Vector3.Zero) {
+			
 			lateralVelocitySnapshot.X = Mathf.MoveToward(
 				lateralVelocitySnapshot.X, 
 				movementData.speed * direction.X, 
@@ -84,6 +84,7 @@ public partial class PlayerMovementDirector : MovementDirector
 				Vector2.Zero,
 				movementData.friction * delta);
 		}
+		*/
 	}
 
 	private void HandleDodgeRoll(float delta) {
@@ -104,14 +105,6 @@ public partial class PlayerMovementDirector : MovementDirector
 									  * movementData.rollSpeed;
 			PAD.PlayRollAnimation(); // To Do: Change to a signals that the object will emit
 		}*/
-	}
-
-	private Vector3 GetGlobalInputDirectionNorm() {
-		inputDirection = Input.GetVector("Left", "Right", "Up", "Down");
-		Vector3 direction = (Transform.Basis 
-							 * new Vector3(inputDirection.X, 0, inputDirection.Y));
-		direction = direction.Normalized();
-		return direction;
 	}
 
 	//-------------------------------------------------------------------------

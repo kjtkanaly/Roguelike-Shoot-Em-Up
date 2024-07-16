@@ -31,9 +31,8 @@ public partial class AnimationController : Node3D
     {
         base._PhysicsProcess(delta);
 
-        if (GetMovementDirector().GetLateralVelocitySnapshot().Length() > 0.1f) {
+        if (GetMovementDirector().GetLateralVelocityMag() > 0.1f) {
             StartWalkRunAnimation();
-            OrientateModel();
         } else {
             StartIdleAnimation();
         }
@@ -70,13 +69,6 @@ public partial class AnimationController : Node3D
 
     protected virtual MovementDirector GetMovementDirector() {
         return movementDir;
-    }
-
-    protected void OrientateModel() {
-        Vector2 velocity = GetMovementDirector().GetLateralVelocitySnapshot();
-        float angle = -1 * (velocity.Angle() - Mathf.Pi/2);
-
-        Rotation = new Vector3(Rotation.X, angle, Rotation.Z);
     }
 
     // Private
