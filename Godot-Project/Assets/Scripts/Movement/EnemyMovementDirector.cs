@@ -28,14 +28,6 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 
     public override void _PhysicsProcess(double delta) {
         base._PhysicsProcess(delta);
-
-        FollowPlayer();
-        MoveAndSlide();
-    }
-
-    public override void _Process(double delta)
-    {
-        CheckIfPlayerIsAttackRange();
     }
 
     //-------------------------------------------------------------------------
@@ -50,20 +42,15 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 	}
 
     // Protected
+    protected override void UpdateLateralDirection() {
+        Vector2 playerLateralPos = new Vector2(playerNode.GlobalPosition.X, 
+                                               playerNode.GlobalPosition.Z);
+        Vector2 lateralPos = new Vector2(GlobalPosition.X, 
+                                         GlobalPosition.Z);
+		lateralDirection = (playerLateralPos - lateralPos).Normalized();
+	}
 
     // Private
-    private void CheckIfPlayerIsAttackRange() {
-
-    }
-
-    private void FollowPlayer() {
-        Vector2 playerPos = new Vector2(playerNode.Position.X, 
-                                        playerNode.Position.Z);
-        Vector2 thisPos = new Vector2(GlobalPosition.X, GlobalPosition.Z); 
-        Vector2 xzVelocity = (playerPos - thisPos).Normalized() 
-                             * GetMovementData().speed;
-        Velocity = new Vector3(xzVelocity.X, Velocity.Y, xzVelocity.Y);
-    }
 
     //-------------------------------------------------------------------------
     // Debug Methods

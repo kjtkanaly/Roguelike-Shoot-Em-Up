@@ -26,9 +26,6 @@ public partial class MovementDirector : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Update Velocity Snapshot Variables
-		verticalVelocitySnapshot = Velocity.Y;
-
 		ApplyGravity((float) delta);
 
 		UpdateLateralDirection();
@@ -85,10 +82,10 @@ public partial class MovementDirector : CharacterBody3D
 
 	// Private
 	private void ApplyGravity(float timeDelta) {
+		float verticalSpeed = Velocity.Y;
 		if (!IsOnFloor())
-			verticalVelocitySnapshot -= GetMovementData().mass 
-										* gravity 
-										* timeDelta;
+			verticalSpeed -= GetMovementData().mass  * gravity  * timeDelta;
+			Velocity = new Vector3(Velocity.X, verticalSpeed, Velocity.Z);
 	}
 
 	//-------------------------------------------------------------------------

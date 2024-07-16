@@ -54,8 +54,8 @@ public partial class PlayerMovementDirector : MovementDirector
 	// Private
 	private void HandleJump(float jumpVelocity) {
 		if (Input.IsActionJustPressed("Jump") && IsOnFloor()) {
-			verticalVelocitySnapshot = jumpVelocity;
-			GD.Print("Test Jump");
+			float verticalSpeed = jumpVelocity;
+			Velocity = new Vector3(Velocity.X, verticalSpeed, Velocity.Z);
 		}
 	}
 
