@@ -31,6 +31,8 @@ public partial class AttackDirector : Node3D
         hitBoxDirector = GetNode<Area3D>("Hit-Box-Director");
 		hitBoxShape = hitBoxDirector.GetNode<CollisionShape3D>("Hit-Box-Shape");
         mainRoot = GetTree().Root.GetChild(0);
+
+        GD.Print($"{GetNode<Node>("..").Name} ID: {GetInstanceId()}");
     }
     //-------------------------------------------------------------------------
     // Methods

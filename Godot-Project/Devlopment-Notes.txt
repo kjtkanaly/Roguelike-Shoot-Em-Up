@@ -3,20 +3,7 @@
 - Work out/find a better curve/motion fx for the animation of the dmg value.
   However not high priotirty. 
 
-- Keep working on overhauling the attackClasses and Resources to enable player
-  taking damage. Also the newly coined "RepetativeAttack" Data and Director
-  classes. Also this now implies a singular Attack.
-  
-- Update the diagrams. Add death animation, currently they just despawn which
-  is not very poggers. Create a diagram that shows each collision object and
-  then list their levels and masking values. This will serve as a good quick 
-  ref.
-
-- Work on transfering the damage methods to the respective attack classes and
-  out of the interaction class
-
-- 7/16/2024 - Update the UML for the AoE class. Get the melee attacks to work 
-  and be demoble. And then the projectile.
+- Rewrite the interaction and invetory classes that shit is aids currently
 
 ## General Notes
 ### Version 

@@ -6,21 +6,25 @@ public partial class AttackPickupDir : Area3D
 	//-------------------------------------------------------------------------
 	// Game Componenets
 	// Public
-	[Export] public PackedScene attackObject;
 	
 	// Protected
-	[Export] protected float idleFrequency = 1.0f;
-	[Export] protected float idleAmplitude = 0.01f;
-	protected Vector3 pos;
 
 	// Private
+	[Export] private float idleFrequency = 1.0f;
+	[Export] private float idleAmplitude = 0.01f;
+	[Export] private PackedScene attackObject;
+	private string attackName;
 	private float time = 0.0f;
+	private MeshInstance3D mesh;
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
-		
+		mesh = GetNode<MeshInstance3D>("Mesh");
+
+		attackName = attackObject.Instantiate().Name;
+		GD.Print($"Attack ID: {attackName}");
 	}
 
 	public override void _Process(double delta)
@@ -29,13 +33,21 @@ public partial class AttackPickupDir : Area3D
 		IdleAnimation(time);
 	}
 
+	public PackedScene GetAttackPackedScene() {
+		return attackObject;
+	}
+
+	public string GetAttackName() {
+		return attackName;
+	}
+
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
 
 	// Protected
 	protected virtual void IdleAnimation(float time) {
-		pos = Position;
+		Vector3 pos = Position;
 		pos.Y += idleAmplitude * MathF.Sin(2 * Mathf.Pi * idleFrequency * time);
 		Position = pos;
 	}

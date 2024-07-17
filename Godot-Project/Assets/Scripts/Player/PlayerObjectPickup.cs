@@ -27,8 +27,9 @@ public partial class PlayerObjectPickup : Area3D
     //-------------------------------------------------------------------------
     // Methods
     private void AddFreeActionToNearbyList(Area3D freeActionArea) {
-        if (debug) {
-            GD.Print($"{freeActionArea.Name} is within range");
+        if (!freeActionArea.IsInGroup("Attack-Pickup")) {
+            GD.Print($"Player Pickup Controller encountered an area that isn't an attack pickup");
+            return;
         }
 
         nearbyFreeActionNodes.Add((AttackPickupDir) freeActionArea);
@@ -46,8 +47,11 @@ public partial class PlayerObjectPickup : Area3D
     }
 
     private bool PickupFirstFreeAction() {
+        PackedScene attackPackedScene = 
+            nearbyFreeActionNodes[0].GetAttackPackedScene();
+
         // Get the nearby item's name
-        string itemName = (string) nearbyFreeActionNodes[0].GetMeta("Item_Name");
+        string itemName = nearbyFreeActionNodes[0].GetAttackName();
 
         // Check if we have already picked this up (Level Up or New Attack)
         int attackIndex = interactionDir.IsActionAlreadyEquipped(itemName);
@@ -59,7 +63,7 @@ public partial class PlayerObjectPickup : Area3D
             }
         } else {
             // Equip New Action
-            if (!EquipNewFreeAction(nearbyFreeActionNodes[0].attackObject)) {
+            if (!EquipNewFreeAction(attackPackedScene)) {
                 return false;
             }
         }
