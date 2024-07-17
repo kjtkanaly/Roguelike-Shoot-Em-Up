@@ -85,7 +85,7 @@ attack object in each pickup object
 [X] Update the interaction diagrams
 [X] Setup Player Model and Animation Controller
 [X] Setup Attacks on the Player
-[ ] Update the Attack and Movement class diagrams
+[X] Update the Attack and Movement class diagrams
 [ ] Unbreak the interaction class
 [ ] Create Merge into master
 

@@ -6,8 +6,7 @@ public partial class AttackDirector : Node3D
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    public int level = 1;
-    [Export] int[] collisionMaskValues = {1};
+    public int level = 1;    
     [Export] public string dataPath;
 
     // Protected
@@ -17,6 +16,7 @@ public partial class AttackDirector : Node3D
     protected MeshInstance3D attackMesh = null;
     protected Area3D hitBoxDirector = null;
     protected CollisionShape3D hitBoxShape = null;
+    [Export] protected int[] collisionMaskValues = {1};
 
     // Private 
     private AttackData data = null;
@@ -61,10 +61,6 @@ public partial class AttackDirector : Node3D
         }
 
         return null;
-    }
-
-    public bool IsDataEmpty() {
-        return data == null;
     }
 
     public virtual void SetVisuals() {

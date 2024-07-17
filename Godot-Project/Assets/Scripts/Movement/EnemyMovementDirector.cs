@@ -11,7 +11,6 @@ public partial class EnemyMovementDirector : NPCMovementDirector
 
     // Private
     private EnemyMovementData movementData;
-    private EnemeyInteractionDirector interactionDir;
     private Node3D playerNode;
 
     //-------------------------------------------------------------------------
@@ -19,9 +18,6 @@ public partial class EnemyMovementDirector : NPCMovementDirector
     public override void _Ready()
     {
         base._Ready();
-
-        string intDirPath = "Enemy-Interaction-Director/Generic-Interaction-Director";
-        interactionDir = GetNode<EnemeyInteractionDirector>(intDirPath);
 
         playerNode = GetTree().Root.GetChild(0).GetNode<Node3D>("Player-Director");
     }

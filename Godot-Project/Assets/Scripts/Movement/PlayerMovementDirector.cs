@@ -59,34 +59,6 @@ public partial class PlayerMovementDirector : MovementDirector
 		}
 	}
 
-	private void HandleBasicLateralMovement(float delta) {
-		/*
-		GD.Print(direction);
-
-		if (direction != Vector3.Zero) {
-			
-			lateralVelocitySnapshot.X = Mathf.MoveToward(
-				lateralVelocitySnapshot.X, 
-				movementData.speed * direction.X, 
-				movementData.acceleration * delta);
-
-			lateralVelocitySnapshot.Y = Mathf.MoveToward(
-				lateralVelocitySnapshot.Y,
-				movementData.speed * direction.Z,
-				movementData.acceleration * delta);
-
-			lateralVelocitySnapshot = GeneralStatic.MagnitudeClamp(
-				lateralVelocitySnapshot, 
-				movementData.speed);
-		}
-		else {
-			lateralVelocitySnapshot = lateralVelocitySnapshot.MoveToward(
-				Vector2.Zero,
-				movementData.friction * delta);
-		}
-		*/
-	}
-
 	private void HandleDodgeRoll(float delta) {
 		/*
 		// Check if currently rolling

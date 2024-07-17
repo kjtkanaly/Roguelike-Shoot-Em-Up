@@ -14,6 +14,7 @@ class AttackDirector <<Node3D>>{
     # MeshInstance3D attackMesh
     # Area3D hitBoxDirector
     # CollisionShape3D hitBoxShape
+    # int[] collisionMaskValues
     .. Private ..
     - AttackData data
 
@@ -23,7 +24,6 @@ class AttackDirector <<Node3D>>{
     + GetAttackData() : AttackData
     + GetAttackTimerObject() : Timer
     + GetMeshInstanceObject() : MeshInstance3D
-    + IsDataEmpty() : bool
     + SetVisuals() : void
     + SetColliderInformation() : void
     + LevelUpAttack() : void
@@ -33,6 +33,7 @@ class AttackDirector <<Node3D>>{
     # UpdateTimerSettings() : void
     # StartTimer() : void
     # CallAttack() : void
+    # SetCollisionMaskValues() : void
 }
 
 class SingularAttackDirector {
@@ -73,6 +74,7 @@ class RepetativeAttackDirector {
     == Data ==
     .. Private ..
     .. Protected ..
+    # Dictionary enemyTimers
     .. Private ..
     - RepetativeAttackData data
 
@@ -81,6 +83,9 @@ class RepetativeAttackDirector {
     + LoadAttackDataFile() : void
     + GetAttackData() : RepetativeAttackData
     .. Protected ..
+    # AddEnemyTimer() : void
+    # RemoveEnemyTimer() : void
+    # CheckEnemyTimers() : void
     .. Private ..
 }
 
@@ -88,8 +93,6 @@ class AoEAttackDirector {
     == Data ==
     .. Private ..
     - AreaOfEffectData data
-    - Area3D AoEHitBoxDirector
-    - CollisionShape3D AoEHitBox
 
     == Methods ==
     .. Public ..
