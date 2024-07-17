@@ -8,8 +8,8 @@
 
 [node name="Attack-Object" parent="." instance=ExtResource("1_q6r15")]
 script = ExtResource("2_we45t")
-collisionMaskValues = PackedInt32Array(11)
 dataPath = "res://Assets/Resources/Attack_Data_Files/AreaOfEffect_00.tres"
+collisionMaskValues = PackedInt32Array(11)
 
 [node name="Hit-Box-Shape" parent="Attack-Object/Hit-Box-Director" index="0"]
 shape = ExtResource("2_fd67k")
