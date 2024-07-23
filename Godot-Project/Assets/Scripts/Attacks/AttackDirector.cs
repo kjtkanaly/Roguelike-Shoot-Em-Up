@@ -21,6 +21,9 @@ public partial class AttackDirector : Node3D
 
     // Private 
     private AttackData data = null;
+    [Export] private float yRotationAngleDegree = 0;
+    private float yRotationAngle;
+
     //-------------------------------------------------------------------------
     // Game Events
     public override void _Ready()
@@ -34,7 +37,16 @@ public partial class AttackDirector : Node3D
         mainRoot = GetTree().Root.GetChild(0);
 
         attackName = GetNode<Node3D>("..").Name;
+        yRotationAngle = Mathf.DegToRad(yRotationAngleDegree);
     }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        Vector3 scale = Scale;
+        GlobalRotation = new Vector3(0, yRotationAngle, 0);
+        Scale = scale;
+    }
+
     //-------------------------------------------------------------------------
     // Methods
     // Public Methods

@@ -3,8 +3,6 @@
 - Work out/find a better curve/motion fx for the animation of the dmg value.
   However not high priotirty. 
 
-- Rewrite the interaction and invetory classes that shit is aids currently
-
 ## General Notes
 ### Version 
 Godot Version: 4.2.1
@@ -73,10 +71,11 @@ attack object in each pickup object
 [X] Setup Player Model and Animation Controller
 [X] Setup Attacks on the Player
 [X] Update the Attack and Movement class diagrams
-[ ] Unbreak the interaction class
+[X] Unbreak the interaction class
 [ ] Create Merge into master
 
 # Demo-Run Up
+[ ] Create a class diagram for the interaction and inventory classes
 [ ] Create a Collision Layer Diagram
 [ ] Add death animations
 [ ] Add hit animations (Hue Shifting)

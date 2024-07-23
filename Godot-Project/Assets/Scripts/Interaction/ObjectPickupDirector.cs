@@ -12,14 +12,11 @@ public partial class ObjectPickupDirector : Area3D
     public List<AttackPickupDir> nearbyFreeActionNodes = null;
 
     // Private
-    private PlayerInteractionDirector interactionDir = null; 
     private bool debug = false;
 
     //-------------------------------------------------------------------------
     // Game Events
     public override void _Ready() {
-        interactionDir = GetNode<PlayerInteractionDirector>("..");
-
         nearbyFreeActionNodes = new List<AttackPickupDir>();
 
         AreaEntered += AddFreeActionToNearbyList;
