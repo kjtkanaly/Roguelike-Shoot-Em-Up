@@ -18,8 +18,10 @@ public partial class PlayerInteractionDirector : InteractionDirector
     {
         base._Ready();
 
-        itemPickupDir = GetNode<ObjectPickupDirector>("../Item-Pickup-Director");
-        inventoryDir = GetNode<InventoryDirector>("../Inventory-Director");
+        itemPickupDir = GetNode<ObjectPickupDirector>("Item-Pickup-Director");
+        inventoryDir = GetNode<InventoryDirector>("Inventory-Director");
+
+        itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
     }
 
     //-------------------------------------------------------------------------
@@ -27,10 +29,6 @@ public partial class PlayerInteractionDirector : InteractionDirector
     // Public
     public override PlayerInteractionData GetInteractionData() {
         return interactionData;
-    }
-
-    public int GetAttackIndex(string itemName) {
-        return inventoryDir.IsActionAlreadyEquipped(itemName);
     }
 
     public bool IsPlayerMaxedOutOnAttacks() {
@@ -50,7 +48,9 @@ public partial class PlayerInteractionDirector : InteractionDirector
         string attackName = freeAttack.GetAttackName();
 
         // Check if we have already picked this up (Level Up or New Attack)
-        int attackIndex = GetAttackIndex(attackName);
+        int attackIndex = inventoryDir.GetAttackIndex(attackName);
+
+        GD.Print($"\n{attackName} Index: {attackIndex}");
 
         // Attack is already equipped and needs to be leveled up
         if (attackIndex != -1) {

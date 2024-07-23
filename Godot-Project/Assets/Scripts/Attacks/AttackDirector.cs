@@ -8,6 +8,7 @@ public partial class AttackDirector : Node3D
     // Public
     public int level = 1;    
     [Export] public string dataPath;
+    public string attackName = "";
 
     // Protected
     protected bool debug = true;
@@ -32,7 +33,7 @@ public partial class AttackDirector : Node3D
 		hitBoxShape = hitBoxDirector.GetNode<CollisionShape3D>("Hit-Box-Shape");
         mainRoot = GetTree().Root.GetChild(0);
 
-        GD.Print($"{GetNode<Node>("..").Name} ID: {GetInstanceId()}");
+        attackName = GetNode<Node3D>("..").Name;
     }
     //-------------------------------------------------------------------------
     // Methods

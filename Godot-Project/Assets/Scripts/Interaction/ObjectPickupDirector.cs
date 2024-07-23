@@ -6,17 +6,19 @@ public partial class ObjectPickupDirector : Area3D
 {
     //-------------------------------------------------------------------------
     // Game Componenets
+    // Public
+    [Signal]
+    public delegate void NewAttackNearbyEventHandler();
+    public List<AttackPickupDir> nearbyFreeActionNodes = null;
+
     // Private
     private PlayerInteractionDirector interactionDir = null; 
     private bool debug = false;
 
-    // Public
-    public List<AttackPickupDir> nearbyFreeActionNodes = null;
-
     //-------------------------------------------------------------------------
     // Game Events
     public override void _Ready() {
-        interactionDir = GetNode<PlayerInteractionDirector>("../Generic-Interaction-Director");
+        interactionDir = GetNode<PlayerInteractionDirector>("..");
 
         nearbyFreeActionNodes = new List<AttackPickupDir>();
 
@@ -33,6 +35,8 @@ public partial class ObjectPickupDirector : Area3D
         }
 
         nearbyFreeActionNodes.Add((AttackPickupDir) freeAttackPickupArea);
+
+        EmitSignal(SignalName.NewAttackNearby);
     }
 
     private void RemoveFreeActionFromNearbyList(Area3D freeAttackPickupArea) {

@@ -16,14 +16,15 @@ public partial class InventoryDirector : Node3D
 	//-------------------------------------------------------------------------
 	// Methods
 	public override void _Ready() {
-		_Ready();
+		base._Ready();
 
 		attackInventory = new List<AttackDirector>();
 	}
 
-	public int IsActionAlreadyEquipped(string itemName) {
+	public int GetAttackIndex(string itemName) {
 		for (int i = 0; i < attackInventory.Count; i++) {
-			if (attackInventory[i].GetAttackId() == itemName) {
+			GD.Print($"{attackInventory[i].attackName} == {itemName}");
+			if (attackInventory[i].attackName == itemName) {
 				return i;
 			}
 		}
