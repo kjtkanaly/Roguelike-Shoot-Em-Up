@@ -1,0 +1,135 @@
+@startuml Attack Class Structure
+
+title Attack Class Structure
+
+class AttackDirector <<Node3D>>{
+    == Data ==
+    .. Public ..
+    + int level
+    + string dataPath
+    .. Protected ..
+    # bool debug
+    # Node mainRoot
+    # Timer attackTimer
+    # MeshInstance3D attackMesh
+    # Area3D hitBoxDirector
+    # CollisionShape3D hitBoxShape
+    # int[] collisionMaskValues
+    .. Private ..
+    - AttackData data
+
+    == Methods ==
+    .. Public ..
+    + LoadAttackDataFile() : void
+    + GetAttackData() : AttackData
+    + GetAttackTimerObject() : Timer
+    + GetMeshInstanceObject() : MeshInstance3D
+    + SetVisuals() : void
+    + SetColliderInformation() : void
+    + LevelUpAttack() : void
+    + GetAttackId() : string
+    + GetAttackMaxLevel() : int
+    .. Protected ..
+    # UpdateTimerSettings() : void
+    # StartTimer() : void
+    # CallAttack() : void
+    # SetCollisionMaskValues() : void
+}
+
+class SingularAttackDirector {
+    == Data ==
+    .. Private ..
+    .. Protected ..
+    .. Private ..
+    - SingularAttackData data
+
+    == Methods ==
+    .. Public ..
+    + LoadAttackDataFile() : void
+    + GetAttackData() : SingularAttackData
+    .. Protected ..
+    .. Private ..
+}
+
+class ProjectileAttackDirector {
+    == Data ==
+    .. Private ..
+    - ProjectileData data
+
+    == Methods ==
+    .. Public ..
+    + LoadAttackDataFile() : void
+    + GetAttackData() : AttackData
+    + LevelUpAttack() : void
+    + GetAttackId() : int
+    + GetAttackMaxLevel() : int
+    .. Protected ..
+    # CallAttack() : void
+    .. Private ..
+    - ProjectileSequence() : void
+    - GetProjectileInitVelocities() : Vector3
+}
+
+class RepetativeAttackDirector {
+    == Data ==
+    .. Private ..
+    .. Protected ..
+    # Dictionary enemyTimers
+    .. Private ..
+    - RepetativeAttackData data
+
+    == Methods ==
+    .. Public ..
+    + LoadAttackDataFile() : void
+    + GetAttackData() : RepetativeAttackData
+    .. Protected ..
+    # AddEnemyTimer() : void
+    # RemoveEnemyTimer() : void
+    # CheckEnemyTimers() : void
+    .. Private ..
+}
+
+class AoEAttackDirector {
+    == Data ==
+    .. Private ..
+    - AreaOfEffectData data
+
+    == Methods ==
+    .. Public ..
+    + LoadAttackDataFile() : void
+    + GetAttackData() : AttackData
+    + SetVisuals() : void
+    + SetColliderInformation() : void
+    + LevelUpAttack() : void
+    + GetAttackId() : int
+    + GetAttackMaxLevel() : int
+    .. Protected ..
+    # UpdateTimerSettings() : void
+    # CallAttack() : void
+    .. Private ..
+    - SetAoEObjects() : void
+}
+
+class MeleeAttackDirector {
+    == Data ==
+    .. Private ..
+    .. Protected ..
+    .. Private ..
+    - MeleeAttackData data
+
+    == Methods ==
+    .. Public ..
+    + LoadAttackDataFile() : void
+    + GetAttackData() : MeleeAttackData
+    .. Protected ..
+    .. Private ..
+}
+
+AttackDirector <|-- SingularAttackDirector
+AttackDirector <|-- RepetativeAttackDirector
+SingularAttackDirector <|-- ProjectileAttackDirector
+SingularAttackDirector <|-- MeleeAttackDirector
+RepetativeAttackDirector <|-- AoEAttackDirector
+
+
+@enduml

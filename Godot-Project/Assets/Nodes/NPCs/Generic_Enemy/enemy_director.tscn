@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/Movement/EnemyMovementDirector.cs" id="1_kc0qc"]
 [ext_resource type="PackedScene" uid="uid://byncinq0ln5wr" path="res://Assets/Nodes/NPCs/Generic_Enemy/enemy_interaction_director.tscn" id="2_c3rsd"]
 
-[node name="Enemy-Director" type="CharacterBody3D"]
+[node name="Enemy-Director" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 10
 script = ExtResource("1_kc0qc")
@@ -16,9 +16,9 @@ script = ExtResource("1_kc0qc")
 
 [node name="Enemy-Interaction-Director" parent="." instance=ExtResource("2_c3rsd")]
 
-[node name="Hit-Box-Director" parent="Enemy-Interaction-Director/Generic-Interaction-Director" index="0"]
-collision_layer = 0
-collision_mask = 384
+[node name="Hit-Box-Director" parent="Enemy-Interaction-Director/Generic-Interaction-Director" index="0" groups=["TimeDelayedAttack"]]
+collision_layer = 512
+collision_mask = 0
 
 [editable path="Enemy-Interaction-Director"]
 [editable path="Enemy-Interaction-Director/Generic-Interaction-Director"]

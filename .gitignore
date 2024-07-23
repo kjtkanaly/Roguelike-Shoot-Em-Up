@@ -31,3 +31,6 @@ __pycache__
 
 # Mac
 *.DS_Store
+
+# Models
+*.glb

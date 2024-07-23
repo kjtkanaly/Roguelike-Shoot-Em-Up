@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://pkk0br1ffp07"]
+
+[ext_resource type="PackedScene" uid="uid://bkrxxu1c7wjcb" path="res://Assets/Nodes/Pickupables/Attacks/Attack-Pickup.tscn" id="1_73os3"]
+[ext_resource type="PackedScene" uid="uid://dy7qxgnmaykmd" path="res://Assets/Nodes/Attacks/Area_Of_Effect/pentagram_AoE.tscn" id="2_ee175"]
+[ext_resource type="ArrayMesh" uid="uid://cnjx0anctohp1" path="res://Assets/Models/Pentagram-Book-Instance/PentagramBook_Plane_001.res" id="3_4eqak"]
+
+[node name="Pentagon-Pickup" type="Node3D"]
+
+[node name="Attack-Pickup" parent="." instance=ExtResource("1_73os3")]
+attackObject = ExtResource("2_ee175")
+
+[node name="Mesh" parent="Attack-Pickup" index="1"]
+mesh = ExtResource("3_4eqak")
+
+[editable path="Attack-Pickup"]

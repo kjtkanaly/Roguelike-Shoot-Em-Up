@@ -3,58 +3,71 @@ using System;
 
 public partial class PlayerInteractionDirector : InteractionDirector
 {
-	//-------------------------------------------------------------------------
-	// Game Componenets
-	// Public
-	[Export] public int maxAttackCount = 6;
+    //-------------------------------------------------------------------------
+    // Game Componenets
+    // Public
 
-	// Protected
-	protected PlayerInventoryDirector inventoryDir = null;
-	protected PlayerObjectPickup pickupArea = null;
+    // Protected
 
-	// Private
-	private PlayerInteractionData interactionData;
+    // Private
+    private PlayerInteractionData interactionData;
 
-	//-------------------------------------------------------------------------
-	// Game Events
-	public override void _Ready()
-	{
-		base._Ready();
+    //-------------------------------------------------------------------------
+    // Game Events
+    public override void _Ready()
+    {
+        base._Ready();
 
-		pickupArea = GetNode<PlayerObjectPickup>("../Item-Pickup-Director");
-		inventoryDir = new PlayerInventoryDirector(maxAttackCount, this);
-	}
+        itemPickupDir = GetNode<ObjectPickupDirector>("Item-Pickup-Director");
+        inventoryDir = GetNode<InventoryDirector>("Inventory-Director");
 
-	//-------------------------------------------------------------------------
-	// Methods
-	// Public
-	public override PlayerInteractionData GetInteractionData() {
-		return interactionData;
-	}
+        itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
+    }
 
-	public int IsActionAlreadyEquipped(string itemName) {
-		return inventoryDir.IsActionAlreadyEquipped(itemName);
-	}
+    //-------------------------------------------------------------------------
+    // Methods
+    // Public
+    public override PlayerInteractionData GetInteractionData() {
+        return interactionData;
+    }
 
-	public bool IsPlayerMaxedOutOnAttacks() {
-		return inventoryDir.IsPlayerMaxedOutOnAttacks();
-	}
+    public bool IsPlayerMaxedOutOnAttacks() {
+        return inventoryDir.IsPlayerMaxedOutOnAttacks();
+    }
 
-	public bool LevelUpEquippedAction(int itemIndex) {
-		return inventoryDir.LevelUpEquippedAction(itemIndex);
-	}
+    // Protected
+    protected override void LoadInteractionData() {
+        interactionData = (PlayerInteractionData) GD.Load(interactionDataPath);
+    }
 
-	public void EquipNewAttack(PackedScene newAttack) {
-		inventoryDir.EquipNewAttack(newAttack);
-	}
+    protected override void PickupFirstFreeAttack() {
+        // Get the first nearby item's pickup dir ref
+        AttackPickupDir freeAttack = itemPickupDir.nearbyFreeActionNodes[0];
 
-	// Protected
-	protected override void LoadInteractionData() {
-		interactionData = (PlayerInteractionData) GD.Load(interactionDataPath);
-	}
+        // Get the nearby item's name
+        string attackName = freeAttack.GetAttackName();
 
-	// Private
+        // Check if we have already picked this up (Level Up or New Attack)
+        int attackIndex = inventoryDir.GetAttackIndex(attackName);
 
-	//-------------------------------------------------------------------------
-	// Debug Methods
+        GD.Print($"\n{attackName} Index: {attackIndex}");
+
+        // Attack is already equipped and needs to be leveled up
+        if (attackIndex != -1) {
+            // Level Up Action
+            inventoryDir.LevelUpEquippedAction(attackIndex);
+        } else {
+            // Equip New Action
+            PackedScene attackPackedScene = freeAttack.GetAttackPackedScene();
+            inventoryDir.EquipNewAttack(attackPackedScene);
+        }
+
+        // Destroy the now equipped action node
+        freeAttack.QueueFree();
+    }
+
+    // Private
+
+    //-------------------------------------------------------------------------
+    // Debug Methods
 }

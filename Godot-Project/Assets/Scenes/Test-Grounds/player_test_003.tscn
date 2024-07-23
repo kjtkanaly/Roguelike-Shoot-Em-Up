@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb7ic08f7s1sk"]
+[gd_scene load_steps=10 format=3 uid="uid://cb7ic08f7s1sk"]
 
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="1_pir4u"]
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="2_2x6ag"]
+[ext_resource type="Script" path="res://Assets/Scripts/Camera/CameraMovement.cs" id="3_gwisj"]
 [ext_resource type="Script" path="res://Assets/Scripts/Boundary/CardinalBoundaryBox.cs" id="3_v45bl"]
 [ext_resource type="PackedScene" uid="uid://d3ou4sqysyd5t" path="res://Assets/Nodes/NPCs/npc_spawner_parent.tscn" id="4_2538u"]
 [ext_resource type="PackedScene" uid="uid://b7rwvv6eqv8hf" path="res://Assets/Nodes/NPCs/npc_spawner.tscn" id="5_4r0q7"]
-[ext_resource type="PackedScene" uid="uid://bdplet6ncrewt" path="res://Assets/Nodes/NPCs/Enemy-001/enemy_001.tscn" id="7_ckx01"]
-[ext_resource type="PackedScene" uid="uid://cs8gwtocl7o8m" path="res://Assets/Nodes/Pickupables/Attacks/Area-Of-Effect/AoE_00_pickup.tscn" id="7_rnfqn"]
+[ext_resource type="PackedScene" uid="uid://cpkos2hxaqs60" path="res://Assets/Nodes/NPCs/Enemies/ghost.tscn" id="8_0bgt1"]
+[ext_resource type="PackedScene" uid="uid://pkk0br1ffp07" path="res://Assets/Nodes/Pickupables/Attacks/AoE Attacks/pentagon_pickup.tscn" id="9_wkdlr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmaw7"]
 
@@ -14,6 +15,11 @@
 
 [node name="Player-Director" parent="." instance=ExtResource("1_pir4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05568, 0)
+
+[node name="Main-Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 7)
+current = true
+script = ExtResource("3_gwisj")
 
 [node name="Debug-Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 30, 20)
@@ -66,33 +72,33 @@ transform = Transform3D(70, 0, 0, 0, 10, 0, 0, 0, 1, 2.08165e-12, 5, 2.08165e-12
 shape = SubResource("BoxShape3D_bmaw7")
 
 [node name="NPC-Spawner-Parent" parent="." instance=ExtResource("4_2538u")]
-spawnTimerWaitTime = 2.0
+spawnTimerWaitTime = 3.0
 spawnTimerOneShot = false
 
 [node name="NPC-Spawner" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 2.08165e-12)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner2" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 2.08165e-12)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner3" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, -20)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner4" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 20)
-npcNode = ExtResource("7_ckx01")
+npcNode = ExtResource("8_0bgt1")
 
-[node name="AoE-00-Pickup" parent="." instance=ExtResource("7_rnfqn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 15)
+[node name="Pentagon-Pickup" parent="." instance=ExtResource("9_wkdlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1.2, 0)
 
-[node name="AoE-00-Pickup2" parent="." instance=ExtResource("7_rnfqn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, -15)
+[node name="Pentagon-Pickup2" parent="." instance=ExtResource("9_wkdlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.2, 0)
 
-[node name="AoE-00-Pickup3" parent="." instance=ExtResource("7_rnfqn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 2.08165e-12)
+[node name="Pentagon-Pickup3" parent="." instance=ExtResource("9_wkdlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 15)
 
-[node name="AoE-00-Pickup4" parent="." instance=ExtResource("7_rnfqn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 2.08165e-12)
+[node name="Pentagon-Pickup4" parent="." instance=ExtResource("9_wkdlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -15)

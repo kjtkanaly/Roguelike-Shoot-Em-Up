@@ -15,11 +15,13 @@ class MovementDirector <<CharacterBody3D>>{
     - MovementData movementData
     == Methods ==
     .. Public ..
-    + _Ready() : void
-    + _PhysicsProcess() : void
-    + LoadMovementkData() : void
-    + GetMass() : float
+    + LoadMovementData() : void
+    + GetMovementData() : MovementData
+    + GetLateralVelocityMag() : float
     .. Protected ..
+    # UpdateLateralDirection() : void
+    # SetLateralVelocity() : void
+    # OrientateBody() : void
     .. Private ..
     - ApplyGravity() : void
 }
@@ -33,30 +35,26 @@ class PlayerMovementDirector{
 	- Vector2 inputDirection
     == Methods ==
     .. Public ..
-    + _Ready() : void
-    + _PhysicsProcess() : void
-    + LoadMovementkData() : void
-    + GetMass() : float
+    + LoadMovementData() : void
+    + GetMovementData() : PlayerMovementData
     .. Protected ..
+    # UpdateLateralDirection() : void
     .. Private ..
     - HandleJump() : void
-    - HandleBasicLateralMovement() : void
     - HandleDodgeRoll() : void
-    - GetGlobalInputDirectionNorm() : Vector3
 }
 
 class NPCMovementDirector{
     == Data ==
     .. Public ..
+    + Mode mode
     .. Protected ..
     .. Private ..
     - NPCMovementData movementData
     == Methods ==
     .. Public ..
-    + _Ready() : void
-    + _PhysicsProcess() : void
-    + LoadMovementkData() : void
-    + GetMass() : float
+    + LoadMovementData() : void
+    + GetMovementData() : NPCMovementData
     .. Protected ..
     .. Private ..
 }
@@ -67,13 +65,13 @@ class EnemyMovementDirector {
     .. Protected ..
     .. Private ..
     - EnemyMovementData movementData
+    - Node3D playerNode
     == Methods ==
     .. Public ..
-    + _Ready() : void
-    + _PhysicsProcess() : void
-    + LoadMovementkData() : void
-    + GetMass() : float
+    + LoadMovementData() : void
+    + GetMovementData() : EnemyMovementData
     .. Protected ..
+    # UpdateLateralDirection() : void
     .. Private ..
 }
 

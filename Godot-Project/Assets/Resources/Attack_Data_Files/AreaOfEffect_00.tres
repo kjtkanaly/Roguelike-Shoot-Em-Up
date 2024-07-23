@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AoEData" load_steps=4 format=3 uid="uid://r04ohdfh54o2"]
+
+[ext_resource type="CylinderMesh" uid="uid://bw682n0ykdkn1" path="res://Assets/Resources/Meshes/Area_of_Effect/AoE_Mesh_01.tres" id="1_0ky8q"]
+[ext_resource type="Shape3D" uid="uid://dakaq4w6ecrrn" path="res://Assets/Resources/Shapes/AoE_Shape_01.tres" id="1_780cg"]
+[ext_resource type="Script" path="res://Assets/Scripts/Attacks/AoEData.cs" id="2_eur53"]
+
+[resource]
+script = ExtResource("2_eur53")
+areaMesh = ExtResource("1_0ky8q")
+areaColliderShape = ExtResource("1_780cg")
+areaIncreaseStepSize = 0.4
+id = "AoE-00"
+type = 2
+damage = 2.0
+delay = 2.0
+maxLevel = 6

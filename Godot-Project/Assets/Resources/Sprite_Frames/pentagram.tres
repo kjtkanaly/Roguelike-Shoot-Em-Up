@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bn8pvmy21kkvb"]
+
+[ext_resource type="Texture2D" uid="uid://c8vplu3le738b" path="res://Assets/Graphics/Sprites/Pentagram/pentgram.png" id="1_oas0r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcyb5"]
+atlas = ExtResource("1_oas0r")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23rpy"]
+atlas = ExtResource("1_oas0r")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onies"]
+atlas = ExtResource("1_oas0r")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrr5v"]
+atlas = ExtResource("1_oas0r")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgnpk"]
+atlas = ExtResource("1_oas0r")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdu4v"]
+atlas = ExtResource("1_oas0r")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txa3o"]
+atlas = ExtResource("1_oas0r")
+region = Rect2(768, 0, 128, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcyb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23rpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onies")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrr5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgnpk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdu4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txa3o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

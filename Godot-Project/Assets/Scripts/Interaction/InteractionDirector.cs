@@ -10,28 +10,23 @@ public partial class InteractionDirector : Node3D
 	[Export] public bool debugMode = false;
 
 	// Protected
-	protected Area3D hitBoxDir;
-	protected CollisionShape3D  hitBoxShape;
-	protected Timer takeDamageTimer;
+	protected ObjectPickupDirector itemPickupDir;
+	protected InventoryDirector inventoryDir;
 	[Export] protected PackedScene damageLabel;
 	protected float currentHealth = 0.0f;
 
 	// Private
 	private InteractionData interactionData;
+	private Node mainRoot;
 
 	//-------------------------------------------------------------------------
 	// Game Events
 	public override void _Ready()
 	{
-		hitBoxDir = GetNode<Area3D>("Hit-Box-Director");
-		hitBoxShape = GetNode<CollisionShape3D>("Hit-Box-Director/Hit-Box-Shape");
-		takeDamageTimer = GetNode<Timer>("Take-Damage-Timer");
+		mainRoot = GetTree().Root.GetChild(0);
 
 		LoadInteractionData();
 		InitHealthData();
-		
-		hitBoxDir.AreaEntered += BeginAoEDamageSequence;
-		hitBoxDir.BodyEntered += ProjectileDamageSequence; 
 	}
 
 	//-------------------------------------------------------------------------
@@ -58,9 +53,13 @@ public partial class InteractionDirector : Node3D
 	protected virtual void DisplayDamageValue(float damageValue) {
 		Label3D damageLabelInst = 
 			(Label3D) damageLabel.Instantiate();
-		this.AddChild(damageLabelInst);
+		mainRoot.AddChild(damageLabelInst);
 
 		damageLabelInst.Text = damageValue.ToString("0.00");
+		damageLabelInst.GlobalPosition = 
+			new Vector3(GlobalPosition.X, 
+						damageLabelInst.GlobalPosition.Y, 
+						GlobalPosition.Z);
 	}
 
 	protected virtual void LoadInteractionData() {
@@ -71,26 +70,8 @@ public partial class InteractionDirector : Node3D
 		currentHealth = GetInteractionData().maxHealth;
 	}
 
-	protected void BeginAoEDamageSequence(Area3D aoeArea) {
-		if (aoeArea.Name != "AoE-Hit-Box-Director") {
-			return;
-		}
-
-		// Get the Attack Information
-		AreaOfEffectData aoeData = aoeArea.GetParent<PlayerAoEAttackDirector>().GetAttackData();
-
-		// Take the Initial Damage
-		TickHealth(aoeData.damage);
-
-		// Create the new AoE object
-		ActiveAoE aoe = new ActiveAoE(this, aoeData);
-
-		// Start the AoE Damage Timer
-		aoe.delayTimer.Start();
-
-		// Setup the aoe to end once out of range
-		hitBoxDir.AreaExited += aoe.Destroy;
-	}
+	protected virtual void PickupFirstFreeAttack() {
+    }
 
 	protected void ProjectileDamageSequence(Node3D projNode) {
 		if (projNode.Name != "Generic-Projectile") {
@@ -118,34 +99,6 @@ public partial class InteractionDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Debug Methods
-
-	//-------------------------------------------------------------------------
-	// Nested Classes
-	public partial class ActiveAoE : Node{
-		public float damage = 0.0f;
-		public Timer delayTimer;
-		private InteractionDirector interDir;	
-
-		public ActiveAoE(InteractionDirector interDirInst, AreaOfEffectData aoeData) {
-			interDir = interDirInst;
-			interDir.AddChild(this);
-
-			damage = aoeData.damage;
-
-			delayTimer = new Timer();
-			this.AddChild(delayTimer);
-			delayTimer.WaitTime = aoeData.delay;
-			delayTimer.Timeout += TickInteractionDirHealth;
-		}
-
-		public void Destroy(Area3D area) {
-			QueueFree();
-		}
-
-		private void TickInteractionDirHealth() {
-			interDir.TickHealth(damage);
-		}
-	}
 }
 
 // If you want to denote an area for future devlopement mark with it

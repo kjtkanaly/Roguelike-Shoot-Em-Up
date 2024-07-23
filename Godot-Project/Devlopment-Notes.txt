@@ -2,11 +2,6 @@
 ## Next time on Dragon Ball Z
 - Work out/find a better curve/motion fx for the animation of the dmg value.
   However not high priotirty. 
-  
-- Update the diagrams. Add death animation, currently they just despawn which
-  is not very poggers. Create a diagram that shows each collision object and
-  then list their levels and masking values. This will serve as a good quick 
-  ref.
 
 ## General Notes
 ### Version 
@@ -59,8 +54,8 @@ attack object in each pickup object
 [X] Make Generic NPC Node
 [X] Potentially overhaul the movement classes (atleast move them into common dir)
 [X] Create Generic Enemy Node (Utilizes Generic NPC node)
-[x] Make diagram for the NPC class levels
-[ ] Make diagram for the attack object nodes
+[X] Make diagram for the NPC class levels
+[X] Make diagram for the attack object nodes
 [X] Think through utilizing a generic enemy node
 [X] Clean up the player node dir. We don't really need a dedicated node for each thing
 [X] Perhaps we don't need a PlayerAttackDirector. Just PlayerInventory. That 
@@ -72,7 +67,21 @@ attack object in each pickup object
     constant speed
 [X] Get a demo scene together that spawns mutiple enemies in a pattern
 [X] Get Health, die, spawn demo together
-[ ] Setup Attacks on the Player
-[ ] Create a Collision Diagram
+[X] Update the interaction diagrams
+[X] Setup Player Model and Animation Controller
+[X] Setup Attacks on the Player
+[X] Update the Attack and Movement class diagrams
+[X] Unbreak the interaction class
+[ ] Create Merge into master
+
+# Demo-Run Up
+[ ] Create a class diagram for the interaction and inventory classes
+[ ] Create a Collision Layer Diagram
 [ ] Add death animations
+[ ] Add hit animations (Hue Shifting)
+[ ] Research how other 3-D games display damage labels
+[ ] Set the damage labels to be on the correct visual layer
+[ ] Bring in Dak's neighborhood scene 
+[ ] Create the player UI (Health, play time, display active attacks)
+[ ] Create the basic game loop (spawn in, die, stats screen,restart)
 

@@ -1,0 +1,35 @@
+@startuml Interaction Resources Structure
+
+title Interaction Resources Structure
+
+class InteractionData <<Resource>> {
+    .. Public ..
+    + bool canTakeDamage
+    + float maxHealth
+    .. Protected ..
+    .. Private ..
+}
+
+class PlayerInteractionData {
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+class NPCInteractionData {
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+class EnemyInteractionData {
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+}
+
+InteractionData <|-- PlayerInteractionData
+InteractionData <|-- NPCInteractionData
+NPCInteractionData <|-- EnemyInteractionData
+
+@enduml
