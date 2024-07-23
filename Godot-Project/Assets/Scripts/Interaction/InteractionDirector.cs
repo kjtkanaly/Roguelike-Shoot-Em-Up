@@ -10,9 +10,8 @@ public partial class InteractionDirector : Node3D
 	[Export] public bool debugMode = false;
 
 	// Protected
-	protected Area3D hitBoxDir;
-	protected CollisionShape3D  hitBoxShape;
-	protected Timer takeDamageTimer;
+	protected ObjectPickupDirector itemPickupDir;
+	protected InventoryDirector inventoryDir;
 	[Export] protected PackedScene damageLabel;
 	protected float currentHealth = 0.0f;
 
@@ -25,14 +24,9 @@ public partial class InteractionDirector : Node3D
 	public override void _Ready()
 	{
 		mainRoot = GetTree().Root.GetChild(0);
-		hitBoxDir = GetNode<Area3D>("Hit-Box-Director");
-		hitBoxShape = GetNode<CollisionShape3D>("Hit-Box-Director/Hit-Box-Shape");
-		takeDamageTimer = GetNode<Timer>("Take-Damage-Timer");
 
 		LoadInteractionData();
 		InitHealthData();
-		
-		hitBoxDir.BodyEntered += ProjectileDamageSequence; 
 	}
 
 	//-------------------------------------------------------------------------
@@ -75,6 +69,9 @@ public partial class InteractionDirector : Node3D
 	protected void InitHealthData() {
 		currentHealth = GetInteractionData().maxHealth;
 	}
+
+	protected virtual void PickupFirstFreeAttack() {
+    }
 
 	protected void ProjectileDamageSequence(Node3D projNode) {
 		if (projNode.Name != "Generic-Projectile") {

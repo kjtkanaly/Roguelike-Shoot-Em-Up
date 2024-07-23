@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj5iynhxfd8lx"]
+
+[ext_resource type="PackedScene" uid="uid://c1dngxg5p8612" path="res://Assets/Models/Import-From-Dropbox/Pentagram-Book/PentagramBook.glb" id="1_wixb3"]
+
+[node name="Pentagram-Book-Instance" instance=ExtResource("1_wixb3")]

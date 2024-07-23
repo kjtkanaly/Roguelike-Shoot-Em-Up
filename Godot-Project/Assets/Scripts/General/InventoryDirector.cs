@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class PlayerInventoryDirector : Node
+public partial class InventoryDirector : Node3D
 {
 	//-------------------------------------------------------------------------
 	// Game Componenets
@@ -11,15 +11,14 @@ public partial class PlayerInventoryDirector : Node
 	protected List<AttackDirector> attackInventory = null;
 
 	// Private
-	private int maxAttackCount;
-	private PlayerInteractionDirector interDir;
+	[Export] private int maxAttackCount = 6;
 
 	//-------------------------------------------------------------------------
 	// Methods
-	public PlayerInventoryDirector(int maxAttackCountVal, PlayerInteractionDirector interDirInst) {
+	public override void _Ready() {
+		_Ready();
+
 		attackInventory = new List<AttackDirector>();
-		maxAttackCount = maxAttackCountVal;
-		interDir = interDirInst;
 	}
 
 	public int IsActionAlreadyEquipped(string itemName) {
@@ -50,7 +49,7 @@ public partial class PlayerInventoryDirector : Node
 	public void EquipNewAttack(PackedScene newAttack) {
 		AttackDirector newAttackObject = 
 			(AttackDirector) newAttack.Instantiate().GetChild(0);
-		interDir.AddChild(newAttackObject.GetParent());
+		this.AddChild(newAttackObject.GetParent());
 
 		attackInventory.Add(newAttackObject);
 

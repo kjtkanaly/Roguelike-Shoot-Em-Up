@@ -6,11 +6,8 @@ public partial class PlayerInteractionDirector : InteractionDirector
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    [Export] public int maxAttackCount = 6;
 
     // Protected
-    protected PlayerInventoryDirector inventoryDir = null;
-    protected PlayerObjectPickup pickupArea = null;
 
     // Private
     private PlayerInteractionData interactionData;
@@ -21,10 +18,8 @@ public partial class PlayerInteractionDirector : InteractionDirector
     {
         base._Ready();
 
-        pickupArea = GetNode<PlayerObjectPickup>("../Item-Pickup-Director");
-        inventoryDir = new PlayerInventoryDirector(maxAttackCount, this);
-
-        hitBoxDir.AreaEntered += TakeMeleeDamage;
+        itemPickupDir = GetNode<ObjectPickupDirector>("../Item-Pickup-Director");
+        inventoryDir = GetNode<InventoryDirector>("../Inventory-Director");
     }
 
     //-------------------------------------------------------------------------
@@ -34,7 +29,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
         return interactionData;
     }
 
-    public int IsActionAlreadyEquipped(string itemName) {
+    public int GetAttackIndex(string itemName) {
         return inventoryDir.IsActionAlreadyEquipped(itemName);
     }
 
@@ -42,31 +37,36 @@ public partial class PlayerInteractionDirector : InteractionDirector
         return inventoryDir.IsPlayerMaxedOutOnAttacks();
     }
 
-    public bool LevelUpEquippedAction(int itemIndex) {
-        return inventoryDir.LevelUpEquippedAction(itemIndex);
-    }
-
-    public void EquipNewAttack(PackedScene newAttack) {
-        inventoryDir.EquipNewAttack(newAttack);
-    }
-
     // Protected
     protected override void LoadInteractionData() {
         interactionData = (PlayerInteractionData) GD.Load(interactionDataPath);
     }
 
-    // Private
-    private void TakeMeleeDamage(Area3D enemyArea) {
-        if (!enemyArea.IsInGroup("TimeDelayedAttack")) {
-            return;
+    protected override void PickupFirstFreeAttack() {
+        // Get the first nearby item's pickup dir ref
+        AttackPickupDir freeAttack = itemPickupDir.nearbyFreeActionNodes[0];
+
+        // Get the nearby item's name
+        string attackName = freeAttack.GetAttackName();
+
+        // Check if we have already picked this up (Level Up or New Attack)
+        int attackIndex = GetAttackIndex(attackName);
+
+        // Attack is already equipped and needs to be leveled up
+        if (attackIndex != -1) {
+            // Level Up Action
+            inventoryDir.LevelUpEquippedAction(attackIndex);
+        } else {
+            // Equip New Action
+            PackedScene attackPackedScene = freeAttack.GetAttackPackedScene();
+            inventoryDir.EquipNewAttack(attackPackedScene);
         }
 
-        // Get the Attack Information
-        EnemyInteractionData enemyInteractionData = enemyArea.GetParent<EnemeyInteractionDirector>().GetInteractionData();
-
-        // Take the Initial Damage
-        // TimeDelayedDamageSequence(enemyInteractionData);
+        // Destroy the now equipped action node
+        freeAttack.QueueFree();
     }
+
+    // Private
 
     //-------------------------------------------------------------------------
     // Debug Methods

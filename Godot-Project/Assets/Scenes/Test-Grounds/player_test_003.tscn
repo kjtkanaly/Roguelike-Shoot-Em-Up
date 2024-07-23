@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb7ic08f7s1sk"]
+[gd_scene load_steps=10 format=3 uid="uid://cb7ic08f7s1sk"]
 
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="1_pir4u"]
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="2_2x6ag"]
-[ext_resource type="PackedScene" uid="uid://dy7qxgnmaykmd" path="res://Assets/Nodes/Attacks/Area_Of_Effect/pentagram_AoE.tscn" id="2_t6aug"]
 [ext_resource type="Script" path="res://Assets/Scripts/Camera/CameraMovement.cs" id="3_gwisj"]
 [ext_resource type="Script" path="res://Assets/Scripts/Boundary/CardinalBoundaryBox.cs" id="3_v45bl"]
 [ext_resource type="PackedScene" uid="uid://d3ou4sqysyd5t" path="res://Assets/Nodes/NPCs/npc_spawner_parent.tscn" id="4_2538u"]
@@ -16,8 +15,6 @@
 
 [node name="Player-Director" parent="." instance=ExtResource("1_pir4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05568, 0)
-
-[node name="Pentagram-AoE" parent="Player-Director" instance=ExtResource("2_t6aug")]
 
 [node name="Main-Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 7)
@@ -104,6 +101,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 15)
 
 [node name="Pentagon-Pickup4" parent="." instance=ExtResource("9_wkdlr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -15)
-
-[editable path="Player-Director/Pentagram-AoE"]
-[editable path="Player-Director/Pentagram-AoE/Attack-Object"]

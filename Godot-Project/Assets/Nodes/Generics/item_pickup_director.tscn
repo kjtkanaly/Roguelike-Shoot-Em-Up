@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8r78yl4d0xbt"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Interaction/ObjectPickupDirector.cs" id="1_olcod"]
+
+[node name="Item-Pickup-Director" type="Area3D"]
+script = ExtResource("1_olcod")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
