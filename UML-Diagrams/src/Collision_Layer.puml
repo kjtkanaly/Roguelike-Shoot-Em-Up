@@ -1,0 +1,56 @@
+@startuml Collision Layers
+
+title Collision Layers
+
+object Demo_Plane <<StaticBody3D>> {
+    Layer = [4]
+    Mask = [1, 2]
+}
+
+' Player ------------------------------------------
+object Player_Director <<PlayerMovementDirector>> {
+    Layer = [1]
+    Mask = [1, 4]
+}
+
+object Enemy_Director <<EnemyMovementDirector>> {
+    Layer = [2]
+    Mask = [2, 4]
+}
+
+object Generic_Interaction_Director <<InteractionDirector>> {
+}
+
+object Item_Pickup_Director <<ObjectPickupDirector>> {
+    Layer = []
+    Mask = [17]
+}
+
+object "Hitbox_Director" as Interaction_Hitbox_Director <<Node3D>> {
+    Layer = [11]
+    Mask = []
+}
+
+Generic_Interaction_Director *-- Item_Pickup_Director
+Generic_Interaction_Director *-- Interaction_Hitbox_Director
+Player_Director *-- Generic_Interaction_Director
+Enemy_Director *-- Generic_Interaction_Director
+
+object Attack_Pickup <<AttackPikcupDir>> {
+    Layer = [17]
+    Mask = []
+}
+
+Item_Pickup_Director <--> Attack_Pickup
+
+object Attack_Object <<AttackDirector>> {
+}
+
+object "Hitbox_Director" as Attack_Hitbox_Director {
+    Layer = []
+    Mask = [11]
+}
+
+Attack_Object *-- Attack_Hitbox_Director
+
+@enduml

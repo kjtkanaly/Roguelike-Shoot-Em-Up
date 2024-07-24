@@ -9,7 +9,4 @@
 script = ExtResource("1_siubu")
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/enemy_001.tres"
 
-[node name="Hit-Box-Director" parent="Generic-Interaction-Director" index="0"]
-collision_mask = 384
-
 [editable path="Generic-Interaction-Director"]

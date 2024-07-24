@@ -14,6 +14,9 @@ dataPath = "res://Assets/Resources/Attack_Data_Files/AreaOfEffect_00.tres"
 collisionMaskValues = PackedInt32Array(10)
 yRotationAngleDegree = 180.0
 
+[node name="Hit-Box-Director" parent="Attack-Object" index="2"]
+collision_layer = 0
+
 [node name="Hit-Box-Shape" parent="Attack-Object/Hit-Box-Director" index="0"]
 shape = ExtResource("2_qq0bk")
 

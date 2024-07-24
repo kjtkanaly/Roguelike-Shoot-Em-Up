@@ -55,7 +55,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
         } else {
             // Equip New Action
             PackedScene attackPackedScene = freeAttack.GetAttackPackedScene();
-            inventoryDir.EquipNewAttack(attackPackedScene);
+            inventoryDir.EquipNewAttack(attackPackedScene, GetInteractionData().groupName);
         }
 
         // Destroy the now equipped action node

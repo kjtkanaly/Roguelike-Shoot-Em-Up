@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpkos2hxaqs60"]
+[gd_scene load_steps=5 format=3 uid="uid://cpkos2hxaqs60"]
 
 [ext_resource type="PackedScene" uid="uid://cjgsjohqrqnlp" path="res://Assets/Nodes/NPCs/Generic_Enemy/enemy_director.tscn" id="1_3xn3k"]
 [ext_resource type="PackedScene" uid="uid://csqldf5yvrkoc" path="res://Assets/Models/Ghost-Instance/ghost_model_instance.tscn" id="2_auqqq"]
-[ext_resource type="Shape3D" uid="uid://dxl75o58lq53n" path="res://Assets/Resources/Shapes/AoE-Shapes/ghost_aoe.tres" id="2_g6s8p"]
 [ext_resource type="Shape3D" uid="uid://d0swo8vle8v5s" path="res://Assets/Resources/Shapes/Enemies/enemy_001.tres" id="2_lfd8a"]
 [ext_resource type="PackedScene" uid="uid://chgl7m71h00ka" path="res://Assets/Nodes/Attacks/Area_Of_Effect/Ghost_AoE.tscn" id="3_txfxq"]
 
@@ -14,15 +13,14 @@ movementDataPath = "res://Assets/Resources/Movement_Data_Files/Enemies/ghost.tre
 [node name="CollisionShape3D" parent="Enemy-Director" index="0"]
 shape = ExtResource("2_lfd8a")
 
-[node name="Hit-Box-Shape" parent="Enemy-Director/Enemy-Interaction-Director/Generic-Interaction-Director/Hit-Box-Director" index="0"]
-shape = ExtResource("2_g6s8p")
+[node name="Hit-Box-Shape" parent="Enemy-Director/Generic-Interaction-Director/Hit-Box-Director" index="0"]
+shape = ExtResource("2_lfd8a")
+
+[node name="Ghost-AoE" parent="Enemy-Director/Generic-Interaction-Director/Inventory-Director" index="0" instance=ExtResource("3_txfxq")]
 
 [node name="Ghost_Model_Instance" parent="Enemy-Director" instance=ExtResource("2_auqqq")]
 
-[node name="Ghost-AoE" parent="Enemy-Director" instance=ExtResource("3_txfxq")]
-
 [editable path="Enemy-Director"]
-[editable path="Enemy-Director/Enemy-Interaction-Director"]
-[editable path="Enemy-Director/Enemy-Interaction-Director/Generic-Interaction-Director"]
-[editable path="Enemy-Director/Ghost-AoE"]
-[editable path="Enemy-Director/Ghost-AoE/Attack-Object"]
+[editable path="Enemy-Director/Generic-Interaction-Director"]
+[editable path="Enemy-Director/Generic-Interaction-Director/Inventory-Director/Ghost-AoE"]
+[editable path="Enemy-Director/Generic-Interaction-Director/Inventory-Director/Ghost-AoE/Attack-Object"]

@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_656x6")
+canTakeDamage = true
 maxHealth = 100.0
+groupName = "Player"

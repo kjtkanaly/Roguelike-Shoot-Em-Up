@@ -52,6 +52,11 @@ public partial class RepetativeAttackDirector : AttackDirector
 		InteractionDirector otherIteraction = 
 			enemyArea.GetNode<InteractionDirector>("..");
 
+		if (IsInGroup(otherIteraction.GetInteractionData().groupName)) {
+			GD.Print($"{otherIteraction.GetInteractionData().groupName}");
+			return;
+		}
+
 		// Safety Check
 		if (otherIteraction == null) {
 			GD.Print($"{enemyArea.Name} had no Interaction Area");

@@ -76,7 +76,8 @@ attack object in each pickup object
 
 # Demo-Run Up
 [X] Create a class diagram for the interaction and inventory classes
-[ ] Create a Collision Layer Diagram
+[X] Create a Collision Layer Diagram
+[ ] Stop the player from hurting them selves when they pickup and attack
 [ ] Add death animations
 [ ] Add hit animations (Hue Shifting)
 [ ] Research how other 3-D games display damage labels

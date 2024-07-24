@@ -40,10 +40,12 @@ public partial class InventoryDirector : Node3D
 		}
 	}
 
-	public void EquipNewAttack(PackedScene newAttack) {
+	public void EquipNewAttack(PackedScene newAttack, string groupName) {
 		AttackDirector newAttackObject = 
 			(AttackDirector) newAttack.Instantiate().GetChild(0);
 		this.AddChild(newAttackObject.GetParent());
+
+		newAttackObject.AddToGroup(groupName);
 
 		attackInventory.Add(newAttackObject);
 
