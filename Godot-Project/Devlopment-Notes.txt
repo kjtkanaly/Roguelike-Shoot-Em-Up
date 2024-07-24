@@ -72,10 +72,10 @@ attack object in each pickup object
 [X] Setup Attacks on the Player
 [X] Update the Attack and Movement class diagrams
 [X] Unbreak the interaction class
-[ ] Create Merge into master
+[X] Create Merge into master
 
 # Demo-Run Up
-[ ] Create a class diagram for the interaction and inventory classes
+[X] Create a class diagram for the interaction and inventory classes
 [ ] Create a Collision Layer Diagram
 [ ] Add death animations
 [ ] Add hit animations (Hue Shifting)

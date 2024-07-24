@@ -15,6 +15,7 @@ public partial class InventoryDirector : Node3D
 
 	//-------------------------------------------------------------------------
 	// Methods
+	// Public
 	public override void _Ready() {
 		base._Ready();
 
@@ -29,14 +30,6 @@ public partial class InventoryDirector : Node3D
 			}
 		}
 		return -1;
-	}
-
-	private bool IsActionSlotMaxLevel(int index) { 
-		if (attackInventory[index].level < attackInventory[index].GetAttackMaxLevel()) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 	public bool IsPlayerMaxedOutOnAttacks() {
@@ -71,8 +64,14 @@ public partial class InventoryDirector : Node3D
 		return true;
 	}
 
-	//-------------------------------------------------------------------------
-	// Debug/Demo Methods
-	private void InitSomeAttacks() {
+	// Protected
+	
+	// Private
+	private bool IsActionSlotMaxLevel(int index) { 
+		if (attackInventory[index].level < attackInventory[index].GetAttackMaxLevel()) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

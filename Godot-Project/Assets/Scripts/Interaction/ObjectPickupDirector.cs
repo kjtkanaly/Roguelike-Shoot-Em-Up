@@ -25,6 +25,11 @@ public partial class ObjectPickupDirector : Area3D
 
     //-------------------------------------------------------------------------
     // Methods
+    // Public
+
+    // Protected
+	
+	// Private
     private void AddFreeActionToNearbyList(Area3D freeAttackPickupArea) {
         if (!freeAttackPickupArea.IsInGroup("Attack-Pickup")) {
             GD.Print($"Player Pickup Controller encountered an area that isn't an attack pickup");

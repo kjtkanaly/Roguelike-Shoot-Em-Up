@@ -78,6 +78,41 @@ class EnemeyInteractionDirector {
     - GetParentNode() : void
 }
 
+class InventoryDirector <<Node3D>> {
+    == Data ==
+    .. Public ..
+    .. Protected ..
+    # List attackInventory
+    .. Private ..
+    - int maxAttackCount
+
+    == Methods ==
+    .. Public ..
+    + GetAttackIndex() : int
+    + IsPlayerMaxedOutOnAttacks() : bool
+    + EquipNewAttack() : void
+    + LevelUpEquippedAction() : bool
+    .. Protected ..
+    .. Private ..
+    - IsActionSlotMaxLevel() : bool
+}
+
+class ObjectPickupDirector <<Area3D>> {
+    == Data ==
+    .. Public ..
+    + List nearbyFreeActionNodes
+    .. Protected ..
+    .. Private ..
+    - bool debug
+
+    == Methods ==
+    .. Public ..
+    .. Protected ..
+    .. Private ..
+    - AddFreeActionToNearbyList() : void
+    - RemoveFreeActionFromNearbyList() : void
+}
+
 InteractionDirector <|-- PlayerInteractionDirector
 InteractionDirector <|-- NPCInteractionDirector
 NPCInteractionDirector <|-- EnemeyInteractionDirector
