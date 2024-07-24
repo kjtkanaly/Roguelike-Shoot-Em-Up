@@ -73,18 +73,6 @@ public partial class InteractionDirector : Node3D
 	protected virtual void PickupFirstFreeAttack() {
     }
 
-	protected void ProjectileDamageSequence(Node3D projNode) {
-		if (projNode.Name != "Generic-Projectile") {
-			return;
-		}
-
-		// Get the projectile's damage
-		float damage = ((ProjectileDir) projNode).damage;
-
-		// Take damage from the projectile
-		TickHealth(damage);
-	}
-
 	protected void CheckIfDead() {
 		if (currentHealth <= 0.0f) {
 			DeathSequence();

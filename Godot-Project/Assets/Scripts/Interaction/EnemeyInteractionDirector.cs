@@ -8,10 +8,10 @@ public partial class EnemeyInteractionDirector : NPCInteractionDirector
 	// Public
 
 	// Protected
+	protected Node parentNode;
 
 	// Private
 	private EnemyInteractionData interactionData;
-	private Node parentNode;
 
 	//-------------------------------------------------------------------------
 	// Game Events

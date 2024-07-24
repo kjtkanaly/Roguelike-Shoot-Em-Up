@@ -31,10 +31,6 @@ public partial class PlayerInteractionDirector : InteractionDirector
         return interactionData;
     }
 
-    public bool IsPlayerMaxedOutOnAttacks() {
-        return inventoryDir.IsPlayerMaxedOutOnAttacks();
-    }
-
     // Protected
     protected override void LoadInteractionData() {
         interactionData = (PlayerInteractionData) GD.Load(interactionDataPath);

@@ -7,68 +7,41 @@ class InteractionDirector <<Node3D>>{
     .. Public ..
     + string interactionDataPath
     .. Protected ..
-    # Area3D hitBoxDir
-    # CollisionShape3D hitBoxShape
-    # Timer takeDamageTimer
-    # PackedScene damageLabel
-    # float currentHealth
+    # ObjectPickupDirector itemPickupDir
+	# InventoryDirector inventoryDir
+	# PackedScene damageLabel
+	# float currentHealth
     .. Private ..
     - InteractionData interactionData
+    - Node mainRoot
 
     == Methods ==
     .. Public ..
-    + _Ready() : void
     + GetInteractionData() : InteractionData
     + TickHealth() : void
     .. Protected ..
     # DisplayDamageValue() : void
     # LoadInteractionData() : void
     # InitHealthData() : void
-    # BeginAoEDamageSequence() : void
-    # ProjectileDamageSequence() : void
+    # PickupFirstFreeAttack() : void
     # CheckIfDead() : void
     # DeathSequence() : void
     .. Private ..
 }
 
-class ActiveAoE <<Node>>{
-     == Data ==
-    .. Public ..
-    + float damage
-    + Timer delayTimer
-    .. Protected ..
-    .. Private ..
-    - InteractionDirector interDir
-
-    == Methods ==
-    .. Public ..
-    + ActiveAoE()
-    + Destroy() : void
-    .. Protected ..
-    .. Private ..
-    - TickInteractionDirHealth() : void
-}
-
 class PlayerInteractionDirector {
     == Data ==
     .. Public ..
-    + int maxAttackCount
     .. Protected ..
-    # PlayerInventoryDirector inventoryDir
-    # PlayerObjectPickup pickupArea
     .. Private ..
     - PlayerInteractionData interactionData
 
     == Methods ==
     .. Public ..
-    + _Ready() : void
     + GetInteractionData() : PlayerInteractionData
-    + IsActionAlreadyEquipped() : int
-    + IsPlayerMaxedOutOnAttacks() : bool
-    + LevelUpEquippedAction() : bool
-    + EquipNewAttack() : void
     .. Protected ..
     # LoadInteractionData() : void
+    # PickupFirstFreeAttack() : void
     .. Private ..
 }
 
@@ -81,7 +54,6 @@ class NPCInteractionDirector {
 
     == Methods ==
     .. Public ..
-    + _Ready() : void
     + GetInteractionData() : NPCInteractionData
     .. Protected ..
     # LoadInteractionData() : void
@@ -92,13 +64,12 @@ class EnemeyInteractionDirector {
     == Data ==
     .. Public ..
     .. Protected ..
+    # Node parentNode
     .. Private ..
     - EnemyInteractionData interactionData
-    - Node parentNode
 
     == Methods ==
     .. Public ..
-    + _Ready() : void
     + GetInteractionData() : EnemyInteractionData
     .. Protected ..
     # LoadInteractionData() : void
@@ -107,7 +78,6 @@ class EnemeyInteractionDirector {
     - GetParentNode() : void
 }
 
-InteractionDirector *- ActiveAoE
 InteractionDirector <|-- PlayerInteractionDirector
 InteractionDirector <|-- NPCInteractionDirector
 NPCInteractionDirector <|-- EnemeyInteractionDirector
