@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using GDCollect = Godot.Collections;
 
 public partial class InventoryDirector : Node3D
 {
@@ -12,6 +13,7 @@ public partial class InventoryDirector : Node3D
 
 	// Private
 	[Export] private int maxAttackCount = 6;
+	private GDCollect.Array<StringName> groupNames;
 
 	//-------------------------------------------------------------------------
 	// Methods
@@ -19,7 +21,10 @@ public partial class InventoryDirector : Node3D
 	public override void _Ready() {
 		base._Ready();
 
+		groupNames = GetGroups();
 		attackInventory = new List<AttackDirector>();
+
+		EquipPreloadedAttack();
 	}
 
 	public int GetAttackIndex(string itemName) {
@@ -40,18 +45,12 @@ public partial class InventoryDirector : Node3D
 		}
 	}
 
-	public void EquipNewAttack(PackedScene newAttack, string groupName) {
+	public void EquipNewAttack(PackedScene newAttack) {
 		AttackDirector newAttackObject = 
 			(AttackDirector) newAttack.Instantiate().GetChild(0);
 		this.AddChild(newAttackObject.GetParent());
 
-		newAttackObject.AddToGroup(groupName);
-
-		attackInventory.Add(newAttackObject);
-
-		// Debug
-		GD.Print($"Equiped New Attack: {newAttackObject.GetAttackData().id}");
-		GD.Print($"Postion: {newAttackObject.Position}");
+		AddAttackToInventory(newAttackObject);
 	}
 
 	public bool LevelUpEquippedAction(int itemIndex) {
@@ -75,5 +74,21 @@ public partial class InventoryDirector : Node3D
 		} else {
 			return true;
 		}
+	}
+
+	private void EquipPreloadedAttack() {
+		foreach (Node3D child in GetChildren()) {
+			if (!child.GetChild(0).IsInGroup("Attack Object")) {
+				return;
+			}
+			AddAttackToInventory((AttackDirector) child.GetChild(0));
+		}
+	}
+
+	private void AddAttackToInventory(AttackDirector attack) {
+		foreach (string groupName in groupNames) {
+			attack.AddToGroup(groupName);
+		}
+		attackInventory.Add(attack);
 	}
 }

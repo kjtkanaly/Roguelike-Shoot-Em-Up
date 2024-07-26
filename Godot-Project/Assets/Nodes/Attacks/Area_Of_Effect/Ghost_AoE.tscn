@@ -4,7 +4,7 @@
 [ext_resource type="Shape3D" uid="uid://dxl75o58lq53n" path="res://Assets/Resources/Shapes/AoE-Shapes/ghost_aoe.tres" id="2_fd67k"]
 [ext_resource type="Script" path="res://Assets/Scripts/Attacks/AoEAttackDirector.cs" id="2_we45t"]
 
-[node name="Ghost-AoE" type="Node3D"]
+[node name="Ghost-AoE" type="Node3D" groups=["Attack Object"]]
 
 [node name="Attack-Object" parent="." instance=ExtResource("1_q6r15")]
 script = ExtResource("2_we45t")

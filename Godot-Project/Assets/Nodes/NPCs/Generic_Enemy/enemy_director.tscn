@@ -11,8 +11,10 @@ script = ExtResource("1_kc0qc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
-[node name="Generic-Interaction-Director" parent="." instance=ExtResource("3_ux51y")]
+[node name="Generic-Interaction-Director" parent="." groups=["Enemy"] instance=ExtResource("3_ux51y")]
 script = ExtResource("4_cpdm5")
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/enemy_001.tres"
+
+[node name="Inventory-Director" parent="Generic-Interaction-Director" index="3" groups=["Enemy"]]
 
 [editable path="Generic-Interaction-Director"]

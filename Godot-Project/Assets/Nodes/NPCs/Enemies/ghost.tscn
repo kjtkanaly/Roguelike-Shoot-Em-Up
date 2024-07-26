@@ -18,6 +18,9 @@ shape = ExtResource("2_lfd8a")
 
 [node name="Ghost-AoE" parent="Enemy-Director/Generic-Interaction-Director/Inventory-Director" index="0" instance=ExtResource("3_txfxq")]
 
+[node name="Attack-Object" parent="Enemy-Director/Generic-Interaction-Director/Inventory-Director/Ghost-AoE" index="0"]
+collisionMaskValues = PackedInt32Array(1)
+
 [node name="Ghost_Model_Instance" parent="Enemy-Director" instance=ExtResource("2_auqqq")]
 
 [editable path="Enemy-Director"]

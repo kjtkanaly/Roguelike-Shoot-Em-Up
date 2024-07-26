@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public partial class PlayerInteractionDirector : InteractionDirector
 {
@@ -55,7 +56,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
         } else {
             // Equip New Action
             PackedScene attackPackedScene = freeAttack.GetAttackPackedScene();
-            inventoryDir.EquipNewAttack(attackPackedScene, GetInteractionData().groupName);
+            inventoryDir.EquipNewAttack(attackPackedScene);
         }
 
         // Destroy the now equipped action node

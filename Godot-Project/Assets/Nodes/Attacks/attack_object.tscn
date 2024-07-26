@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scripts/Attacks/AttackDirector.cs" id="1_ihvv3"]
 
-[node name="Attack-Object" type="Node3D"]
+[node name="Attack-Object" type="Node3D" groups=["Attack Object"]]
 script = ExtResource("1_ihvv3")
 metadata/ItemName = ""
 

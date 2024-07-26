@@ -24,7 +24,6 @@ public partial class AttackPickupDir : Area3D
 		mesh = GetNode<MeshInstance3D>("Mesh");
 
 		attackName = attackObject.Instantiate().Name;
-		GD.Print($"Attack ID: {attackName}");
 	}
 
 	public override void _Process(double delta)

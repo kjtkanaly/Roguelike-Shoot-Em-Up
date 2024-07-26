@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using GDCollect = Godot.Collections;
 
 public partial class RepetativeAttackDirector : AttackDirector
 {
@@ -52,15 +53,20 @@ public partial class RepetativeAttackDirector : AttackDirector
 		InteractionDirector otherIteraction = 
 			enemyArea.GetNode<InteractionDirector>("..");
 
-		if (IsInGroup(otherIteraction.GetInteractionData().groupName)) {
-			GD.Print($"{otherIteraction.GetInteractionData().groupName}");
-			return;
-		}
-
 		// Safety Check
 		if (otherIteraction == null) {
 			GD.Print($"{enemyArea.Name} had no Interaction Area");
 			return;
+		}
+
+		// Check if the entered area is this or an ally
+		GDCollect.Array<Godot.StringName> otherGroups = 
+			otherIteraction.GetGroups();
+		foreach (string otherGroup in otherGroups) {
+			GD.Print($"Other Area's Group: {otherGroup}");
+			if (IsInGroup(otherGroup)) {
+				return;
+			}
 		}
 		
 		// Take the Initial Damage

@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_dwd76")
+meleeDamage = 2.0
+canTakeDamage = true
 maxHealth = 10.0
+groupName = "Enemy"

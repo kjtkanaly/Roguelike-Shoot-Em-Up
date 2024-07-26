@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/Attacks/AoEAttackDirector.cs" id="2_bp1w5"]
 [ext_resource type="Shape3D" uid="uid://cqgo526l3ptdq" path="res://Assets/Resources/Shapes/AoE-Shapes/pentagram_aoe.tres" id="2_qq0bk"]
 
-[node name="Pentagram-AoE" type="Node3D"]
+[node name="Pentagram-AoE" type="Node3D" groups=["Attack Object"]]
 
 [node name="Attack-Object" parent="." instance=ExtResource("1_ss7gc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -13,9 +13,6 @@ script = ExtResource("2_bp1w5")
 dataPath = "res://Assets/Resources/Attack_Data_Files/AreaOfEffect_00.tres"
 collisionMaskValues = PackedInt32Array(10)
 yRotationAngleDegree = 180.0
-
-[node name="Hit-Box-Director" parent="Attack-Object" index="2"]
-collision_layer = 0
 
 [node name="Hit-Box-Shape" parent="Attack-Object/Hit-Box-Director" index="0"]
 shape = ExtResource("2_qq0bk")
