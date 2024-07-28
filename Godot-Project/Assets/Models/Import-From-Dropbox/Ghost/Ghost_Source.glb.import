@@ -1846,7 +1846,7 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://Assets/Models/Ghost-Instance/Ghost_Mesh.res"
+"save_to_file/path": "res://Assets/Models/Import-From-Dropbox/Ghost/meshtest.res"
 }
 },
 "nodes": {
