@@ -1831,6 +1831,12 @@ _subresources={
 "slices/amount": 0
 }
 },
+"materials": {
+"Material.001": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/Models/Import-From-Dropbox/Ghost/Material.001.tres"
+}
+},
 "meshes": {
 "Ghost_Source_Cube_001": {
 "generate/lightmap_uv": 0,

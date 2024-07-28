@@ -8,6 +8,8 @@ public partial class InteractionDirector : Node3D
 	// Public
 	[Export] public string interactionDataPath;
 	[Export] public bool debugMode = false;
+	[Signal]
+    public delegate void TookDamageEventHandler();
 
 	// Protected
 	protected ObjectPickupDirector itemPickupDir;
@@ -40,6 +42,7 @@ public partial class InteractionDirector : Node3D
 		currentHealth -= damageValue;
 
 		DisplayDamageValue(damageValue);
+		EmitSignal(SignalName.TookDamage);
 
 		CheckIfDead();
 

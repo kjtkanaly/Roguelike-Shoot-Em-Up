@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ddvtymj0p6r1x"]
+
+[ext_resource type="Shader" uid="uid://defhbea8spnsn" path="res://Assets/Models/Ghost-Instance/Ghost_Shader.tres" id="1_thg1v"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_thg1v")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(0.74, 0.1554, 0.165143, 1)

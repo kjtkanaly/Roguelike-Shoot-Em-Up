@@ -8,12 +8,19 @@ public partial class AnimationController : Node3D
     // Public
     [Export] public string idleAnimationString;
     [Export] public string walkRunAnimationString;
+    [Export] public string meshInstPath;
+    [Export] public string hurtAnimationTimerPath;
+    [Export] public string characterShaderPath;
 
     // Protected
     protected AnimationPlayer animationPlyr;
+    protected MovementDirector movementDir;
+    protected InteractionDirector interactionDir;
+    protected ShaderMaterial characterShader;
+    protected Timer hurtAnimationTimer;    
+    protected float hurtAnimationDelay = 0.2f;
 
     // Private
-    private MovementDirector movementDir;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -23,6 +30,22 @@ public partial class AnimationController : Node3D
 
         SetAnimationPlayer();
         SetMovementDirector();
+        SetInteractionDirector();
+
+        interactionDir.TookDamage += PlayHurtAnimation;
+        
+        // Create an instance of the shader
+        characterShader = 
+            (ShaderMaterial) ResourceLoader.Load(characterShaderPath).Duplicate();
+
+        // Set the character Shader Material
+        MeshInstance3D meshInst = GetNode<MeshInstance3D>(meshInstPath);
+        meshInst.Mesh.SurfaceSetMaterial(0, characterShader);
+        
+
+        // Get the Hurt Animation Timer
+        hurtAnimationTimer = GetNode<Timer>(hurtAnimationTimerPath);
+        hurtAnimationTimer.Timeout += StopHurtAnimation;
 
         StartIdleAnimation();
     }
@@ -58,6 +81,15 @@ public partial class AnimationController : Node3D
         animationPlyr.Play(idleAnimationString);
     }
 
+    public void PlayHurtAnimation() {
+        characterShader.SetShaderParameter("Enabled", true);
+        hurtAnimationTimer.Start(hurtAnimationDelay);
+    }
+
+    public void StopHurtAnimation() {
+        characterShader.SetShaderParameter("Enabled", false);
+    }
+
     // Protected
     protected virtual void SetAnimationPlayer() {
         animationPlyr = GetNode<AnimationPlayer>("Animation_Player");
@@ -65,6 +97,17 @@ public partial class AnimationController : Node3D
 
     protected virtual void SetMovementDirector() {
         movementDir = GetNode<MovementDirector>("..");
+    }
+
+    protected virtual void SetInteractionDirector() {
+        foreach (Node child in GetParent().GetChildren()) {
+            if (!child.IsInGroup("Interaction")) {
+                continue;
+            }
+
+            interactionDir = (InteractionDirector) child;
+            return;
+        }
     }
 
     protected virtual MovementDirector GetMovementDirector() {
