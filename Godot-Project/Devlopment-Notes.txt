@@ -79,9 +79,9 @@ attack object in each pickup object
 [X] Create a Collision Layer Diagram
 [X] Stop the player from hurting them selves when they pickup and attack
 [ ] Add death animations
-[ ] Add hit animations (Hue Shifting)
-[ ] Add hit animation to the player
-[ ] Fix the texture filtering issue for the hue shifting
+[X] Add hit animations (Hue Shifting)
+[ ] Add hit animation to the player <-- Blocked by Dak's baking
+[X] Fix the texture filtering issue for the hue shifting
 [ ] Research how other 3-D games display damage labels
 [ ] Set the damage labels to be on the correct visual layer
 [ ] Bring in Dak's neighborhood scene 

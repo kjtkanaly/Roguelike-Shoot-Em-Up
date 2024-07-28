@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ddvtymj0p6r1x"]
 
-[ext_resource type="Shader" uid="uid://b802fw2jq6osn" path="res://Assets/Models/Ghost-Instance/Ghost-Visual-Shader.tres" id="1_hfkjm"]
+[ext_resource type="Shader" uid="uid://b802fw2jq6osn" path="res://Assets/Resources/Visual_Shaders/Hit_Flash_Shader.tres" id="1_xpqwv"]
 
 [sub_resource type="Image" id="Image_oxjsv"]
 data = {
@@ -16,7 +16,7 @@ image = SubResource("Image_oxjsv")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_hfkjm")
+shader = ExtResource("1_xpqwv")
 shader_parameter/Enabled = false
 shader_parameter/ColorParameter = Color(0.74, 0.2294, 0.29748, 1)
 shader_parameter/Texture2DParameter = SubResource("ImageTexture_51fow")

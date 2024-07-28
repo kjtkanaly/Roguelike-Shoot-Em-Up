@@ -18,9 +18,11 @@ input_name = "uv"
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ec6h4"]
 parameter_name = "Texture2DParameter"
+color_default = 2
 texture_filter = 1
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_3wmtk"]
+output_port_for_preview = 0
 source = 5
 
 [resource]
@@ -29,7 +31,7 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_s
 
 uniform bool Enabled = false;
 uniform vec4 ColorParameter : source_color = vec4(0.740000, 0.229400, 0.297480, 1.000000);
-uniform sampler2D Texture2DParameter : filter_nearest;
+uniform sampler2D Texture2DParameter : hint_default_transparent, filter_nearest;
 
 
 
