@@ -16,5 +16,6 @@ public partial class AttackData : Resource
     [Export] public Type type = Type.None;
 	[Export] public float damage = 1.0f;
 	[Export] public float delay = 1.0f;
+	[Export] public float staggerTime = 0.1f;
     [Export] public int maxLevel = 6;
 }

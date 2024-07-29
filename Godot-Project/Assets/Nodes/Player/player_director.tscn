@@ -17,6 +17,7 @@ collision_mask = 9
 script = ExtResource("1_yd83r")
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/default_player_001.tres"
 interactionDirNodePath = "Generic-Interaction-Director"
+staggeredTimerPath = "Staggered-Movement-Timer"
 
 [node name="Player-Scene-Director" parent="." instance=ExtResource("4_5u3ck")]
 
@@ -34,5 +35,7 @@ shape = SubResource("CylinderShape3D_1w7no")
 [node name="Inventory-Director" parent="Generic-Interaction-Director" index="3" groups=["Player"]]
 
 [node name="Kid-Model-Instance" parent="." instance=ExtResource("4_vguaw")]
+
+[node name="Staggered-Movement-Timer" type="Timer" parent="."]
 
 [editable path="Generic-Interaction-Director"]

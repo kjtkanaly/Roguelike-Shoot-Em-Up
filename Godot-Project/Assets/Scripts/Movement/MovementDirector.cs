@@ -8,8 +8,11 @@ public partial class MovementDirector : CharacterBody3D
 	// Public
 	[Export] public string movementDataPath;
 	[Export] public string interactionDirNodePath;
+	[Export] public string staggeredTimerPath;
 
 	// Protected 
+	protected float speedModifier = 1.0f;
+	protected float staggeredSpeedModifier = 0.0f;
 	protected Vector2 lateralDirection;
 	protected float verticalVelocitySnapshot;
 	protected float gravity = ProjectSettings.GetSetting(
@@ -18,6 +21,7 @@ public partial class MovementDirector : CharacterBody3D
 
 	// Private
 	private MovementData movementData;
+	private Timer staggeredTimer;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -26,6 +30,10 @@ public partial class MovementDirector : CharacterBody3D
 		LoadMovementData();
 		interactionDirector = 
 			GetNode<InteractionDirector>(interactionDirNodePath);
+		interactionDirector.TookDamage += BeginStaggeredMovement;
+
+		staggeredTimer = GetNode<Timer>(staggeredTimerPath);
+        staggeredTimer.Timeout += StopStaggeredMovement;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -59,6 +67,10 @@ public partial class MovementDirector : CharacterBody3D
 		return lateralVelocity.Length();
 	}
 
+	public float GetCurrentSpeed() {
+		return GetMovementData().speed * speedModifier;
+	}
+
 	// Protected
 	protected virtual void UpdateLateralDirection() {
 		Vector3 globalDirection = new Vector3(0.0f, 0.0f, 1.0f);
@@ -69,7 +81,7 @@ public partial class MovementDirector : CharacterBody3D
 		float currentSpeed = Velocity.Z;
 		float goalSpeed = 0;
 		if (lateralDirection.Length() != 0) {
-			goalSpeed = GetMovementData().speed;
+			goalSpeed = GetCurrentSpeed();
 		}
 		currentSpeed = Mathf.MoveToward(
 				currentSpeed, 
@@ -87,6 +99,15 @@ public partial class MovementDirector : CharacterBody3D
 			Rotation = new Vector3(Rotation.X, angle, Rotation.Z);
 		}
     }
+
+	protected void BeginStaggeredMovement(AttackData data) {
+		speedModifier = staggeredSpeedModifier;
+		staggeredTimer.Start(data.staggerTime);
+	}
+
+	protected void StopStaggeredMovement() {
+		speedModifier = 1.0f;
+	}
 
 	// Private
 	private void ApplyGravity(float timeDelta) {

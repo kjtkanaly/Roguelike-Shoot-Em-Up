@@ -70,7 +70,7 @@ public partial class RepetativeAttackDirector : AttackDirector
 		}
 		
 		// Take the Initial Damage
-		otherIteraction.TickHealth(GetAttackData().damage);
+		otherIteraction.TickHealth(GetAttackData());
 
 		// Create the timer
 		SceneTreeTimer timer = GetTree().CreateTimer(GetAttackData().delay);
@@ -116,7 +116,7 @@ public partial class RepetativeAttackDirector : AttackDirector
 					enemyTimers.Remove(enemyTimer.Key);
 				}
 				
-				enemyInteraction.TickHealth(GetAttackData().damage);
+				enemyInteraction.TickHealth(GetAttackData());
 				
 				// Reset the EnemyTimer
 				enemyTimers[enemyTimer.Key] = GetTree().CreateTimer(GetAttackData().delay);

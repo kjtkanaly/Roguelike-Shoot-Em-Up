@@ -10,7 +10,7 @@ public partial class InteractionDirector : Node3D
 	[Export] public string parentGroupName;
 	[Export] public bool debugMode = false;
 	[Signal]
-    public delegate void TookDamageEventHandler();
+    public delegate void TookDamageEventHandler(AttackData data);
 	[Signal]
 	public delegate void HasDiedEventHandler();
 
@@ -25,6 +25,7 @@ public partial class InteractionDirector : Node3D
 	// Private
 	private InteractionData interactionData;
 	private Node mainRoot;
+	private MovementDirector movementDir;
 
 	//-------------------------------------------------------------------------
 	// Game Events
@@ -47,22 +48,22 @@ public partial class InteractionDirector : Node3D
 		return interactionData;
 	}
 
-	public void TickHealth(float damageValue) {
+	public void TickHealth(AttackData data) {
 		if (IsDead()) {
 			return;
 		}
 
-		currentHealth -= damageValue;
+		currentHealth -= data.damage;
 
-		DisplayDamageValue(damageValue);
-		EmitSignal(SignalName.TookDamage);
+		DisplayDamageValue(data.damage);
+		EmitSignal(SignalName.TookDamage, data);
 
 		if (IsDead()) {
 			BeginDeathSequence();
 		}
 
 		if (debugMode) {
-			GD.Print($"{this} took {damageValue} damage");
+			GD.Print($"{this} took {data.damage} damage");
 			GD.Print($"current health: {currentHealth}\n");
 		}
 	}

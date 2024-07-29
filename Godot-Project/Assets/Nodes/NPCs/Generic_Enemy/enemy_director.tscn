@@ -8,6 +8,7 @@
 collision_layer = 2
 collision_mask = 10
 script = ExtResource("1_kc0qc")
+staggeredTimerPath = "Staggered-Movement-Timer"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
@@ -16,5 +17,7 @@ script = ExtResource("4_cpdm5")
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/enemy_001.tres"
 
 [node name="Inventory-Director" parent="Generic-Interaction-Director" index="3" groups=["Enemy"]]
+
+[node name="Staggered-Movement-Timer" type="Timer" parent="."]
 
 [editable path="Generic-Interaction-Director"]
