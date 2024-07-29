@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://csqldf5yvrkoc"]
+[gd_scene load_steps=10 format=3 uid="uid://csqldf5yvrkoc"]
 
 [ext_resource type="PackedScene" uid="uid://dn8m7y6fr4hnk" path="res://Assets/Models/Import-From-Dropbox/Ghost/Ghost_Source.glb" id="1_14xwc"]
 [ext_resource type="Script" path="res://Assets/Scripts/Animation/EnemyAnimationController.cs" id="2_gxpdx"]
@@ -26,8 +26,35 @@ _data = {
 "RESET": SubResource("Animation_f3l4g")
 }
 
+[sub_resource type="Animation" id="Animation_wwmbx"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.610865, 1.5708, 0), Vector3(-0.610865, 3.14159, 0), Vector3(-0.610865, 4.71239, 0), Vector3(-0.610865, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ycd7g"]
 _data = {
+"Death": SubResource("Animation_wwmbx"),
 "Idle": ExtResource("2_ucoby"),
 "Movement": ExtResource("3_441an")
 }
@@ -36,6 +63,7 @@ _data = {
 script = ExtResource("2_gxpdx")
 idleAnimationString = "ghost_animations/Idle"
 walkRunAnimationString = "ghost_animations/Movement"
+DeathAnimationString = "ghost_animations/Death"
 meshInstPath = "rig/Skeleton3D/Cube"
 hurtAnimationTimerPath = "Animation_Player/Hurt-Timer"
 characterShaderPath = "res://Assets/Models/Ghost-Instance/Ghost_Material.tres"

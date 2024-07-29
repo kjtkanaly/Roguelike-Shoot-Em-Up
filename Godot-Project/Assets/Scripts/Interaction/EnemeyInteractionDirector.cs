@@ -8,7 +8,6 @@ public partial class EnemeyInteractionDirector : NPCInteractionDirector
 	// Public
 
 	// Protected
-	protected Node parentNode;
 
 	// Private
 	private EnemyInteractionData interactionData;
@@ -40,27 +39,11 @@ public partial class EnemeyInteractionDirector : NPCInteractionDirector
 		interactionData = (EnemyInteractionData) GD.Load(interactionDataPath);
 	}
 
-	protected override void DeathSequence() {
-		parentNode.QueueFree();
+	protected override void BeginDeathSequence() {
+		base.BeginDeathSequence();
 	}
 
 	// Private
-	private void GetParentNode() {
-		Node currentNode = (Node) this;
-
-		while (currentNode != null) {
-			parentNode = currentNode.GetParent();
-
-			if (parentNode.IsInGroup("Enemy-Parent-Node")) {
-				return;
-			}
-
-			currentNode = parentNode;
-		}
-
-		parentNode = null;
-		return;
-	}
 
 	//-------------------------------------------------------------------------
 	// Debug Methods

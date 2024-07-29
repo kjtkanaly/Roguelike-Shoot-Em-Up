@@ -65,6 +65,12 @@ public partial class InventoryDirector : Node3D
 		return true;
 	}
 
+	public void DisableAttacks() {
+		for (int i = 0; i < attackInventory.Count; i++) {
+			attackInventory[i].DisableAttack();
+		}
+	}
+
 	// Protected
 	
 	// Private
@@ -79,7 +85,7 @@ public partial class InventoryDirector : Node3D
 	private void EquipPreloadedAttack() {
 		foreach (Node3D child in GetChildren()) {
 			if (!child.GetChild(0).IsInGroup("Attack Object")) {
-				return;
+				continue;
 			}
 			AddAttackToInventory((AttackDirector) child.GetChild(0));
 		}

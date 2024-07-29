@@ -16,6 +16,7 @@ height = 1.0
 collision_mask = 9
 script = ExtResource("1_yd83r")
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/default_player_001.tres"
+interactionDirNodePath = "Generic-Interaction-Director"
 
 [node name="Player-Scene-Director" parent="." instance=ExtResource("4_5u3ck")]
 
@@ -25,6 +26,7 @@ shape = SubResource("CylinderShape3D_iuyme")
 [node name="Generic-Interaction-Director" parent="." groups=["Player"] instance=ExtResource("6_bol8m")]
 script = ExtResource("7_k828g")
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Player/default_player_001.tres"
+parentGroupName = "Player"
 
 [node name="Hit-Box-Shape" parent="Generic-Interaction-Director/Hit-Box-Director" index="0"]
 shape = SubResource("CylinderShape3D_1w7no")

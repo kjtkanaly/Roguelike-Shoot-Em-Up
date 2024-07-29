@@ -19,9 +19,6 @@ public partial class PlayerInteractionDirector : InteractionDirector
     {
         base._Ready();
 
-        itemPickupDir = GetNode<ObjectPickupDirector>("Item-Pickup-Director");
-        inventoryDir = GetNode<InventoryDirector>("Inventory-Director");
-
         itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
     }
 

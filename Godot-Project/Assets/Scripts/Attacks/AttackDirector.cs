@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class AttackDirector : Node3D
 {
@@ -96,6 +97,14 @@ public partial class AttackDirector : Node3D
 
     public virtual int GetAttackMaxLevel() {
         return GetAttackData().maxLevel;
+    }
+
+    public void EnableAttack() {
+        ProcessMode = ProcessModeEnum.Inherit;
+    }
+
+    public void DisableAttack() {
+        ProcessMode = ProcessModeEnum.Disabled;
     }
 
     // Protected

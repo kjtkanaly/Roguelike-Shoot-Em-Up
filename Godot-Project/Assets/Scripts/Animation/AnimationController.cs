@@ -8,6 +8,7 @@ public partial class AnimationController : Node3D
     // Public
     [Export] public string idleAnimationString;
     [Export] public string walkRunAnimationString;
+    [Export] public string DeathAnimationString;
     [Export] public string meshInstPath;
     [Export] public string hurtAnimationTimerPath;
     [Export] public string characterShaderPath;
@@ -19,6 +20,7 @@ public partial class AnimationController : Node3D
     protected ShaderMaterial characterShader;
     protected Timer hurtAnimationTimer;    
     protected float hurtAnimationDelay = 0.2f;
+    protected bool unskippableAnimation = false;
 
     // Private
 
@@ -33,6 +35,7 @@ public partial class AnimationController : Node3D
         SetInteractionDirector();
 
         interactionDir.TookDamage += PlayHurtAnimation;
+        interactionDir.HasDied += PlayDeathAnimation;
         
         // Create an instance of the shader
         characterShader = 
@@ -53,6 +56,10 @@ public partial class AnimationController : Node3D
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+
+        if (unskippableAnimation) {
+            return;
+        }
 
         if (GetMovementDirector().GetLateralVelocityMag() > 0.1f) {
             StartWalkRunAnimation();
@@ -88,6 +95,11 @@ public partial class AnimationController : Node3D
 
     public void StopHurtAnimation() {
         characterShader.SetShaderParameter("Enabled", false);
+    }
+
+    public void PlayDeathAnimation() {
+        unskippableAnimation = true;
+        animationPlyr.Play(DeathAnimationString);
     }
 
     // Protected

@@ -7,15 +7,20 @@ public partial class InteractionDirector : Node3D
 	// Game Componenets
 	// Public
 	[Export] public string interactionDataPath;
+	[Export] public string parentGroupName;
 	[Export] public bool debugMode = false;
 	[Signal]
     public delegate void TookDamageEventHandler();
+	[Signal]
+	public delegate void HasDiedEventHandler();
 
 	// Protected
 	protected ObjectPickupDirector itemPickupDir;
 	protected InventoryDirector inventoryDir;
 	[Export] protected PackedScene damageLabel;
+	protected Node3D parentNode;
 	protected float currentHealth = 0.0f;
+	protected Godot.SceneTreeTimer deathTimer;
 
 	// Private
 	private InteractionData interactionData;
@@ -29,6 +34,10 @@ public partial class InteractionDirector : Node3D
 
 		LoadInteractionData();
 		InitHealthData();
+
+		GetParentNode();
+		itemPickupDir = GetNode<ObjectPickupDirector>("Item-Pickup-Director");
+        inventoryDir = GetNode<InventoryDirector>("Inventory-Director");
 	}
 
 	//-------------------------------------------------------------------------
@@ -39,17 +48,30 @@ public partial class InteractionDirector : Node3D
 	}
 
 	public void TickHealth(float damageValue) {
+		if (IsDead()) {
+			return;
+		}
+
 		currentHealth -= damageValue;
 
 		DisplayDamageValue(damageValue);
 		EmitSignal(SignalName.TookDamage);
 
-		CheckIfDead();
+		if (IsDead()) {
+			BeginDeathSequence();
+		}
 
 		if (debugMode) {
 			GD.Print($"{this} took {damageValue} damage");
 			GD.Print($"current health: {currentHealth}\n");
 		}
+	}
+
+	public bool IsDead() {
+		if (currentHealth <= 0.0f) {
+			return true;
+		}
+		return false;
 	}
 
 	// Protected
@@ -76,14 +98,23 @@ public partial class InteractionDirector : Node3D
 	protected virtual void PickupFirstFreeAttack() {
     }
 
-	protected void CheckIfDead() {
-		if (currentHealth <= 0.0f) {
-			DeathSequence();
-		}
+	protected virtual void BeginDeathSequence() {
+		EmitSignal(SignalName.HasDied);
+		inventoryDir.DisableAttacks();
+		deathTimer = 
+			GetTree().CreateTimer(GetInteractionData().deathAnimationTIme);
+		deathTimer.Timeout += EndDeathSequence;
 	}
 
-	protected virtual void DeathSequence() {
-		QueueFree();
+	protected virtual void EndDeathSequence() {
+		parentNode.QueueFree();
+	}
+
+	protected void GetParentNode() {
+		parentNode = this;
+		while (!parentNode.IsInGroup(parentGroupName)) {
+			parentNode = parentNode.GetParent<Node3D>();
+		}
 	}
 
 	// Private

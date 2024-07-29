@@ -7,12 +7,14 @@ public partial class MovementDirector : CharacterBody3D
 	// Game Componenets
 	// Public
 	[Export] public string movementDataPath;
+	[Export] public string interactionDirNodePath;
 
 	// Protected 
 	protected Vector2 lateralDirection;
 	protected float verticalVelocitySnapshot;
 	protected float gravity = ProjectSettings.GetSetting(
 						   "physics/3d/default_gravity").AsSingle();
+	protected InteractionDirector interactionDirector;
 
 	// Private
 	private MovementData movementData;
@@ -22,10 +24,16 @@ public partial class MovementDirector : CharacterBody3D
 	public override void _Ready()
 	{
 		LoadMovementData();
+		interactionDirector = 
+			GetNode<InteractionDirector>(interactionDirNodePath);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (interactionDirector.IsDead()) {
+			return;
+		}
+
 		ApplyGravity((float) delta);
 
 		UpdateLateralDirection();
