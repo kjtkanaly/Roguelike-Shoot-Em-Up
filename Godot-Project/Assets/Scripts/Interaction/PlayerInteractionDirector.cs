@@ -7,6 +7,8 @@ public partial class PlayerInteractionDirector : InteractionDirector
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
+    [Signal]
+    public delegate void PlayerIsDeadEventHandler();
 
     // Protected
 
