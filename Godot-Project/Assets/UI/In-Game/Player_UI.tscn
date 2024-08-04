@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://dupmcx2f5h0wo"]
+
+[ext_resource type="LabelSettings" uid="uid://cxuck0f1200d" path="res://Assets/Resources/Label_Settings/Player_UI.tres" id="1_ntqn7"]
+[ext_resource type="Script" path="res://Assets/Scripts/UI/PlayerUI.cs" id="1_o3pyv"]
+[ext_resource type="Texture2D" uid="uid://b0t6nppafattr" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Border.png" id="2_gnh0b"]
+[ext_resource type="Texture2D" uid="uid://c883iprdgc6vt" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Fill.png" id="3_bwy6f"]
+
+[node name="Player-UI" type="MarginContainer"]
+custom_minimum_size = Vector2(1280, 720)
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+script = ExtResource("1_o3pyv")
+healthBarPath = "VBoxContainer/HBoxContainer/Bar"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_right = 466.0
+offset_bottom = 175.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "10"
+label_settings = ExtResource("1_ntqn7")
+
+[node name="ColorRect" type="ColorRect" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Bar" type="TextureProgressBar" parent="Panel/VBoxContainer/HBoxContainer/ColorRect"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -25.0
+offset_right = 150.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+max_value = 20.0
+step = 0.1
+value = 20.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_gnh0b")
+texture_over = ExtResource("2_gnh0b")
+texture_progress = ExtResource("3_bwy6f")

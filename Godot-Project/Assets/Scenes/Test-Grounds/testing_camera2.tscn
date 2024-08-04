@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://crpjjk7ky0vin"]
+
+[node name="Node3D" type="SubViewportContainer"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.98533)

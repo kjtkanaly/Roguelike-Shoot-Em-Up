@@ -22,6 +22,8 @@ public partial class PlayerAnimationController : AnimationController
     //-------------------------------------------------------------------------
     // Methods
     // Public
+    public override void PlayHurtAnimation(AttackData data) {
+    }
 
     // Protected
     protected override void SetMovementDirector() {

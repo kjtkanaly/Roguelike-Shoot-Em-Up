@@ -82,10 +82,10 @@ attack object in each pickup object
 [X] Add hit animations (Hue Shifting)
 [ ] Add hit animation to the player <-- Blocked by Dak's baking
 [ ] Add death animation to the player
-[ ] Add Hit stun to the attacks
+[X] Add Hit stun to the attacks
 [X] Fix the texture filtering issue for the hue shifting
-[ ] Research how other 3-D games display damage labels
-[ ] Set the damage labels to be on the correct visual layer
+[X] Research how other 3-D games display damage labels
+[X] Set the damage labels to be on the correct visual layer
 [ ] Bring in Dak's neighborhood scene 
 [ ] Create the player UI (Health, play time, display active attacks)
 [ ] Add basic hit sound effects

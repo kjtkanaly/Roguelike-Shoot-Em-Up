@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhxmej5jdupx8"]
+[gd_scene load_steps=9 format=3 uid="uid://bhxmej5jdupx8"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Movement/PlayerMovementDirector.cs" id="1_yd83r"]
 [ext_resource type="PackedScene" uid="uid://dofme3ylpyfbe" path="res://Assets/Nodes/Player/player_scene_director.tscn" id="4_5u3ck"]
 [ext_resource type="PackedScene" uid="uid://cv8n4qd2k4h3k" path="res://Assets/Models/Kid-Instance/kid_model_instance.tscn" id="4_vguaw"]
 [ext_resource type="PackedScene" uid="uid://dxe2dh3ca635s" path="res://Assets/Nodes/Generics/generic_interaction_director.tscn" id="6_bol8m"]
+[ext_resource type="PackedScene" uid="uid://dupmcx2f5h0wo" path="res://Assets/UI/In-Game/Player_UI.tscn" id="6_uurg3"]
 [ext_resource type="Script" path="res://Assets/Scripts/Interaction/PlayerInteractionDirector.cs" id="7_k828g"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iuyme"]
@@ -37,5 +38,9 @@ shape = SubResource("CylinderShape3D_1w7no")
 [node name="Kid-Model-Instance" parent="." instance=ExtResource("4_vguaw")]
 
 [node name="Staggered-Movement-Timer" type="Timer" parent="."]
+
+[node name="Player-UI" parent="." instance=ExtResource("6_uurg3")]
+visible = false
+interactionDirNodePath = "../Generic-Interaction-Director"
 
 [editable path="Generic-Interaction-Director"]

@@ -88,7 +88,7 @@ public partial class AnimationController : Node3D
         animationPlyr.Play(idleAnimationString);
     }
 
-    public void PlayHurtAnimation(AttackData data) {
+    public virtual void PlayHurtAnimation(AttackData data) {
         characterShader.SetShaderParameter("Enabled", true);
         hurtAnimationTimer.Start(hurtAnimationDelay);
     }
