@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjpicnbiaogb2"]
+
+[ext_resource type="LabelSettings" uid="uid://pgnm45iodk28" path="res://Assets/Resources/Label_Settings/Menu_Label_001.tres" id="1_34xo7"]
+[ext_resource type="Script" path="res://Assets/Scripts/UI/TitleMenu.cs" id="1_rc0aw"]
+
+[sub_resource type="FontFile" id="FontFile_yj5iu"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[node name="Title-Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rc0aw")
+playButtonNodePath = "MarginContainer/VBoxContainer/Play-Button"
+optionsButtonNodePath = "MarginContainer/VBoxContainer/Options-Button"
+quitButtonNodePath = "MarginContainer/VBoxContainer/Quit-Button"
+WorldOneScenePath = "res://Assets/Scenes/World_1/World_1.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Play-Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="Play-Label" type="Label" parent="MarginContainer/VBoxContainer/Play-Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.5
+offset_top = -11.5
+offset_right = 16.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Play
+"
+label_settings = ExtResource("1_34xo7")
+
+[node name="Options-Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_yj5iu")
+
+[node name="Options-Label" type="Label" parent="MarginContainer/VBoxContainer/Options-Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -11.5
+offset_right = 35.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options
+"
+label_settings = ExtResource("1_34xo7")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Quit-Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_yj5iu")
+
+[node name="Quit-Label" type="Label" parent="MarginContainer/VBoxContainer/Quit-Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+label_settings = ExtResource("1_34xo7")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

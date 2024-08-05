@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgnpmktl80qnm"]
+
+[ext_resource type="Texture2D" uid="uid://b0t6nppafattr" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Border.png" id="1_cduh8"]
+[ext_resource type="Texture2D" uid="uid://x2qnja2qxycu" path="res://Assets/Graphics/Sprites/UI Sprites/Candy.png" id="1_evblf"]
+[ext_resource type="Texture2D" uid="uid://c883iprdgc6vt" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Fill.png" id="2_rkiuu"]
+[ext_resource type="LabelSettings" uid="uid://cxuck0f1200d" path="res://Assets/Resources/Label_Settings/Player_UI.tres" id="2_s3ywq"]
+[ext_resource type="Texture2D" uid="uid://dqwbowpmdk03v" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Icon.png" id="3_0ys2b"]
+
+[node name="Player-Stats-Box" type="ColorRect"]
+custom_minimum_size = Vector2(160, 200)
+color = Color(0.509804, 0.509804, 0.509804, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="Health-Bar" type="TextureProgressBar" parent="HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(75, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+max_value = 20.0
+step = 0.01
+value = 20.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_over = ExtResource("1_cduh8")
+texture_progress = ExtResource("2_rkiuu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(40, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "20
+"
+label_settings = ExtResource("2_s3ywq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(40, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0
+"
+label_settings = ExtResource("2_s3ywq")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+
+[node name="Candy-Symbol" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("1_evblf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Health-Symbol" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("3_0ys2b")
+expand_mode = 2
+stretch_mode = 4
