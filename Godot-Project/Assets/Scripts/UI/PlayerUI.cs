@@ -6,40 +6,48 @@ public partial class PlayerUI : Control
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    [Export] public string healthBarPath;
-    [Export] public string interactionDirNodePath;
+    [Export] public string playerStatusBoxNodePath;
+    [Export] public string timerBoxNodePath;
 
     // Protected
 
     // Private
-    private TextureProgressBar healthBar;
-    private InteractionDirector interactionDir;
+    private PlayerStatusBox playerStatusBox;
+    private TimerBox timerBox;
 
     //-------------------------------------------------------------------------
     // Game Events
     public override void _Ready()
     {
-        healthBar = GetNode<TextureProgressBar>(healthBarPath);
-        interactionDir = GetNode<InteractionDirector>(interactionDirNodePath);
-        interactionDir.TookDamage += UpdateHealthUI;
+        InitObjectRefs();
+    }
 
-        InitMaxHelth();
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        timerBox.UpdateTimer(delta);
     }
 
     //-------------------------------------------------------------------------
     // Methods
     // Public
     public void UpdateHealthUI(AttackData data) {
-        healthBar.Value -= (double) data.damage;
+        playerStatusBox.UpdateHealthUI(data);
     }
 
-    public void InitMaxHelth() {
-        healthBar.MaxValue = interactionDir.GetInteractionData().maxHealth;
-    }
+    public void InitHealthUI(float maxHealth) {
+        InitObjectRefs();
 
+        playerStatusBox.InitHealthUI(maxHealth);
+    }
     // Protected
 
     // Private
+    private void InitObjectRefs() {
+        playerStatusBox = GetNode<PlayerStatusBox>(playerStatusBoxNodePath);
+        timerBox =GetNode<TimerBox>(timerBoxNodePath);
+    }
 
     //-------------------------------------------------------------------------
     // Debug Methods

@@ -27,6 +27,7 @@ shape = SubResource("CylinderShape3D_iuyme")
 
 [node name="Generic-Interaction-Director" parent="." groups=["Player"] instance=ExtResource("6_bol8m")]
 script = ExtResource("7_k828g")
+playerUINodePath = "../Player-UI"
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Player/default_player_001.tres"
 parentGroupName = "Player"
 
@@ -40,7 +41,5 @@ shape = SubResource("CylinderShape3D_1w7no")
 [node name="Staggered-Movement-Timer" type="Timer" parent="."]
 
 [node name="Player-UI" parent="." instance=ExtResource("6_uurg3")]
-visible = false
-interactionDirNodePath = "../Generic-Interaction-Director"
 
 [editable path="Generic-Interaction-Director"]

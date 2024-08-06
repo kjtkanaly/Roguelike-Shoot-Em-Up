@@ -9,11 +9,13 @@ public partial class PlayerInteractionDirector : InteractionDirector
     // Public
     [Signal]
     public delegate void PlayerIsDeadEventHandler();
+    [Export] public string playerUINodePath;
 
     // Protected
 
     // Private
     private PlayerInteractionData interactionData;
+    private PlayerUI playerUI;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -21,7 +23,11 @@ public partial class PlayerInteractionDirector : InteractionDirector
     {
         base._Ready();
 
+        playerUI = GetNode<PlayerUI>(playerUINodePath);
+        playerUI.InitHealthUI(interactionData.maxHealth);
+
         itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
+        TookDamage += playerUI.UpdateHealthUI;
     }
 
     //-------------------------------------------------------------------------
