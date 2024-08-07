@@ -44,7 +44,6 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="Play-Time-Box" parent="MarginContainer/Center-HBox/Center-VBox" instance=ExtResource("3_03ihl")]
-custom_minimum_size = Vector2(70, 40)
 layout_mode = 2
 
 [node name="Left-Side-HBox" type="HBoxContainer" parent="MarginContainer"]
