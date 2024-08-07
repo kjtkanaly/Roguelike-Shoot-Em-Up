@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerUI : Control
+public partial class PlayerInGameUI : UI
 {
     //-------------------------------------------------------------------------
     // Game Componenets
@@ -41,6 +41,7 @@ public partial class PlayerUI : Control
 
         playerStatusBox.InitHealthUI(maxHealth);
     }
+
     // Protected
 
     // Private

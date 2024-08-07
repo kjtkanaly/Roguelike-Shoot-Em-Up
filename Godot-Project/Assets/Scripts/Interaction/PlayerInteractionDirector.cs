@@ -15,7 +15,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
 
     // Private
     private PlayerInteractionData interactionData;
-    private PlayerUI playerUI;
+    private PlayerUIDirector playerUIDirector;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -23,11 +23,11 @@ public partial class PlayerInteractionDirector : InteractionDirector
     {
         base._Ready();
 
-        playerUI = GetNode<PlayerUI>(playerUINodePath);
-        playerUI.InitHealthUI(interactionData.maxHealth);
+        playerUIDirector = GetNode<PlayerUIDirector>(playerUINodePath);
+        playerUIDirector.InitHealthUI(interactionData.maxHealth);
 
         itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
-        TookDamage += playerUI.UpdateHealthUI;
+        TookDamage += playerUIDirector.UpdateHealthUI;
     }
 
     //-------------------------------------------------------------------------

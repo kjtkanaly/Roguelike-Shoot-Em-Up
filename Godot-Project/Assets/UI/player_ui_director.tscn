@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpt3dmyainhhu"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/UI/PlayerUIDirector.cs" id="1_020p2"]
+[ext_resource type="PackedScene" uid="uid://dupmcx2f5h0wo" path="res://Assets/UI/In-Game/player_in_game_ui.tscn" id="1_fwsik"]
+[ext_resource type="PackedScene" uid="uid://di1f1qx017f0w" path="res://Assets/UI/In-Game/pause_menu.tscn" id="2_i025x"]
+
+[node name="Player-UI-Director" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_020p2")
+playerUINodePath = "Player-In-Game-UI"
+pauseGameUINodePath = "Pause-Menu"
+
+[node name="Player-In-Game-UI" parent="." instance=ExtResource("1_fwsik")]
+
+[node name="Pause-Menu" parent="." instance=ExtResource("2_i025x")]
+visible = false
+layout_mode = 1
