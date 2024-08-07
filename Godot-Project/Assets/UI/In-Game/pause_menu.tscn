@@ -11,6 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e1rf4")
+resumeButtonNodePath = "ColorRect/MarginContainer/VBoxContainer/Resume"
+saveAndQuitButtonNodePath = "ColorRect/MarginContainer/VBoxContainer/Save-And-Quit"
+titleMenuFilePath = "res://Assets/UI/In-Game/title_menu.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -81,11 +84,11 @@ grow_vertical = 2
 text = "Options"
 label_settings = ExtResource("1_2sq05")
 
-[node name="Exit" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+[node name="Save-And-Quit" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Exit"]
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/Save-And-Quit"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -98,5 +101,5 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Exit"
+text = "Save and Quit to Title"
 label_settings = ExtResource("1_2sq05")

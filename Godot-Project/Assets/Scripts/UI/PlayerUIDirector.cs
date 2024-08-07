@@ -23,6 +23,8 @@ public partial class PlayerUIDirector : Control
         base._Ready();
 
         InitObjectRefs();
+
+        pauseGameUI.ResumeGame += TogglePause;
     }
 
     public override void _Process(double delta) {
