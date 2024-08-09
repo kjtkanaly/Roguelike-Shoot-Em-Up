@@ -40,8 +40,8 @@ public partial class PauseGameUI : UI
     }
 
     private void SaveAndQuitButtonClicked() {
-        GetTree().ChangeSceneToFile(titleMenuFilePath);
         EmitSignal(SignalName.ResumeGame);
+        GetTree().ChangeSceneToFile(titleMenuFilePath);
     }
 
     //-------------------------------------------------------------------------

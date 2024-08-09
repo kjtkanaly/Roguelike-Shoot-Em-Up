@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d2t6eaim1nwme" path="res://Assets/UI/In-Game/play_time_box.tscn" id="3_q6amk"]
 
 [node name="Player-In-Game-UI" type="Control"]
+process_mode = 3
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
 anchors_preset = 0

@@ -32,7 +32,7 @@ public partial class AttackPickupDir : Area3D
 		IdleAnimation(time);
 	}
 
-	public PackedScene GetAttackPackedScene() {
+    public PackedScene GetAttackPackedScene() {
 		return attackObject;
 	}
 
@@ -57,7 +57,3 @@ public partial class AttackPickupDir : Area3D
 	//-------------------------------------------------------------------------
 	// Debug Methods
 }
-
-// If you want to denote an area for future devlopement mark with it
-// with a to do comment. Example,
-// TO DO: Do some shit

@@ -46,17 +46,19 @@ public partial class PlayerUIDirector : Control
     }
 
     public void TogglePause() {
+        // Swap the UI's
+        pauseGameUI.ToggleVisible(!pauseGameUI.Visible);
+        playerUI.ToggleVisible(!playerUI.Visible);
+
         if (!gamePaused) {
-            gamePaused = true;
-            pauseGameUI.ToggleVisible(true);
-            playerUI.ToggleVisible(false);
-            Engine.TimeScale = 0;
+            GetTree().Paused = true;    // Pause the game engine
+            gamePaused = true;          // Log that the game is paused
         } else {
-            gamePaused = false;
-            pauseGameUI.ToggleVisible(false);
-            playerUI.ToggleVisible(true);
-            Engine.TimeScale = 1;
+            GetTree().Paused = false;   // Unpause the game engine
+            gamePaused = false;         // Log that the game is resumed
         }
+
+        GD.Print($"Game Paused: {gamePaused}");
     }
 
     // Protected

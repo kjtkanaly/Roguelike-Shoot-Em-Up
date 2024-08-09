@@ -87,7 +87,12 @@ attack object in each pickup object
 [X] Research how other 3-D games display damage labels
 [X] Set the damage labels to be on the correct visual layer
 [ ] Bring in Dak's neighborhood scene 
-[ ] Create the player UI (Health, play time, display active attacks)
+[X] Create the player UI (Health, play time, display active attacks)
+[ ] Fix bug where the items on the ground keep animating even when the game is
+    paused
+[ ] Create a death state that displays the player's stats and then offers 
+    restart
+[ ] Figure out how to save the player's progress
 [ ] Add basic hit sound effects
 [ ] Create the basic game loop (spawn in, die, stats screen,restart)
 
