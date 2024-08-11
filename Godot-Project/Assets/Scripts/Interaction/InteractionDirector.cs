@@ -7,7 +7,6 @@ public partial class InteractionDirector : Node3D
 	// Game Componenets
 	// Public
 	[Export] public string interactionDataPath;
-	[Export] public string parentGroupName;
 	[Export] public bool debugMode = false;
 	[Signal]
     public delegate void TookDamageEventHandler(AttackData data);
@@ -100,6 +99,7 @@ public partial class InteractionDirector : Node3D
     }
 
 	protected virtual void BeginDeathSequence() {
+		GD.Print($"\n{parentNode.Name} has died\n");
 		EmitSignal(SignalName.HasDied);
 		inventoryDir.DisableAttacks();
 		deathTimer = 
@@ -112,10 +112,7 @@ public partial class InteractionDirector : Node3D
 	}
 
 	protected void GetParentNode() {
-		parentNode = this;
-		while (!parentNode.IsInGroup(parentGroupName)) {
-			parentNode = parentNode.GetParent<Node3D>();
-		}
+		parentNode = GetParent<Node3D>();
 	}
 
 	// Private

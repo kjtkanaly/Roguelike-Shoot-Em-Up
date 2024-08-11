@@ -88,7 +88,7 @@ attack object in each pickup object
 [X] Set the damage labels to be on the correct visual layer
 [ ] Bring in Dak's neighborhood scene 
 [X] Create the player UI (Health, play time, display active attacks)
-[ ] Fix bug where the items on the ground keep animating even when the game is
+[X] Fix bug where the items on the ground keep animating even when the game is
     paused
 [ ] Create a death state that displays the player's stats and then offers 
     restart

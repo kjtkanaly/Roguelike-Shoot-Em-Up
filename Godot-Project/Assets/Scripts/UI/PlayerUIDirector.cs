@@ -8,13 +8,16 @@ public partial class PlayerUIDirector : Control
     // Public
     [Export] public string playerUINodePath;
     [Export] public string pauseGameUINodePath;
+    [Export] public string gameOverUINodePath;
     public bool gamePaused = false;
+    public bool gameOver = false;
 
     // Protected
 
     // Private
     private PlayerInGameUI playerUI;
     private PauseGameUI pauseGameUI;
+    private GameOverUI gameOverUI;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -28,6 +31,12 @@ public partial class PlayerUIDirector : Control
     }
 
     public override void _Process(double delta) {
+
+        // Player Input
+        if (gameOver) {
+            return;
+        }
+
         if (Input.IsActionJustPressed("Pause Game")) {
             TogglePause();
         }
@@ -61,12 +70,24 @@ public partial class PlayerUIDirector : Control
         GD.Print($"Game Paused: {gamePaused}");
     }
 
+    public void GoToGameOver() {
+        // Log Game Over
+        gameOver = true;
+
+        // Swap the UI's
+        pauseGameUI.ToggleVisible(false);
+        playerUI.ToggleVisible(false);
+        gameOverUI.ToggleVisible(true);
+        
+    }   
+
     // Protected
 
     // Private
     private void InitObjectRefs() {
         playerUI = GetNode<PlayerInGameUI>(playerUINodePath);
         pauseGameUI = GetNode<PauseGameUI>(pauseGameUINodePath);
+        gameOverUI = GetNode<GameOverUI>(gameOverUINodePath);
     }
 
     //-------------------------------------------------------------------------

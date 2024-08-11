@@ -28,6 +28,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
 
         itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
         TookDamage += playerUIDirector.UpdateHealthUI;
+        HasDied += playerUIDirector.GoToGameOver;
     }
 
     //-------------------------------------------------------------------------
@@ -67,6 +68,12 @@ public partial class PlayerInteractionDirector : InteractionDirector
         // Destroy the now equipped action node
         freeAttack.QueueFree();
     }
+
+    protected override void BeginDeathSequence() {
+		GD.Print($"\n{parentNode.Name} has died\n");
+		EmitSignal(SignalName.HasDied);
+		inventoryDir.DisableAttacks();
+	}
 
     // Private
 
