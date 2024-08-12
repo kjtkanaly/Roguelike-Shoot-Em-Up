@@ -39,6 +39,14 @@ public partial class TimerBox : Control
             $"{minutes.ToString("#0")}:{seconds.ToString("00")}";
     }
 
+    public string GetCurrentTime_MMSS() {
+        // Convert the elappsed time to minutes and seconds
+        double minutes = elapsedTime / 60;
+        double seconds = elapsedTime % 60;
+
+        return $"{minutes.ToString("#0")}:{seconds.ToString("00")}";
+    }
+
     // Protected
 
     // Private

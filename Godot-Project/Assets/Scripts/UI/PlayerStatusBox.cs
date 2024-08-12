@@ -8,12 +8,16 @@ public partial class PlayerStatusBox : Control
     // Public
     [Export] public string healthBarNodePath;
     [Export] public string healthLabelNodePath;
+    [Export] public string candyCountLabelNodePath;
 
     // Protected
 
     // Private
     private TextureProgressBar healthBar;
     private Label healthLabel;
+    private Label candyCountLabel;
+    private int candyCount = 0;
+    private int enemiesSlain = 0;
 
     //-------------------------------------------------------------------------
 	// Game Events
@@ -36,6 +40,14 @@ public partial class PlayerStatusBox : Control
         healthBar.MaxValue = maxHealth;
         healthBar.Value = maxHealth;
         healthLabel.Text = maxHealth.ToString();
+    }
+
+    public int GetCandyCount() {
+        return candyCount;
+    }
+
+    public int GetEnemiesSlain() {
+        return enemiesSlain;
     }
 
     // Protected

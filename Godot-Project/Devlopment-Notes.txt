@@ -94,5 +94,6 @@ attack object in each pickup object
     restart
 [ ] Figure out how to save the player's progress
 [ ] Add basic hit sound effects
+[ ] Bring in Dak's font
 [ ] Create the basic game loop (spawn in, die, stats screen,restart)
 

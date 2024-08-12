@@ -42,6 +42,18 @@ public partial class PlayerInGameUI : UI
         playerStatusBox.InitHealthUI(maxHealth);
     }
 
+    public string GetCurrentTime_MMSS() {
+        return timerBox.GetCurrentTime_MMSS();
+    }
+
+    public int GetCandyCount() {
+        return playerStatusBox.GetCandyCount();
+    }
+
+    public int GetEnemiesSlain() {
+        return playerStatusBox.GetEnemiesSlain();
+    }
+
     // Protected
 
     // Private

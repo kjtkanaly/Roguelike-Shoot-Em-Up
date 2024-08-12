@@ -74,6 +74,15 @@ public partial class PlayerUIDirector : Control
         // Log Game Over
         gameOver = true;
 
+        // Create the Game Over Stats Struct
+        gameOverUI.UpdateStatsObject(
+            new GameOverUI.GameOverStats(
+                playerUI.GetCandyCount().ToString(), 
+                playerUI.GetEnemiesSlain().ToString(), 
+                playerUI.GetCurrentTime_MMSS()));
+
+        gameOverUI.RefreshUI();
+
         // Swap the UI's
         pauseGameUI.ToggleVisible(false);
         playerUI.ToggleVisible(false);

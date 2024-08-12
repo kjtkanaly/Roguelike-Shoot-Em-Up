@@ -15,6 +15,9 @@ script = ExtResource("1_phbju")
 titleMenuScenePath = "res://Assets/UI/In-Game/title_menu.tscn"
 newGameButtonNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer2/New-Game-Button"
 quitButtonNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer2/Quit-Button"
+candyLabelNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Candy-Score-Label"
+totalTimeLabelNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Time-Alive-Label"
+enemiesSlainLabelNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Enemies-Slain-Label"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
