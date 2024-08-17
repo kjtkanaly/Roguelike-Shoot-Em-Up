@@ -66,8 +66,6 @@ public partial class PlayerUIDirector : Control
             GetTree().Paused = false;   // Unpause the game engine
             gamePaused = false;         // Log that the game is resumed
         }
-
-        GD.Print($"Game Paused: {gamePaused}");
     }
 
     public void GoToGameOver() {

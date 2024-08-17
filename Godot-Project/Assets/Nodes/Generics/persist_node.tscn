@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2sdy037reimq"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/GameData/PersistNode.cs" id="1_co05p"]
+
+[node name="Persist-Node" type="Node" groups=["Persist"]]
+script = ExtResource("1_co05p")

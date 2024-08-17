@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://boch6lb273a46"]
+
+[ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="1_ldhrk"]
+
+[node name="Testing-Saving" type="Node3D"]
+
+[node name="Player-Director" parent="." instance=ExtResource("1_ldhrk")]
+
+[editable path="Player-Director"]
+[editable path="Player-Director/Generic-Interaction-Director"]

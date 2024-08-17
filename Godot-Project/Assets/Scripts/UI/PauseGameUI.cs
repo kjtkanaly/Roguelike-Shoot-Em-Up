@@ -17,6 +17,7 @@ public partial class PauseGameUI : UI
     // Private
     private Button resumeButton;
     private Button saveAndQuitButton;
+    private GameDataDirector gameDataDir;
 
     //-------------------------------------------------------------------------
 	// Game Events
@@ -26,6 +27,8 @@ public partial class PauseGameUI : UI
 
         resumeButton.ButtonUp += ResumeButtonClicked;
         saveAndQuitButton.ButtonUp += SaveAndQuitButtonClicked;
+
+        gameDataDir = new GameDataDirector();
     }
 
     //-------------------------------------------------------------------------
@@ -40,6 +43,7 @@ public partial class PauseGameUI : UI
     }
 
     private void SaveAndQuitButtonClicked() {
+        gameDataDir.SaveGameState(GetTree().GetNodesInGroup("Persist"));
         EmitSignal(SignalName.ResumeGame);
         GetTree().ChangeSceneToFile(titleMenuFilePath);
     }

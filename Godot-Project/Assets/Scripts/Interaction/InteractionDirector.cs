@@ -74,6 +74,10 @@ public partial class InteractionDirector : Node3D
 		return false;
 	}
 
+	public float GetCurrentHealth() {
+		return currentHealth;
+	}
+
 	// Protected
 	protected virtual void DisplayDamageValue(float damageValue) {
 		Label3D damageLabelInst = 
