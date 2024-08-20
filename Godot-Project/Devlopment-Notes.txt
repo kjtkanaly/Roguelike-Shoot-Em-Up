@@ -90,6 +90,7 @@ attack object in each pickup object
 [X] Create the player UI (Health, play time, display active attacks)
 [X] Fix bug where the items on the ground keep animating even when the game is
     paused
+[ ] Rewrite a lot of the base classes (MovementDirector, etc) to be interfaces
 [ ] Create a death state that displays the player's stats and then offers 
     restart
 [ ] Figure out how to save the player's progress

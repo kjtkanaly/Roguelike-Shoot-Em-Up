@@ -49,6 +49,8 @@ public partial class GameDataDirector
                 GD.Print($"{entry.Key}: {entry.Value}");
             }
         }
+
+        saveFile.Close();
     }
 
     // Protected
