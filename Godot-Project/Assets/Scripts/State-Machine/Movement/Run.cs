@@ -11,6 +11,7 @@ public partial class Run : State
     // Protected
 
     // Private
+    [Export] private State idleState;
     [Export] private State jumpState;
     [Export] private State fallState;
     private Vector2 lateralDirection;
@@ -23,7 +24,7 @@ public partial class Run : State
     // Public
     override public State ProcessInput(InputEvent inputEvent) {
         // Trigger Jump Logic here
-        if (inputEvent.IsAction("Jump") && characterDir.IsOnFloor()) {
+        if (inputEvent.IsActionPressed("Jump") && characterDir.IsOnFloor()) {
             return jumpState;
         }
         return null;
@@ -31,22 +32,18 @@ public partial class Run : State
 
     override public State ProcessPhysics(float delta) {
         // Get the character's directional inputs
-        lateralDirection = GetLateralDirectionVector();
+        OrientateBody();
 
-        // Initialize the character's current speed and the goal speed
-        float currentSpeed = characterDir.Velocity.Z;
-        float goalSpeed = 0;
-
-        // If the lateral direction isn't a zero vector then update the goal 
-        // speed and orientate the body
-        if (lateralDirection.Length() != 0) {
-            OrientateBody(lateralDirection);
+        float goalSpeed;
+        if (IsMovingLaterally()) {
             goalSpeed = characterDir.GetMovementData().speed * speedModifier;
+        } else {
+            goalSpeed = 0;
         }
 
         // Move the character's current closer to the goal speed 
-        currentSpeed = Mathf.MoveToward(
-                currentSpeed, 
+        float currentSpeed = Mathf.MoveToward(
+                characterDir.Velocity.Z, 
                 goalSpeed, 
                 characterDir.GetMovementData().acceleration * delta);
         
@@ -62,43 +59,24 @@ public partial class Run : State
                 characterDir.Velocity.Y, 
                 lateralVelocity.Y);
 
+        // Move the character body around
+        characterDir.MoveAndSlide();
+
         // Check if the player is now character is now falling due to their movement
         if (!characterDir.IsOnFloor()) {
             return fallState;
         }
 
-        characterDir.MoveAndSlide();
+        if (currentSpeed == 0) {
+            return idleState;
+        }
+        
         return null;
     }
 
     // Protected
 
     // Private
-    private Vector2 GetLateralDirectionVector() {
-        Vector2 direction = new Vector2();
-        switch (characterDir.charactertype) {
-            case CharacterDirector.CharacterType.Player:
-                direction = Input.GetVector("Left", "Right", "Up", "Down");
-                break;
-            case CharacterDirector.CharacterType.Ally:
-                break;
-            case CharacterDirector.CharacterType.Enemy:
-                break;
-            default:
-                break;
-        }
-        return direction;
-    }
-
-    private void OrientateBody(Vector2 lateralDirection) {
-		if (lateralDirection != Vector2.Zero) {
-			float angle = -1 * (lateralDirection.Angle() - Mathf.Pi/2);
-			characterDir.Rotation = new Vector3(
-                    characterDir.Rotation.X, 
-                    angle, 
-                    characterDir.Rotation.Z);
-		}
-    }
 
     //-------------------------------------------------------------------------
 	// Debug Methods

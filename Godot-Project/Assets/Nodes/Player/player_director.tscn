@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhxmej5jdupx8"]
+[gd_scene load_steps=15 format=3 uid="uid://bhxmej5jdupx8"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerDirector.cs" id="1_7xoh2"]
 [ext_resource type="PackedScene" uid="uid://cv8n4qd2k4h3k" path="res://Assets/Models/Kid-Instance/kid_model_instance.tscn" id="4_vguaw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bs5undqfitoqb" path="res://Assets/Nodes/State-Machine/Movement/idle.tscn" id="9_p8bee"]
 [ext_resource type="PackedScene" uid="uid://c5j4mqyi6ntqi" path="res://Assets/Nodes/State-Machine/Movement/run.tscn" id="10_vvr7q"]
 [ext_resource type="PackedScene" uid="uid://ccsdrr0j5uv7n" path="res://Assets/Nodes/State-Machine/Movement/fall.tscn" id="11_df3d0"]
+[ext_resource type="PackedScene" uid="uid://b2sjpnfx8su0c" path="res://Assets/Nodes/State-Machine/Movement/jump.tscn" id="12_wnbtq"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iuyme"]
 height = 1.0
@@ -52,17 +53,24 @@ playerInteractionDirPath = "../Generic-Interaction-Director"
 [node name="Movement-State-Machine" parent="." node_paths=PackedStringArray("startingState") instance=ExtResource("8_d3to5")]
 startingState = NodePath("Idle")
 
-[node name="Idle" parent="Movement-State-Machine" node_paths=PackedStringArray("runState", "fallState") instance=ExtResource("9_p8bee")]
+[node name="Idle" parent="Movement-State-Machine" node_paths=PackedStringArray("runState", "jumpState", "fallState") instance=ExtResource("9_p8bee")]
 runState = NodePath("../Run")
+jumpState = NodePath("../Jump")
 fallState = NodePath("../Fall")
 animationPath = "kid_animations/Idle"
 
-[node name="Run" parent="Movement-State-Machine" node_paths=PackedStringArray("fallState") instance=ExtResource("10_vvr7q")]
+[node name="Run" parent="Movement-State-Machine" node_paths=PackedStringArray("idleState", "jumpState", "fallState") instance=ExtResource("10_vvr7q")]
+idleState = NodePath("../Idle")
+jumpState = NodePath("../Jump")
 fallState = NodePath("../Fall")
 animationPath = "kid_animations/Walk_Run"
 
-[node name="Fall" parent="Movement-State-Machine" node_paths=PackedStringArray("idleState") instance=ExtResource("11_df3d0")]
+[node name="Fall" parent="Movement-State-Machine" node_paths=PackedStringArray("idleState", "runState") instance=ExtResource("11_df3d0")]
 idleState = NodePath("../Idle")
+runState = NodePath("../Run")
+
+[node name="Jump" parent="Movement-State-Machine" node_paths=PackedStringArray("fallState") instance=ExtResource("12_wnbtq")]
+fallState = NodePath("../Fall")
 
 [editable path="Generic-Interaction-Director"]
 [editable path="Kid-Model-Instance"]

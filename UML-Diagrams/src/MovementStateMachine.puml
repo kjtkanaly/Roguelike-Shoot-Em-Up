@@ -1,0 +1,30 @@
+@startuml
+
+Idle:
+Run:
+Jump:
+Fall:
+
+[*] --> Idle
+
+' Idle Outcomes
+Idle --> Run : Lateral Movement True
+Idle --> Fall : Is not on the ground
+Idle --> Jump : Is Jumping
+Idle --> Idle : Default
+
+' Run Outcomes
+Run --> Idle : Lateral Movement False
+Run --> Jump : Is Jumping
+Run --> Fall : Is not on the ground
+Run --> Run : Default
+
+' Jump Outcomes
+Jump --> Fall : Y Velocity Becomes negative
+
+' Fall Outcomes
+Fall --> Idle : Lateral Movement False
+Fall --> Run : Lateral Movement True
+Fall --> Fall : Default
+
+@enduml

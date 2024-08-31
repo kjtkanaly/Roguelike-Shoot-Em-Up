@@ -11,6 +11,8 @@ public partial class Fall : State
 
     // Private
     [Export] private State idleState;
+    [Export] private State runState;
+    [Export] private State jumpState;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -18,21 +20,27 @@ public partial class Fall : State
     //-------------------------------------------------------------------------
     // Methods
     // Public
+    public override State ProcessInput(InputEvent inputEvent)
+    {
+        return null;
+    }
+
     public override State ProcessPhysics(float delta)
     {
-        float verticalSpeed = characterDir.Velocity.Y;
-		if (!characterDir.IsOnFloor()) {
-			verticalSpeed -= characterDir.GetMovementData().mass  * gravity  * delta;
-			characterDir.Velocity = new Vector3(
-                    characterDir.Velocity.X, 
-                    verticalSpeed, 
-                    characterDir.Velocity.Z);
-        } 
-        else {
+        // Update the character's effects from gravity
+        characterDir.ApplyGravity(delta);
+        characterDir.MoveAndSlide();
+
+        if (!characterDir.IsOnFloor()) {
+            return null;
+        }
+
+        if (IsMovingLaterally()) {    
+            return runState;
+        }
+        else { 
             return idleState;
         }
-        characterDir.MoveAndSlide();
-        return null;
     }
 
     // Protected

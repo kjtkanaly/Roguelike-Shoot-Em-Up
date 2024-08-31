@@ -14,6 +14,7 @@ public partial class CharacterDirector : CharacterBody3D
     // Public
     [Export] public String movementDataPath;
     [Export] public CharacterType charactertype;
+    public float gravity = (float) ProjectSettings.GetSetting("physics/3d/default_gravity");
 
     // Protected
     [Export] protected AnimationPlayer animations;
@@ -52,6 +53,16 @@ public partial class CharacterDirector : CharacterBody3D
     // Public
     public MovementData GetMovementData() {
         return movementData;
+    }
+
+    public void ApplyGravity(float delta) {
+        float verticalSpeed = 
+                Velocity.Y 
+                - (movementData.mass  * gravity  * delta);
+        Velocity = new Vector3(
+                Velocity.X, 
+                verticalSpeed, 
+                Velocity.Z);
     }
 
     // Protected

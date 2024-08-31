@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Idle : State
+public partial class Jump : State
 {
     //-------------------------------------------------------------------------
     // Game Componenets
@@ -10,8 +10,6 @@ public partial class Idle : State
     // Protected
 
     // Private
-    [Export] private State runState;
-    [Export] private State jumpState;
     [Export] private State fallState;
 
     //-------------------------------------------------------------------------
@@ -24,28 +22,27 @@ public partial class Idle : State
     {
         base.Enter();
 
-        characterDir.Velocity = new Vector3(0, characterDir.Velocity.Y, 0);
-    }
+        // Set the Jump Velocity
+        characterDir.Velocity = new Vector3(
+                characterDir.Velocity.X, 
+                characterDir.GetMovementData().jumpVelocity, 
+                characterDir.Velocity.Z);
 
-    override public State ProcessInput(InputEvent inputEvent) {
-        // Check if the run state is triggered
-        if (IsMovingLaterally() && characterDir.IsOnFloor()) {
-            return runState;
-        }
-        // Check if the jump state is triggered
-        if (inputEvent.IsActionPressed("Jump") && characterDir.IsOnFloor()) {
-            return jumpState;
-        }
-
-        return null;
+        characterDir.MoveAndSlide();
     }
 
     public override State ProcessPhysics(float delta)
     {
-        // Check if the character should now be falling
         if (!characterDir.IsOnFloor()) {
+            characterDir.ApplyGravity(delta);
+        }
+
+        characterDir.MoveAndSlide();
+
+        if (characterDir.Velocity.Y <= 0) {
             return fallState;
         }
+
         return null;
     }
 
@@ -54,5 +51,5 @@ public partial class Idle : State
     // Private
 
     //-------------------------------------------------------------------------
-	// Debug Methods
+    // Debug Methods
 }

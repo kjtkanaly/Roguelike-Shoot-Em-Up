@@ -12,7 +12,6 @@ public partial class State : Node
     // Protected
     protected CharacterDirector characterDir;
     protected AnimationPlayer animationPlayer;
-    protected float gravity = (float) ProjectSettings.GetSetting("physics/3d/default_gravity");
 
     //-------------------------------------------------------------------------
 	// Game Events
@@ -26,8 +25,9 @@ public partial class State : Node
     }
 
     virtual public void Enter() {
-        animationPlayer.Play(animationPath);
-
+        if (!string.IsNullOrEmpty(animationPath)) {
+            animationPlayer.Play(animationPath);
+        }
         return;
     }
 
@@ -44,6 +44,44 @@ public partial class State : Node
     }
 
     // Protected
+    protected bool IsMovingLaterally() {
+        if (Input.IsActionPressed("Left") 
+            || Input.IsActionPressed("Right")
+            || Input.IsActionPressed("Down")
+            || Input.IsActionPressed("Up")) {
+            return true;
+        }
+        return false;
+
+        
+    }
+
+    protected Vector2 GetLateralDirectionVector() {
+        Vector2 direction = new Vector2();
+        switch (characterDir.charactertype) {
+            case CharacterDirector.CharacterType.Player:
+                direction = Input.GetVector("Left", "Right", "Up", "Down");
+                break;
+            case CharacterDirector.CharacterType.Ally:
+                break;
+            case CharacterDirector.CharacterType.Enemy:
+                break;
+            default:
+                break;
+        }
+        return direction;
+    }
+
+    protected void OrientateBody() {
+        Vector2 lateralDirection = GetLateralDirectionVector();
+		if (lateralDirection != Vector2.Zero) {
+			float angle = -1 * (lateralDirection.Angle() - Mathf.Pi/2);
+			characterDir.Rotation = new Vector3(
+                    characterDir.Rotation.X, 
+                    angle, 
+                    characterDir.Rotation.Z);
+		}
+    }
 
     // Private
 
