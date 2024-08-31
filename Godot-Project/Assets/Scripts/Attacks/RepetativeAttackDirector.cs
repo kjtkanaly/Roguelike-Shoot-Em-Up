@@ -63,7 +63,6 @@ public partial class RepetativeAttackDirector : AttackDirector
 		GDCollect.Array<Godot.StringName> otherGroups = 
 			otherIteraction.GetGroups();
 		foreach (string otherGroup in otherGroups) {
-			GD.Print($"Other Area's Group: {otherGroup}");
 			if (IsInGroup(otherGroup)) {
 				return;
 			}

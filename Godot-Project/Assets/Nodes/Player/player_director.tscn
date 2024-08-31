@@ -19,7 +19,7 @@ height = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1w7no"]
 height = 1.0
 
-[node name="Player-Director" type="CharacterBody3D" node_paths=PackedStringArray("animations", "movementSM") groups=["Player"]]
+[node name="Player-Director" type="CharacterBody3D" node_paths=PackedStringArray("animations", "movementSM") groups=["Director", "Player"]]
 collision_mask = 9
 script = ExtResource("1_7xoh2")
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/Player.tres"

@@ -1,0 +1,16 @@
+@startuml
+
+Search:
+Chase:
+
+[*] --> Search
+
+' Idle Outcomes
+Search --> Chase : Player is witin range
+Search --> Search : Default
+
+' Chase Outcomes
+Chase --> Search : Player is out of range
+Chase --> Chase : Default
+
+@enduml

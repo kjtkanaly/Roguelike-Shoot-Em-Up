@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjgsjohqrqnlp"]
+[gd_scene load_steps=7 format=3 uid="uid://cjgsjohqrqnlp"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Movement/EnemyMovementDirector.cs" id="1_kc0qc"]
+[ext_resource type="Script" path="res://Assets/Scripts/Directors/CharacterDirector.cs" id="1_6nddk"]
 [ext_resource type="PackedScene" uid="uid://dxe2dh3ca635s" path="res://Assets/Nodes/Generics/generic_interaction_director.tscn" id="3_ux51y"]
 [ext_resource type="Script" path="res://Assets/Scripts/Interaction/EnemeyInteractionDirector.cs" id="4_cpdm5"]
+[ext_resource type="PackedScene" uid="uid://c1ejon8wetoc3" path="res://Assets/Nodes/State-Machine/state_machine.tscn" id="4_fmigw"]
+[ext_resource type="PackedScene" uid="uid://ckwsvyonpkc33" path="res://Assets/Nodes/State-Machine/Movement/chase.tscn" id="5_4nq43"]
+[ext_resource type="PackedScene" uid="uid://cgxcfarp5o8th" path="res://Assets/Nodes/State-Machine/Movement/search.tscn" id="6_6u4kk"]
 
-[node name="Enemy-Director" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Enemy-Director" type="CharacterBody3D" node_paths=PackedStringArray("movementSM") groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 10
-script = ExtResource("1_kc0qc")
-staggeredTimerPath = "Staggered-Movement-Timer"
+script = ExtResource("1_6nddk")
+charactertype = 2
+movementSM = NodePath("State-Machine")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
@@ -19,5 +23,11 @@ interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/ene
 [node name="Inventory-Director" parent="Generic-Interaction-Director" index="3" groups=["Enemy"]]
 
 [node name="Staggered-Movement-Timer" type="Timer" parent="."]
+
+[node name="State-Machine" parent="." instance=ExtResource("4_fmigw")]
+
+[node name="Chase" parent="State-Machine" instance=ExtResource("5_4nq43")]
+
+[node name="Search" parent="State-Machine" instance=ExtResource("6_6u4kk")]
 
 [editable path="Generic-Interaction-Director"]

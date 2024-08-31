@@ -19,7 +19,7 @@ public partial class State : Node
     //-------------------------------------------------------------------------
 	// Methods
     // Public
-    public void Init(CharacterDirector characterDirRef, AnimationPlayer animationPlayerRef) {
+    virtual public void Init(CharacterDirector characterDirRef, AnimationPlayer animationPlayerRef) {
         characterDir = characterDirRef;
         animationPlayer = animationPlayerRef;
     }
@@ -51,24 +51,11 @@ public partial class State : Node
             || Input.IsActionPressed("Up")) {
             return true;
         }
-        return false;
-
-        
+        return false;        
     }
 
     protected Vector2 GetLateralDirectionVector() {
-        Vector2 direction = new Vector2();
-        switch (characterDir.charactertype) {
-            case CharacterDirector.CharacterType.Player:
-                direction = Input.GetVector("Left", "Right", "Up", "Down");
-                break;
-            case CharacterDirector.CharacterType.Ally:
-                break;
-            case CharacterDirector.CharacterType.Enemy:
-                break;
-            default:
-                break;
-        }
+        Vector2 direction = Input.GetVector("Left", "Right", "Up", "Down");
         return direction;
     }
 
@@ -81,6 +68,39 @@ public partial class State : Node
                     angle, 
                     characterDir.Rotation.Z);
 		}
+    }
+
+    protected void LateralMovement(float delta, float speedModifier) {
+        // Get the character's directional inputs
+        OrientateBody();
+
+        float goalSpeed;
+        if (IsMovingLaterally()) {
+            goalSpeed = characterDir.GetMovementData().speed * speedModifier;
+        } else {
+            goalSpeed = 0;
+        }
+
+        // Move the character's current closer to the goal speed 
+        float currentSpeed = Mathf.MoveToward(
+                characterDir.Velocity.Z, 
+                goalSpeed, 
+                characterDir.GetMovementData().acceleration * delta);
+        
+        // Calcualte the character's lateral 2-D Velocity 
+        Vector2 lateralVelocity =  
+                new Vector2(Mathf.Sin(characterDir.Rotation.Y), 
+                            Mathf.Cos(characterDir.Rotation.Y))
+                * currentSpeed;
+
+        // Update the character body's Velocity
+        characterDir.Velocity = new Vector3(
+                lateralVelocity.X, 
+                characterDir.Velocity.Y, 
+                lateralVelocity.Y);
+
+        // Move the character body around
+        characterDir.MoveAndSlide();
     }
 
     // Private

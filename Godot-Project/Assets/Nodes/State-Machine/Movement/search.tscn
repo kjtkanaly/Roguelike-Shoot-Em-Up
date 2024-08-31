@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgxcfarp5o8th"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/State-Machine/Movement/Search.cs" id="1_8hspx"]
+
+[node name="Search" type="Node"]
+script = ExtResource("1_8hspx")
+animationPath = "ghost_animations/Idle"

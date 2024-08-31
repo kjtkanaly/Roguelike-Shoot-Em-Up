@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://csqldf5yvrkoc"]
+[gd_scene load_steps=9 format=3 uid="uid://csqldf5yvrkoc"]
 
 [ext_resource type="PackedScene" uid="uid://dn8m7y6fr4hnk" path="res://Assets/Models/Import-From-Dropbox/Ghost/Ghost_Source.glb" id="1_14xwc"]
-[ext_resource type="Script" path="res://Assets/Scripts/Animation/EnemyAnimationController.cs" id="2_gxpdx"]
 [ext_resource type="Animation" uid="uid://b15uf6f3kyvga" path="res://Assets/Models/Ghost-Instance/Idle.tres" id="2_ucoby"]
 [ext_resource type="Animation" uid="uid://wnyjj1rqeass" path="res://Assets/Models/Ghost-Instance/Movement.tres" id="3_441an"]
 [ext_resource type="ArrayMesh" uid="uid://dxg1q5uks66n5" path="res://Assets/Models/Ghost-Instance/Ghost_Mesh.res" id="3_ns8se"]
@@ -96,13 +95,6 @@ _data = {
 }
 
 [node name="Ghost_Model_Instance" instance=ExtResource("1_14xwc")]
-script = ExtResource("2_gxpdx")
-idleAnimationString = "ghost_animations/Idle"
-walkRunAnimationString = "ghost_animations/Movement"
-DeathAnimationString = "ghost_animations/Death"
-meshInstPath = "rig/Skeleton3D/Cube"
-hurtAnimationTimerPath = "Animation_Player/Hurt-Timer"
-characterShaderPath = "res://Assets/Models/Ghost-Instance/Ghost_Material.tres"
 
 [node name="Skeleton3D" parent="metarig" index="0"]
 bones/0/rotation = Quaternion(0.198854, 1.16829e-07, 2.37052e-08, 0.980029)

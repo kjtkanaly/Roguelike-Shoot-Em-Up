@@ -35,8 +35,6 @@ public partial class StateMachine : Node
     }
 
     public void ChangeState(State newState) {
-        GD.Print($"Change State to: {newState.Name}");
-
         // If there is a current state, call any exit logic
         if (currentState != null) {
             currentState.Exit();
