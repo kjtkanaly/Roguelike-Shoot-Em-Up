@@ -18,9 +18,9 @@ public partial class MovementDirector : CharacterBody3D
 	protected float gravity = ProjectSettings.GetSetting(
 						   "physics/3d/default_gravity").AsSingle();
 	protected InteractionDirector interactionDirector;
+	protected MovementData movementData;
 
 	// Private
-	private MovementData movementData;
 	private Timer staggeredTimer;
 
 	//-------------------------------------------------------------------------

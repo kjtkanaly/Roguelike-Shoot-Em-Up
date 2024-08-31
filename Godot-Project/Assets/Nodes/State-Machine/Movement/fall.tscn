@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccsdrr0j5uv7n"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/State-Machine/State.cs" id="1_6j26m"]
+
+[node name="Fall" type="Node"]
+script = ExtResource("1_6j26m")

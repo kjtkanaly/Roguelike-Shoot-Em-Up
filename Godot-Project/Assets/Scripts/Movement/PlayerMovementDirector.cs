@@ -12,7 +12,6 @@ public partial class PlayerMovementDirector : MovementDirector
 	// Protected
 
 	// Private
-	private PlayerMovementData movementData;
 	private Vector2 inputDirection;
 
 	//-------------------------------------------------------------------------
@@ -38,13 +37,6 @@ public partial class PlayerMovementDirector : MovementDirector
 	//-------------------------------------------------------------------------
 	// Methods
 	// Public
-	public override void LoadMovementData() {
-		movementData = (PlayerMovementData) GD.Load(movementDataPath);
-	}
-
-	public override PlayerMovementData GetMovementData() {
-		return movementData;
-	}
 
 	// Protected
 	protected override void UpdateLateralDirection() {

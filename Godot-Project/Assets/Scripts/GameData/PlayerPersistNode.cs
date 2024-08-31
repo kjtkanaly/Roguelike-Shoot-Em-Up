@@ -12,14 +12,14 @@ public partial class PlayerPersistNode : PersistNode
     // Protected
 
     // Private
-    private PlayerMovementDirector playerMovementDir;
+    private CharacterDirector playerMovementDir;
     private PlayerInteractionDirector playerInteractionDir;
 
     //-------------------------------------------------------------------------
     // Game Events
     public override void _Ready()
     {
-        playerMovementDir = GetNode<PlayerMovementDirector>(playerMovementDirPath);
+        playerMovementDir = GetNode<CharacterDirector>(playerMovementDirPath);
         playerInteractionDir = GetNode<PlayerInteractionDirector>(playerInteractionDirPath);
 
         base._Ready();
