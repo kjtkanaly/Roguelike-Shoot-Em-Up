@@ -14,7 +14,7 @@
 [node name="Player-Test-003" type="Node3D"]
 
 [node name="Player-Director" parent="." instance=ExtResource("1_uvqm6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05568, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Main-Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 15, 9)
@@ -72,7 +72,7 @@ transform = Transform3D(70, 0, 0, 0, 10, 0, 0, 0, 1, 2.08165e-12, 5, 2.08165e-12
 shape = SubResource("BoxShape3D_bmaw7")
 
 [node name="NPC-Spawner-Parent" parent="." instance=ExtResource("5_wjce1")]
-spawnTimerWaitTime = 3.0
+spawnTimerWaitTime = 100.0
 spawnTimerOneShot = false
 
 [node name="NPC-Spawner" parent="NPC-Spawner-Parent" instance=ExtResource("6_fmgrq")]

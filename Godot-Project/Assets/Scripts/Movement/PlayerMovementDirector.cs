@@ -52,23 +52,6 @@ public partial class PlayerMovementDirector : MovementDirector
 	}
 
 	private void HandleDodgeRoll(float delta) {
-		/*
-		// Check if currently rolling
-		if (PAD.CheckPlayingStatus() && (PAD.GetCurrentAnimationName() == "Roll"))
-			return;
-
-		if (Input.IsActionPressed("Roll") && IsOnFloor()) {
-			Vector3 direction = GetGlobalInputDirectionNorm();
-
-			if (direction == Vector3.Zero) {
-				Vector3 basis = GlobalTransform.Basis.Z;
-				direction = new Vector3(basis.X, 0, basis.Z).Normalized();
-			}
-
-			lateralVelocitySnapshot = new Vector2(direction.X, direction.Z) 
-									  * movementData.rollSpeed;
-			PAD.PlayRollAnimation(); // To Do: Change to a signals that the object will emit
-		}*/
 	}
 
 	//-------------------------------------------------------------------------

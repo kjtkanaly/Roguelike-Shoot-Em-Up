@@ -11,7 +11,7 @@ public partial class StateMachine : Node
     // Protected
 
     // Private
-    private CharacterDirector playerDir;
+    private CharacterDirector characterDir;
     private State currentState;
     [Export] private State startingState;
 
@@ -23,11 +23,11 @@ public partial class StateMachine : Node
     // Public
     public void Init(CharacterDirector characterDirRef, AnimationPlayer animationRef) {
         // Assign the player director reference
-        playerDir = characterDirRef;
+        characterDir = characterDirRef;
 
         // Init all of the child state objects
         foreach (State child in GetChildren()) {
-            child.Init(playerDir, animationRef);
+            child.Init(characterDir, animationRef);
         }
 
         // Initialize to the default state
@@ -44,9 +44,19 @@ public partial class StateMachine : Node
         currentState.Enter();
     }
 
-    public void PhysicsProcess(double delta)
-    {
+    public void ProcessInput(InputEvent inputEvent) {
+        State newState = currentState.ProcessInput(inputEvent);
+        if (newState != null) {
+            ChangeState(newState);
+        }
+    }
 
+    public void PhysicsProcess(float delta)
+    {
+        State newState = currentState.ProcessPhysics(delta);
+        if (newState != null) {
+            ChangeState(newState);
+        }
     }
 
     // Protected

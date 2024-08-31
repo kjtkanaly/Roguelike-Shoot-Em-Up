@@ -10,11 +10,9 @@ public partial class State : Node
     public float moveSpeed;
 
     // Protected
-
-    // Private
-    private CharacterDirector characterDir;
-    private AnimationPlayer animationPlayer;
-    private float gravity = (float) ProjectSettings.GetSetting("physics/3d/default_gravity");
+    protected CharacterDirector characterDir;
+    protected AnimationPlayer animationPlayer;
+    protected float gravity = (float) ProjectSettings.GetSetting("physics/3d/default_gravity");
 
     //-------------------------------------------------------------------------
 	// Game Events
@@ -27,18 +25,22 @@ public partial class State : Node
         animationPlayer = animationPlayerRef;
     }
 
-    public void Enter() {
+    virtual public void Enter() {
         animationPlayer.Play(animationPath);
 
         return;
     }
 
-    public void Exit() {
+    virtual public void Exit() {
         return;
     }
 
-    public void PhysicsProcess() {
-        return;
+    virtual public State ProcessInput(InputEvent inputEvent) {
+        return null;
+    }
+
+    virtual public State ProcessPhysics(float delta) {
+        return null;
     }
 
     // Protected
