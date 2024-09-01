@@ -24,10 +24,13 @@ interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/ene
 
 [node name="Staggered-Movement-Timer" type="Timer" parent="."]
 
-[node name="State-Machine" parent="." instance=ExtResource("4_fmigw")]
+[node name="State-Machine" parent="." node_paths=PackedStringArray("startingState") instance=ExtResource("4_fmigw")]
+startingState = NodePath("Search")
 
-[node name="Chase" parent="State-Machine" instance=ExtResource("5_4nq43")]
+[node name="Chase" parent="State-Machine" node_paths=PackedStringArray("searchState") instance=ExtResource("5_4nq43")]
+searchState = NodePath("../Search")
 
-[node name="Search" parent="State-Machine" instance=ExtResource("6_6u4kk")]
+[node name="Search" parent="State-Machine" node_paths=PackedStringArray("chaseState") instance=ExtResource("6_6u4kk")]
+chaseState = NodePath("../Chase")
 
 [editable path="Generic-Interaction-Director"]

@@ -19,12 +19,13 @@ height = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1w7no"]
 height = 1.0
 
-[node name="Player-Director" type="CharacterBody3D" node_paths=PackedStringArray("animations", "movementSM") groups=["Director", "Player"]]
+[node name="Player-Director" type="CharacterBody3D" node_paths=PackedStringArray("animations", "movementSM", "model") groups=["Director", "Player"]]
 collision_mask = 9
 script = ExtResource("1_7xoh2")
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/Player.tres"
 animations = NodePath("Kid-Model-Instance/Animation_Player")
 movementSM = NodePath("Movement-State-Machine")
+model = NodePath("Kid-Model-Instance")
 
 [node name="Physics-Shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_iuyme")

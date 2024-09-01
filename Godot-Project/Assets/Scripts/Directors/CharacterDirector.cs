@@ -19,6 +19,7 @@ public partial class CharacterDirector : CharacterBody3D
     // Protected
     [Export] protected AnimationPlayer animations;
     [Export] protected StateMachine movementSM;
+    [Export] protected Node3D model;
     protected MovementData movementData;
 
     // Private
@@ -53,6 +54,10 @@ public partial class CharacterDirector : CharacterBody3D
     // Public
     public MovementData GetMovementData() {
         return movementData;
+    }
+
+    public Node3D GetModel() {
+        return model;
     }
 
     public void ApplyGravity(float delta) {

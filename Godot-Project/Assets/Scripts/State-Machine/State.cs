@@ -59,67 +59,12 @@ public partial class State : Node
         return direction;
     }
 
-    protected void OrientateTowardsTarget(Vector2 target) {
-		if (target == Vector2.Zero) {
-            return;
-        }
-
-        // 1
-        float angle = characterDir.Rotation.Y;
-
-        // 2 
-        Vector2 topDownNormal = new Vector2(
-                characterDir.GlobalTransform.Basis.Z.X, 
-                characterDir.GlobalTransform.Basis.Z.Z);
-        float diff = topDownNormal.AngleTo(target);
-
-        GD.Print($"OG: {angle} | Diff: {diff}");
-
-        // 3 
-        float newAngle = Mathf.MoveToward(
-                angle, 
-                angle - diff, 
-                Mathf.Pi / 16);
-
-        characterDir.Rotation = new Vector3(
-                characterDir.Rotation.X, 
-                newAngle, 
-                characterDir.Rotation.Z);
-
-        // GD.Print($"Prev: {angle} | Goal: {angle - diff} | New Angle: {newAngle}");
-    }
-
-    protected void LateralMovement(float delta, float speedModifier) {
-        // Get the character's directional inputs
-        OrientateTowardsTarget(GetLateralDirectionVector());
-
-        float goalSpeed;
-        if (IsMovingLaterally()) {
-            goalSpeed = characterDir.GetMovementData().speed * speedModifier;
-        } else {
-            goalSpeed = 0;
-        }
-
-        // Move the character's current closer to the goal speed 
-        float currentSpeed = Mathf.MoveToward(
-                characterDir.Velocity.Z, 
-                goalSpeed, 
-                characterDir.GetMovementData().acceleration * delta);
-        
-        // Calcualte the character's lateral 2-D Velocity 
-        Vector2 lateralVelocity =  
-                new Vector2(Mathf.Sin(characterDir.Rotation.Y), 
-                            Mathf.Cos(characterDir.Rotation.Y))
-                * currentSpeed;
-
-        // Update the character body's Velocity
-        characterDir.Velocity = new Vector3(
-                lateralVelocity.X, 
-                characterDir.Velocity.Y, 
-                lateralVelocity.Y);
-
-        // Move the character body around
-        characterDir.MoveAndSlide();
+    protected void RotateModelTowardsTarget(float angle) {
+		// Face the model towards the direction
+        characterDir.GetModel().Rotation = new Vector3(
+            characterDir.GetModel().Rotation.X,
+            characterDir.Rotation.Y - angle,
+            characterDir.GetModel().Rotation.Z);
     }
 
     // Private

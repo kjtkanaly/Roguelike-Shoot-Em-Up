@@ -29,9 +29,10 @@ blend_shape_mode = 0
 
 [node name="Ghost" type="Node3D" groups=["Enemy-Parent-Node"]]
 
-[node name="Enemy-Director" parent="." node_paths=PackedStringArray("animations") instance=ExtResource("1_3xn3k")]
+[node name="Enemy-Director" parent="." node_paths=PackedStringArray("animations", "model") instance=ExtResource("1_3xn3k")]
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/Ghost.tres"
 animations = NodePath("Ghost_Model_Instance/Animation_Player")
+model = NodePath("Ghost_Model_Instance")
 
 [node name="CollisionShape3D" parent="Enemy-Director" index="0"]
 shape = ExtResource("2_lfd8a")
@@ -45,13 +46,7 @@ shape = ExtResource("2_lfd8a")
 collisionMaskValues = PackedInt32Array(1)
 
 [node name="State-Machine" parent="Enemy-Director" index="3" node_paths=PackedStringArray("startingState")]
-startingState = NodePath("Search")
-
-[node name="Chase" parent="Enemy-Director/State-Machine" index="0" node_paths=PackedStringArray("searchState")]
-searchState = NodePath("../Search")
-
-[node name="Search" parent="Enemy-Director/State-Machine" index="1" node_paths=PackedStringArray("chaseState")]
-chaseState = NodePath("../Chase")
+startingState = NodePath("Chase")
 
 [node name="Ghost_Model_Instance" parent="Enemy-Director" groups=["Model"] instance=ExtResource("2_auqqq")]
 

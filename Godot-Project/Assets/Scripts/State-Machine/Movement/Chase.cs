@@ -24,7 +24,8 @@ public partial class Chase : NPCState
         Vector2 direction = GetLateralDirectionToPlayer();
 
         // Have the NPC face the player
-        OrientateTowardsTarget(direction);
+        float angle = Vector2.Down.AngleTo(direction);
+        RotateModelTowardsTarget(angle);
 
         // Set the velocity towards the player
         Vector2 velocity = characterDir.GetMovementData().speed * direction;
@@ -44,8 +45,6 @@ public partial class Chase : NPCState
     }
 
     // Protected
-
-    
 
     // Private
 

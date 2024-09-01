@@ -63,6 +63,16 @@ public partial class NPCState : State
 		return (playerLateralPos - lateralPos).Normalized();
     }
 
+    protected Vector2 GetLateralDirectionToPoint(Vector2 point) {
+        if (playerDir == null) {
+            return Vector2.Zero;
+        }
+
+        Vector2 lateralPos = new Vector2(characterDir.GlobalPosition.X, 
+                                         characterDir.GlobalPosition.Z);
+		return (point - lateralPos).Normalized();
+    }
+
     // Private
 
     //-------------------------------------------------------------------------
