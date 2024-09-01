@@ -73,6 +73,7 @@ shape = SubResource("BoxShape3D_bmaw7")
 
 [node name="NPC-Spawner-Parent" parent="." instance=ExtResource("5_wjce1")]
 spawnTimerWaitTime = 3.0
+spawnTimerOneShot = false
 
 [node name="NPC-Spawner" parent="NPC-Spawner-Parent" instance=ExtResource("6_fmgrq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 2.08165e-12)

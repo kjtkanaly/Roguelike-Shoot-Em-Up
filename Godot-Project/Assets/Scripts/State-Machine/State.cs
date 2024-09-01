@@ -59,20 +59,39 @@ public partial class State : Node
         return direction;
     }
 
-    protected void OrientateBody() {
-        Vector2 lateralDirection = GetLateralDirectionVector();
-		if (lateralDirection != Vector2.Zero) {
-			float angle = -1 * (lateralDirection.Angle() - Mathf.Pi/2);
-			characterDir.Rotation = new Vector3(
-                    characterDir.Rotation.X, 
-                    angle, 
-                    characterDir.Rotation.Z);
-		}
+    protected void OrientateTowardsTarget(Vector2 target) {
+		if (target == Vector2.Zero) {
+            return;
+        }
+
+        // 1
+        float angle = characterDir.Rotation.Y;
+
+        // 2 
+        Vector2 topDownNormal = new Vector2(
+                characterDir.GlobalTransform.Basis.Z.X, 
+                characterDir.GlobalTransform.Basis.Z.Z);
+        float diff = topDownNormal.AngleTo(target);
+
+        GD.Print($"OG: {angle} | Diff: {diff}");
+
+        // 3 
+        float newAngle = Mathf.MoveToward(
+                angle, 
+                angle - diff, 
+                Mathf.Pi / 16);
+
+        characterDir.Rotation = new Vector3(
+                characterDir.Rotation.X, 
+                newAngle, 
+                characterDir.Rotation.Z);
+
+        // GD.Print($"Prev: {angle} | Goal: {angle - diff} | New Angle: {newAngle}");
     }
 
     protected void LateralMovement(float delta, float speedModifier) {
         // Get the character's directional inputs
-        OrientateBody();
+        OrientateTowardsTarget(GetLateralDirectionVector());
 
         float goalSpeed;
         if (IsMovingLaterally()) {

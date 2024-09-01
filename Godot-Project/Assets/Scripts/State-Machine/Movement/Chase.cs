@@ -22,6 +22,11 @@ public partial class Chase : NPCState
     {
         // Get Unit Vecotr to Player
         Vector2 direction = GetLateralDirectionToPlayer();
+
+        // Have the NPC face the player
+        OrientateTowardsTarget(direction);
+
+        // Set the velocity towards the player
         Vector2 velocity = characterDir.GetMovementData().speed * direction;
 
         characterDir.Velocity = new Vector3(

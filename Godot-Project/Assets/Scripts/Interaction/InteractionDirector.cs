@@ -24,7 +24,6 @@ public partial class InteractionDirector : Node3D
 	// Private
 	private InteractionData interactionData;
 	private Node mainRoot;
-	private MovementDirector movementDir;
 
 	//-------------------------------------------------------------------------
 	// Game Events

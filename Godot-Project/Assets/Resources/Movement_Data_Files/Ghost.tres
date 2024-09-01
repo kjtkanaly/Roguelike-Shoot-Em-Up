@@ -9,3 +9,4 @@ acceleration = 1000.0
 friction = 1000.0
 mass = 10.0
 jumpVelocity = 0.0
+rotationDelta = 0.5
