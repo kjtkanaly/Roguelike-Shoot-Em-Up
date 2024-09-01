@@ -8,27 +8,22 @@ public partial class PauseGameUI : UI
     // Public
     [Signal]
     public delegate void ResumeGameEventHandler();
-    [Export] public string resumeButtonNodePath;
-    [Export] public string saveAndQuitButtonNodePath;
     [Export] public string titleMenuFilePath;
 
     // Protected
 
     // Private
-    private Button resumeButton;
-    private Button saveAndQuitButton;
-    private GameDataDirector gameDataDir;
+    [Export] private Button resumeButton;
+    [Export] private Button quitButton;
+    // [Export] private GameDataDirector gameDataDir;
 
     //-------------------------------------------------------------------------
 	// Game Events
     public override void _Ready() {
-        resumeButton = GetNode<Button>(resumeButtonNodePath);
-        saveAndQuitButton = GetNode<Button>(saveAndQuitButtonNodePath);
-
         resumeButton.ButtonUp += ResumeButtonClicked;
-        saveAndQuitButton.ButtonUp += SaveAndQuitButtonClicked;
+        quitButton.ButtonUp += SaveAndQuitButtonClicked;
 
-        gameDataDir = new GameDataDirector();
+        // gameDataDir = new GameDataDirector();
     }
 
     //-------------------------------------------------------------------------
@@ -43,7 +38,7 @@ public partial class PauseGameUI : UI
     }
 
     private void SaveAndQuitButtonClicked() {
-        gameDataDir.SaveGameState(GetTree().GetNodesInGroup("Persist"));
+        // gameDataDir.SaveGameState(GetTree().GetNodesInGroup("Persist"));
         EmitSignal(SignalName.ResumeGame);
         GetTree().ChangeSceneToFile(titleMenuFilePath);
     }
