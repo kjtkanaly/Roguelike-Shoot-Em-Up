@@ -6,28 +6,27 @@ public partial class PlayerStatusBox : Control
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    [Export] public string healthBarNodePath;
-    [Export] public string healthLabelNodePath;
-    [Export] public string candyCountLabelNodePath;
 
     // Protected
 
     // Private
-    private TextureProgressBar healthBar;
-    private Label healthLabel;
-    private Label candyCountLabel;
+    [Export] private TextureProgressBar healthBar;
+    [Export] private Label healthLabel;
+    [Export] private Label candyCountLabel;
+    [Export] private Label killCountLabel;
+    private PlayerUIDirector playerUI;
     private int candyCount = 0;
-    private int enemiesSlain = 0;
 
     //-------------------------------------------------------------------------
 	// Game Events
-    public override void _Ready() {
-        InitObjectRefs();    
-    }
 
     //-------------------------------------------------------------------------
 	// Methods
     // Public
+    public void Init(PlayerUIDirector playerUIRef) {
+        playerUI = playerUIRef;
+    }
+
     public void UpdateHealthUI(AttackData data) {
         // Decrement the remaining health by the damage
         healthBar.Value -= data.damage;
@@ -35,8 +34,6 @@ public partial class PlayerStatusBox : Control
     }
 
     public void InitHealthUI(float maxHealth) {
-        InitObjectRefs();
-
         healthBar.MaxValue = maxHealth;
         healthBar.Value = maxHealth;
         healthLabel.Text = maxHealth.ToString();
@@ -46,17 +43,14 @@ public partial class PlayerStatusBox : Control
         return candyCount;
     }
 
-    public int GetEnemiesSlain() {
-        return enemiesSlain;
+    public void IncrementKillCountLabel(int count) {
+        killCountLabel.Text = count.ToString();
     }
 
     // Protected
 
     // Private
-    private void InitObjectRefs() {
-        healthBar = GetNode<TextureProgressBar>(healthBarNodePath);
-        healthLabel = GetNode<Label>(healthLabelNodePath);
-    }
+    
 
     //-------------------------------------------------------------------------
 	// Debug Methods

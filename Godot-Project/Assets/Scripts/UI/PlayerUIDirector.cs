@@ -6,26 +6,21 @@ public partial class PlayerUIDirector : Control
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    [Export] public string playerUINodePath;
-    [Export] public string pauseGameUINodePath;
-    [Export] public string gameOverUINodePath;
     public bool gamePaused = false;
     public bool gameOver = false;
 
     // Protected
 
     // Private
-    private PlayerInGameUI playerUI;
-    private PauseGameUI pauseGameUI;
-    private GameOverUI gameOverUI;
+    [Export] private PlayerInGameUI playerUI;
+    [Export] private PauseGameUI pauseGameUI;
+    [Export] private GameOverUI gameOverUI;
 
     //-------------------------------------------------------------------------
     // Game Events
     public override void _Ready()
     {
         base._Ready();
-
-        InitObjectRefs();
 
         pauseGameUI.ResumeGame += TogglePause;
     }
@@ -50,7 +45,6 @@ public partial class PlayerUIDirector : Control
     }
 
     public void InitHealthUI(float maxHealth) {
-        InitObjectRefs();
         playerUI.InitHealthUI(maxHealth);
     }
 
@@ -76,7 +70,7 @@ public partial class PlayerUIDirector : Control
         gameOverUI.UpdateStatsObject(
             new GameOverUI.GameOverStats(
                 playerUI.GetCandyCount().ToString(), 
-                playerUI.GetEnemiesSlain().ToString(), 
+                "Scooped out", 
                 playerUI.GetCurrentTime_MMSS()));
 
         gameOverUI.RefreshUI();
@@ -91,11 +85,6 @@ public partial class PlayerUIDirector : Control
     // Protected
 
     // Private
-    private void InitObjectRefs() {
-        playerUI = GetNode<PlayerInGameUI>(playerUINodePath);
-        pauseGameUI = GetNode<PauseGameUI>(pauseGameUINodePath);
-        gameOverUI = GetNode<GameOverUI>(gameOverUINodePath);
-    }
 
     //-------------------------------------------------------------------------
     // Debug Methods

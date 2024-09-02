@@ -6,20 +6,22 @@ public partial class PlayerInGameUI : UI
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    [Export] public string playerStatusBoxNodePath;
-    [Export] public string timerBoxNodePath;
 
     // Protected
 
     // Private
-    private PlayerStatusBox playerStatusBox;
-    private TimerBox timerBox;
+    [Export] private PlayerStatusBox playerStatusBox;
+    [Export] private TimerBox timerBox;
+    private GameStats gameStats;
 
     //-------------------------------------------------------------------------
     // Game Events
     public override void _Ready()
     {
-        InitObjectRefs();
+        foreach (Node node in GetTree().GetNodesInGroup("Game Stats")) {
+            gameStats = (GameStats) node;
+        }
+        gameStats.UpdateKillCount += IncrementKillCountLabel;
     }
 
     public override void _Process(double delta)
@@ -37,8 +39,6 @@ public partial class PlayerInGameUI : UI
     }
 
     public void InitHealthUI(float maxHealth) {
-        InitObjectRefs();
-
         playerStatusBox.InitHealthUI(maxHealth);
     }
 
@@ -50,17 +50,13 @@ public partial class PlayerInGameUI : UI
         return playerStatusBox.GetCandyCount();
     }
 
-    public int GetEnemiesSlain() {
-        return playerStatusBox.GetEnemiesSlain();
+    public void IncrementKillCountLabel() {
+        playerStatusBox.IncrementKillCountLabel(gameStats.killCount);
     }
 
     // Protected
 
     // Private
-    private void InitObjectRefs() {
-        playerStatusBox = GetNode<PlayerStatusBox>(playerStatusBoxNodePath);
-        timerBox =GetNode<TimerBox>(timerBoxNodePath);
-    }
 
     //-------------------------------------------------------------------------
     // Debug Methods

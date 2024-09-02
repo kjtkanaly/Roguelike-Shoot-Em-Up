@@ -20,6 +20,7 @@ public partial class CharacterDirector : CharacterBody3D
     [Export] protected AnimationPlayer animations;
     [Export] protected StateMachine movementSM;
     [Export] protected Node3D model;
+    protected GameStats gameStats;
     protected MovementData movementData;
 
     // Private
@@ -28,11 +29,26 @@ public partial class CharacterDirector : CharacterBody3D
 	// Game Events
     public override void _Ready()
     {
-        // Ready the base class
-        base._Ready();
+        Init();
+    }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (charactertype == CharacterType.Enemy)  {
+            gameStats.IncrementKillCount();
+        }
+    }
+
+    public void Init() {
         // Get the memeber nodes
         movementData = (MovementData) GD.Load(movementDataPath);
+
+        // Get the Game Stats Instance
+        foreach (Node node in GetTree().GetNodesInGroup("Game Stats")) {
+            gameStats = (GameStats) node;
+        }
 
         // Initialize the movement State Machine
         movementSM.Init(this, animations);

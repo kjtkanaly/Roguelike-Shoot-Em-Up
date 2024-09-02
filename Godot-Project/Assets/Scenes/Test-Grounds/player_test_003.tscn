@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb7ic08f7s1sk"]
+[gd_scene load_steps=9 format=3 uid="uid://cb7ic08f7s1sk"]
 
 [ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="1_pir4u"]
 [ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="2_2x6ag"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Assets/Scripts/Boundary/CardinalBoundaryBox.cs" id="3_v45bl"]
 [ext_resource type="PackedScene" uid="uid://d3ou4sqysyd5t" path="res://Assets/Nodes/NPCs/npc_spawner_parent.tscn" id="4_2538u"]
 [ext_resource type="PackedScene" uid="uid://b7rwvv6eqv8hf" path="res://Assets/Nodes/NPCs/npc_spawner.tscn" id="5_4r0q7"]
-[ext_resource type="PackedScene" uid="uid://cpkos2hxaqs60" path="res://Assets/Nodes/NPCs/Enemies/ghost.tscn" id="8_0bgt1"]
 [ext_resource type="PackedScene" uid="uid://pkk0br1ffp07" path="res://Assets/Nodes/Pickupables/Attacks/AoE Attacks/pentagon_pickup.tscn" id="9_wkdlr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmaw7"]
@@ -77,19 +76,15 @@ spawnTimerOneShot = false
 
 [node name="NPC-Spawner" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 2.08165e-12)
-npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner2" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 2.08165e-12)
-npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner3" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, -20)
-npcNode = ExtResource("8_0bgt1")
 
 [node name="NPC-Spawner4" parent="NPC-Spawner-Parent" instance=ExtResource("5_4r0q7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 20)
-npcNode = ExtResource("8_0bgt1")
 
 [node name="Pentagon-Pickup" parent="." instance=ExtResource("9_wkdlr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1.2, 0)

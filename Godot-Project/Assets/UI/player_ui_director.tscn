@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://di1f1qx017f0w" path="res://Assets/UI/In-Game/pause_menu.tscn" id="2_i025x"]
 [ext_resource type="PackedScene" uid="uid://d16ee2o6lr6fw" path="res://Assets/UI/game_over.tscn" id="4_lgreg"]
 
-[node name="Player-UI-Director" type="Control"]
+[node name="Player-UI-Director" type="Control" node_paths=PackedStringArray("playerUI", "pauseGameUI", "gameOverUI")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -14,9 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_020p2")
-playerUINodePath = "Player-In-Game-UI"
-pauseGameUINodePath = "Pause-Menu"
-gameOverUINodePath = "Game-Over"
+playerUI = NodePath("Player-In-Game-UI")
+pauseGameUI = NodePath("Pause-Menu")
+gameOverUI = NodePath("Game-Over")
 
 [node name="Player-In-Game-UI" parent="." instance=ExtResource("1_fwsik")]
 

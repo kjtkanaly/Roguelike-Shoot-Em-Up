@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/Boundary/CardinalBoundaryBox.cs" id="4_jlrdw"]
 [ext_resource type="PackedScene" uid="uid://d3ou4sqysyd5t" path="res://Assets/Nodes/NPCs/npc_spawner_parent.tscn" id="5_wjce1"]
 [ext_resource type="PackedScene" uid="uid://b7rwvv6eqv8hf" path="res://Assets/Nodes/NPCs/npc_spawner.tscn" id="6_fmgrq"]
-[ext_resource type="PackedScene" uid="uid://cpkos2hxaqs60" path="res://Assets/Nodes/NPCs/Enemies/ghost.tscn" id="7_42him"]
+[ext_resource type="PackedScene" uid="uid://cgh1qcl4tcu" path="res://Assets/Nodes/NPCs/Enemies/ghost.tscn" id="7_31rp5"]
 [ext_resource type="PackedScene" uid="uid://pkk0br1ffp07" path="res://Assets/Nodes/Pickupables/Attacks/AoE Attacks/pentagon_pickup.tscn" id="8_03qst"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmaw7"]
@@ -77,19 +77,19 @@ spawnTimerOneShot = false
 
 [node name="NPC-Spawner" parent="NPC-Spawner-Parent" instance=ExtResource("6_fmgrq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 2.08165e-12)
-npcNode = ExtResource("7_42him")
+npcNode = ExtResource("7_31rp5")
 
 [node name="NPC-Spawner2" parent="NPC-Spawner-Parent" instance=ExtResource("6_fmgrq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 2.08165e-12)
-npcNode = ExtResource("7_42him")
+npcNode = ExtResource("7_31rp5")
 
 [node name="NPC-Spawner3" parent="NPC-Spawner-Parent" instance=ExtResource("6_fmgrq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, -20)
-npcNode = ExtResource("7_42him")
+npcNode = ExtResource("7_31rp5")
 
 [node name="NPC-Spawner4" parent="NPC-Spawner-Parent" instance=ExtResource("6_fmgrq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 20)
-npcNode = ExtResource("7_42him")
+npcNode = ExtResource("7_31rp5")
 
 [node name="Pentagon-Pickup" parent="." instance=ExtResource("8_03qst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1.2, 0)

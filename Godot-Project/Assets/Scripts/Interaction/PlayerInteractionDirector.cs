@@ -9,13 +9,12 @@ public partial class PlayerInteractionDirector : InteractionDirector
     // Public
     [Signal]
     public delegate void PlayerIsDeadEventHandler();
-    [Export] public string playerUINodePath;
 
     // Protected
 
     // Private
     private PlayerInteractionData interactionData;
-    private PlayerUIDirector playerUIDirector;
+    [Export] private PlayerUIDirector playerUIDirector;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -23,7 +22,6 @@ public partial class PlayerInteractionDirector : InteractionDirector
     {
         base._Ready();
 
-        playerUIDirector = GetNode<PlayerUIDirector>(playerUINodePath);
         playerUIDirector.InitHealthUI(interactionData.maxHealth);
 
         itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
@@ -70,7 +68,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
     }
 
     protected override void BeginDeathSequence() {
-		GD.Print($"\n{parentNode.Name} has died\n");
+		GD.Print($"\n{characterDir.Name} has died\n");
 		EmitSignal(SignalName.HasDied);
 		inventoryDir.DisableAttacks();
 	}

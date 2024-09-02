@@ -4,20 +4,23 @@ using System;
 public partial class InteractionDirector : Node3D
 {
 	//-------------------------------------------------------------------------
-	// Game Componenets
-	// Public
-	[Export] public string interactionDataPath;
-	[Export] public bool debugMode = false;
+	// Custom Signals
 	[Signal]
     public delegate void TookDamageEventHandler(AttackData data);
 	[Signal]
 	public delegate void HasDiedEventHandler();
 
+	//-------------------------------------------------------------------------
+	// Game Componenets
+	// Public
+	[Export] public string interactionDataPath;
+	[Export] public bool debugMode = false;
+
 	// Protected
 	protected ObjectPickupDirector itemPickupDir;
 	protected InventoryDirector inventoryDir;
 	[Export] protected PackedScene damageLabel;
-	protected Node3D parentNode;
+	[Export] protected CharacterDirector characterDir;
 	protected float currentHealth = 0.0f;
 	protected Godot.SceneTreeTimer deathTimer;
 
@@ -34,7 +37,6 @@ public partial class InteractionDirector : Node3D
 		LoadInteractionData();
 		InitHealthData();
 
-		GetParentNode();
 		itemPickupDir = GetNode<ObjectPickupDirector>("Item-Pickup-Director");
         inventoryDir = GetNode<InventoryDirector>("Inventory-Director");
 	}
@@ -102,7 +104,7 @@ public partial class InteractionDirector : Node3D
     }
 
 	protected virtual void BeginDeathSequence() {
-		GD.Print($"\n{parentNode.Name} has died\n");
+		GD.Print($"\n{characterDir.Name} has died\n");
 		EmitSignal(SignalName.HasDied);
 		inventoryDir.DisableAttacks();
 		deathTimer = 
@@ -111,11 +113,7 @@ public partial class InteractionDirector : Node3D
 	}
 
 	protected virtual void EndDeathSequence() {
-		parentNode.QueueFree();
-	}
-
-	protected void GetParentNode() {
-		parentNode = GetParent<Node3D>();
+		characterDir.QueueFree();
 	}
 
 	// Private

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgnpmktl80qnm"]
+[gd_scene load_steps=8 format=3 uid="uid://cgnpmktl80qnm"]
 
 [ext_resource type="Texture2D" uid="uid://b0t6nppafattr" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Border.png" id="1_cduh8"]
 [ext_resource type="Texture2D" uid="uid://x2qnja2qxycu" path="res://Assets/Graphics/Sprites/UI Sprites/Candy.png" id="1_evblf"]
@@ -6,13 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://c883iprdgc6vt" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Fill.png" id="2_rkiuu"]
 [ext_resource type="LabelSettings" uid="uid://cxuck0f1200d" path="res://Assets/Resources/Label_Settings/Player_UI.tres" id="2_s3ywq"]
 [ext_resource type="Texture2D" uid="uid://dqwbowpmdk03v" path="res://Assets/Graphics/Sprites/UI Sprites/Health_Icon.png" id="3_0ys2b"]
+[ext_resource type="Texture2D" uid="uid://bsbn8enqwyvx7" path="res://Assets/Graphics/Sprites/UI Sprites/Kills_Symbol.png" id="7_gnc8u"]
 
-[node name="Player-Stats-Box" type="Control"]
+[node name="Player-Stats-Box" type="Control" node_paths=PackedStringArray("healthBar", "healthLabel", "candyCountLabel", "killCountLabel")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_n0g2q")
-healthBarNodePath = "ColorRect/HBoxContainer/VBoxContainer3/Health-Bar"
-healthLabelNodePath = "ColorRect/HBoxContainer/VBoxContainer/Health-Label"
+healthBar = NodePath("ColorRect/HBoxContainer/VBoxContainer3/Health-Bar")
+healthLabel = NodePath("ColorRect/HBoxContainer/VBoxContainer/Health-Label")
+candyCountLabel = NodePath("ColorRect/HBoxContainer/VBoxContainer/Candy-Label")
+killCountLabel = NodePath("ColorRect/HBoxContainer/VBoxContainer/Kills-Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -20,7 +23,7 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -180.0
-offset_bottom = 100.0
+offset_bottom = 145.0
 grow_horizontal = 0
 color = Color(0.188235, 0.188235, 0.188235, 0.615686)
 
@@ -78,6 +81,16 @@ text = "0
 label_settings = ExtResource("2_s3ywq")
 horizontal_alignment = 1
 
+[node name="Kills-Label" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(40, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0
+"
+label_settings = ExtResource("2_s3ywq")
+horizontal_alignment = 1
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
@@ -97,5 +110,14 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("1_evblf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Candy-Symbol2" type="TextureRect" parent="ColorRect/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("7_gnc8u")
 expand_mode = 2
 stretch_mode = 4
