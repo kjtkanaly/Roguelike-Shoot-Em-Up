@@ -4,7 +4,7 @@
 [ext_resource type="LabelSettings" uid="uid://0p202uuvj5fv" path="res://Assets/Resources/Label_Settings/Game_Over_001.tres" id="1_qxpdy"]
 [ext_resource type="LabelSettings" uid="uid://pgnm45iodk28" path="res://Assets/Resources/Label_Settings/Menu_Label_001.tres" id="1_sa8vl"]
 
-[node name="Game-Over" type="Control"]
+[node name="Game-Over" type="Control" node_paths=PackedStringArray("newGameButton", "quitButton", "candyLabel", "totalTimeLabel", "enemiesSlainLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,11 +13,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_phbju")
 titleMenuScenePath = "res://Assets/UI/In-Game/title_menu.tscn"
-newGameButtonNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer2/New-Game-Button"
-quitButtonNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer2/Quit-Button"
-candyLabelNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Candy-Score-Label"
-totalTimeLabelNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Time-Alive-Label"
-enemiesSlainLabelNodePath = "ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Enemies-Slain-Label"
+newGameButton = NodePath("ColorRect/MarginContainer/VBoxContainer2/VBoxContainer2/New-Game-Button")
+quitButton = NodePath("ColorRect/MarginContainer/VBoxContainer2/VBoxContainer2/Quit-Button")
+candyLabel = NodePath("ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Candy-Score-Label")
+totalTimeLabel = NodePath("ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Time-Alive-Label")
+enemiesSlainLabel = NodePath("ColorRect/MarginContainer/VBoxContainer2/VBoxContainer/Enemies-Slain-Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

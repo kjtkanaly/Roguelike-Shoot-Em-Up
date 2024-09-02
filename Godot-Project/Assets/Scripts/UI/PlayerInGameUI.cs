@@ -28,7 +28,7 @@ public partial class PlayerInGameUI : UI
     {
         base._Process(delta);
 
-        timerBox.UpdateTimer(delta);
+        timerBox.UpdateTimerLabel(gameStats.GetCurrentTime_MMSS());
     }
 
     //-------------------------------------------------------------------------
@@ -40,10 +40,6 @@ public partial class PlayerInGameUI : UI
 
     public void InitHealthUI(float maxHealth) {
         playerStatusBox.InitHealthUI(maxHealth);
-    }
-
-    public string GetCurrentTime_MMSS() {
-        return timerBox.GetCurrentTime_MMSS();
     }
 
     public int GetCandyCount() {

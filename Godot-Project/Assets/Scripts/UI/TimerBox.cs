@@ -12,7 +12,6 @@ public partial class TimerBox : Control
 
     // Private
     private Label playTimeLabel;
-    private double elapsedTime = 0.0f;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -26,25 +25,9 @@ public partial class TimerBox : Control
     //-------------------------------------------------------------------------
     // Methods
     // Public
-    public void UpdateTimer(double timeDelta) {
-        // Log the elapsed time
-        elapsedTime += timeDelta;
-        
-        // Convert the elappsed time to minutes and seconds
-        double minutes = elapsedTime / 60;
-        double seconds = elapsedTime % 60;
-
+    public void UpdateTimerLabel(string newTime) {
         // Update the Timer Label's text
-        playTimeLabel.Text = 
-            $"{minutes.ToString("#0")}:{seconds.ToString("00")}";
-    }
-
-    public string GetCurrentTime_MMSS() {
-        // Convert the elappsed time to minutes and seconds
-        double minutes = elapsedTime / 60;
-        double seconds = elapsedTime % 60;
-
-        return $"{minutes.ToString("#0")}:{seconds.ToString("00")}";
+        playTimeLabel.Text = newTime;
     }
 
     // Protected

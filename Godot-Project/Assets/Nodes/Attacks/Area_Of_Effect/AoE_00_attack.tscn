@@ -15,9 +15,6 @@ metadata/ItemName = "AoE-00"
 [node name="Attack-Mesh" parent="Attack-Object" index="1"]
 mesh = ExtResource("4_wqigc")
 
-[node name="Hit-Box-Director" parent="Attack-Object" index="2"]
-collision_layer = 0
-
 [node name="Hit-Box-Shape" parent="Attack-Object/Hit-Box-Director" index="0"]
 shape = ExtResource("5_cmrf8")
 

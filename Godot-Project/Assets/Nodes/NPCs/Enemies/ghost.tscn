@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgh1qcl4tcu"]
+[gd_scene load_steps=12 format=3 uid="uid://cgh1qcl4tcu"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Directors/CharacterDirector.cs" id="1_82c2d"]
 [ext_resource type="PackedScene" uid="uid://dxe2dh3ca635s" path="res://Assets/Nodes/Generics/generic_interaction_director.tscn" id="2_errkh"]
 [ext_resource type="Shape3D" uid="uid://d0swo8vle8v5s" path="res://Assets/Resources/Shapes/Enemies/enemy_001.tres" id="2_stgnj"]
 [ext_resource type="Script" path="res://Assets/Scripts/Interaction/EnemeyInteractionDirector.cs" id="3_tu2ds"]
+[ext_resource type="PackedScene" uid="uid://chgl7m71h00ka" path="res://Assets/Nodes/Attacks/Area_Of_Effect/Ghost_AoE.tscn" id="3_txfxq"]
 [ext_resource type="PackedScene" uid="uid://c1ejon8wetoc3" path="res://Assets/Nodes/State-Machine/state_machine.tscn" id="4_ugjwg"]
 [ext_resource type="PackedScene" uid="uid://ckwsvyonpkc33" path="res://Assets/Nodes/State-Machine/Movement/chase.tscn" id="5_7puxk"]
 [ext_resource type="PackedScene" uid="uid://cgxcfarp5o8th" path="res://Assets/Nodes/State-Machine/Movement/search.tscn" id="6_d4km5"]
@@ -49,10 +50,14 @@ script = ExtResource("3_tu2ds")
 interactionDataPath = "res://Assets/Resources/Interaction_Data_Files/Enemies/enemy_001.tres"
 characterDir = NodePath("..")
 
+[node name="Hit-Box-Director" parent="Generic-Interaction-Director" index="0" groups=["Enemy"]]
+
 [node name="Hit-Box-Shape" parent="Generic-Interaction-Director/Hit-Box-Director" index="0"]
 shape = ExtResource("2_stgnj")
 
 [node name="Inventory-Director" parent="Generic-Interaction-Director" index="3" groups=["Enemy"]]
+
+[node name="Ghost-AoE" parent="." instance=ExtResource("3_txfxq")]
 
 [node name="Staggered-Movement-Timer" type="Timer" parent="."]
 

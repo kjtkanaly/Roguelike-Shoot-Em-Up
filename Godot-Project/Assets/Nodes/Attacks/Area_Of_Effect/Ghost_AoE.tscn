@@ -6,7 +6,7 @@
 
 [node name="Ghost-AoE" type="Node3D" groups=["Attack Object"]]
 
-[node name="Attack-Object" parent="." instance=ExtResource("1_q6r15")]
+[node name="Attack-Object" parent="." groups=["Enemy"] instance=ExtResource("1_q6r15")]
 script = ExtResource("2_we45t")
 dataPath = "res://Assets/Resources/Attack_Data_Files/AreaOfEffect_00.tres"
 collisionMaskValues = PackedInt32Array(11)

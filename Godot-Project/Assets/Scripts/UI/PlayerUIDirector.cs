@@ -67,11 +67,7 @@ public partial class PlayerUIDirector : Control
         gameOver = true;
 
         // Create the Game Over Stats Struct
-        gameOverUI.UpdateStatsObject(
-            new GameOverUI.GameOverStats(
-                playerUI.GetCandyCount().ToString(), 
-                "Scooped out", 
-                playerUI.GetCurrentTime_MMSS()));
+        gameOverUI.UpdateStatsObject();
 
         gameOverUI.RefreshUI();
 
