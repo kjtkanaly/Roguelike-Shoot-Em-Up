@@ -3,14 +3,19 @@ using System;
 
 public partial class State : Node
 {
+    public enum StateType 
+    {
+        CharacterBody = 0,
+        StaticBody = 1
+    }
+
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
+    [Export] public StateType type;
     [Export] public String animationPath;
-    public float moveSpeed;
 
     // Protected
-    protected CharacterDirector characterDir;
     protected AnimationPlayer animationPlayer;
 
     //-------------------------------------------------------------------------
@@ -19,9 +24,12 @@ public partial class State : Node
     //-------------------------------------------------------------------------
 	// Methods
     // Public
-    virtual public void Init(CharacterDirector characterDirRef, AnimationPlayer animationPlayerRef) {
-        characterDir = characterDirRef;
-        animationPlayer = animationPlayerRef;
+    virtual public void Init(CharacterDirector bodyDirectorRef, AnimationPlayer animationRef) {
+        animationPlayer = animationRef;
+    }
+
+    virtual public void Init(StaticBodyDirector bodyDirectorRef, AnimationPlayer animationRef) {
+        animationPlayer = animationRef;
     }
 
     virtual public void Enter() {
@@ -44,28 +52,6 @@ public partial class State : Node
     }
 
     // Protected
-    protected bool IsMovingLaterally() {
-        if (Input.IsActionPressed("Left") 
-            || Input.IsActionPressed("Right")
-            || Input.IsActionPressed("Down")
-            || Input.IsActionPressed("Up")) {
-            return true;
-        }
-        return false;        
-    }
-
-    protected Vector2 GetLateralDirectionVector() {
-        Vector2 direction = Input.GetVector("Left", "Right", "Up", "Down");
-        return direction;
-    }
-
-    protected void RotateModelTowardsTarget(float angle) {
-		// Face the model towards the direction
-        characterDir.GetModel().Rotation = new Vector3(
-            characterDir.GetModel().Rotation.X,
-            characterDir.Rotation.Y - angle,
-            characterDir.GetModel().Rotation.Z);
-    }
 
     // Private
 

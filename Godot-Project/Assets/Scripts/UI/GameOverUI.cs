@@ -35,7 +35,7 @@ public partial class GameOverUI : UI
     // Methods
     // Public
     public void UpdateStatsObject() {
-        totalTimeLabel.Text += gameStats.gameTime.ToString();
+        totalTimeLabel.Text += gameStats.GetCurrentTime_MMSS();
         candyLabel.Text += gameStats.candyCount.ToString();
         enemiesSlainLabel.Text += gameStats.killCount.ToString();
     }

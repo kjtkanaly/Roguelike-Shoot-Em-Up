@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class NPCState : State
+public partial class NPCState : CharacterBodyState
 {
     //-------------------------------------------------------------------------
     // Game Componenets

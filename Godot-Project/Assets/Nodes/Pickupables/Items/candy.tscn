@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://mrsp1sgeye76"]
+
+[ext_resource type="PackedScene" uid="uid://c1ejon8wetoc3" path="res://Assets/Nodes/State-Machine/state_machine.tscn" id="1_45rvh"]
+[ext_resource type="Script" path="res://Assets/Scripts/Items/StaticBodyDirector.cs" id="1_rwscq"]
+[ext_resource type="PackedScene" uid="uid://djkvokm18au6g" path="res://Assets/Nodes/State-Machine/Items/item_idle.tscn" id="2_bab2t"]
+[ext_resource type="PackedScene" uid="uid://b5lf2nuaibrgd" path="res://Assets/Nodes/State-Machine/Items/follow_player.tscn" id="4_waqo4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w72cq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmopn"]
+albedo_color = Color(0, 1, 0.831373, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_p4dmk"]
+material = SubResource("StandardMaterial3D_nmopn")
+radius = 0.3
+height = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_krpj7"]
+size = Vector3(1, 0.08, 0.08)
+
+[node name="Candy" type="StaticBody3D" node_paths=PackedStringArray("stateMachine")]
+script = ExtResource("1_rwscq")
+itemType = 0
+stateMachine = NodePath("State-Machine")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_w72cq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_p4dmk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("BoxMesh_krpj7")
+
+[node name="State-Machine" parent="." node_paths=PackedStringArray("startingState") instance=ExtResource("1_45rvh")]
+startingState = NodePath("Item-Idle")
+
+[node name="Item-Idle" parent="State-Machine" node_paths=PackedStringArray("followPlayer") instance=ExtResource("2_bab2t")]
+followPlayer = NodePath("../Follow-Player")
+
+[node name="Follow-Player" parent="State-Machine" instance=ExtResource("4_waqo4")]

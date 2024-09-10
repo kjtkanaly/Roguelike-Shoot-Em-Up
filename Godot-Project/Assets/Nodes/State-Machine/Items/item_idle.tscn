@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://djkvokm18au6g"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/State-Machine/Static_Body/IdleItem.cs" id="1_ft82b"]
+
+[node name="Idle-Item" type="Node"]
+script = ExtResource("1_ft82b")
+type = 1

@@ -1,7 +1,7 @@
 # Development Notes
 ## Next time on Dragon Ball Z
-- Work out/find a better curve/motion fx for the animation of the dmg value.
-  However not high priotirty. 
+- Player doesn't seem to die when they run out of health anymore
+- Ghost death animation is broken
 
 ## General Notes
 ### Version 
@@ -97,4 +97,6 @@ attack object in each pickup object
 [ ] Add basic hit sound effects
 [ ] Bring in Dak's font
 [X] Create the basic game loop (spawn in, die, stats screen,restart)
+[ ] Add particle physics to hits
+[ ] Add candy drops to enemies that the player can pickup
 

@@ -11,7 +11,6 @@ public partial class StateMachine : Node
     // Protected
 
     // Private
-    private CharacterDirector characterDir;
     private State currentState;
     [Export] private State startingState;
 
@@ -21,13 +20,22 @@ public partial class StateMachine : Node
     //-------------------------------------------------------------------------
     // Methods
     // Public
-    public void Init(CharacterDirector characterDirRef, AnimationPlayer animationRef) {
-        // Assign the player director reference
-        characterDir = characterDirRef;
-
+    // Init the Character Body State Machine
+    public void Init(CharacterDirector objectDirRef, AnimationPlayer animationRef) {
         // Init all of the child state objects
         foreach (State child in GetChildren()) {
-            child.Init(characterDir, animationRef);
+            child.Init(objectDirRef, animationRef);
+        }
+
+        // Initialize to the default state
+        ChangeState(startingState);
+    }
+
+    // Init the Staticbody State Machine
+    public void Init(StaticBodyDirector objectDirRef, AnimationPlayer animationRef) {
+        // Init all of the child state objects
+        foreach (State child in GetChildren()) {
+            child.Init(objectDirRef, animationRef);
         }
 
         // Initialize to the default state

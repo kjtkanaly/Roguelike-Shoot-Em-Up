@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5lf2nuaibrgd"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/State-Machine/Static_Body/FollowPlayer.cs" id="1_h75nl"]
+
+[node name="Follow-Player" type="Node"]
+script = ExtResource("1_h75nl")
+moveSpeed = 2.0
+type = 1
