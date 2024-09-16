@@ -11,6 +11,7 @@ public partial class FollowPlayer : StaticBodyState
     // Protected
 
     // Private
+    [Export] private StaticBodyState idleItem;
 
     //-------------------------------------------------------------------------
 	// Game Events
@@ -18,9 +19,9 @@ public partial class FollowPlayer : StaticBodyState
     //-------------------------------------------------------------------------
 	// Methods
     // Public
-    override public State ProcessPhysics(float delta) 
+    public override State ProcessPhysics(float delta) 
     {
-        Vector3 playerPos = staticBodyDir.GetPlayerDir().Position;
+        Vector3 playerPos = staticBodyDir.GetCharacterDir().Position;
         Vector3 newPos = staticBodyDir.Position.MoveToward(playerPos, delta * moveSpeed);
         staticBodyDir.Position = newPos;
 

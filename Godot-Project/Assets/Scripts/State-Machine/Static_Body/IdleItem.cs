@@ -29,37 +29,28 @@ public partial class IdleItem : StaticBodyState
         yIntercept = staticBodyDir.Position.Y;
     }
 
+    public override void Exit() 
+    {
+        GD.Print("Test");
+    }
+
     override public State ProcessPhysics(float delta) 
     {
+        // Check if the item is within follow range of the player
+        if (staticBodyDir.followPlayerFlag) {
+            return followPlayer;
+        }
+
         Vector3 newPos = staticBodyDir.Position;
         time += delta;
         
         newPos.Y = EaseInOutSine(time, freq, yIntercept);
         staticBodyDir.Position = newPos;
 
-        // Check if the item is within follow range of the player
-        if (IsInFollowRange()) {
-            return followPlayer;
-        }
-
         return null;
     }
 
     // Protected
-    protected bool IsInFollowRange() {
-        if (staticBodyDir.GetPlayerDir() == null) {
-            return false;
-        }
-
-        Vector3 playerPos = staticBodyDir.GetPlayerDir().Position;
-        Vector3 thisPos = staticBodyDir.Position;
-
-        if (playerPos.DistanceTo(thisPos) < followRange) {
-            return true;
-        }
-
-        return false;
-    }
 
     // Private
 

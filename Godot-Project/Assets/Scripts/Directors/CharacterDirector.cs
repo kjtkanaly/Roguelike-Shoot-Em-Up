@@ -20,13 +20,16 @@ public partial class CharacterDirector : CharacterBody3D
     [Export] protected AnimationPlayer animations;
     [Export] protected StateMachine movementSM;
     [Export] protected Node3D model;
+    [Export] protected Area3D itemRange;
+    [Export] protected Area3D itemPickup;
     protected GameStats gameStats;
     protected MovementData movementData;
+    protected PlayerStats playerStats;
 
     // Private
 
     //-------------------------------------------------------------------------
-	// Game Events
+    // Game Events
     public override void _Ready()
     {
         Init();
@@ -52,6 +55,15 @@ public partial class CharacterDirector : CharacterBody3D
 
         // Initialize the movement State Machine
         movementSM.Init(this, animations);
+
+        // Init the Item Range Area
+        itemRange.AreaEntered += ItemWithinRange;
+
+        // Init the Item Pickup Area
+        itemPickup.AreaEntered += PickupItem;
+
+        // Get the global player stats object
+        playerStats = GetNode<PlayerStats>("/root/PlayerStats");
     }
 
     public override void _UnhandledInput(InputEvent inputEvent)
@@ -66,7 +78,7 @@ public partial class CharacterDirector : CharacterBody3D
     }
 
     //-------------------------------------------------------------------------
-	// Methods
+    // Methods
     // Public
     public MovementData GetMovementData() {
         return movementData;
@@ -87,9 +99,38 @@ public partial class CharacterDirector : CharacterBody3D
     }
 
     // Protected
+    protected void ItemWithinRange(Area3D area) 
+    {
+        // Check if the item is an item
+        if (!area.IsInGroup("Item")) 
+        {
+            return;
+        }
+
+        // Get the item's director
+        StaticBodyDirector item = (StaticBodyDirector) area;
+
+        item.FollowPlayer(this, true);
+    }
+
+    protected void PickupItem(Area3D area) 
+    {
+        // Check if the area is an item
+        if (!area.IsInGroup("Item")) 
+        {
+            return;
+        }
+
+        // If the item is a candy then update the player's count
+        if (area.IsInGroup("Candy")) 
+        {
+            playerStats.candyCount += 1;
+            GD.Print($"Candy Count: {playerStats.candyCount}");
+        }
+    }
 
     // Private
 
     //-------------------------------------------------------------------------
-	// Debug Methods
+    // Debug Methods
 }

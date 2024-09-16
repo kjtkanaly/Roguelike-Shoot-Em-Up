@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class StaticBodyDirector : StaticBody3D
+public partial class StaticBodyDirector : Area3D
 {
     public enum ItemType 
     {
@@ -14,19 +14,20 @@ public partial class StaticBodyDirector : StaticBody3D
     // Game Componenets
     // Public
     [Export] public ItemType itemType = ItemType.Unkown;
+    public bool followPlayerFlag = false;
 
     // Protected
     [Export] protected StateMachine stateMachine;
     [Export] protected AnimationPlayer animationPlayer;
-    [Export] protected PlayerDirector playerDir;
+    [Export] protected CharacterDirector charDir;
 
     // Private
 
     //-------------------------------------------------------------------------
-	// Game Events
+    // Game Events
 
     //-------------------------------------------------------------------------
-	// Methods
+    // Methods
     // Public
     public override void _Ready()
     {
@@ -36,8 +37,6 @@ public partial class StaticBodyDirector : StaticBody3D
     public void Init() {
         // Initialize the movement State Machine
         stateMachine.Init(this, animationPlayer);
-
-        FindPlayerDirInScene();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -46,18 +45,15 @@ public partial class StaticBodyDirector : StaticBody3D
         stateMachine.PhysicsProcess((float) delta);
     }
 
-    public PlayerDirector GetPlayerDir() 
+    public void FollowPlayer(CharacterDirector character, bool state) 
     {
-        return playerDir;
+        charDir = character;
+        followPlayerFlag = state;
     }
 
-    public void FindPlayerDirInScene() {
-        foreach (Node node in GetTree().GetNodesInGroup("Player")){
-            if (node.IsInGroup("Director")) {
-                playerDir = (PlayerDirector) node;
-                break;
-            }
-        }
+    public CharacterDirector GetCharacterDir() 
+    {
+        return charDir;
     }
 
     // Protected
@@ -65,5 +61,5 @@ public partial class StaticBodyDirector : StaticBody3D
     // Private
 
     //-------------------------------------------------------------------------
-	// Debug Methods
+    // Debug Methods
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://mrsp1sgeye76"]
+[gd_scene load_steps=12 format=3 uid="uid://mrsp1sgeye76"]
 
 [ext_resource type="PackedScene" uid="uid://c1ejon8wetoc3" path="res://Assets/Nodes/State-Machine/state_machine.tscn" id="1_45rvh"]
 [ext_resource type="Script" path="res://Assets/Scripts/Items/StaticBodyDirector.cs" id="1_rwscq"]
@@ -18,10 +18,51 @@ height = 0.6
 [sub_resource type="BoxMesh" id="BoxMesh_krpj7"]
 size = Vector3(1, 0.08, 0.08)
 
-[node name="Candy" type="StaticBody3D" node_paths=PackedStringArray("stateMachine")]
+[sub_resource type="Animation" id="Animation_7wbbi"]
+resource_name = "Item"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.48787e-16, 3.14159, 3.48787e-16), Vector3(3.48787e-16, 6.28319, 3.48787e-16)]
+}
+
+[sub_resource type="Animation" id="Animation_a38e0"]
+resource_name = "Item-Raise"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2.08165e-12, 1, 2.08165e-12), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3x84"]
+_data = {
+"Item-In-Range": SubResource("Animation_7wbbi"),
+"Item-Raise": SubResource("Animation_a38e0")
+}
+
+[node name="Candy" type="Area3D" node_paths=PackedStringArray("stateMachine", "animationPlayer") groups=["Candy", "Item"]]
+collision_layer = 6144
+collision_mask = 0
 script = ExtResource("1_rwscq")
 itemType = 0
 stateMachine = NodePath("State-Machine")
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_w72cq")
@@ -38,4 +79,12 @@ startingState = NodePath("Item-Idle")
 [node name="Item-Idle" parent="State-Machine" node_paths=PackedStringArray("followPlayer") instance=ExtResource("2_bab2t")]
 followPlayer = NodePath("../Follow-Player")
 
-[node name="Follow-Player" parent="State-Machine" instance=ExtResource("4_waqo4")]
+[node name="Follow-Player" parent="State-Machine" node_paths=PackedStringArray("idleItem") instance=ExtResource("4_waqo4")]
+moveSpeed = 3.0
+idleItem = NodePath("../Item-Idle")
+animationPath = "Item-Raise"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n3x84")
+}

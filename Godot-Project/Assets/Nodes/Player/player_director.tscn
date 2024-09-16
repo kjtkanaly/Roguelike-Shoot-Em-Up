@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhxmej5jdupx8"]
+[gd_scene load_steps=18 format=3 uid="uid://bhxmej5jdupx8"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerDirector.cs" id="1_7xoh2"]
 [ext_resource type="PackedScene" uid="uid://cv8n4qd2k4h3k" path="res://Assets/Models/Kid-Instance/kid_model_instance.tscn" id="4_vguaw"]
@@ -20,13 +20,20 @@ height = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1w7no"]
 height = 1.0
 
-[node name="Player-Director" type="CharacterBody3D" node_paths=PackedStringArray("animations", "movementSM", "model") groups=["Director", "Player"]]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kaqt0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m0stt"]
+radius = 5.0
+
+[node name="Player-Director" type="CharacterBody3D" node_paths=PackedStringArray("animations", "movementSM", "model", "itemRange", "itemPickup") groups=["Director", "Player"]]
 collision_mask = 9
 script = ExtResource("1_7xoh2")
 movementDataPath = "res://Assets/Resources/Movement_Data_Files/Player.tres"
 animations = NodePath("Kid-Model-Instance/Animation_Player")
 movementSM = NodePath("Movement-State-Machine")
 model = NodePath("Kid-Model-Instance")
+itemRange = NodePath("Item-Range")
+itemPickup = NodePath("Item-Pickup")
 
 [node name="Physics-Shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_iuyme")
@@ -76,6 +83,20 @@ runState = NodePath("../Run")
 fallState = NodePath("../Fall")
 
 [node name="Game-Stats" parent="." instance=ExtResource("13_t21tg")]
+
+[node name="Item-Pickup" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Item-Pickup"]
+shape = SubResource("CylinderShape3D_kaqt0")
+
+[node name="Item-Range" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Item-Range"]
+shape = SubResource("SphereShape3D_m0stt")
 
 [editable path="Generic-Interaction-Director"]
 [editable path="Kid-Model-Instance"]
