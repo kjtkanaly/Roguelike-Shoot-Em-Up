@@ -7,6 +7,8 @@ public partial class PlayerStats : Node
     // Game Componenets
     // Public
     public float gameTime = 0.0f;
+    public float health = 0.0f;
+    public float maxHealth = 0.0f;
     public int candyCount = 0;
     public int killCount = 0;
 
@@ -14,6 +16,7 @@ public partial class PlayerStats : Node
 
     // Private
     private double elapsedTime = 0.0f;
+    
 
     //-------------------------------------------------------------------------
     // Game Events

@@ -29,29 +29,19 @@ public partial class PlayerStatusBox : Control
     {
         // Update the Candy Count Label
         candyCountLabel.Text = playerStats.candyCount.ToString();
+
+        // Update the Kill Count Label
+        killCountLabel.Text = playerStats.killCount.ToString();
+
+        // Update the Player's Heath Bar
+        healthBar.Value = playerStats.health;
+        healthBar.MaxValue = playerStats.maxHealth;
+        healthLabel.Text = playerStats.health.ToString();
     }
 
     //-------------------------------------------------------------------------
     // Methods
     // Public
-    public void Init(PlayerUIDirector playerUIRef) {
-    }
-
-    public void UpdateHealthUI(AttackData data) {
-        // Decrement the remaining health by the damage
-        healthBar.Value -= data.damage;
-        healthLabel.Text = healthBar.Value.ToString();
-    }
-
-    public void InitHealthUI(float maxHealth) {
-        healthBar.MaxValue = maxHealth;
-        healthBar.Value = maxHealth;
-        healthLabel.Text = maxHealth.ToString();
-    }
-
-    public void IncrementKillCountLabel(int count) {
-        killCountLabel.Text = count.ToString();
-    }
 
     // Protected
 

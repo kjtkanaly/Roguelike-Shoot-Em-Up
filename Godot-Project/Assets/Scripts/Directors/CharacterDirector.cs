@@ -22,6 +22,7 @@ public partial class CharacterDirector : CharacterBody3D
     [Export] protected Node3D model;
     [Export] protected Area3D itemRange;
     [Export] protected Area3D itemPickup;
+    [Export] protected PackedScene candyDrop;
     protected MovementData movementData;
     protected PlayerStats playerStats;
 
@@ -39,7 +40,13 @@ public partial class CharacterDirector : CharacterBody3D
         base._ExitTree();
 
         if (charactertype == CharacterType.Enemy)  {
+            // Update the Player Kill Count
             playerStats.IncrementKillCount();
+            
+            // Spawn the candy for the player to pickup
+            Node3D candyDropInst = (Node3D) candyDrop.Instantiate();
+            GetTree().Root.AddChild(candyDropInst);
+            candyDropInst.Position = Position;
         }
     }
 
@@ -52,6 +59,11 @@ public partial class CharacterDirector : CharacterBody3D
 
         // Initialize the movement State Machine
         movementSM.Init(this, animations);
+
+        // Player Specefic Logic
+        if (charactertype != CharacterType.Player) {
+            return;
+        }
 
         // Init the Item Range Area
         itemRange.AreaEntered += ItemWithinRange;

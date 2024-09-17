@@ -12,7 +12,7 @@ public partial class PlayerUIDirector : Control
     // Protected
 
     // Private
-    [Export] private PlayerInGameUI playerUI;
+    [Export] private PlayerInGameUI playerInGameUI;
     [Export] private PauseGameUI pauseGameUI;
     [Export] private GameOverUI gameOverUI;
 
@@ -40,18 +40,10 @@ public partial class PlayerUIDirector : Control
     //-------------------------------------------------------------------------
     // Methods
     // Public
-    public void UpdateHealthUI(AttackData data) {
-        playerUI.UpdateHealthUI(data);
-    }
-
-    public void InitHealthUI(float maxHealth) {
-        playerUI.InitHealthUI(maxHealth);
-    }
-
     public void TogglePause() {
         // Swap the UI's
         pauseGameUI.ToggleVisible(!pauseGameUI.Visible);
-        playerUI.ToggleVisible(!playerUI.Visible);
+        playerInGameUI.ToggleVisible(!playerInGameUI.Visible);
 
         if (!gamePaused) {
             GetTree().Paused = true;    // Pause the game engine
@@ -73,7 +65,7 @@ public partial class PlayerUIDirector : Control
 
         // Swap the UI's
         pauseGameUI.ToggleVisible(false);
-        playerUI.ToggleVisible(false);
+        playerInGameUI.ToggleVisible(false);
         gameOverUI.ToggleVisible(true);
         
     }   

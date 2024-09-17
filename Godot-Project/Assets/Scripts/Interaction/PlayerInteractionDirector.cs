@@ -11,6 +11,7 @@ public partial class PlayerInteractionDirector : InteractionDirector
     public delegate void PlayerIsDeadEventHandler();
 
     // Protected
+    protected PlayerStats playerStats;
 
     // Private
     private PlayerInteractionData interactionData;
@@ -22,11 +23,19 @@ public partial class PlayerInteractionDirector : InteractionDirector
     {
         base._Ready();
 
-        playerUIDirector.InitHealthUI(interactionData.maxHealth);
+        // Get the global player stats object
+        playerStats = GetNode<PlayerStats>("/root/PlayerStats");
 
         itemPickupDir.NewAttackNearby += PickupFirstFreeAttack;
-        TookDamage += playerUIDirector.UpdateHealthUI;
         HasDied += playerUIDirector.GoToGameOver;
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        playerStats.health = currentHealth;
+        playerStats.maxHealth = interactionData.maxHealth;
     }
 
     //-------------------------------------------------------------------------
