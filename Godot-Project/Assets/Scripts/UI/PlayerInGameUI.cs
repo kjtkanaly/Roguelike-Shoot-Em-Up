@@ -12,24 +12,9 @@ public partial class PlayerInGameUI : UI
     // Private
     [Export] private PlayerStatusBox playerStatusBox;
     [Export] private TimerBox timerBox;
-    private GameStats gameStats;
 
     //-------------------------------------------------------------------------
     // Game Events
-    public override void _Ready()
-    {
-        foreach (Node node in GetTree().GetNodesInGroup("Game Stats")) {
-            gameStats = (GameStats) node;
-        }
-        gameStats.UpdateKillCount += IncrementKillCountLabel;
-    }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-
-        timerBox.UpdateTimerLabel(gameStats.GetCurrentTime_MMSS());
-    }
 
     //-------------------------------------------------------------------------
     // Methods
@@ -40,14 +25,6 @@ public partial class PlayerInGameUI : UI
 
     public void InitHealthUI(float maxHealth) {
         playerStatusBox.InitHealthUI(maxHealth);
-    }
-
-    public int GetCandyCount() {
-        return playerStatusBox.GetCandyCount();
-    }
-
-    public void IncrementKillCountLabel() {
-        playerStatusBox.IncrementKillCountLabel(gameStats.killCount);
     }
 
     // Protected

@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Assets/Scripts/UI/TimerBox.cs" id="1_anwhx"]
 [ext_resource type="LabelSettings" uid="uid://cxuck0f1200d" path="res://Assets/Resources/Label_Settings/Player_UI.tres" id="2_gplpm"]
 
-[node name="Play-Time-Box" type="Control"]
+[node name="Play-Time-Box" type="Control" node_paths=PackedStringArray("playTimeLabel")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_anwhx")
-playTimeNodePath = "ColorRect/Play-Time-Text"
+playTimeLabel = NodePath("ColorRect/Play-Time-Text")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bhxmej5jdupx8"]
+[gd_scene load_steps=19 format=3 uid="uid://bhxmej5jdupx8"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Player/PlayerDirector.cs" id="1_7xoh2"]
 [ext_resource type="PackedScene" uid="uid://cv8n4qd2k4h3k" path="res://Assets/Models/Kid-Instance/kid_model_instance.tscn" id="4_vguaw"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c5j4mqyi6ntqi" path="res://Assets/Nodes/State-Machine/Movement/run.tscn" id="10_vvr7q"]
 [ext_resource type="PackedScene" uid="uid://ccsdrr0j5uv7n" path="res://Assets/Nodes/State-Machine/Movement/fall.tscn" id="11_df3d0"]
 [ext_resource type="PackedScene" uid="uid://b2sjpnfx8su0c" path="res://Assets/Nodes/State-Machine/Movement/jump.tscn" id="12_wnbtq"]
-[ext_resource type="PackedScene" uid="uid://cehakl6pedqbr" path="res://Assets/Nodes/Generics/game_stats.tscn" id="13_t21tg"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iuyme"]
 height = 1.0
@@ -24,6 +23,16 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m0stt"]
 radius = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82jxm"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.160784)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p8itl"]
+material = SubResource("StandardMaterial3D_82jxm")
+top_radius = 5.0
+bottom_radius = 5.0
+height = 0.001
 
 [node name="Player-Director" type="CharacterBody3D" node_paths=PackedStringArray("animations", "movementSM", "model", "itemRange", "itemPickup") groups=["Director", "Player"]]
 collision_mask = 9
@@ -82,8 +91,6 @@ runState = NodePath("../Run")
 [node name="Jump" parent="Movement-State-Machine" node_paths=PackedStringArray("fallState") instance=ExtResource("12_wnbtq")]
 fallState = NodePath("../Fall")
 
-[node name="Game-Stats" parent="." instance=ExtResource("13_t21tg")]
-
 [node name="Item-Pickup" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4096
@@ -97,6 +104,10 @@ collision_mask = 2048
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Item-Range"]
 shape = SubResource("SphereShape3D_m0stt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Item-Range"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, 2.08165e-12)
+mesh = SubResource("CylinderMesh_p8itl")
 
 [editable path="Generic-Interaction-Director"]
 [editable path="Kid-Model-Instance"]

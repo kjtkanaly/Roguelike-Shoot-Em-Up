@@ -28,4 +28,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66462, -9.53674e-07, 6.431
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23296, -9.53674e-07, 7.17173)
 
 [node name="Candy4" parent="." instance=ExtResource("1_vdkgy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60056, -9.53674e-07, 2.53848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.99814, -9.53674e-07, 3.34895)

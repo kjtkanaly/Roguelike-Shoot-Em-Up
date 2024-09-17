@@ -14,10 +14,10 @@ public partial class FollowPlayer : StaticBodyState
     [Export] private StaticBodyState idleItem;
 
     //-------------------------------------------------------------------------
-	// Game Events
+    // Game Events
 
     //-------------------------------------------------------------------------
-	// Methods
+    // Methods
     // Public
     public override State ProcessPhysics(float delta) 
     {
@@ -33,5 +33,5 @@ public partial class FollowPlayer : StaticBodyState
     // Private
 
     //-------------------------------------------------------------------------
-	// Debug Methods
+    // Debug Methods
 }

@@ -6,12 +6,12 @@ public partial class TimerBox : Control
     //-------------------------------------------------------------------------
     // Game Componenets
     // Public
-    [Export] public string playTimeNodePath;
 
     // Protected
+    protected PlayerStats playerStats;
 
     // Private
-    private Label playTimeLabel;
+    [Export] private Label playTimeLabel;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -19,7 +19,15 @@ public partial class TimerBox : Control
     {
         base._Ready();
 
-        playTimeLabel = GetNode<Label>(playTimeNodePath);
+        // Get the global player stats object
+        playerStats = GetNode<PlayerStats>("/root/PlayerStats");
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        playTimeLabel.Text = playerStats.GetCurrentTime_MMSS();
     }
 
     //-------------------------------------------------------------------------

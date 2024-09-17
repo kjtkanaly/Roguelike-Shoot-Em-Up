@@ -22,7 +22,6 @@ public partial class CharacterDirector : CharacterBody3D
     [Export] protected Node3D model;
     [Export] protected Area3D itemRange;
     [Export] protected Area3D itemPickup;
-    protected GameStats gameStats;
     protected MovementData movementData;
     protected PlayerStats playerStats;
 
@@ -40,18 +39,16 @@ public partial class CharacterDirector : CharacterBody3D
         base._ExitTree();
 
         if (charactertype == CharacterType.Enemy)  {
-            gameStats.IncrementKillCount();
+            playerStats.IncrementKillCount();
         }
     }
 
     public void Init() {
+        // Get the global player stats object
+        playerStats = GetNode<PlayerStats>("/root/PlayerStats");
+
         // Get the memeber nodes
         movementData = (MovementData) GD.Load(movementDataPath);
-
-        // Get the Game Stats Instance
-        foreach (Node node in GetTree().GetNodesInGroup("Game Stats")) {
-            gameStats = (GameStats) node;
-        }
 
         // Initialize the movement State Machine
         movementSM.Init(this, animations);
@@ -60,10 +57,7 @@ public partial class CharacterDirector : CharacterBody3D
         itemRange.AreaEntered += ItemWithinRange;
 
         // Init the Item Pickup Area
-        itemPickup.AreaEntered += PickupItem;
-
-        // Get the global player stats object
-        playerStats = GetNode<PlayerStats>("/root/PlayerStats");
+        itemPickup.AreaEntered += PickupItem;        
     }
 
     public override void _UnhandledInput(InputEvent inputEvent)
@@ -127,6 +121,9 @@ public partial class CharacterDirector : CharacterBody3D
             playerStats.candyCount += 1;
             GD.Print($"Candy Count: {playerStats.candyCount}");
         }
+
+        // Despawn the item
+        area.QueueFree();
     }
 
     // Private

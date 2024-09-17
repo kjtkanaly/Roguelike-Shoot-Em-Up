@@ -9,6 +9,7 @@ public partial class GameOverUI : UI
     [Export] public string titleMenuScenePath;
 
     // Protected
+    protected PlayerStats playerStats;
 
     // Private
     [Export] private Button newGameButton;
@@ -16,7 +17,6 @@ public partial class GameOverUI : UI
     [Export] private Label candyLabel;
     [Export] private Label totalTimeLabel;
     [Export] private Label enemiesSlainLabel;
-    private GameStats gameStats;
 
     //-------------------------------------------------------------------------
     // Game Events
@@ -25,19 +25,17 @@ public partial class GameOverUI : UI
         newGameButton.ButtonUp += BeginNewGame;
         quitButton.ButtonUp += LoadTitleMenu;
 
-        // Get the Game Stats object
-        foreach (Node node in GetTree().GetNodesInGroup("Game Stats")) {
-            gameStats = (GameStats) node;
-        }
+        // Get the global player stats object
+        playerStats = GetNode<PlayerStats>("/root/PlayerStats");
     }
 
     //-------------------------------------------------------------------------
     // Methods
     // Public
     public void UpdateStatsObject() {
-        totalTimeLabel.Text += gameStats.GetCurrentTime_MMSS();
-        candyLabel.Text += gameStats.candyCount.ToString();
-        enemiesSlainLabel.Text += gameStats.killCount.ToString();
+        totalTimeLabel.Text += playerStats.GetCurrentTime_MMSS();
+        candyLabel.Text += playerStats.candyCount.ToString();
+        enemiesSlainLabel.Text += playerStats.killCount.ToString();
     }
 
     public void RefreshUI() {

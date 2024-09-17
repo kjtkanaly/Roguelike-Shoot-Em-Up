@@ -14,17 +14,27 @@ public partial class PlayerStatusBox : Control
     [Export] private Label healthLabel;
     [Export] private Label candyCountLabel;
     [Export] private Label killCountLabel;
-    private PlayerUIDirector playerUI;
-    private int candyCount = 0;
+    private PlayerStats playerStats;
 
     //-------------------------------------------------------------------------
-	// Game Events
+    // Game Events
+    public override void _Ready()
+    {
+        base._Ready();
+
+        playerStats = GetNode<PlayerStats>("/root/PlayerStats");
+    }
+
+    public override void _Process(double delta)
+    {
+        // Update the Candy Count Label
+        candyCountLabel.Text = playerStats.candyCount.ToString();
+    }
 
     //-------------------------------------------------------------------------
-	// Methods
+    // Methods
     // Public
     public void Init(PlayerUIDirector playerUIRef) {
-        playerUI = playerUIRef;
     }
 
     public void UpdateHealthUI(AttackData data) {
@@ -39,10 +49,6 @@ public partial class PlayerStatusBox : Control
         healthLabel.Text = maxHealth.ToString();
     }
 
-    public int GetCandyCount() {
-        return candyCount;
-    }
-
     public void IncrementKillCountLabel(int count) {
         killCountLabel.Text = count.ToString();
     }
@@ -53,5 +59,5 @@ public partial class PlayerStatusBox : Control
     
 
     //-------------------------------------------------------------------------
-	// Debug Methods
+    // Debug Methods
 }

@@ -8,6 +8,7 @@ public partial class IdleItem : StaticBodyState
     // Public
     [Export] float freq = 1.0f;
     [Export] float followRange = 5.0f;
+    [Export] public Vector2 easeRange = new Vector2(0.4f, 0.6f);
 
     // Protected
     [Export] protected State followPlayer;
@@ -17,10 +18,10 @@ public partial class IdleItem : StaticBodyState
     // Private
 
     //-------------------------------------------------------------------------
-	// Game Events
+    // Game Events
 
     //-------------------------------------------------------------------------
-	// Methods
+    // Methods
     // Public
     public override void Enter()
     {
@@ -42,9 +43,13 @@ public partial class IdleItem : StaticBodyState
         }
 
         Vector3 newPos = staticBodyDir.Position;
-        time += delta;
+        time += delta * freq;
         
-        newPos.Y = EaseInOutSine(time, freq, yIntercept);
+        
+        newPos.Y = EaseInOutSine(time) 
+                   * (easeRange.Y - easeRange.X) 
+                   + easeRange.X 
+                   + yIntercept;
         staticBodyDir.Position = newPos;
 
         return null;
@@ -55,5 +60,5 @@ public partial class IdleItem : StaticBodyState
     // Private
 
     //-------------------------------------------------------------------------
-	// Debug Methods
+    // Debug Methods
 }

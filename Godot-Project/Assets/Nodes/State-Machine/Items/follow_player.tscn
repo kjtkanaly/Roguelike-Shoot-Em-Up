@@ -4,5 +4,5 @@
 
 [node name="Follow-Player" type="Node"]
 script = ExtResource("1_h75nl")
-moveSpeed = 2.0
+moveSpeed = 4.0
 type = 1

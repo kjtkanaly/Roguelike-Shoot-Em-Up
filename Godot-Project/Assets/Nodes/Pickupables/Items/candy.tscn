@@ -80,7 +80,6 @@ startingState = NodePath("Item-Idle")
 followPlayer = NodePath("../Follow-Player")
 
 [node name="Follow-Player" parent="State-Machine" node_paths=PackedStringArray("idleItem") instance=ExtResource("4_waqo4")]
-moveSpeed = 3.0
 idleItem = NodePath("../Item-Idle")
 animationPath = "Item-Raise"
 
