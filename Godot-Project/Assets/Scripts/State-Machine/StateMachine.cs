@@ -32,10 +32,10 @@ public partial class StateMachine : Node
     }
 
     // Init the Staticbody State Machine
-    public void Init(StaticBodyDirector objectDirRef, AnimationPlayer animationRef) {
+    public void Init(StaticBodyDirector objectDirRef, AnimationPlayer animationRef, AudioStreamPlayer soundFxRef) {
         // Init all of the child state objects
         foreach (State child in GetChildren()) {
-            child.Init(objectDirRef, animationRef);
+            child.Init(objectDirRef, animationRef, soundFxRef);
         }
 
         // Initialize to the default state

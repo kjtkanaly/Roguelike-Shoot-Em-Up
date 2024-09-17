@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5lf2nuaibrgd"]
+[gd_scene load_steps=3 format=3 uid="uid://b5lf2nuaibrgd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/State-Machine/Static_Body/FollowPlayer.cs" id="1_h75nl"]
+[ext_resource type="AudioStream" uid="uid://bt25y3x82ds40" path="res://Assets/Music/Candy/pickupCandy_1.wav" id="2_twgfo"]
 
 [node name="Follow-Player" type="Node"]
 script = ExtResource("1_h75nl")
 moveSpeed = 6.0
 type = 1
+soundFxStream = ExtResource("2_twgfo")

@@ -18,9 +18,9 @@ public partial class StaticBodyState : State
     //-------------------------------------------------------------------------
 	// Methods
     // Public
-    override public void Init(StaticBodyDirector bodyDirectorRef, AnimationPlayer animationRef) 
+    override public void Init(StaticBodyDirector bodyDirectorRef, AnimationPlayer animationRef, AudioStreamPlayer sfxRef) 
     {
-        base.Init(bodyDirectorRef, animationRef);
+        base.Init(bodyDirectorRef, animationRef, sfxRef);
         staticBodyDir = bodyDirectorRef;
     }
 

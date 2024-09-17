@@ -19,6 +19,7 @@ public partial class StaticBodyDirector : Area3D
     // Protected
     [Export] protected StateMachine stateMachine;
     [Export] protected AnimationPlayer animationPlayer;
+    [Export] protected AudioStreamPlayer soundFx;
     [Export] protected CharacterDirector charDir;
 
     // Private
@@ -36,7 +37,7 @@ public partial class StaticBodyDirector : Area3D
 
     public void Init() {
         // Initialize the movement State Machine
-        stateMachine.Init(this, animationPlayer);
+        stateMachine.Init(this, animationPlayer, soundFx);
     }
 
     public override void _PhysicsProcess(double delta)

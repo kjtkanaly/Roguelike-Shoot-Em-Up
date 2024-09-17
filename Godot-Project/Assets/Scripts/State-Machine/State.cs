@@ -14,9 +14,11 @@ public partial class State : Node
     // Public
     [Export] public StateType type;
     [Export] public String animationPath;
+    [Export] public AudioStream soundFxStream;
 
     // Protected
     protected AnimationPlayer animationPlayer;
+    protected AudioStreamPlayer soundFx;
 
     //-------------------------------------------------------------------------
 	// Game Events
@@ -28,14 +30,21 @@ public partial class State : Node
         animationPlayer = animationRef;
     }
 
-    virtual public void Init(StaticBodyDirector bodyDirectorRef, AnimationPlayer animationRef) {
+    virtual public void Init(StaticBodyDirector bodyDirectorRef, AnimationPlayer animationRef, AudioStreamPlayer sfxRef) {
         animationPlayer = animationRef;
+        soundFx = sfxRef;
     }
 
     virtual public void Enter() {
         if (!string.IsNullOrEmpty(animationPath)) {
             animationPlayer.Play(animationPath);
         }
+
+        if (soundFx != null) {
+            soundFx.Stream = soundFxStream;
+            soundFx.Play();
+        }
+
         return;
     }
 

@@ -21,8 +21,8 @@ PlayerStats="*res://Assets/Nodes/Globals/player_stats.tscn"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=2560
+window/size/viewport_height=1440
 window/stretch/mode="viewport"
 
 [dotnet]
