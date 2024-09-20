@@ -11,8 +11,7 @@ public partial class Search : NPCState
     // Protected
 
     // Private
-    [Export] private State chaseState;
-    private RandomNumberGenerator rng;
+    [Export] private State chaseState;    
     private SceneTreeTimer wanderTimer;
     private SceneTreeTimer waitTimer;
 
@@ -24,8 +23,7 @@ public partial class Search : NPCState
     // Public
     public override void Init(CharacterDirector characterDirRef, AnimationPlayer animationPlayerRef)
     {
-        base.Init(characterDirRef, animationPlayerRef);
-        rng = new RandomNumberGenerator();
+        base.Init(characterDirRef, animationPlayerRef);     
     }
 
     public override void Enter()
@@ -55,7 +53,7 @@ public partial class Search : NPCState
     // Protected
     protected void WanderInRandomDirection() {
         // Randomly Choose an angle to wander in
-        float angle = rng.RandfRange(-Mathf.Pi, Mathf.Pi);
+        float angle = global.rng.RandfRange(-Mathf.Pi, Mathf.Pi);
 
         // Initialize the Wander Velocity and then rotate it by the wander angle
         Vector2 randomVelocity = new Vector2 (0, 1) 
@@ -73,7 +71,7 @@ public partial class Search : NPCState
             characterDir.GetModel().Rotation.Z);
 
         // Start the wandering timer with a random time
-        float wanderTime = rng.RandfRange(0.5f, 1.5f);
+        float wanderTime = global.rng.RandfRange(0.5f, 1.5f);
         wanderTimer = GetTree().CreateTimer(wanderTime);
 
         // Log that the enetity is wandering
@@ -88,7 +86,7 @@ public partial class Search : NPCState
                 0);
 
         // Choose a random amount of time to wait
-        float waitTime = rng.RandfRange(0.5f, 1.5f);
+        float waitTime = global.rng.RandfRange(0.5f, 1.5f);
         waitTimer = GetTree().CreateTimer(waitTime);
 
         // Log that the enetity is NOT wandering

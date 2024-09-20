@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerStats="*res://Assets/Nodes/Globals/player_stats.tscn"
+Main="*res://Assets/Nodes/Globals/main.tscn"
 
 [display]
 

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://fudaitfeymoc"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Levels/Level.cs" id="1_pfkwo"]
+[ext_resource type="PackedScene" uid="uid://cgh1qcl4tcu" path="res://Assets/Nodes/NPCs/Enemies/ghost.tscn" id="2_yq8nx"]
+[ext_resource type="Script" path="res://Assets/Scripts/Camera/CameraMovement.cs" id="3_aslbe"]
+[ext_resource type="PackedScene" uid="uid://bhxmej5jdupx8" path="res://Assets/Nodes/Player/player_director.tscn" id="3_oq3m4"]
+[ext_resource type="PackedScene" uid="uid://sx3tnleumsb7" path="res://Assets/Nodes/Floors/demo_plane.tscn" id="3_vcqdq"]
+
+[node name="Level-1" type="Node3D" node_paths=PackedStringArray("spawnTimers")]
+script = ExtResource("1_pfkwo")
+enemies = Array[PackedScene]([ExtResource("2_yq8nx")])
+spawnTimers = [NodePath("Ghost-Timer")]
+
+[node name="Ghost-Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Player-Director" parent="." instance=ExtResource("3_oq3m4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65484, 0)
+
+[node name="Main-Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 15, 9)
+current = true
+script = ExtResource("3_aslbe")
+
+[node name="Debug-Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 30, 20)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 2.4663e-16, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 10, 10)
+shadow_enabled = true
+
+[node name="Demo-Plane" parent="." instance=ExtResource("3_vcqdq")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)

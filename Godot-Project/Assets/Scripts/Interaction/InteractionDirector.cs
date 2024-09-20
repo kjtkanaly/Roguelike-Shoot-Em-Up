@@ -23,6 +23,7 @@ public partial class InteractionDirector : Node3D
 	[Export] protected CharacterDirector characterDir;
 	protected float currentHealth = 0.0f;
 	protected Godot.SceneTreeTimer deathTimer;
+    [Export] protected AudioStreamPlayer soundFx;
 
 	// Private
 	private InteractionData interactionData;
@@ -57,6 +58,8 @@ public partial class InteractionDirector : Node3D
 
 		DisplayDamageValue(data.damage);
 		EmitSignal(SignalName.TookDamage, data);
+
+        soundFx.Play();
 
 		if (IsDead()) {
 			BeginDeathSequence();

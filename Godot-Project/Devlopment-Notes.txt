@@ -94,7 +94,7 @@ attack object in each pickup object
 [ ] Create a death state that displays the player's stats and then offers 
     restart
 [ ] Figure out how to save the player's progress
-[ ] Add basic hit sound effects
+[X] Add basic hit sound effects
 [ ] Bring in Dak's font
 [X] Create the basic game loop (spawn in, die, stats screen,restart)
 [ ] Add particle physics to hits

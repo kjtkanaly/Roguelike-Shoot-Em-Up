@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chgl7m71h00ka" path="res://Assets/Nodes/Attacks/Area_Of_Effect/Ghost_AoE.tscn" id="3_txfxq"]
 [ext_resource type="PackedScene" uid="uid://c1ejon8wetoc3" path="res://Assets/Nodes/State-Machine/state_machine.tscn" id="4_ugjwg"]
 [ext_resource type="PackedScene" uid="uid://ckwsvyonpkc33" path="res://Assets/Nodes/State-Machine/Movement/chase.tscn" id="5_7puxk"]
-[ext_resource type="PackedScene" uid="uid://cgxcfarp5o8th" path="res://Assets/Nodes/State-Machine/Movement/search.tscn" id="6_d4km5"]
+[ext_resource type="AudioStream" uid="uid://3tlrdcwlohri" path="res://Assets/Music/Hurt/hurt_4.wav" id="6_cu5jb"]
 [ext_resource type="PackedScene" uid="uid://csqldf5yvrkoc" path="res://Assets/Models/Ghost-Instance/ghost_model_instance.tscn" id="7_2tk68"]
 [ext_resource type="Material" uid="uid://ddvtymj0p6r1x" path="res://Assets/Models/Ghost-Instance/Ghost_Material.tres" id="8_07tek"]
 
@@ -59,18 +59,18 @@ shape = ExtResource("2_stgnj")
 
 [node name="Inventory-Director" parent="Generic-Interaction-Director" index="3" groups=["Enemy"]]
 
+[node name="AudioStreamPlayer" parent="Generic-Interaction-Director" index="4"]
+stream = ExtResource("6_cu5jb")
+
 [node name="Ghost-AoE" parent="." instance=ExtResource("3_txfxq")]
 
 [node name="Staggered-Movement-Timer" type="Timer" parent="."]
 
 [node name="State-Machine" parent="." node_paths=PackedStringArray("startingState") instance=ExtResource("4_ugjwg")]
-startingState = NodePath("Search")
+startingState = NodePath("Chase")
 
 [node name="Chase" parent="State-Machine" node_paths=PackedStringArray("searchState") instance=ExtResource("5_7puxk")]
-searchState = NodePath("../Search")
-
-[node name="Search" parent="State-Machine" node_paths=PackedStringArray("chaseState") instance=ExtResource("6_d4km5")]
-chaseState = NodePath("../Chase")
+searchState = NodePath("")
 
 [node name="Ghost_Model_Instance" parent="." instance=ExtResource("7_2tk68")]
 

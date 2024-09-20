@@ -15,11 +15,25 @@ public partial class PlayerStats : Node
     // Protected
 
     // Private
+    private CharacterDirector player;
     private double elapsedTime = 0.0f;
-    
+
 
     //-------------------------------------------------------------------------
     // Game Events
+    public override void _Ready()
+    {
+        // Get the player director in the scen IF one exists
+        foreach (Node node in GetTree().GetNodesInGroup("Player"))
+        {
+            if (node.IsInGroup("Director")) 
+            {
+                player = (CharacterDirector) node;
+                break;
+            }
+        }
+    }
+
     public override void _Process(double delta)
     {
         // Log the elapsed time
@@ -39,6 +53,16 @@ public partial class PlayerStats : Node
 
     public void IncrementKillCount() {
         killCount += 1;
+    }
+
+    public Vector2 GetPlayerTopDownPosition() 
+    {
+        if (player == null) {
+            GD.Print("No Player in Scene!!!");
+            return Vector2.Zero;
+        }
+
+        return new Vector2(player.Position.X, player.Position.Z);
     }
 
     // Protected

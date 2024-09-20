@@ -19,6 +19,7 @@ public partial class State : Node
     // Protected
     protected AnimationPlayer animationPlayer;
     protected AudioStreamPlayer soundFx;
+    protected Main global;
 
     //-------------------------------------------------------------------------
 	// Game Events
@@ -28,11 +29,13 @@ public partial class State : Node
     // Public
     virtual public void Init(CharacterDirector bodyDirectorRef, AnimationPlayer animationRef) {
         animationPlayer = animationRef;
+        global = GetNode<Main>("/root/Main");
     }
 
     virtual public void Init(StaticBodyDirector bodyDirectorRef, AnimationPlayer animationRef, AudioStreamPlayer sfxRef) {
         animationPlayer = animationRef;
         soundFx = sfxRef;
+        global = GetNode<Main>("/root/Main");
     }
 
     virtual public void Enter() {
